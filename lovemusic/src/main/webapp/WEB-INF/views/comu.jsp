@@ -132,8 +132,8 @@
 
 	<!-- ====================== MENU ================================================ -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
-		<div class="qt-particles" id="particlesheader" data-color="#ffffff"
-			data-opacity="0.5" data-speed="1"></div>
+		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
+			data-opacity="0.5" data-speed="1"></div> -->
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">

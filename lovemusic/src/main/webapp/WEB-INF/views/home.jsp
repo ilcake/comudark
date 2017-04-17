@@ -39,7 +39,7 @@
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<img src="myfiles/images/logo_3.png" class="logo"
+					<img src="myfiles/images/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
 						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
