@@ -30,7 +30,7 @@
 <!-- comu Vidio back css -->
 <style type="text/css">
 .qt-particles {
-	background-image: url("images/galaxy-1.jpg");
+	background-image: url("images/galaxy-2.jpg");
 }
 
 .homepage-hero-module {

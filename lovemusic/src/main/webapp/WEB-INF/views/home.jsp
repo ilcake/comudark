@@ -34,12 +34,12 @@
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-1.jpg" alt="background">
+			<img src="images/galaxy-4.jpg" alt="background">
 		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<img src="myfiles/images/logo_1.png" class="logo"
+					<img src="myfiles/images/logo_3.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
 						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
