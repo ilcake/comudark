@@ -99,38 +99,7 @@
 
 <body>
 
-	<!-- <div class="homepage-hero-module">
-		<div class="video-container">
-			<div class="title-container">
-				<div class="headline"> -->
 
-
-	<!--Original logo height 80px-->
-	<!-- 로고 위치 
-               <img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
-                  height="80" alt=""> -->
-
-
-	<!-- <h3 class="text-white text-thin">beautiful, free videos for
-						your homepage</h3>
-					<h4 class="text-white text-thin">7 new videos every monday</h4>
-				</div>
-			</div>
-
-			<div class="filter"></div>
-			<video autoplay loop class="fillWidth">
-				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-			</video> -->
-
-
-	<!--    영상 로딩 전 보여줄 화면
-         <div class="poster hidden">
-            <img src="PATH_TO_JPEG" alt="">
-         </div> -->
-
-
-	<!-- 	</div>
-	</div> -->
 
 
 	<!-- ====================== HEADER ================================================ -->
@@ -187,12 +156,49 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-	<!-- 	<div id="presskit"
+
+	<div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
 		<div class="parallax">
 			<img src="images/galaxy-2.jpg" alt="background">
+
+			<div class="homepage-hero-module">
+				<div class="video-container">
+					<div class="title-container">
+						<div class="headline">
+
+
+							<!--Original logo height 80px-->
+							<!-- 로고 위치 
+               <img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
+                  height="80" alt=""> -->
+
+							<!-- 
+					<h3 class="text-white text-thin">beautiful, free videos for
+						your homepage</h3>
+					<h4 class="text-white text-thin">7 new videos every monday</h4> -->
+
+
+						</div>
+					</div>
+
+					<div class="filter"></div>
+					<video autoplay loop class="fillWidth">
+						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
+					</video>
+
+
+					<!--    영상 로딩 전 보여줄 화면
+         <div class="poster hidden">
+            <img src="PATH_TO_JPEG" alt="">
+         </div> -->
+
+
+
+				</div>
+			</div>
 		</div>
-	</div> -->
+	</div>
 
 	<!-- QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
@@ -213,7 +219,7 @@
 	<!-- comu Video back Script -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			setBackGroundMusic();
+			//setBackGroundMusic();
 	
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
@@ -229,7 +235,7 @@
 	
 		});
 	
-		function setBackGroundMusic() {
+		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
 				alert('브라우저가 ogg 재생을 지원하지 않습니다.');else {
@@ -240,7 +246,9 @@
 					this.play();
 				}, false);
 				bgm.play();
-			}
+			} */
+	
+	
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -251,7 +259,8 @@
 		   keyEnabled : true
 		});
 		 */
-		}
+	
+		//}
 	
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;

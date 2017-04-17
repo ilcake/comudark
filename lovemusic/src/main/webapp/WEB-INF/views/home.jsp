@@ -26,96 +26,23 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-
-<!-- comu Vidio back css -->
-<style type="text/css">
-.homepage-hero-module {
-	border-right: none;
-	border-left: none;
-	position: relative;
-}
-
-.no-video .video-container video, .touch .video-container video {
-	display: none;
-}
-
-.no-video .video-container .poster, .touch .video-container .poster {
-	display: block !important;
-}
-
-.video-container {
-	position: relative;
-	bottom: 0%;
-	left: 0%;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	background: #000;
-}
-
-.video-container .poster img {
-	width: 100%;
-	bottom: 0;
-	position: absolute;
-}
-
-.video-container .filter {
-	z-index: 100;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.4);
-	width: 100%;
-}
-
-.video-container video {
-	position: absolute;
-	z-index: 0;
-	bottom: 0;
-}
-
-.video-container video.fillWidth {
-	width: 100%;
-}
-
-.video-container .title-container {
-	z-index: 1000;
-	position: absolute;
-	top: 40%;
-	width: 100%;
-	text-align: center;
-	color: #fff
-}
-
-.text-white {
-	color: #fff !important
-}
-
-.text-thin {
-	font-weight: 100
-}
-</style>
-
-
-</head>
-
 <body>
 
 
 	<!-- ====================== HEADER ================================================ -->
 	<header id="home" class="qt-header parallax-container scrollspy">
-		<div class="parallax"
+		<!-- <div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-
-			<!-- 배경 이미지! -->
-			<img src="images/galaxy-2.jpg" alt="background">
-		</div>
+			<img src="images/galaxy-1.jpg" alt="background">
+		</div> -->
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
 					<img src="myfiles/images/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
-						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
+						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;<a href='#join'>Join</a>
 					</h4>
 				</div>
 			</div>
@@ -156,12 +83,7 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-	<!-- 	<div id="presskit"
-		class="section section-presskit parallax-container scrollspy">
-		<div class="parallax">
-			<img src="images/galaxy-2.jpg" alt="background">
-		</div>
-	</div> -->
+
 
 	<!-- QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
