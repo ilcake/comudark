@@ -29,6 +29,10 @@
 
 <!-- comu Vidio back css -->
 <style type="text/css">
+.qt-particles {
+	background-image: url("images/galaxy-1.jpg");
+}
+
 .homepage-hero-module {
 	border-right: none;
 	border-left: none;
@@ -128,11 +132,13 @@
 
 	<!-- ====================== MENU ================================================ -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
+		<div class="qt-particles" id="particlesheader" data-color="#ffffff"
+			data-opacity="0.5" data-speed="1"></div>
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
+				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
@@ -142,7 +148,7 @@
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
+				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
@@ -160,7 +166,7 @@
 	<div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
 		<div class="parallax">
-			<img src="images/galaxy-2.jpg" alt="background">
+			<!-- <img src="images/galaxy-2.jpg" alt="background"> -->
 
 			<div class="homepage-hero-module">
 				<div class="video-container">
@@ -233,6 +239,7 @@
 				scaleBannerVideoSize('.video-container video');
 			});
 	
+	
 		});
 	
 		/* function setBackGroundMusic() {
@@ -286,10 +293,9 @@
 			$(element).each(
 				function() {
 					var videoAspectRatio = $(this).data('height')
-					/ $(this).data('width');
+					//$(this).data('width');
 	
 					$(this).width(windowWidth);
-	
 					/* if (windowWidth < 1000) {
 					   videoHeight = windowHeight;
 					   videoWidth = videoHeight / videoAspectRatio;
@@ -299,10 +305,8 @@
 					            'margin-left' : -(videoWidth - windowWidth)
 					                  / 2 + 'px'
 					         });
-					
 					   $(this).width(videoWidth).height(videoHeight);
 					} */
-	
 					$('.homepage-hero-module .video-container video').addClass(
 						'fadeIn animated');
 				});

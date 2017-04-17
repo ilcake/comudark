@@ -273,9 +273,9 @@
 	* 
 	====================================================================*/
 
-	/*	$.fn.qtParallax = function(){
-			$('.parallax').parallax();
-		}*/
+	$.fn.qtParallax = function() {
+		$('.parallax').parallax();
+	}
 
 	/**====================================================================
 	*
@@ -481,7 +481,7 @@
 	$.fn.qwInitPage = function() {
 
 		// Materializecss parallax http://materializecss.com/parallax.html
-		//$.fn.qtParallax();
+		$.fn.qtParallax();
 
 		// Sticky js http://stickyjs.com/
 		// $("#stickymenu").sticky({topSpacing:0, responsiveWidth: true, zIndex: 100});
