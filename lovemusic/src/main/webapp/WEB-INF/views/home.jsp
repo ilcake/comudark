@@ -22,6 +22,7 @@
 	href="myfiles/images/logo_comu.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<script src="resources/jquery-3.1.1.min.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
@@ -98,51 +99,20 @@
 
 <body>
 
-	<!-- <div class="homepage-hero-module">
-		<div class="video-container">
-			<div class="title-container">
-				<div class="headline"> -->
-
-
-	<!--Original logo height 80px-->
-	<!-- 로고 위치 
-               <img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
-                  height="80" alt=""> -->
-
-
-	<!-- <h3 class="text-white text-thin">beautiful, free videos for
-						your homepage</h3>
-					<h4 class="text-white text-thin">7 new videos every monday</h4>
-				</div>
-			</div>
-
-			<div class="filter"></div>
-			<video autoplay loop class="fillWidth">
-				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-			</video> -->
-
-
-	<!--    영상 로딩 전 보여줄 화면
-         <div class="poster hidden">
-            <img src="PATH_TO_JPEG" alt="">
-         </div> -->
-
-
-	<!-- 	</div>
-	</div> -->
-
 
 	<!-- ====================== HEADER ================================================ -->
 	<header id="home" class="qt-header parallax-container scrollspy">
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-1.jpg" alt="background">
+
+			<!-- 배경 이미지! -->
+			<img src="images/galaxy-2.jpg" alt="background">
 		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<img src="myfiles/images/logo_comu2.png" class="logo"
+					<img src="myfiles/images/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
 						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
@@ -161,8 +131,8 @@
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">
-				<li><a href="#home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="#comu" class="qwsmoothscroll">CoMu</a></li>
+				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
@@ -171,8 +141,8 @@
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="#home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="#comu" class="qwsmoothscroll">CoMu</a></li>
+				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
@@ -209,95 +179,6 @@
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
 
-	<!-- comu Video back Script -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			setBackGroundMusic();
-	
-			scaleVideoContainer();
-			initBannerVideoSize('.video-container .poster img');
-			initBannerVideoSize('.video-container .filter');
-			initBannerVideoSize('.video-container video');
-	
-			$(window).on('resize', function() {
-				scaleVideoContainer();
-				scaleBannerVideoSize('.video-container .poster img');
-				scaleBannerVideoSize('.video-container .filter');
-				scaleBannerVideoSize('.video-container video');
-			});
-	
-		});
-	
-		function setBackGroundMusic() {
-			var bgm = new Audio('');
-			if (!bgm.canPlayType('audio/ogg'))
-				alert('브라우저가 ogg 재생을 지원하지 않습니다.');else {
-				var bgm_url = 'http://upload.wikimedia.org/wikipedia/commons/d/d7/Wikinews_Remix_Jingle.ogg';
-				bgm = new Audio(bgm_url);
-				bgm.addEventListener('ended', function() {
-					this.currentTime = 0;
-					this.play();
-				}, false);
-				bgm.play();
-			}
-		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
-		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-		}, {
-		   cssSelectorAncestor : "#cp_container_1",
-		   swfPath : "../dist/jplayer",
-		   wmode : "window",
-		   keyEnabled : true
-		});
-		 */
-		}
-	
-		function scaleVideoContainer() {
-			var height = $(window).height() + 5;
-			var unitHeight = parseInt(height) + 'px';
-			$('.homepage-hero-module').css('height', unitHeight);
-	
-		}
-	
-		function initBannerVideoSize(element) {
-			$(element).each(function() {
-				$(this).data('height', $(this).height());
-				$(this).data('width', $(this).width());
-			});
-			scaleBannerVideoSize(element);
-		}
-	
-		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width(),
-				windowHeight = $(window).height() + 5,
-				videoWidth,
-				videoHeight;
-			// console.log(windowHeight);
-			$(element).each(
-				function() {
-					var videoAspectRatio = $(this).data('height')
-					/ $(this).data('width');
-	
-					$(this).width(windowWidth);
-	
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
-	
-					$('.homepage-hero-module .video-container video').addClass(
-						'fadeIn animated');
-				});
-		}
-	</script>
 </body>
 
 </html>

@@ -31,7 +31,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="good.love.music" />
+	<context:component-scan base-package="good.love.music.controller" />
 
 
 
