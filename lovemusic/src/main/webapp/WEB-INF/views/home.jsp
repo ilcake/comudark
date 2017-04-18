@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/logo_comu.png" />
+	href="myfiles/images/main/logo_comu.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
@@ -39,7 +39,7 @@
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<img src="myfiles/images/logo_1.png" class="logo"
+					<img src="myfiles/images/main/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
 						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
@@ -58,9 +58,9 @@
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
@@ -68,9 +68,9 @@
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>

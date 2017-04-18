@@ -11,6 +11,11 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate.min.js"></script>
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -23,13 +28,8 @@
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/logo_comu.png" />
+	href="myfiles/images/main/logo_comu.png" />
 
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
 <!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">

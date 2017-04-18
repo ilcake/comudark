@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="good.love.music.dao.BoardDAO">
+
+	<!-- 게시글 등록 ? -->
+	<insert id="write" parameterType="Board">
+		INSERT INTO cm_board
+		VALUES
+		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{shared})
+	</insert>
+
+	<!-- 글 등록시 이미지 변경 ? -->
+	<update id="fileUpdate" parameterType="File">
+		UPDATE cm_file
+		SET
+		cover_re = #{cover_re}
+		WHERE
+		filenum = #{filenum}
+	</update>
+
+	<!-- 글 목록(개인) ? -->
+	<select id="boardList" parameterType="string" resultType="Board">
+		SELECT
+		* FROM cm_board b, cm_file f
+		WHERE
+		b.filenum = f.filenum
+		AND
+		b.userid = #{userid}
+	</select>
+
+	<!-- 글 목록(전체) -->
+	<select id="list" resultType="Board">
+		SELECT * FROM cm_board b, cm_file f
+		WHERE
+		b.filenum = f.filenum
+	</select>
+
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE cm_board
+		SET
+		title = #{title}, content = #{cotent}, shared = #{shared}
+		WHERE
+		boardnum = #{boardnum} and userid = #{userid}
+	</update>
+
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE cm_board
+		WHERE
+		boardnum = #{boardnum}
+	</delete>
+
+	<!-- 글 검색 -->
+	<select id="searchBoard" parameterType="map" resultType="Board">
+		SELECT * FROM cm_board
+		<if test="searchTitle != '' and searchText != '' ">
+			<choose>
+				<when test="searchTitle == 'userid' ">
+					WHERE userid LIKE '%' || #{searchText} || '%'
+				</when>
+				<when test="searchTitle == 'title' ">
+					WHERE title LIKE '%' || #{searchText} || '%'
+				</when>
+				<when test="searchTitle == 'content' ">
+					WHERE content LIKE '%' || #{searchText} || '%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY boardnum
+	</select>
+
+	<!-- 댓글 등록 -->
+	<insert id="replyWrite" parameterType="Reply">
+		INSERT INTO cm_reply
+		(
+		replynum
+		, boardnum
+		, userid
+		, replytext
+		, inputdate
+		)
+		VALUES
+		(
+		replynum_seq.nextval
+		, #{boardnum}
+		, #{userid}
+		, #{replytext}
+		, sysdate
+		)
+	</insert>
+
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="Reply">
+		UPDATE cm_reply
+		SET
+		replytext = #{replytext}
+		WHERE
+		replynum = #{replynum}
+	</update>
+
+	<!-- 댓글 불려오기 -->
+	<select id="replylist" resultType="Reply" parameterType="int">
+		SELECT *
+		FROM cm_reply
+		WHERE boardnum = #{boardnum}
+	</select>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="Reply">
+		DELETE cm_reply
+		WHERE
+		replynum = #{replynum}
+	</delete>
+
+	<!-- 좋아요 등록 -->
+	<insert id="like" parameterType="Like">
+		INSERT INTO cm_like
+		VALUES
+		(#{boardnum}, #{userid}, #{like_userid})
+	</insert>
+
+	<!-- 좋아요 리스트(랭킹) -->
+	<select id="rankList" resultType="Like">
+		SELECT count(*) FROM cm_like
+		GROUP BY boardnum
+	</select>
+
+	<!-- 좋아요 리스트(개인) -->
+	<select id="idList" parameterType="String" resultType="Like">
+		SELECT *
+		FROM cm_like
+		WHERE
+		userid = #{userid}
+	</select>
+
+	<!-- 좋아요 리스트 -->
+	<select id="likeList" resultType="Like">
+		SELECT * FROM cm_like
+		WHERE
+		boardnum = #{boardnum}
+	</select>
+
+	<!-- 구독 -->
+	<insert id="writeSubscribe" parameterType="Subscribe">
+		INSERT INTO
+		cm_subscribe
+		VALUES
+		(#{userid}, #{sub_userid})
+	</insert>
+
+	<!-- 구독 리스트 -->
+	<select id="subscribeList" parameterType="String" resultType="Subscribe">
+		SELECT * FROM cm_subscribe
+		WHERE
+		userid = #{userid}
+	</select>
+</mapper>
