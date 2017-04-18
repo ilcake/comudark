@@ -36,10 +36,9 @@
 
 <!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">
-.qt-particles {
+/* .qt-particles {
 	background-image: url("images/galaxy-2.jpg");
-}
-
+} */
 .homepage-hero-module {
 	border-right: none;
 	border-left: none;
@@ -430,6 +429,19 @@
 						alert(resp);
 					}
 				});
+			});
+	
+	
+			$.ajax({
+				url : "getList",
+				type : "POST",
+				data : {},
+				success : function(resp) {
+					console.log(JSON.stringify(resp));
+				},
+				error : function(resp) {
+					console.log(JSON.stringify(resp));
+				}
 			});
 		});
 	</script>

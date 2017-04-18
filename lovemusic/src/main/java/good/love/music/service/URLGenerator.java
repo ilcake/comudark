@@ -2,11 +2,13 @@ package good.love.music.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,12 @@ public class URLGenerator {
 	private Map<String, MusicSource> map;
 	private String dirName = "";
 
+	private Map<String, ArrayList<String>> list;
+
 	@PostConstruct
 	public void init() {
 		map = new HashMap<>();
+		list = new HashMap<>();
 		subDirList(servletContext.getRealPath("/resources/musicSources/"));
 	}
 
@@ -39,9 +44,12 @@ public class URLGenerator {
 				if (file.isFile()) {
 					String fileName = deleteExtension(file.getName());
 					map.put((dirName + fileName).toLowerCase(), new MusicSource(file));
-					System.out.println("The File==" + (dirName + fileName).toLowerCase());
+					list.get(dirName).add(fileName);
+					System.out.println("The File==" + (dirName + "_" + fileName).toLowerCase());
 				} else if (file.isDirectory()) {
 					dirName = file.getName();
+					ArrayList<String> neList = new ArrayList<>();
+					list.put(dirName, neList);
 					subDirList(file.getCanonicalPath().toString());
 				}
 			}
@@ -70,6 +78,14 @@ public class URLGenerator {
 		}
 		System.out.println("요청 키 ==" + key + "  // 받은 주소 ==" + musicSource.getFilePath());
 		return musicSource.getFilePath();
+	}
+
+	public Map<String, ArrayList<String>> getList() {
+		return list;
+	}
+
+	public void setList(Map<String, ArrayList<String>> list) {
+		this.list = list;
 	}
 
 }

@@ -34,7 +34,7 @@
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-4.jpg" alt="background">
+			<img src="images/galaxy-4.jpg" alt="background" id="theBackg">
 		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
@@ -83,7 +83,7 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-	<!-- 	<div id="presskit"
+	<!-- <div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
 		<div class="parallax">
 			<img src="images/galaxy-2.jpg" alt="background">
@@ -105,6 +105,17 @@
 
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#theBackg").attr("style", "");
+		});
+	</script>
 </body>
+<style>
+body {
+	background-image: url("images/galaxy-4.jpg");
+}
+</style>
 
 </html>

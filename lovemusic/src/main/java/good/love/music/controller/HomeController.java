@@ -2,6 +2,9 @@ package good.love.music.controller;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +25,9 @@ import good.love.music.service.URLGenerator;
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	URLGenerator generator;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -51,11 +57,17 @@ public class HomeController {
 	@RequestMapping(value = "/hicu", method = RequestMethod.GET)
 	public String hicu(HttpSession session) {
 		session.removeAttribute("file");
+		session.setAttribute("file", generator.getList());
 		return "hicu";
 	}
 
-	@Autowired
-	URLGenerator generator;
+	@ResponseBody
+	@RequestMapping(value = "/getList", method = RequestMethod.POST)
+	public Map<String, ArrayList<String>> getList(HttpSession session) {
+		session.removeAttribute("file");
+		session.setAttribute("file", generator.getList());
+		return generator.getList();
+	}
 
 	@RequestMapping(value = "/compile", method = RequestMethod.POST)
 	public @ResponseBody String compile(String source, HttpServletRequest request) {
