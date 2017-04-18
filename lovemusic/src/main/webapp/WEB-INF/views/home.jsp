@@ -26,23 +26,23 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+</head>
+
 <body>
-
-
 	<!-- ====================== HEADER ================================================ -->
 	<header id="home" class="qt-header parallax-container scrollspy">
-		<!-- <div class="parallax"
+		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-1.jpg" alt="background">
-		</div> -->
+			<img src="images/galaxy-4.jpg" alt="background">
+		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
 					<img src="myfiles/images/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
-						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;<a href='#join'>Join</a>
+						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
 					</h4>
 				</div>
 			</div>
@@ -54,11 +54,11 @@
 
 
 	<!-- ====================== MENU ================================================ -->
-	<div id="menu" class="qt-menu-wrapper" data-0-top>
+	<div id="menu" class="qt-menu-wrapper">
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
@@ -68,7 +68,7 @@
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
@@ -83,7 +83,12 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-
+	<!-- 	<div id="presskit"
+		class="section section-presskit parallax-container scrollspy">
+		<div class="parallax">
+			<img src="images/galaxy-2.jpg" alt="background">
+		</div>
+	</div> -->
 
 	<!-- QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
@@ -100,7 +105,6 @@
 
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
-
 </body>
 
 </html>
