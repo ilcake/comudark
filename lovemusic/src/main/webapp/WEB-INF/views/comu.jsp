@@ -11,6 +11,10 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
 <link href='components/swipebox/src/css/swipebox.min.css'
 	rel='stylesheet' type='text/css'>
@@ -27,7 +31,7 @@
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
-<!-- comu Vidio back css -->
+<!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">
 .homepage-hero-module {
 	border-right: none;
@@ -79,29 +83,23 @@
 .video-container .title-container {
 	z-index: 1000;
 	position: absolute;
-	top: 40%;
-	width: 100%;
-	text-align: center;
-	color: #fff
+	top: 9%;
+	margin-left: 10%;
+	width: 80%;
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 80%;
 }
 
-.text-white {
-	color: #fff !important
+.text {
+	color: black;
 }
 
 .text-thin {
 	font-weight: 100
 }
 </style>
-
-
 </head>
-
 <body>
-
-
-
-
 	<!-- ====================== HEADER ================================================ -->
 	<!-- <header id="home" class="qt-header parallax-container scrollspy">
 		<div class="parallax"
@@ -156,7 +154,6 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-
 	<div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
 		<div class="parallax">
@@ -165,21 +162,24 @@
 			<div class="homepage-hero-module">
 				<div class="video-container">
 					<div class="title-container">
-						<div class="headline">
 
+						<!--Original logo height 80px-->
+						<!-- 로고 위치 
+               			<img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
+                  		height="80" alt=""> -->
 
-							<!--Original logo height 80px-->
-							<!-- 로고 위치 
-               <img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
-                  height="80" alt=""> -->
-
-							<!-- 
-					<h3 class="text-white text-thin">beautiful, free videos for
-						your homepage</h3>
-					<h4 class="text-white text-thin">7 new videos every monday</h4> -->
-
-
+						<!-- ============== COMU CONTENT  ================= -->
+						<div class="row">
+							<div class="col-md-6">
+								<h1>h1</h1>
+								<h1>h1</h1>
+							</div>
+							<div class="col-md-6">
+								<h1>h1</h1>
+								<h1>h1</h1>
+							</div>
 						</div>
+
 					</div>
 
 					<div class="filter"></div>
@@ -187,24 +187,22 @@
 						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
 					</video>
 
-
 					<!--    영상 로딩 전 보여줄 화면
          <div class="poster hidden">
             <img src="PATH_TO_JPEG" alt="">
          </div> -->
-
-
 
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- QT FOOTER ================================ -->
+
+	<!-- ======= QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
 
 
-	<!--  CUSTOM JS LIBRARIES: =========================================================== -->
+	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
 	<script src="js/materializecss/bin/materialize.min.js"></script>
 	<script src="components/slick/slick.min.js"></script>
 	<script src="components/skrollr/skrollr.min.js"></script>
@@ -213,28 +211,28 @@
 	<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
 	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
 
-	<!-- MAIN JAVASCRIPT FILE ================================ -->
+	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
 	<script src="js/qt-main.js"></script>
 
-	<!-- comu Video back Script -->
+	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT ================ -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
-	
+
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-	
+
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-	
+
 		});
-	
+
 		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
@@ -247,8 +245,7 @@
 				}, false);
 				bgm.play();
 			} */
-	
-	
+
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -259,16 +256,15 @@
 		   keyEnabled : true
 		});
 		 */
-	
+
 		//}
-	
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-	
+
 		}
-	
+
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -276,38 +272,40 @@
 			});
 			scaleBannerVideoSize(element);
 		}
-	
+
 		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width(),
-				windowHeight = $(window).height() + 5,
-				videoWidth,
-				videoHeight;
+			var windowWidth = $(window).width();
+			var windowHeight = $(window).height() + 5;
+			var videoWidth, videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
-				function() {
-					var videoAspectRatio = $(this).data('height')
-					/ $(this).data('width');
-	
-					$(this).width(windowWidth);
-	
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
-	
-					$('.homepage-hero-module .video-container video').addClass(
-						'fadeIn animated');
-				});
+					function() {
+						var videoAspectRatio = $(this).data('height')
+								/ $(this).data('width');
+
+						$(this).width(windowWidth);
+
+						/* if (windowWidth < 1000) {
+						   videoHeight = windowHeight;
+						   videoWidth = videoHeight / videoAspectRatio;
+						   $(this).css(
+						         {
+						            'margin-top' : 0,
+						            'margin-left' : -(videoWidth - windowWidth)
+						                  / 2 + 'px'
+						         });
+						
+						   $(this).width(videoWidth).height(videoHeight);
+						} */
+
+						$('.homepage-hero-module .video-container video')
+								.addClass('fadeIn animated');
+					});
 		}
 	</script>
+	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT END =========== -->
+
 </body>
 
+<!-- COMU PAGE MAIN SPACE CSS  -->
 </html>
