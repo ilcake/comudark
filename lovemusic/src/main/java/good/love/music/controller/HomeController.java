@@ -45,4 +45,10 @@ public class HomeController {
 		return "basic";
 	}
 
+	@RequestMapping(value = "/basic2", method = RequestMethod.GET)
+	public String basic2(HttpSession session) {
+		session.removeAttribute("file");
+		return "basic2";
+	}
+
 }
