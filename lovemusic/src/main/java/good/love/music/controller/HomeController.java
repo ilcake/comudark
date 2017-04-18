@@ -39,4 +39,10 @@ public class HomeController {
 		return "comu";
 	}
 
+	@RequestMapping(value = "/hicu", method = RequestMethod.GET)
+	public String hicu(HttpSession session) {
+		session.removeAttribute("file");
+		return "hicu";
+	}
+
 }

@@ -58,9 +58,9 @@
 		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 			<!-- desktop menu -->
 			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
@@ -68,9 +68,9 @@
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
+				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
