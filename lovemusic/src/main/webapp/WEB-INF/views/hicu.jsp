@@ -270,13 +270,13 @@
 											</div>
 										</div>
 										<div class="containerBIN" id="tools">
-											<img id="play" src="myfiles/images/hicu/hiBtn_play.png"
+											<img id="play" src="myfiles/images/hicu/btn_play.png"
 												width="80" height="33"> <img id="stop"
-												src="myfiles/images/hicu/hiBtn_stop.png" width="80"
+												src="myfiles/images/hicu/btn_stop.png" width="80"
 												height="33"> <img id="save"
-												src="myfiles/images/hicu/hiBtn_save.png"> <img
-												id="load" src="myfiles/images/hicu/hiBtn_load.png"> <img
-												id="reset" src="myfiles/images/hicu/hiBtn_reset.png">
+												src="myfiles/images/hicu/btn_save.png"> <img id="load"
+												src="myfiles/images/hicu/btn_load.png"> <img
+												id="reset" src="myfiles/images/hicu/btn_reset.png">
 											<div>
 												<textarea id="resultCode"></textarea>
 											</div>
