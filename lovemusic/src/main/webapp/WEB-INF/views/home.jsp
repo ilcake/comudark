@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/logo_comu.png" />
+	href="myfiles/images/main/logo_comu.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
@@ -34,12 +34,12 @@
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-4.jpg" alt="background">
+			<img src="images/galaxy-4.jpg" alt="background" id="theBackg">
 		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<img src="myfiles/images/logo_1.png" class="logo"
+					<img src="myfiles/images/main/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
 						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
@@ -60,7 +60,7 @@
 			<ul class="qt-desktopmenu">
 				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
@@ -70,7 +70,7 @@
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
+				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
 				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
 				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
 				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
@@ -83,7 +83,7 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
-	<!-- 	<div id="presskit"
+	<!-- <div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
 		<div class="parallax">
 			<img src="images/galaxy-2.jpg" alt="background">
@@ -105,6 +105,17 @@
 
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$("#theBackg").attr("style", "");
+		});
+	</script>
 </body>
+<style>
+body {
+	background-image: url("images/galaxy-4.jpg");
+}
+</style>
 
 </html>

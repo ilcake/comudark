@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="good.love.music.dao.FileDAO">
+
+	<!-- 파일 저장 -->
+	<insert id="saveFile" parameterType="File">
+		INSERT INTO cm_file(filenum, userid, file_ori, file_com, file_type,
+		file_title
+		<if test="cover_ori != null">
+			, cover_ori , cover_re
+		</if>
+		)
+		VALUES
+		(filenum_seq.nextval, #{userid}, #{file_ori}, #{file_com},
+		#{file_type}, #{file_title}
+		<if test="cover_ori != null">
+			, #{cover_ori}, #{cover_re}
+		</if>
+		)
+	</insert>
+
+	<!-- 파일 목록 불러오기 -->
+	<select id="fileList" resultType="File">
+		SELECT * FROM cm_file
+		ORDER BY
+		FILENUM DESC
+	</select>
+
+	<!-- 개인 파일 목록 불러오기 -->
+	<select id="userlist" parameterType="String" resultType="File">
+		SELECT *
+		FROM cm_file
+		WHERE userid = #{userid}
+		ORDER BY FILENUM DESC
+	</select>
+
+	<!-- 특정 파일 불러오기 -->
+	<select id="loadFile" resultType="File">
+		SELECT * FROM cm_file
+		WHERE
+		FILENUM = #{filenum}
+	</select>
+
+	<!-- 파일 덮어쓰기 -->
+	<update id="updateFile" parameterType="File">
+		UPDATE cm_file
+		SET file_title = #{file_title}, file_ori = #{file_ori},
+		file_com = #{file_com}
+		<if test="cover_re != null">
+			, cover_re=#{cover_re}
+		</if>
+		WHERE FILENUM = #{filenum}
+	</update>
+
+	<!-- 파일 삭제 -->
+	<delete id="deleteFile" parameterType="int">
+		DELETE cm_file
+		WHERE
+		FILENUM = #{filenum}
+	</delete>
+
+
+</mapper>
