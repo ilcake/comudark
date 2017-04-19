@@ -70,6 +70,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/compile", method = RequestMethod.POST)
 	public @ResponseBody String compile(String source) {
+		System.out.println(source);
 		MyNewGrammar grammar = new MyNewGrammar(new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
 		grammar.setURLGenerator(generator);
 		String result = grammar.getResult();

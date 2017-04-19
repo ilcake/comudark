@@ -186,56 +186,67 @@
 									<div class="containerB">
 
 										<div class="containerBIN" id="pad">
-											<div class="selectLine">
-												<span class="label">Beats</span><select id="beatSelection"><option
-														value="Loops">MadeSet</option>
-													<option value="ACU">Acustic</option>
-													<option value="R8">R8</option></select> <img
-													src="myfiles/images/hicu/ins_add.png" class="ins_add">
+											<div class="selectLine" id="beatLine">
+												<table>
+													<tr>
+														<td><span class="label">Beats</span><select
+															id="beatSelection"><option value="Loops">MadeSet</option>
+																<option value="ACU">Acustic</option>
+																<option value="R8">R8</option></select> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins=""></td>
+														<td><span class="label">Bass</span><select
+															id="InsSelection"><option value="guitarCode">GuitarC</option>
+																<option value="guitarNote">GuitarN</option>
+																<option value="piano">Piano</option></select> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"></td>
+														<td><span class="label">Melody</span><select
+															id="InsSelection"><option value="guitarCode">GuitarC</option>
+																<option value="guitarNote">GuitarN</option>
+																<option value="piano">Piano</option></select> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"></td>
+													
+														</tr>
+												</table>
 											</div>
 
-											<div class="buttons_row" id="beatSection">
-												<span class="label">Loops</span> <img id="beat1"
-													class="hiBtn" src="myfiles/images/hicu/button_off.png"><img
-													id="beat2" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat3" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat4" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat5" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat6" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat7" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat8" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat9" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat10" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat11" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat12" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat13" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat14" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat15" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png"><img
-													id="beat16" class="hiBtn"
-													src="myfiles/images/hicu/button_off.png">
+											<div class="btnsArea" id="btnsArea">
+												<!-- <div class="buttons_row" id="beatSection">
+													<span class="label">Loops</span> <img id="beat1"
+														class="hiBtn" src="myfiles/images/hicu/button_off.png"><img
+														id="beat2" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat3" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat4" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat5" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat6" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat7" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat8" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat9" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat10" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat11" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat12" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat13" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat14" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat15" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
+														id="beat16" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png">
+												</div> -->
 											</div>
-											<div></div>
-											<div class="selectLine">
-												<span class="label">Ins</span><select id="InsSelection"><option
-														value="guitarCode">GuitarC</option>
-													<option value="guitarNote">GuitarN</option>
-													<option value="piano">Piano</option></select> <img
-													src="myfiles/images/hicu/ins_add.png" class="ins_add">
-											</div>
+
 
 											<div class="buttons_row" id="LED_row">
 												<span class="label blank">GO</span> <img class="leds"
@@ -267,23 +278,24 @@
 													id="LED_16" class="leds"
 													src="myfiles/images/hicu/LED_off.png">
 											</div>
-											<div>
-												<hr />
-											</div>
 										</div>
+										<hr />
 										<div class="containerBIN" id="tools">
 											<img id="play" src="myfiles/images/hicu/btn_play.png"
-												width="80" height="33"> <img id="stop"
+												width="80" height="33"><img id="stop"
 												src="myfiles/images/hicu/btn_stop.png" width="80"
 												height="33"> <img id="save"
-												src="myfiles/images/hicu/btn_save.png"> <img id="load"
-												src="myfiles/images/hicu/btn_load.png"> <img
-												id="reset" src="myfiles/images/hicu/btn_reset.png">
-											<div>
+												src="myfiles/images/hicu/btn_save.png"><img id="load"
+												src="myfiles/images/hicu/btn_load.png"><img id="reset"
+												src="myfiles/images/hicu/btn_reset.png">
+											<!-- <div>
 												<textarea id="resultCode"></textarea>
-											</div>
+											</div> -->
 										</div>
 									</div>
+								</div>
+								<div style="display: none;">
+									<textarea id="resultCode"></textarea>
 								</div>
 
 								<footer class="footer">
@@ -413,10 +425,16 @@
 				});
 		}
 	</script>
-	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT END =========== -->
+	<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
 
 	<!--  HICU Action  -->
 	<script type="text/javascript">
+	
+		/*******************************************
+		*
+		* 		     Initiation Function
+		* 
+		********************************************/
 		function initHiCu() {
 	
 			/*******************************************
@@ -443,18 +461,26 @@
 			});
 			console.log("==================================");
 		}
+	
+		/********************************************** 
+		*
+		*                 on Ready!
+		*
+		***********************************************/
 		$(function() {
 			initHiCu();
 	
 			$("#play").on("click", function() {
+				var theSource = $("#resultCode").val();
+				console.log("play ==> " + theSource);
 				$.ajax({
 					type : "POST",
 					url : "compile",
 					data : {
-						"source" : "beat 1{do 3; location 1;} ins piano{do 3; location 1; note(b3, 1); note(c3, 3);}"
+						"source" : theSource
 					},
 					success : function(resp) {
-						alert(JSON.stringify(resp));
+						alert(resp);
 					},
 					error : function(resp) {
 						alert(resp);
@@ -464,7 +490,6 @@
 	
 		});
 	</script>
-
 </body>
 
 <!-- COMU PAGE MAIN SPACE CSS  -->
@@ -501,7 +526,7 @@
 	background-color: threedlightshadow;
 }
 
-#resultCode {
+/* #resultCode {
 	width: 685px;
 	height: 120px;
 	border: 3px solid #cccccc;
@@ -509,8 +534,8 @@
 	font-family: Tahoma, sans-serif;
 	background-position: bottom right;
 	background-repeat: no-repeat;
-}
-
+	font-size: x-small;
+} */
 .label {
 	color: black;
 	display: inline-block;
