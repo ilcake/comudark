@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import good.love.music.comu.MyNewGrammar;
 import good.love.music.service.URLGenerator;
+import good.love.music.vo.MusicSource;
 
 /**
  * Handles requests for the application home page.
@@ -63,14 +64,12 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping(value = "/getList", method = RequestMethod.POST)
-	public Map<String, ArrayList<String>> getList(HttpSession session) {
-		session.removeAttribute("file");
-		session.setAttribute("file", generator.getList());
+	public Map<String, ArrayList<MusicSource>> getList() {
 		return generator.getList();
 	}
 
 	@RequestMapping(value = "/compile", method = RequestMethod.POST)
-	public @ResponseBody String compile(String source, HttpServletRequest request) {
+	public @ResponseBody String compile(String source) {
 		MyNewGrammar grammar = new MyNewGrammar(new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
 		grammar.setURLGenerator(generator);
 		String result = grammar.getResult();

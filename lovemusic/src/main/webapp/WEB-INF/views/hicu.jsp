@@ -443,6 +443,21 @@
 					console.log(JSON.stringify(resp));
 				}
 			});
+			console.log("==================================");
+			$.ajax({
+				url : "compile",
+				type : "POST",
+				data : {
+					"source" : " ins guitarnote{ do 3; location 2; note(A1, 2);  note(A3, 4); }"
+				},
+				success : function(resp) {
+					console.log(JSON.stringify(resp));
+				},
+				error : function(resp) {
+					console.log(JSON.stringify(resp));
+				}
+			});
+	
 		});
 	</script>
 

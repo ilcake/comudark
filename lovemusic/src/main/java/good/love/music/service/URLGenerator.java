@@ -26,7 +26,7 @@ public class URLGenerator {
 	private Map<String, MusicSource> map;
 	private String dirName = "";
 
-	private Map<String, ArrayList<String>> list;
+	private Map<String, ArrayList<MusicSource>> list;
 
 	@PostConstruct
 	public void init() {
@@ -43,12 +43,13 @@ public class URLGenerator {
 				File file = fileList[i];
 				if (file.isFile()) {
 					String fileName = deleteExtension(file.getName());
-					map.put((dirName + fileName).toLowerCase(), new MusicSource(file));
-					list.get(dirName).add(fileName);
+					MusicSource nfl = new MusicSource(file);
+					map.put((dirName + fileName).toLowerCase(), nfl);
+					list.get(dirName).add(nfl);
 					System.out.println("The File==" + (dirName + "_" + fileName).toLowerCase());
 				} else if (file.isDirectory()) {
 					dirName = file.getName();
-					ArrayList<String> neList = new ArrayList<>();
+					ArrayList<MusicSource> neList = new ArrayList<>();
 					list.put(dirName, neList);
 					subDirList(file.getCanonicalPath().toString());
 				}
@@ -80,11 +81,19 @@ public class URLGenerator {
 		return musicSource.getFilePath();
 	}
 
-	public Map<String, ArrayList<String>> getList() {
+	public Map<String, MusicSource> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, MusicSource> map) {
+		this.map = map;
+	}
+
+	public Map<String, ArrayList<MusicSource>> getList() {
 		return list;
 	}
 
-	public void setList(Map<String, ArrayList<String>> list) {
+	public void setList(Map<String, ArrayList<MusicSource>> list) {
 		this.list = list;
 	}
 
