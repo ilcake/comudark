@@ -104,6 +104,9 @@
 	font-weight: 100
 }
 </style>
+<script type="text/javascript">
+	var theMap;
+</script>
 </head>
 <body>
 	<!-- ====================== HEADER ================================================ -->
@@ -418,12 +421,13 @@
 	
 			$("#play").on("click", function() {
 				$.ajax({
+					type : "POST",
 					url : "compile",
 					data : {
-						"source" : "beat 1{do 3; location 1;}"
+						"source" : "beat 1{do 3; location 1;} ins piano{do 3; location 1; note(b3, 1); note(c3, 3);}"
 					},
 					success : function(resp) {
-						alert(resp);
+						alert(JSON.stringify(resp));
 					},
 					error : function(resp) {
 						alert(resp);
@@ -431,33 +435,26 @@
 				});
 			});
 	
-	
+			/*******************************************
+			*
+			* 				get Ins List
+			* 
+			********************************************/
 			$.ajax({
 				url : "getList",
 				type : "POST",
 				data : {},
 				success : function(resp) {
-					console.log(JSON.stringify(resp));
+					theMap = resp;
+					console.log(theMap.piano);
+					$.each(theMap.acu, function(x, y) {
+						console.log("the Index - " + x);
+						console.log("the FilePath - " + x.filePath);
+					});
 				},
-				error : function(resp) {
-					console.log(JSON.stringify(resp));
-				}
+				error : function(resp) {}
 			});
 			console.log("==================================");
-			$.ajax({
-				url : "compile",
-				type : "POST",
-				data : {
-					"source" : " ins guitarnote{ do 3; location 2; note(A1, 2);  note(A3, 4); }"
-				},
-				success : function(resp) {
-					console.log(JSON.stringify(resp));
-				},
-				error : function(resp) {
-					console.log(JSON.stringify(resp));
-				}
-			});
-	
 		});
 	</script>
 

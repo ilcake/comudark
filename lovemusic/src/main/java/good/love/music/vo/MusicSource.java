@@ -14,6 +14,9 @@ public class MusicSource {
 	private File file;
 	private String filePath;
 	private double bpm;
+	private String motherName;
+	private String fileName;
+	private String insName;
 
 	public File getFile() {
 		return file;
@@ -53,9 +56,43 @@ public class MusicSource {
 				this.bpm = (file.length() / format.getSampleRate() / (format.getSampleSizeInBits() / 8.0)
 						/ format.getChannels()) - 0.05;
 				stream.close();
+
+				String[] subFilePath = filePath.split("\\/");
+				if (subFilePath.length == 3) {
+					System.out.println("subFilePath== " + subFilePath[0]);
+					System.out.println("subFilePath== " + subFilePath[1]);
+					System.out.println("subFilePath== " + subFilePath[2].split("\\.")[0]);
+					this.fileName = subFilePath[2].split("\\.")[0];
+					this.insName = subFilePath[1];
+					this.motherName = subFilePath[0];
+				}
 			}
 		}
 
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getInsName() {
+		return insName;
+	}
+
+	public void setInsName(String insName) {
+		this.insName = insName;
+	}
+
+	public String getMotherName() {
+		return motherName;
+	}
+
+	public void setMotherName(String motherName) {
+		this.motherName = motherName;
 	}
 
 }

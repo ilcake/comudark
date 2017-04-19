@@ -46,7 +46,7 @@ public class URLGenerator {
 					MusicSource nfl = new MusicSource(file);
 					map.put((dirName + fileName).toLowerCase(), nfl);
 					list.get(dirName).add(nfl);
-					System.out.println("The File==" + (dirName + "_" + fileName).toLowerCase());
+					System.out.println("the Key=" + (dirName + fileName).toLowerCase());
 				} else if (file.isDirectory()) {
 					dirName = file.getName();
 					ArrayList<MusicSource> neList = new ArrayList<>();
@@ -73,6 +73,7 @@ public class URLGenerator {
 	}
 
 	public String getFilePath(String key) throws SoundFileNotFoundException {
+		System.out.println("요청 키 ==" + key);
 		MusicSource musicSource = map.get(key);
 		if (musicSource == null) {
 			throw new SoundFileNotFoundException();
