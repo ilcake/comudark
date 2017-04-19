@@ -195,18 +195,14 @@
 																<option value="R8">R8</option></select> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
 															dt-ins=""></td>
-														<td><span class="label">Bass</span><select
-															id="InsSelection"><option value="guitarCode">GuitarC</option>
-																<option value="guitarNote">GuitarN</option>
-																<option value="piano">Piano</option></select> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"></td>
-														<td><span class="label">Melody</span><select
-															id="InsSelection"><option value="guitarCode">GuitarC</option>
-																<option value="guitarNote">GuitarN</option>
-																<option value="piano">Piano</option></select> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"></td>
-													
-														</tr>
+														<td><span class="label">Bass</span> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins=""></td>
+														<td><span class="label">Melody</span> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins=""></td>
+
+													</tr>
 												</table>
 											</div>
 
@@ -294,7 +290,7 @@
 										</div>
 									</div>
 								</div>
-								<div style="display: none;">
+								<div>
 									<textarea id="resultCode"></textarea>
 								</div>
 
@@ -550,8 +546,8 @@
 }
 
 .label.blank {
-	color: white;
-	background-color: white;
+	color: transparent;
+	background-color: transparent;
 }
 
 #tempo_container {
