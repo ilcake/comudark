@@ -11,10 +11,18 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
+
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery-migrate.min.js"></script>
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
 <link href='components/swipebox/src/css/swipebox.min.css'
 	rel='stylesheet' type='text/css'>
@@ -24,12 +32,6 @@
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/logo_comu.png" />
-
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
 <!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">
@@ -84,14 +86,23 @@
 	width: 100%;
 }
 
+/*                          GET STARTED BUTTON                             */
+.get-started {
+	position: absolute;
+	z-index: 3;
+	top: 45%;
+	left: 45%;
+}
+
+/*                 COMU PAGE AFTER 'GET STARTED'                   */
 .video-container .title-container {
-	z-index: 1000;
+	z-index: 2;
 	position: absolute;
 	top: 9%;
-	margin-left: 10%;
-	width: 80%;
-	background-color: rgba(255, 255, 255, 0.8);
-	width: 80%;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	height: 100%;
+	overflow: scroll;
 }
 
 .text {
@@ -101,10 +112,133 @@
 .text-thin {
 	font-weight: 100
 }
+
+.carousel-control {
+	width: 5%;
+}
+
+h4 {
+	display: inline;
+}
+
+#addBtn {
+	position: relative;
+	left: 60%;
+	top: 0%;
+}
+
+#sampleRun {
+	position: relative;
+	left: 180%;
+	top: 0%;
+}
+
+#mainRun {
+	position: relative;
+	left: 130%;
+	top: 0%;
+}
+
+textarea {
+	resize: none;
+}
 </style>
+
+<!-- ================   COMU MAIN SCRIPT   ==================== -->
+<script>
+	// 시작 버튼이 눌러졌을 때 혹은 MY MUSIC에서 로드 될 때
+	function getStarted() {
+		$(".title-container").show("slow");
+		$(this).attr("hidden", "");
+		$(".btn-default").css("background-color", "rgb(39,169,157)");
+		$("#addBtn").css("background-color", "#f0ad4e");
+	}
+
+	function addBtn() {
+		var sample = $('#sample').val();
+		var position = $("#main").getCursorPosition();
+		$("#main").setCursorPosition(position);
+		$("#main").insertAtCursor(sample);
+		$('#sample').val('');
+	}
+
+	function setJqueryFn() {
+		$.fn.setCursorPosition = function(position) {
+			if (this.length == 0)
+				return this;
+			return $(this).setSelection(position, position);
+		}
+		$.fn.setSelection = function(selectionStart, selectionEnd) {
+			if (this.length == 0)
+				return this;
+			input = this[0];
+			if (input.createTextRange) {
+				var range = input.createTextRange();
+				range.collapse(true);
+				range.moveEnd('character', selectionEnd);
+				range.moveStart('character', selectionStart);
+				range.select();
+			} else if (input.setSelectionRange) {
+				input.focus();
+				input.setSelectionRange(selectionStart, selectionEnd);
+			}
+			return this;
+		}
+		$.fn.focusEnd = function() {
+			this.setCursorPosition(this.val().length);
+			return this;
+		}
+		$.fn.getCursorPosition = function() {
+			var el = $(this).get(0);
+			var pos = 0;
+			if ('selectionStart' in el) {
+				pos = el.selectionStart;
+			} else if ('selection' in document) {
+				el.focus();
+				var Sel = document.selection.createRange();
+				var SelLength = document.selection.createRange().text.length;
+				Sel.moveStart('character', -el.value.length);
+				pos = Sel.text.length - SelLength;
+			}
+			return pos;
+		}
+		$.fn.insertAtCursor = function(myValue) {
+			return this.each(function(i) {
+				if (document.selection) {
+					//For browsers like Internet Explorer
+					this.focus();
+					sel = document.selection.createRange();
+					sel.text = myValue;
+					this.focus();
+				} else if (this.selectionStart || this.selectionStart == '0') {
+					//For browsers like Firefox and Webkit based
+					var startPos = this.selectionStart;
+					var endPos = this.selectionEnd;
+					var scrollTop = this.scrollTop;
+					this.value = this.value.substring(0, startPos) + myValue
+							+ this.value.substring(endPos, this.value.length);
+					this.focus();
+					this.selectionStart = startPos + myValue.length;
+					this.selectionEnd = startPos + myValue.length;
+					this.scrollTop = scrollTop;
+				} else {
+					this.value += myValue;
+					this.focus();
+				}
+			})
+		}
+	}
+
+	$(function() {
+		setJqueryFn();
+		$("#myCarousel").css("height", "100%").css("padding-top", "2%");
+		$(".get-started").click(getStarted);
+		$("#addBtn").click(addBtn);
+	})
+</script>
 </head>
 <body>
-	<!-- ====================== HEADER ================================================ -->
+	<!-- ====================== HEADER ============================== -->
 	<!-- <header id="home" class="qt-header parallax-container scrollspy">
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
@@ -125,10 +259,10 @@
 		<div class="qt-particles" id="particlesheader" data-color="#ffffff"
 			data-opacity="0.5" data-speed="1"></div>
 	</header> -->
-	<!-- ====================== HEADER END ================================================ -->
+	<!-- ====================== HEADER END ========================== -->
 
 
-	<!-- ====================== MENU ================================================ -->
+	<!-- ====================== MENU ============================== -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
 		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
 			data-opacity="0.5" data-speed="1"></div> -->
@@ -158,51 +292,105 @@
 				class="lnr lnr-menu"></span></a>
 		</nav>
 	</div>
-	<!-- ====================== MENU END ================================================ -->
-
-	<div id="presskit"
-		class="section section-presskit parallax-container scrollspy">
-		<div class="parallax">
-			<!-- <img src="images/galaxy-2.jpg" alt="background"> -->
-
-			<div class="homepage-hero-module">
-				<div class="video-container">
-					<div class="title-container">
-
-						<!--Original logo height 80px-->
-						<!-- 로고 위치 
+	<!-- ====================== MENU END ====================== -->
+	<div class="homepage-hero-module">
+		<div class="video-container">
+			<div class="get-started">
+				<button type="button" class="btn btn-success btn-lg">GET
+					STARTED</button>
+			</div>
+			<div class="title-container" hidden="">
+				<!--Original logo height 80px-->
+				<!-- 로고 위치 
                			<img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
                   		height="80" alt=""> -->
 
-						<!-- ============== COMU CONTENT  ================= -->
-						<div class="row">
-							<div class="col-md-6">
-								<h1>h1</h1>
-								<h1>h1</h1>
-							</div>
-							<div class="col-md-6">
-								<h1>h1</h1>
-								<h1>h1</h1>
+				<!-- ============== COMU CONTENT  ================= -->
+				<div id="myCarousel" class="carousel slide" data-ride="carousel"
+					data-interval="0" data-wrap="false">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div id="carousel-inner" class="carousel-inner" role="listbox">
+
+						<!--   CODING PLACE START  -->
+						<div class="item active">
+							<div>
+								<div class="row">
+
+									<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->
+									<div class="col-md-3 leftplace"></div>
+									<div class="col-md-6 centerPlace">
+										<div class="form-group label-floating">
+											<label for="comment"><h4>SAMPLE:</h4>
+												<button type="button" class="btn btn-default btn-md"
+													id="sampleRun">
+													RUN <span class="glyphicon glyphicon-play"></span>
+												</button> </label>
+											<textarea class="form-control" rows="5" name="sample"
+												id="sample"></textarea>
+										</div>
+										<div class="form-group label-floating">
+											<label class="control-label"><h4>MAIN:</h4>
+												<button type="button" class="btn btn-default btn-md"
+													id="addBtn">
+													ADD <span class="glyphicon glyphicon-arrow-down"></span>
+												</button>
+												<button type="button" class="btn btn-default btn-md"
+													id="mainRun">
+													RUN <span class="glyphicon glyphicon-play"></span>
+												</button> </label>
+											<textarea class="form-control" rows="15" name="file_ori"
+												id="main">${file.file_ori}</textarea>
+										</div>
+									</div>
+									<div class="col-md-3 leftplace"></div>
+								</div>
 							</div>
 						</div>
+						<!--   CODING PLACE END   -->
 
+						<!--   ddd   -->
+						<div class="item">
+							<div>asd</div>
+						</div>
+
+						<!--   ddd   -->
+						<div class="item">
+							<div>asd</div>
+						</div>
 					</div>
 
-					<div class="filter"></div>
-					<video autoplay loop class="fillWidth">
-						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-					</video>
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel" role="button"
+						data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel" role="button"
+						data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
 
-					<!--    영상 로딩 전 보여줄 화면
+			<div class="filter"></div>
+			<video autoplay loop class="fillWidth">
+				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
+			</video>
+
+			<!--    영상 로딩 전 보여줄 화면
          <div class="poster hidden">
             <img src="PATH_TO_JPEG" alt="">
          </div> -->
 
-				</div>
-			</div>
 		</div>
 	</div>
-
 
 	<!-- ======= QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
@@ -285,30 +473,28 @@
 			var videoWidth, videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
-				function() {
-					var videoAspectRatio = $(this).data('height')
-					//$(this).data('width');
-	
-					$(this).width(windowWidth);
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
-					$('.homepage-hero-module .video-container video').addClass(
-						'fadeIn animated');
-				});
+					function() {
+						var videoAspectRatio = $(this).data('height')
+						//$(this).data('width');
+
+						$(this).width(windowWidth);
+						/* if (windowWidth < 1000) {
+						   videoHeight = windowHeight;
+						   videoWidth = videoHeight / videoAspectRatio;
+						   $(this).css(
+						         {
+						            'margin-top' : 0,
+						            'margin-left' : -(videoWidth - windowWidth)
+						                  / 2 + 'px'
+						         });
+						   $(this).width(videoWidth).height(videoHeight);
+						} */
+						$('.homepage-hero-module .video-container video')
+								.addClass('fadeIn animated');
+					});
 		}
 	</script>
 	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT END =========== -->
-
 </body>
-
 <!-- COMU PAGE MAIN SPACE CSS  -->
 </html>
