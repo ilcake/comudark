@@ -268,7 +268,7 @@
 													src="myfiles/images/hicu/LED_off.png">
 											</div>
 											<div>
-												<br />
+												<hr />
 											</div>
 										</div>
 										<div class="containerBIN" id="tools">
@@ -417,7 +417,34 @@
 
 	<!--  HICU Action  -->
 	<script type="text/javascript">
+		function initHiCu() {
+	
+			/*******************************************
+			*
+			* 				get Ins List
+			* 
+			********************************************/
+			$.ajax({
+				url : "getList",
+				type : "POST",
+				data : {},
+				success : function(resp) {
+					theMap = resp;
+					$.each(theMap, function(index, item) {
+						if (item.length != 0) {
+							console.log("index_" + index);
+							$.each(item, function(ind, it) {
+								console.log("              " + it.filePath);
+							});
+						}
+					});
+				},
+				error : function(resp) {}
+			});
+			console.log("==================================");
+		}
 		$(function() {
+			initHiCu();
 	
 			$("#play").on("click", function() {
 				$.ajax({
@@ -435,26 +462,6 @@
 				});
 			});
 	
-			/*******************************************
-			*
-			* 				get Ins List
-			* 
-			********************************************/
-			$.ajax({
-				url : "getList",
-				type : "POST",
-				data : {},
-				success : function(resp) {
-					theMap = resp;
-					console.log(theMap.piano);
-					$.each(theMap.acu, function(x, y) {
-						console.log("the Index - " + x);
-						console.log("the FilePath - " + x.filePath);
-					});
-				},
-				error : function(resp) {}
-			});
-			console.log("==================================");
 		});
 	</script>
 
