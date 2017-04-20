@@ -191,7 +191,7 @@
 										<!--  whole pad  -->
 										<div class="containerBIN" id="pad">
 											<div class="selectLine" id="beatLine">
-												<table id="theSelectionTable">
+												<table class="theSelectionTable">
 													<tr>
 														<th><span class="label">Beats</span><select
 															id="beatSelection"><option value="loops">MadeSet</option>
@@ -497,34 +497,37 @@
 			var ins = $(this).attr("dt-ins");
 			console.log(ins + " is requested");
 			var serial = 1 + Math.floor(Math.random() * 50000);
+	
+			var theContents = "";
+			theContents += "<div id='area_" + serial + "' class='addedLines'>";
 			switch (ins) {
 			case "beats":
 				var btSelected = $("#beatSelection").val();
-				var theContents = "";
 				switch (btSelected) {
 				case "loops":
-					theContents += "<div id='" + serial + "'>"
 					theContents += "<div class='buttons_row'>";
-					theContents += "<span class='label'>" + btSelected + "</span> ";
+					theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></span> ";
 					for (var i = 1; i < 17; i++) {
 						theContents += "<img dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
 					}
-					theContents += "</div></div>";
+					theContents += "</div>";
 					break;
 	
 				case "acu":
 				case "r8":
-					theContents += "<div id='" + serial + "'>"
-					theContents += "<div id='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
-					theContents += "<span id='tempocontrol'><img src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>"
-					theContents += "<img src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>"
+					theContents += "<div class='selectLine'><table class='theSelectionTable'><tr>";
+					theContents += "<th><span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></th>";
+					theContents += "<th><div class='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
+					theContents += "<span class='tempocontrol'><img class='tempC' src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>";
+					theContents += "<img class='tempC' src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>";
+					theContents += "</th></tr></table></div>";
 					$.each(drumSet, function(index, item) {
 						theContents += "<div class='buttons_row'>";
 						theContents += "<span class='label'>" + item + "</span> ";
 						for (var i = 1; i < 17; i++) {
 							theContents += "<img dt-ins='" + ins + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
 						}
-						theContents += "</div></div>";
+						theContents += "</div>";
 					//plusSize += 41.33;
 					});
 					break;
@@ -537,7 +540,21 @@
 			case "melody":
 				break;
 			}
+			theContents += "</div>";
 			$("#btnsArea").append(theContents);
+			$(".ins_remove").on("click", insRemoveEvent);
+			console.log("wow!! " + serial + " added");
+		}
+	
+		/********************************************** 
+		*
+		*             INS Remove Event!
+		*
+		***********************************************/
+		function insRemoveEvent() {
+			var thisbtn = "area_" + ($(this).attr("dt-line"));
+			$("#" + thisbtn).remove();
+			console.log("wow!! " + thisbtn + " removed!");
 		}
 	
 		/********************************************** 
@@ -545,13 +562,9 @@
 		*                 on Ready!
 		*
 		***********************************************/
-	
-	
 		$(function() {
 			initHiCu();
-	
 			$("#play").on("click", playEvent);
-	
 			$(".ins_add").on("click", insAddEvent);
 	
 		});
@@ -584,7 +597,7 @@
 	padding: 1px;
 }
 
-#theSelectionTable {
+.theSelectionTable {
 	width: 70%;
 	margin: 0px auto;
 	padding: 1px;
@@ -640,7 +653,7 @@
 	margin-bottom: 10px;
 }
 
-#tempodisplay {
+.tempodisplay {
 	background-image: url('myfiles/images/hicu/tempo_bg.png');
 	width: 97px;
 	height: 37px;
@@ -649,6 +662,10 @@
 	padding: 10px 20px;
 	text-align: right;
 	color: rgb(76, 76, 76);
+}
+
+.tempC {
+	height: 28px;
 }
 
 #tempo {
@@ -689,6 +706,19 @@ select {
 
 .ins_add {
 	width: 20px;
+}
+
+.ins_remove {
+	width: 20px;
+}
+
+.row {
+	max-height: 460px;
+	overflow: auto;
+}
+
+.addedLines {
+	
 }
 </style>
 </html>
