@@ -56,4 +56,16 @@ public class HomeController {
 		return "hicu";
 	}
 
+	@RequestMapping(value = "/basic", method = RequestMethod.GET)
+	public String basic(HttpSession session) {
+		session.removeAttribute("file");
+		return "basic";
+	}
+
+	@RequestMapping(value = "/basic2", method = RequestMethod.GET)
+	public String basic2(HttpSession session) {
+		session.removeAttribute("file");
+		return "basic2";
+	}
+
 }
