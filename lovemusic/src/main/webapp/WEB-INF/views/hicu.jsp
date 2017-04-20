@@ -192,18 +192,18 @@
 											<div class="selectLine" id="beatLine">
 												<table id="theSelectionTable">
 													<tr>
-														<td><span class="label">Beats</span><select
+														<th><span class="label">Beats</span><select
 															id="beatSelection"><option value="Loops">MadeSet</option>
 																<option value="ACU">Acustic</option>
 																<option value="R8">R8</option></select> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins=""></td>
-														<td><span class="label">Bass</span> <img
+															dt-ins="beats"></th>
+														<th><span class="label">Bass</span> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins=""></td>
-														<td><span class="label">Melody</span> <img
+															dt-ins="bass"></th>
+														<th><span class="label">Melody</span> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins=""></td>
+															dt-ins="melody"></th>
 
 													</tr>
 												</table>
@@ -434,7 +434,7 @@
 		* 
 		********************************************/
 		function initHiCu() {
-	
+			console.log("=============Get Ins List==============");
 			/*******************************************
 			*
 			* 				get Ins List
@@ -465,6 +465,8 @@
 		*                 on Ready!
 		*
 		***********************************************/
+		
+		
 		$(function() {
 			initHiCu();
 	
@@ -484,6 +486,10 @@
 						alert(resp);
 					}
 				});
+			});
+	
+			$(".ins_add").on("click", function() {
+				
 			});
 	
 		});
@@ -517,7 +523,7 @@
 }
 
 #theSelectionTable {
-	width: 85%;
+	width: 70%;
 	margin: 0px auto;
 	padding: 1px;
 }
