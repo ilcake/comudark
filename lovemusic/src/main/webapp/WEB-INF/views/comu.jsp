@@ -124,6 +124,18 @@ textarea {
 }
 </style>
 
+<!-- ================   INCLUDE AUDIO JS   =================== -->
+<script src="resources/audiojs/three.min.js"></script>
+<script src="resources/audiojs/ATUtil.js"></script>
+<script src="resources/audiojs/Stats.js"></script>
+<script src="resources/audiojs/RequestAnimationFrame.js"></script>
+<script src="resources/audiojs/jquery.mousewheel.js"></script>
+<script src="resources/audiojs/ImprovedNoise.js"></script>
+<script src="resources/audiojs/Visualizer.js"></script>
+<script src="resources/audiojs/comu.js"></script>
+<script src="resources/audiojs/jquery.session.js"></script>
+
+
 <!-- ================   COMU MAIN SCRIPT   ==================== -->
 <script>
 	$(function() {
@@ -147,16 +159,10 @@ textarea {
 		$("#mainRun").click(function() {
 			comuRun($("#main").val());
 		});
-
-		$("#visual").modal('show').css({
-			'margin-top' : function() { //vertical centering
-				return -($(this).height() / 2);
-			},
-			'margin-left' : function() { //Horizontal centering
-				return -($(this).width() / 2);
-			}
-		});
-	})
+		if ($("#title").val() != null && $("#title").val() > 0) {
+			$(".get-started").trigger("click");
+		}
+	});
 
 	// 시작 버튼이 눌러졌을 때 혹은 MY MUSIC에서 로드 될 때
 	function getStarted() {
@@ -175,6 +181,10 @@ textarea {
 	}
 
 	function comuRun(source) {
+		if (source == null || source.length == 0) {
+			alert("입력 값이 없습니다.");
+			return false;
+		}
 		$.ajax({
 			type : "get",
 			url : "compile",
@@ -182,6 +192,7 @@ textarea {
 				"source" : source
 			},
 			success : function(resp) {
+				$("#modalBtn").trigger("click");
 				alert(resp);
 				eval(resp);
 			}
@@ -200,9 +211,11 @@ textarea {
 
 	// 파일 저장
 	function save() {
-		var form = document.getElementById("form1");
-		form.action = "save";
-		form.submit();
+		if ($("#title").val() == null || $("#title").val() == 0) {
+			alert("제목을 입력하세요");
+			return false;
+		}
+		$("#form").submit();
 	}
 
 	// 외부 jqeury 함수 셋팅
@@ -346,64 +359,53 @@ textarea {
 			<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->
 			<div class="col-md-3 leftplace"></div>
 			<div class="col-md-6 centerPlace">
-				<label for="comment"><h4>SAMPLE:</h4>
-					<button type="button" class="btn btn-default btn-md"
-						data-toggle="modal" data-target="#visual" id="sampleRun">
-						RUN <span class="glyphicon glyphicon-play"></span>
-					</button> </label>
-				<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>
-				<br> <label class="control-label"><h4>MAIN:</h4>
-					<button type="button" class="btn btn-default btn-md" id="addBtn">
-						ADD <span class="glyphicon glyphicon-arrow-down"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-md"
-						data-toggle="modal" data-target="#visual" id="mainRun">
-						RUN <span class="glyphicon glyphicon-play"></span>
-					</button> </label>
-				<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>
-				<br>
-				<div class="row">
-					<div class="col-md-2">
-						<label> <img id="imgView"
-							src="resources/covers/${file.cover_re}"
-							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
-							style="width: 100px; height: 100px; border-radius: 100px;">
-							<input type="file" style="display: none;" id="imgInp"
-							name="upload" />
-						</label>
+				<form id="form" action="save" method="post"
+					enctype="multipart/form-data">
+					<label for="comment"><h4>SAMPLE:</h4>
+						<button type="button" data-toggle="modal" data-target="#visual"
+							id="modalBtn" hidden="hidden">Open Modal</button>
+						<button type="button" class="btn btn-default btn-md"
+							id="sampleRun">
+							RUN <span class="glyphicon glyphicon-play"></span>
+						</button> </label>
+					<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>
+					<br> <label class="control-label"><h4>MAIN:</h4>
+						<button type="button" class="btn btn-default btn-md" id="addBtn">
+							ADD <span class="glyphicon glyphicon-arrow-down"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-md" id="mainRun">
+							RUN <span class="glyphicon glyphicon-play"></span>
+						</button> </label>
+					<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>
+					<br>
+					<div class="row">
+						<div class="col-md-2">
+							<label> <img id="imgView"
+								src="resources/covers/${file.cover_re}"
+								onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+								style="width: 100px; height: 100px; border-radius: 100px;">
+								<input type="file" style="display: none;" id="imgInp"
+								name="upload" />
+							</label>
+						</div>
+						<div class="col-md-10">
+							<label class="control-label">
+								<h4>TITLE:</h4>
+								<button type="button" class="btn btn-default btn-md saveBtn">
+									SAVE <span class="glyphicon glyphicon-saved"></span>
+								</button>
+							</label> <input type="text" class="form-control" id="title"
+								name="file_title" value="${file.file_title}" />
+						</div>
 					</div>
-					<div class="col-md-10">
-						<label class="control-label">
-							<h4>TITLE:</h4>
-							<button type="button" class="btn btn-default btn-md saveBtn">
-								SAVE <span class="glyphicon glyphicon-saved"></span>
-							</button>
-						</label> <input type="text" class="form-control" name="file_title"
-							value="${file.file_title}" />
-					</div>
-				</div>
+				</form>
 			</div>
 			<div class="col-md-3 leftplace"></div>
 		</div>
 	</div>
 
 	<!-- Modal -->
-	<div id="visual" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
-				asdasdasdasdasd11111111<br>
-			</div>
-		</div>
-	</div>
+	<div id="visual" class="modal fade" role="dialog"></div>
 
 	<!-- ======= QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
