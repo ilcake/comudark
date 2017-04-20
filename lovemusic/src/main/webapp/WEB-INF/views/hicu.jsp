@@ -415,7 +415,6 @@
 		*              on click Add Btn
 		*
 		***********************************************/
-	
 		function insAddEvent() {
 			var ins = $(this).attr("dt-ins");
 			console.log(ins + " is requested");
@@ -471,7 +470,7 @@
 	
 		/********************************************** 
 		*
-		*             INS Remove Event!
+		*               INS Remove Event!
 		*
 		***********************************************/
 		function insRemoveEvent() {
@@ -480,12 +479,28 @@
 			console.log("wow!! " + thisbtn + " removed!");
 		}
 	
+		/********************************************** 
+		*
+		*                make LED Line!
+		*
+		***********************************************/
 		function makeLED() {
 			var theLeds = "";
 			for (var i = 1; i < 17; i++) {
 				theLeds += "<img class='leds'	id='LED_1' src='myfiles/images/hicu/LED_off.png'>";
 			}
 			$("#LED_row").append(theLeds);
+		}
+
+		/********************************************** 
+		*
+		*                set Height automatic!
+		*
+		***********************************************/
+		function setMaxHeightRow() {
+			var winHeight = $(window).height();
+			console.log(winHeight);
+			$(".row").css("max-height", (winHeight - 100));
 		}
 	
 		/********************************************** 
@@ -495,6 +510,7 @@
 		***********************************************/
 		$(function() {
 			initHiCu();
+			setMaxHeightRow();
 			$("#play").on("click", playEvent);
 			$("#stop").on("click", stopEvent);
 			$(".ins_add").on("click", insAddEvent);
