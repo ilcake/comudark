@@ -34,7 +34,7 @@
 		<div class="parallax"
 			data-start="width:100%;height:100%;top: 0%;left: 0%;"
 			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-4.jpg" alt="background" id="theBackg">
+			<img src="" alt="" id="theBackg">
 		</div>
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
