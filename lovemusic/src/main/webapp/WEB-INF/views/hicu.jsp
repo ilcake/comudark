@@ -211,42 +211,7 @@
 											</div>
 
 											<!-- Buttons Row -->
-											<div class="btnsArea" id="btnsArea">
-												<!-- <div class="buttons_row" id="beatSection">
-													<span class="label">Loops</span><br> <img id="beat1" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat2" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat3" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat4" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat5" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat6" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat7" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat8" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat9" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat10" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat11" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat12" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat13" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat14" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat15" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat16" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png">
-												</div> -->
-											</div>
+											<div class="btnsArea" id="btnsArea"></div>
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
@@ -336,7 +301,7 @@
 	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
 	<script src="js/qt-main.js"></script>
 
-	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT ================ -->
+	<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
@@ -355,31 +320,6 @@
 	
 		});
 	
-		/* function setBackGroundMusic() {
-			var bgm = new Audio('');
-			if (!bgm.canPlayType('audio/ogg'))
-				alert('브라우저가 ogg 재생을 지원하지 않습니다.');else {
-				var bgm_url = 'http://upload.wikimedia.org/wikipedia/commons/d/d7/Wikinews_Remix_Jingle.ogg';
-				bgm = new Audio(bgm_url);
-				bgm.addEventListener('ended', function() {
-					this.currentTime = 0;
-					this.play();
-				}, false);
-				bgm.play();
-			} */
-	
-		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
-		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-		}, {
-		   cssSelectorAncestor : "#cp_container_1",
-		   swfPath : "../dist/jplayer",
-		   wmode : "window",
-		   keyEnabled : true
-		});
-		 */
-	
-		//}
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
@@ -400,24 +340,22 @@
 			var windowHeight = $(window).height() + 5;
 			var videoWidth,
 				videoHeight;
-			// console.log(windowHeight);
 			$(element).each(
 				function() {
 					var videoAspectRatio = $(this).data('height')
-					//$(this).data('width');
 	
 					$(this).width(windowWidth);
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
+					if (windowWidth < 1000) {
+						videoHeight = windowHeight;
+						videoWidth = videoHeight / videoAspectRatio;
+						$(this).css(
+							{
+								'margin-top' : 0,
+								'margin-left' : -(videoWidth - windowWidth)
+									/ 2 + 'px'
+							});
+						$(this).width(videoWidth).height(videoHeight);
+					}
 					$('.homepage-hero-module .video-container video').addClass(
 						'fadeIn animated');
 				});
@@ -452,7 +390,7 @@
 						if (item.length != 0) {
 							console.log("index_" + index);
 							$.each(item, function(ind, it) {
-								console.log("              " + it.filePath);
+								console.log(" ㄴ  " + it.filePath);
 							});
 						}
 					});
@@ -479,11 +417,20 @@
 				},
 				success : function(resp) {
 					alert(resp);
+					$("#play").addClass("playing");
+					$("#stop").addClass("playing");
 				},
 				error : function(resp) {
 					alert(resp);
 				}
 			});
+		}
+	
+		function stopEvent() {
+			console.log("STOP!!");
+			$("#stop").removeClass("playing");
+			$("#play").removeClass("playing");
+	
 		}
 	
 	
@@ -565,8 +512,8 @@
 		$(function() {
 			initHiCu();
 			$("#play").on("click", playEvent);
+			$("#stop").on("click", stopEvent);
 			$(".ins_add").on("click", insAddEvent);
-	
 		});
 	</script>
 </body>
@@ -628,6 +575,7 @@
 	background-position: bottom right;
 	background-repeat: no-repeat;
 	font-size: x-small;
+	resize: none;
 }
 
 .label {
@@ -719,6 +667,22 @@ select {
 
 .addedLines {
 	
+}
+
+#play, #stop {
+	margin-right: 12px;
+}
+
+#stop {
+	display: none;
+}
+
+#play.playing {
+	display: none;
+}
+
+#stop.playing {
+	display: inline;
 }
 </style>
 </html>

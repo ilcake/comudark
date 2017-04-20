@@ -27,9 +27,6 @@ import good.love.music.vo.MusicSource;
 @Controller
 public class HomeController {
 
-	@Autowired
-	URLGenerator generator;
-
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -50,31 +47,13 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/comu", method = RequestMethod.GET)
-	public String comu(HttpSession session) {
-		session.removeAttribute("file");
+	public String comu() {
 		return "comu";
 	}
 
 	@RequestMapping(value = "/hicu", method = RequestMethod.GET)
-	public String hicu(HttpSession session) {
-		session.removeAttribute("file");
-		session.setAttribute("file", generator.getList());
+	public String hicu() {
 		return "hicu";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/getList", method = RequestMethod.POST)
-	public Map<String, ArrayList<MusicSource>> getList() {
-		return generator.getList();
-	}
-
-	@RequestMapping(value = "/compile", method = RequestMethod.POST)
-	public @ResponseBody String compile(String source) {
-		System.out.println(source);
-		MyNewGrammar grammar = new MyNewGrammar(new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8)));
-		grammar.setURLGenerator(generator);
-		String result = grammar.getResult();
-		return result;
 	}
 
 }
