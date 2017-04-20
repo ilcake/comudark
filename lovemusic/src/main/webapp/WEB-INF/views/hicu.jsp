@@ -88,7 +88,7 @@
 
 .video-container .title-container {
 	z-index: 1000;
-	position: absolute;
+	position: fixed;
 	top: 9%;
 	margin-left: 10%;
 	width: 80%;
@@ -183,11 +183,14 @@
 						<div class="row">
 							<div class="main main-raised">
 								<div class="section section-basic">
+
+									<!-- outer container -->
 									<div class="containerB">
 
+										<!--  whole pad  -->
 										<div class="containerBIN" id="pad">
 											<div class="selectLine" id="beatLine">
-												<table>
+												<table id="theSelectionTable">
 													<tr>
 														<td><span class="label">Beats</span><select
 															id="beatSelection"><option value="Loops">MadeSet</option>
@@ -206,6 +209,7 @@
 												</table>
 											</div>
 
+											<!-- Buttons Row -->
 											<div class="btnsArea" id="btnsArea">
 												<!-- <div class="buttons_row" id="beatSection">
 													<span class="label">Loops</span> <img id="beat1"
@@ -243,10 +247,11 @@
 												</div> -->
 											</div>
 
-
+											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
-												<span class="label blank">GO</span> <img class="leds"
-													id="LED_1" src="myfiles/images/hicu/LED_off.png"><img
+												<!-- <span class="label blank">GO</span> -->
+												<img class="leds" id="LED_1"
+													src="myfiles/images/hicu/LED_off.png"><img
 													class="leds" id="LED_2"
 													src="myfiles/images/hicu/LED_off.png"><img id="LED_3"
 													class="leds" src="myfiles/images/hicu/LED_off.png"><img
@@ -284,14 +289,11 @@
 												src="myfiles/images/hicu/btn_save.png"><img id="load"
 												src="myfiles/images/hicu/btn_load.png"><img id="reset"
 												src="myfiles/images/hicu/btn_reset.png">
-											<!-- <div>
+											<div>
 												<textarea id="resultCode"></textarea>
-											</div> -->
+											</div>
 										</div>
 									</div>
-								</div>
-								<div>
-									<textarea id="resultCode"></textarea>
 								</div>
 
 								<footer class="footer">
@@ -493,7 +495,7 @@
 .containerB {
 	border-radius: 10px;
 	border: 1px solid rgb(230, 230, 230);
-	width: 730px;
+	width: 93%;
 	background-color: rgb(255, 255, 255);
 	margin: 0px auto;
 	padding: 20px 20px 15px 20px;
@@ -502,8 +504,22 @@
 }
 
 .containerBIN {
-	width: 750px;
+	width: 95%;
 	display: block;
+	text-align: center;
+	padding: 2px;
+	margin: auto;
+}
+
+#beatLine {
+	margin: 0px auto;
+	padding: 1px;
+}
+
+#theSelectionTable {
+	width: 85%;
+	margin: 0px auto;
+	padding: 1px;
 }
 
 .main-raised {
@@ -522,8 +538,8 @@
 	background-color: threedlightshadow;
 }
 
-/* #resultCode {
-	width: 685px;
+#resultCode {
+	width: 95%;
 	height: 120px;
 	border: 3px solid #cccccc;
 	padding: 5px;
@@ -531,7 +547,8 @@
 	background-position: bottom right;
 	background-repeat: no-repeat;
 	font-size: x-small;
-} */
+}
+
 .label {
 	color: black;
 	display: inline-block;
