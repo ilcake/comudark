@@ -89,10 +89,11 @@
 .video-container .title-container {
 	z-index: 1000;
 	position: fixed;
-	top: 9%;
+	top: 15%;
 	margin-left: 10%;
 	width: 80%;
 	background-color: rgba(255, 255, 255, 0.8);
+	width: 80%;
 	width: 80%;
 }
 
@@ -190,12 +191,12 @@
 										<!--  whole pad  -->
 										<div class="containerBIN" id="pad">
 											<div class="selectLine" id="beatLine">
-												<table id="theSelectionTable">
+												<table class="theSelectionTable">
 													<tr>
 														<th><span class="label">Beats</span><select
-															id="beatSelection"><option value="Loops">MadeSet</option>
-																<option value="ACU">Acustic</option>
-																<option value="R8">R8</option></select> <img
+															id="beatSelection"><option value="loops">MadeSet</option>
+																<option value="acu">Acustic</option>
+																<option value="r8">R8</option></select> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
 															dt-ins="beats"></th>
 														<th><span class="label">Bass</span> <img
@@ -210,48 +211,12 @@
 											</div>
 
 											<!-- Buttons Row -->
-											<div class="btnsArea" id="btnsArea">
-												<!-- <div class="buttons_row" id="beatSection">
-													<span class="label">Loops</span> <img id="beat1"
-														class="hiBtn" src="myfiles/images/hicu/button_off.png"><img
-														id="beat2" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat3" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat4" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat5" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat6" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat7" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat8" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat9" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat10" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat11" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat12" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat13" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat14" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat15" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png"><img
-														id="beat16" class="hiBtn"
-														src="myfiles/images/hicu/button_off.png">
-												</div> -->
-											</div>
+											<div class="btnsArea" id="btnsArea"></div>
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
-												<!-- <span class="label blank">GO</span> -->
-												<img class="leds" id="LED_1"
-													src="myfiles/images/hicu/LED_off.png"><img
+												<span class="label blank">GO</span> <img class="leds"
+													id="LED_1" src="myfiles/images/hicu/LED_off.png"><img
 													class="leds" id="LED_2"
 													src="myfiles/images/hicu/LED_off.png"><img id="LED_3"
 													class="leds" src="myfiles/images/hicu/LED_off.png"><img
@@ -289,9 +254,9 @@
 												src="myfiles/images/hicu/btn_save.png"><img id="load"
 												src="myfiles/images/hicu/btn_load.png"><img id="reset"
 												src="myfiles/images/hicu/btn_reset.png">
-											<div>
+											<!-- <div>
 												<textarea id="resultCode"></textarea>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
@@ -336,7 +301,7 @@
 	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
 	<script src="js/qt-main.js"></script>
 
-	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT ================ -->
+	<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
@@ -355,31 +320,6 @@
 	
 		});
 	
-		/* function setBackGroundMusic() {
-			var bgm = new Audio('');
-			if (!bgm.canPlayType('audio/ogg'))
-				alert('브라우저가 ogg 재생을 지원하지 않습니다.');else {
-				var bgm_url = 'http://upload.wikimedia.org/wikipedia/commons/d/d7/Wikinews_Remix_Jingle.ogg';
-				bgm = new Audio(bgm_url);
-				bgm.addEventListener('ended', function() {
-					this.currentTime = 0;
-					this.play();
-				}, false);
-				bgm.play();
-			} */
-	
-		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
-		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-		}, {
-		   cssSelectorAncestor : "#cp_container_1",
-		   swfPath : "../dist/jplayer",
-		   wmode : "window",
-		   keyEnabled : true
-		});
-		 */
-	
-		//}
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
@@ -400,24 +340,22 @@
 			var windowHeight = $(window).height() + 5;
 			var videoWidth,
 				videoHeight;
-			// console.log(windowHeight);
 			$(element).each(
 				function() {
 					var videoAspectRatio = $(this).data('height')
-					//$(this).data('width');
 	
 					$(this).width(windowWidth);
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
+					if (windowWidth < 1000) {
+						videoHeight = windowHeight;
+						videoWidth = videoHeight / videoAspectRatio;
+						$(this).css(
+							{
+								'margin-top' : 0,
+								'margin-left' : -(videoWidth - windowWidth)
+									/ 2 + 'px'
+							});
+						$(this).width(videoWidth).height(videoHeight);
+					}
 					$('.homepage-hero-module .video-container video').addClass(
 						'fadeIn animated');
 				});
@@ -427,6 +365,8 @@
 
 	<!--  HICU Action  -->
 	<script type="text/javascript">
+	
+		var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
 	
 		/*******************************************
 		*
@@ -450,7 +390,7 @@
 						if (item.length != 0) {
 							console.log("index_" + index);
 							$.each(item, function(ind, it) {
-								console.log("              " + it.filePath);
+								console.log(" ㄴ  " + it.filePath);
 							});
 						}
 					});
@@ -460,38 +400,120 @@
 			console.log("==================================");
 		}
 	
+	
+		/********************************************** 
+		*
+		*                 on Click Play !
+		*
+		***********************************************/
+		function playEvent() {
+			var theSource = $("#resultCode").val();
+			console.log("play ==> " + theSource);
+			$.ajax({
+				type : "POST",
+				url : "compile",
+				data : {
+					"source" : theSource
+				},
+				success : function(resp) {
+					alert(resp);
+					$("#play").addClass("playing");
+					$("#stop").addClass("playing");
+				},
+				error : function(resp) {
+					alert(resp);
+				}
+			});
+		}
+	
+		function stopEvent() {
+			console.log("STOP!!");
+			$("#stop").removeClass("playing");
+			$("#play").removeClass("playing");
+	
+		}
+	
+	
+		/********************************************** 
+		*
+		*              on click Add Btn
+		*
+		***********************************************/
+	
+		function insAddEvent() {
+			var ins = $(this).attr("dt-ins");
+			console.log(ins + " is requested");
+			var serial = 1 + Math.floor(Math.random() * 50000);
+	
+			var theContents = "";
+			theContents += "<div id='area_" + serial + "' class='addedLines'>";
+			switch (ins) {
+			case "beats":
+				var btSelected = $("#beatSelection").val();
+				switch (btSelected) {
+				case "loops":
+					theContents += "<div class='buttons_row'>";
+					theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></span> ";
+					for (var i = 1; i < 17; i++) {
+						theContents += "<img dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+					}
+					theContents += "</div>";
+					break;
+	
+				case "acu":
+				case "r8":
+					theContents += "<div class='selectLine'><table class='theSelectionTable'><tr>";
+					theContents += "<th><span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></th>";
+					theContents += "<th><div class='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
+					theContents += "<span class='tempocontrol'><img class='tempC' src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>";
+					theContents += "<img class='tempC' src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>";
+					theContents += "</th></tr></table></div>";
+					$.each(drumSet, function(index, item) {
+						theContents += "<div class='buttons_row'>";
+						theContents += "<span class='label'>" + item + "</span> ";
+						for (var i = 1; i < 17; i++) {
+							theContents += "<img dt-ins='" + ins + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+						}
+						theContents += "</div>";
+					//plusSize += 41.33;
+					});
+					break;
+				}
+				break;
+	
+			case "bass":
+				break;
+	
+			case "melody":
+				break;
+			}
+			theContents += "</div>";
+			$("#btnsArea").append(theContents);
+			$(".ins_remove").on("click", insRemoveEvent);
+			console.log("wow!! " + serial + " added");
+		}
+	
+		/********************************************** 
+		*
+		*             INS Remove Event!
+		*
+		***********************************************/
+		function insRemoveEvent() {
+			var thisbtn = "area_" + ($(this).attr("dt-line"));
+			$("#" + thisbtn).remove();
+			console.log("wow!! " + thisbtn + " removed!");
+		}
+	
 		/********************************************** 
 		*
 		*                 on Ready!
 		*
 		***********************************************/
-		
-		
 		$(function() {
 			initHiCu();
-	
-			$("#play").on("click", function() {
-				var theSource = $("#resultCode").val();
-				console.log("play ==> " + theSource);
-				$.ajax({
-					type : "POST",
-					url : "compile",
-					data : {
-						"source" : theSource
-					},
-					success : function(resp) {
-						alert(resp);
-					},
-					error : function(resp) {
-						alert(resp);
-					}
-				});
-			});
-	
-			$(".ins_add").on("click", function() {
-				
-			});
-	
+			$("#play").on("click", playEvent);
+			$("#stop").on("click", stopEvent);
+			$(".ins_add").on("click", insAddEvent);
 		});
 	</script>
 </body>
@@ -522,7 +544,7 @@
 	padding: 1px;
 }
 
-#theSelectionTable {
+.theSelectionTable {
 	width: 70%;
 	margin: 0px auto;
 	padding: 1px;
@@ -553,6 +575,7 @@
 	background-position: bottom right;
 	background-repeat: no-repeat;
 	font-size: x-small;
+	resize: none;
 }
 
 .label {
@@ -578,7 +601,7 @@
 	margin-bottom: 10px;
 }
 
-#tempodisplay {
+.tempodisplay {
 	background-image: url('myfiles/images/hicu/tempo_bg.png');
 	width: 97px;
 	height: 37px;
@@ -587,6 +610,10 @@
 	padding: 10px 20px;
 	text-align: right;
 	color: rgb(76, 76, 76);
+}
+
+.tempC {
+	height: 28px;
 }
 
 #tempo {
@@ -627,6 +654,35 @@ select {
 
 .ins_add {
 	width: 20px;
+}
+
+.ins_remove {
+	width: 20px;
+}
+
+.row {
+	max-height: 460px;
+	overflow: auto;
+}
+
+.addedLines {
+	
+}
+
+#play, #stop {
+	margin-right: 12px;
+}
+
+#stop {
+	display: none;
+}
+
+#play.playing {
+	display: none;
+}
+
+#stop.playing {
+	display: inline;
 }
 </style>
 </html>
