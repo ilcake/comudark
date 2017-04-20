@@ -40,47 +40,19 @@
 	background-image: url("images/galaxy-2.jpg");
 }
 
-.homepage-hero-module {
-	border-right: none;
-	border-left: none;
-	position: relative;
-}
-
-.no-video .video-container video, .touch .video-container video {
-	display: none;
-}
-
-.no-video .video-container .poster, .touch .video-container .poster {
-	display: block !important;
-}
-
 .video-container {
 	position: relative;
-	bottom: 0%;
+	top: 0%;
 	left: 0%;
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	background: #000;
-}
-
-.video-container .poster img {
-	width: 100%;
-	bottom: 0;
-	position: absolute;
-}
-
-.video-container .filter {
-	z-index: 100;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.4);
-	width: 100%;
+	z-index: 0;
 }
 
 .video-container video {
-	position: absolute;
-	z-index: 0;
-	bottom: 0;
+	position: fixed;
 }
 
 .video-container video.fillWidth {
@@ -96,13 +68,14 @@
 }
 
 /*                 COMU PAGE AFTER 'GET STARTED'                   */
-.video-container .title-container {
-	z-index: 2;
+.comu-container {
 	position: absolute;
+	z-index: 2;
 	top: 9%;
 	width: 100%;
+	height: 120%;
+	padding-top: 5%;
 	background-color: rgb(255, 255, 255);
-	height: 100%;
 	overflow: scroll;
 }
 
@@ -140,6 +113,12 @@ h4 {
 	top: 0%;
 }
 
+.saveBtn {
+	position: relative;
+	top: 0%;
+	left: 170%;
+}
+
 textarea {
 	resize: none;
 }
@@ -147,9 +126,41 @@ textarea {
 
 <!-- ================   COMU MAIN SCRIPT   ==================== -->
 <script>
+	$(function() {
+
+		/* if (typeof jQuery != 'undefined') {
+			// jQuery is loaded => print the version
+			alert(jQuery.fn.jquery);
+		} */
+
+		setJqueryFn();
+		$("#myCarousel").css("height", "100%").css("padding-top", "2%");
+		$(".get-started").click(getStarted);
+		$("#addBtn").click(addBtn);
+		$(".saveBtn").click(save);
+		$("#imgInp").on('change', function() {
+			readURL(this);
+		});
+		$("#sampleRun").click(function() {
+			comuRun($("#sample").val());
+		});
+		$("#mainRun").click(function() {
+			comuRun($("#main").val());
+		});
+
+		$("#visual").modal('show').css({
+			'margin-top' : function() { //vertical centering
+				return -($(this).height() / 2);
+			},
+			'margin-left' : function() { //Horizontal centering
+				return -($(this).width() / 2);
+			}
+		});
+	})
+
 	// 시작 버튼이 눌러졌을 때 혹은 MY MUSIC에서 로드 될 때
 	function getStarted() {
-		$(".title-container").show("slow");
+		$(".comu-container").show("slow");
 		$(this).attr("hidden", "");
 		$(".btn-default").css("background-color", "rgb(39,169,157)");
 		$("#addBtn").css("background-color", "#f0ad4e");
@@ -163,6 +174,38 @@ textarea {
 		$('#sample').val('');
 	}
 
+	function comuRun(source) {
+		$.ajax({
+			type : "get",
+			url : "compile",
+			data : {
+				"source" : source
+			},
+			success : function(resp) {
+				alert(resp);
+				eval(resp);
+			}
+		});
+	}
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#imgView').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	// 파일 저장
+	function save() {
+		var form = document.getElementById("form1");
+		form.action = "save";
+		form.submit();
+	}
+
+	// 외부 jqeury 함수 셋팅
 	function setJqueryFn() {
 		$.fn.setCursorPosition = function(position) {
 			if (this.length == 0)
@@ -229,13 +272,6 @@ textarea {
 			})
 		}
 	}
-
-	$(function() {
-		setJqueryFn();
-		$("#myCarousel").css("height", "100%").css("padding-top", "2%");
-		$(".get-started").click(getStarted);
-		$("#addBtn").click(addBtn);
-	})
 </script>
 </head>
 <body>
@@ -261,7 +297,6 @@ textarea {
 			data-opacity="0.5" data-speed="1"></div>
 	</header> -->
 	<!-- ====================== HEADER END ========================== -->
-
 
 	<!-- ====================== MENU ============================== -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
@@ -294,102 +329,79 @@ textarea {
 		</nav>
 	</div>
 	<!-- ====================== MENU END ====================== -->
-	<div class="homepage-hero-module">
-		<div class="video-container">
-			<div class="get-started">
-				<button type="button" class="btn btn-success btn-lg">GET
-					STARTED</button>
-			</div>
-			<div class="title-container" hidden="">
-				<!--Original logo height 80px-->
-				<!-- 로고 위치 
-               			<img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
-                  		height="80" alt=""> -->
+	<div class="video-container">
+		<video autoplay loop class="fillWidth">
+			<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
+		</video>
+	</div>
 
-				<!-- ============== COMU CONTENT  ================= -->
-				<div id="myCarousel" class="carousel slide" data-ride="carousel"
-					data-interval="0" data-wrap="false">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
+	<div class="get-started">
+		<button type="button" class="btn btn-success btn-lg">GET
+			STARTED</button>
+	</div>
 
-					<!-- Wrapper for slides -->
-					<div id="carousel-inner" class="carousel-inner" role="listbox">
-
-						<!--   CODING PLACE START  -->
-						<div class="item active">
-							<div>
-								<div class="row">
-
-									<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->
-									<div class="col-md-3 leftplace"></div>
-									<div class="col-md-6 centerPlace">
-										<div class="form-group label-floating">
-											<label for="comment"><h4>SAMPLE:</h4>
-												<button type="button" class="btn btn-default btn-md"
-													id="sampleRun">
-													RUN <span class="glyphicon glyphicon-play"></span>
-												</button> </label>
-											<textarea class="form-control" rows="5" name="sample"
-												id="sample"></textarea>
-										</div>
-										<div class="form-group label-floating">
-											<label class="control-label"><h4>MAIN:</h4>
-												<button type="button" class="btn btn-default btn-md"
-													id="addBtn">
-													ADD <span class="glyphicon glyphicon-arrow-down"></span>
-												</button>
-												<button type="button" class="btn btn-default btn-md"
-													id="mainRun">
-													RUN <span class="glyphicon glyphicon-play"></span>
-												</button> </label>
-											<textarea class="form-control" rows="15" name="file_ori"
-												id="main">${file.file_ori}</textarea>
-										</div>
-									</div>
-									<div class="col-md-3 leftplace"></div>
-								</div>
-							</div>
-						</div>
-						<!--   CODING PLACE END   -->
-
-						<!--   ddd   -->
-						<div class="item">
-							<div>asd</div>
-						</div>
-
-						<!--   ddd   -->
-						<div class="item">
-							<div>asd</div>
-						</div>
+	<!-- ============== COMU CONTENT  ================= -->
+	<div class="comu-container" hidden="">
+		<div class="row">
+			<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->
+			<div class="col-md-3 leftplace"></div>
+			<div class="col-md-6 centerPlace">
+				<label for="comment"><h4>SAMPLE:</h4>
+					<button type="button" class="btn btn-default btn-md"
+						data-toggle="modal" data-target="#visual" id="sampleRun">
+						RUN <span class="glyphicon glyphicon-play"></span>
+					</button> </label>
+				<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>
+				<br> <label class="control-label"><h4>MAIN:</h4>
+					<button type="button" class="btn btn-default btn-md" id="addBtn">
+						ADD <span class="glyphicon glyphicon-arrow-down"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-md"
+						data-toggle="modal" data-target="#visual" id="mainRun">
+						RUN <span class="glyphicon glyphicon-play"></span>
+					</button> </label>
+				<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>
+				<br>
+				<div class="row">
+					<div class="col-md-2">
+						<label> <img id="imgView"
+							src="resources/covers/${file.cover_re}"
+							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+							style="width: 100px; height: 100px; border-radius: 100px;">
+							<input type="file" style="display: none;" id="imgInp"
+							name="upload" />
+						</label>
 					</div>
-
-					<!-- Left and right controls -->
-					<a class="left carousel-control" href="#myCarousel" role="button"
-						data-slide="prev"> <span
-						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a> <a class="right carousel-control" href="#myCarousel" role="button"
-						data-slide="next"> <span
-						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
+					<div class="col-md-10">
+						<label class="control-label">
+							<h4>TITLE:</h4>
+							<button type="button" class="btn btn-default btn-md saveBtn">
+								SAVE <span class="glyphicon glyphicon-saved"></span>
+							</button>
+						</label> <input type="text" class="form-control" name="file_title"
+							value="${file.file_title}" />
+					</div>
 				</div>
 			</div>
+			<div class="col-md-3 leftplace"></div>
+		</div>
+	</div>
 
-			<div class="filter"></div>
-			<video autoplay loop class="fillWidth">
-				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-			</video>
-
-			<!--    영상 로딩 전 보여줄 화면
-         <div class="poster hidden">
-            <img src="PATH_TO_JPEG" alt="">
-         </div> -->
-
+	<!-- Modal -->
+	<div id="visual" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br> asdasdasdasdasd11111111<br>
+				asdasdasdasdasd11111111<br>
+			</div>
 		</div>
 	</div>
 
@@ -413,21 +425,21 @@ textarea {
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
-	
+
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-	
+
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-	
+
 		});
-	
+
 		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
@@ -440,7 +452,7 @@ textarea {
 				}, false);
 				bgm.play();
 			} */
-	
+
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -451,15 +463,15 @@ textarea {
 		   keyEnabled : true
 		});
 		 */
-	
+
 		//}
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-	
+
 		}
-	
+
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -467,12 +479,11 @@ textarea {
 			});
 			scaleBannerVideoSize(element);
 		}
-	
+
 		function scaleBannerVideoSize(element) {
 			var windowWidth = $(window).width();
 			var windowHeight = $(window).height() + 5;
-			var videoWidth,
-				videoHeight;
+			var videoWidth, videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
 					function() {

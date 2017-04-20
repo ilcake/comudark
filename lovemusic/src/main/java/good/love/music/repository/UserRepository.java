@@ -31,7 +31,7 @@ public class UserRepository {
 
 		return result;
 	}
-	
+
 	// 아이디로 회원 정보 가져오기 Repository
 	public void selectOne(String userid, Model model) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
@@ -43,30 +43,30 @@ public class UserRepository {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 로그인 Repository
 	public User login(String userid, String password) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		User u = null;
-		
+
 		try {
 			u = dao.selectOne(userid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return u;
 	}
-	
+
 	// id 중복확인 Repository
 	public String idCheck(String userid, Model model) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		User user = null;
-		
+
 		try {
 			user = dao.selectOne(userid);
-			
-			if(user != null) {
+
+			if (user != null) {
 				model.addAttribute("notCheckId", user.getUserid());
 			} else {
 				model.addAttribute("checkId", userid);
@@ -74,7 +74,7 @@ public class UserRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "join";
 	}
 }
