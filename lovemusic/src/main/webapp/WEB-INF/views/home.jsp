@@ -42,7 +42,7 @@
 					<img src="myfiles/images/main/logo_1.png" class="logo"
 						alt="Sonik template" style="width: 300px;">
 					<h4>
-						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
+						<a href='login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='join'>Join</a>
 					</h4>
 				</div>
 			</div>

@@ -144,20 +144,20 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
 				class="button-collapse qt-menu-switch"><span
@@ -215,34 +215,7 @@
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
-												<span class="label blank">GO</span> <img class="leds"
-													id="LED_1" src="myfiles/images/hicu/LED_off.png"><img
-													class="leds" id="LED_2"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_3"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_4" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_5"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_6" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_7"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_8" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_9"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_10" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_11" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_12" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_13" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_14" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_15" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_16" class="leds"
-													src="myfiles/images/hicu/LED_off.png">
+												<span class="label blank">GO</span>
 											</div>
 										</div>
 										<hr />
@@ -374,6 +347,8 @@
 		* 
 		********************************************/
 		function initHiCu() {
+			makeLED();
+	
 			console.log("=============Get Ins List==============");
 			/*******************************************
 			*
@@ -398,6 +373,7 @@
 				error : function(resp) {}
 			});
 			console.log("==================================");
+	
 		}
 	
 	
@@ -502,6 +478,14 @@
 			var thisbtn = "area_" + ($(this).attr("dt-line"));
 			$("#" + thisbtn).remove();
 			console.log("wow!! " + thisbtn + " removed!");
+		}
+	
+		function makeLED() {
+			var theLeds = "";
+			for (var i = 1; i < 17; i++) {
+				theLeds += "<img class='leds'	id='LED_1' src='myfiles/images/hicu/LED_off.png'>";
+			}
+			$("#LED_row").append(theLeds);
 		}
 	
 		/********************************************** 
@@ -661,7 +645,7 @@ select {
 }
 
 .row {
-	max-height: 460px;
+	max-height: 480px;
 	overflow: auto;
 }
 

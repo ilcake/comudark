@@ -98,60 +98,62 @@
 }
 
 /*로그인 페이지 css*/
-#loginBox{
-	width:600px; 
-	margin: auto; 
-	border: 3px solid white; 
-	border-radius: 0px; 
+#loginBox {
+	width: 600px;
+	margin: auto;
+	border: 3px solid white;
+	border-radius: 0px;
 	padding: 70px;
 	padding-top: 30px;
 }
 
-#menu{
+#menu {
 	background: none;
 	text-aline: right;
 	font-size: large;
-	color:white; 
+	color: white;
 }
 
-#find{
+#find {
 	font-size: small;
 	text-align: right;
 }
 
-#x{
-	right:0px; 
-	position: absolute; 
+#x {
+	right: 0px;
+	position: absolute;
 	padding-top: 10px;
-	padding-right: 40px; 
+	padding-right: 40px;
 	font-size: xx-large;
 }
 
-img{	
+img {
 	width: 30px;
 	height: 30px;
 }
-	
 }
 </style>
 
 <script>
-$(function(){
-	$("#loginbutton").on('click', function(){
-		$.ajax({
-			url : "login"
-			, type : "post"
-			, data : {"userid" : $('#userid2').val(), "password" : $('#password2').val()}
-			, success : function(resp) {
-				if(resp == "errorMsg") {
-					alert("X");
-				} else {
-					location.href=".";
+	$(function() {
+		$("#loginbutton").on('click', function() {
+			$.ajax({
+				url : "login",
+				type : "post",
+				data : {
+					"userid" : $('#userid2').val(),
+					"password" : $('#password2').val()
+				},
+				success : function(resp) {
+					if (resp == "errorMsg") {
+						alert("X");
+					} else {
+						location.href = ".";
+					}
 				}
-			}
+			});
 		});
 	});
-});
 </script>
 
 </head>
@@ -163,7 +165,8 @@ $(function(){
 		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
 			data-opacity="0.5" data-speed="1"></div> -->
 		<nav id="stickymenu" class="qt-menu white-text">
-			<a href="."><span id="x"><img src="myfiles/images/cross-out.png"></span></a>
+			<a href="."><span id="x"><img
+					src="myfiles/images/cross-out.png"></span></a>
 		</nav>
 	</div>
 	<!-- ====================== MENU END ================================================ -->
@@ -216,7 +219,9 @@ $(function(){
 									<button class="btn btn-primary">JOIN</button>
 								</div>
 							</div>
-							<br><br><br>
+							<br>
+							<br>
+							<br>
 
 							<!--Original logo height 80px-->
 							<!-- 로고 위치 
