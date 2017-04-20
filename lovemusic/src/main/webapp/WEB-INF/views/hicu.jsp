@@ -89,10 +89,11 @@
 .video-container .title-container {
 	z-index: 1000;
 	position: fixed;
-	top: 9%;
+	top: 15%;
 	margin-left: 10%;
 	width: 80%;
 	background-color: rgba(255, 255, 255, 0.8);
+	width: 80%;
 	width: 80%;
 }
 
@@ -193,9 +194,9 @@
 												<table id="theSelectionTable">
 													<tr>
 														<th><span class="label">Beats</span><select
-															id="beatSelection"><option value="Loops">MadeSet</option>
-																<option value="ACU">Acustic</option>
-																<option value="R8">R8</option></select> <img
+															id="beatSelection"><option value="loops">MadeSet</option>
+																<option value="acu">Acustic</option>
+																<option value="r8">R8</option></select> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
 															dt-ins="beats"></th>
 														<th><span class="label">Bass</span> <img
@@ -212,8 +213,8 @@
 											<!-- Buttons Row -->
 											<div class="btnsArea" id="btnsArea">
 												<!-- <div class="buttons_row" id="beatSection">
-													<span class="label">Loops</span> <img id="beat1"
-														class="hiBtn" src="myfiles/images/hicu/button_off.png"><img
+													<span class="label">Loops</span><br> <img id="beat1" class="hiBtn"
+														src="myfiles/images/hicu/button_off.png"><img
 														id="beat2" class="hiBtn"
 														src="myfiles/images/hicu/button_off.png"><img
 														id="beat3" class="hiBtn"
@@ -249,9 +250,8 @@
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
-												<!-- <span class="label blank">GO</span> -->
-												<img class="leds" id="LED_1"
-													src="myfiles/images/hicu/LED_off.png"><img
+												<span class="label blank">GO</span> <img class="leds"
+													id="LED_1" src="myfiles/images/hicu/LED_off.png"><img
 													class="leds" id="LED_2"
 													src="myfiles/images/hicu/LED_off.png"><img id="LED_3"
 													class="leds" src="myfiles/images/hicu/LED_off.png"><img
@@ -289,9 +289,9 @@
 												src="myfiles/images/hicu/btn_save.png"><img id="load"
 												src="myfiles/images/hicu/btn_load.png"><img id="reset"
 												src="myfiles/images/hicu/btn_reset.png">
-											<div>
+											<!-- <div>
 												<textarea id="resultCode"></textarea>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
@@ -428,6 +428,8 @@
 	<!--  HICU Action  -->
 	<script type="text/javascript">
 	
+		var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
+	
 		/*******************************************
 		*
 		* 		     Initiation Function
@@ -460,37 +462,97 @@
 			console.log("==================================");
 		}
 	
+	
+		/********************************************** 
+		*
+		*                 on Click Play !
+		*
+		***********************************************/
+		function playEvent() {
+			var theSource = $("#resultCode").val();
+			console.log("play ==> " + theSource);
+			$.ajax({
+				type : "POST",
+				url : "compile",
+				data : {
+					"source" : theSource
+				},
+				success : function(resp) {
+					alert(resp);
+				},
+				error : function(resp) {
+					alert(resp);
+				}
+			});
+		}
+	
+	
+		/********************************************** 
+		*
+		*              on click Add Btn
+		*
+		***********************************************/
+	
+		function insAddEvent() {
+			var ins = $(this).attr("dt-ins");
+			console.log(ins + " is requested");
+			var serial = 1 + Math.floor(Math.random() * 50000);
+			switch (ins) {
+			case "beats":
+				var btSelected = $("#beatSelection").val();
+				var theContents = "";
+				switch (btSelected) {
+				case "loops":
+					theContents += "<div id='" + serial + "'>"
+					theContents += "<div class='buttons_row'>";
+					theContents += "<span class='label'>" + btSelected + "</span> ";
+					for (var i = 1; i < 17; i++) {
+						theContents += "<img dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+					}
+					theContents += "</div></div>";
+					break;
+	
+				case "acu":
+				case "r8":
+					theContents += "<div id='" + serial + "'>"
+					theContents += "<div id='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
+					theContents += "<span id='tempocontrol'><img src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>"
+					theContents += "<img src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>"
+					$.each(drumSet, function(index, item) {
+						theContents += "<div class='buttons_row'>";
+						theContents += "<span class='label'>" + item + "</span> ";
+						for (var i = 1; i < 17; i++) {
+							theContents += "<img dt-ins='" + ins + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+						}
+						theContents += "</div></div>";
+					//plusSize += 41.33;
+					});
+					break;
+				}
+				break;
+	
+			case "bass":
+				break;
+	
+			case "melody":
+				break;
+			}
+			$("#btnsArea").append(theContents);
+		}
+	
 		/********************************************** 
 		*
 		*                 on Ready!
 		*
 		***********************************************/
-		
-		
+	
+	
 		$(function() {
 			initHiCu();
 	
-			$("#play").on("click", function() {
-				var theSource = $("#resultCode").val();
-				console.log("play ==> " + theSource);
-				$.ajax({
-					type : "POST",
-					url : "compile",
-					data : {
-						"source" : theSource
-					},
-					success : function(resp) {
-						alert(resp);
-					},
-					error : function(resp) {
-						alert(resp);
-					}
-				});
-			});
+			$("#play").on("click", playEvent);
 	
-			$(".ins_add").on("click", function() {
-				
-			});
+			$(".ins_add").on("click", insAddEvent);
 	
 		});
 	</script>

@@ -3401,10 +3401,10 @@ nav ul a span.badge {
 }
 
 .video-container {
-	position: relative;
+	/* position: relative;
 	padding-bottom: 56.25%;
 	height: 0;
-	overflow: hidden;
+	overflow: hidden; */
 }
 
 .video-container iframe, .video-container object, .video-container embed
