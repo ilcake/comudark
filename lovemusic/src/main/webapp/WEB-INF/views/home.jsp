@@ -61,20 +61,20 @@
 				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll active">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
 				class="button-collapse qt-menu-switch"><span

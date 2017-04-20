@@ -14,7 +14,7 @@ public interface BoardDAO {
 
 	// 글 등록
 	public int write(Board board) throws Exception;
-	
+
 	// 글 등록시 이미지 변경 ?
 	public int fileUpdate(Files file) throws Exception;
 
@@ -35,7 +35,10 @@ public interface BoardDAO {
 
 	// 댓글 등록
 	public int replyWrite(Reply reply) throws Exception;
-	
+
+	// 댓글 전체 가져오기
+	public List<Reply> replyAll() throws Exception;
+
 	// 댓글 가져오기
 	public List<Reply> replylist(int boardnum) throws Exception;
 

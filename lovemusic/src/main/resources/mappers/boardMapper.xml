@@ -28,6 +28,7 @@
 		b.filenum = f.filenum
 		AND
 		b.userid = #{userid}
+		ORDER BY boardnum DESC
 	</select>
 
 	<!-- 글 목록(전체) -->
@@ -35,6 +36,7 @@
 		SELECT * FROM cm_board b, cm_file f
 		WHERE
 		b.filenum = f.filenum
+		ORDER BY boardnum DESC
 	</select>
 
 	<!-- 글 수정 -->
@@ -69,7 +71,7 @@
 				</when>
 			</choose>
 		</if>
-		ORDER BY boardnum
+		ORDER BY boardnum DESC
 	</select>
 
 	<!-- 댓글 등록 -->
@@ -101,11 +103,19 @@
 		replynum = #{replynum}
 	</update>
 
+	<!-- 댓글 전체 가져오기 -->
+	<select id="replyAll" resultType="Reply">
+		SELECT * FROM cm_reply
+		ORDER BY
+		inputdate DESC
+	</select>
+
 	<!-- 댓글 불려오기 -->
 	<select id="replylist" resultType="Reply" parameterType="int">
 		SELECT *
 		FROM cm_reply
 		WHERE boardnum = #{boardnum}
+		ORDER BY inputdate DESC
 	</select>
 
 	<!-- 댓글 삭제 -->
@@ -122,6 +132,14 @@
 		(#{boardnum}, #{userid}, #{like_userid})
 	</insert>
 
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike" parameterType="Like">
+		DELETE cm_like
+		WHERE
+		boardnum = #{boardnum}
+		AND like_userid = #{like_userid}
+	</delete>
+
 	<!-- 좋아요 리스트(랭킹) -->
 	<select id="rankList" resultType="Like">
 		SELECT count(*) FROM cm_like
@@ -133,14 +151,14 @@
 		SELECT *
 		FROM cm_like
 		WHERE
-		userid = #{userid}
+		like_userid = #{like_userid}
 	</select>
 
-	<!-- 좋아요 리스트 -->
+	<!-- 접속 ID가 좋아요 누른 사람 리스트 -->
 	<select id="likeList" resultType="Like">
 		SELECT * FROM cm_like
 		WHERE
-		boardnum = #{boardnum}
+		like_userid = #{userid}
 	</select>
 
 	<!-- 구독 -->
@@ -150,6 +168,13 @@
 		VALUES
 		(#{userid}, #{sub_userid})
 	</insert>
+
+	<!-- 구독 취소 -->
+	<delete id="deleteSubscribe" parameterType="Subscribe">
+		DELETE cm_subscribe
+		WHERE userid = #{userid}
+		AND sub_userid = #{sub_userid}
+	</delete>
 
 	<!-- 구독 리스트 -->
 	<select id="subscribeList" parameterType="String" resultType="Subscribe">
