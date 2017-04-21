@@ -47,15 +47,15 @@
 	position: relative;
 }
 
-.no-video .video-container video, .touch .video-container video {
+.no-video .video-containers video, .touch .video-containers video {
 	display: none;
 }
 
-.no-video .video-container .poster, .touch .video-container .poster {
+.no-video .video-containers .poster, .touch .video-containers .poster {
 	display: block !important;
 }
 
-.video-container {
+.video-containers {
 	position: relative;
 	bottom: 0%;
 	left: 0%;
@@ -65,30 +65,30 @@
 	background: #000;
 }
 
-.video-container .poster img {
+.video-containers .poster img {
 	width: 100%;
 	bottom: 0;
 	position: absolute;
 }
 
-.video-container .filter {
+.video-containers .filter {
 	z-index: 100;
 	position: absolute;
 	background: rgba(0, 0, 0, 0.4);
 	width: 100%;
 }
 
-.video-container video {
+.video-containers video {
 	position: absolute;
 	z-index: 0;
 	bottom: 0;
 }
 
-.video-container video.fillWidth {
+.video-containers video.fillWidth {
 	width: 100%;
 }
 
-.video-container .title-container {
+.video-containers .title-containers {
 	z-index: 1000;
 	position: fixed;
 	top: 9%;
@@ -258,9 +258,9 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
 				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
@@ -268,9 +268,9 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
 				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
@@ -299,21 +299,21 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 
-			scaleVideoContainer();
-			initBannerVideoSize('.video-container .poster img');
-			initBannerVideoSize('.video-container .filter');
-			initBannerVideoSize('.video-container video');
+			scaleVideocontainers();
+			initBannerVideoSize('.video-containers .poster img');
+			initBannerVideoSize('.video-containers .filter');
+			initBannerVideoSize('.video-containers video');
 
 			$(window).on('resize', function() {
-				scaleVideoContainer();
-				scaleBannerVideoSize('.video-container .poster img');
-				scaleBannerVideoSize('.video-container .filter');
-				scaleBannerVideoSize('.video-container video');
+				scaleVideocontainers();
+				scaleBannerVideoSize('.video-containers .poster img');
+				scaleBannerVideoSize('.video-containers .filter');
+				scaleBannerVideoSize('.video-containers video');
 			});
 
 		});
 
-		function scaleVideoContainer() {
+		function scaleVideocontainers() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
@@ -337,7 +337,7 @@
 						var videoAspectRatio = $(this).data('height')
 
 						$(this).width(windowWidth);
-						$('.homepage-hero-module .video-container video')
+						$('.homepage-hero-module .video-containers video')
 								.addClass('fadeIn animated');
 					});
 		}
@@ -346,7 +346,7 @@
 
 	<!-- ============== AboutUs CONTENT START ================= -->
 	<div class="full-width flush-top quotes"
-		style="background-image: url('http://www.fortyonetwenty.com/wp-content/uploads/2012/10/AboutUsHeader-1.jpg');">
+		style="background-image: url('resources/forest/images/galaxy-3.jpg');">
 		<div class="containers">
 			<div class="swipers">
 				<ul>
@@ -413,11 +413,9 @@
 			<div class="testimonials">
 				<ul class="swipe-wrap">
 					<li class="testimonial">
-						<div class="avatar">
-							<img
-								src="resources/forest/images/java.png"
-								alt="Peter Higgins ">
-						</div>
+						<!-- <div class="avatar">
+							<img src="resources/forest/images/java_120.png" alt="error">
+						</div> -->
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Integer vel fermentum nisl. Donec viverra metus quam, quis
@@ -430,8 +428,8 @@
 								amet congue a, pretium a nisi.</p>
 							<span class="icon"></span>
 							<footer>
-								<cite> CoMu <span class="project">2조 - 최유철, 김태현,
-										김고운, 이민호</span>
+								<cite> CoMu <span class="project">최유철, 김태현, 김고운,
+										이민호</span>
 								</cite>
 							</footer>
 						</blockquote>
@@ -447,74 +445,42 @@
 				<h2>프로젝트 사용 기술</h2>
 				<ul>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/NBC2.png">
-					</li>
+						src="resources/forest/images/skills/java_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/wired2.png">
-					</li>
+						src="resources/forest/images/skills/oracle_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/04/abc12.png">
-					</li>
+						src="resources/forest/images/skills/html_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/tayler1.png">
-					</li>
+						src="resources/forest/images/skills/css_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/QualcommLogo2.png">
-					</li>
+						src="resources/forest/images/skills/js_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/BMW2.png">
-					</li>
+						src="resources/forest/images/skills/jsp_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/04/usa11.png">
-					</li>
+						src="resources/forest/images/skills/jquery_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/Chargers1.png">
-					</li>
+						src="resources/forest/images/skills/ajax_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/TorreyPines2.png">
-					</li>
+						src="resources/forest/images/skills/java_cc_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/Ikea2.png">
-					</li>
+						src="resources/forest/images/skills/git_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/ubisoft.png">
-					</li>
+						src="resources/forest/images/skills/github_120.png"></li>
 					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/04/cbs11.png">
-					</li>
-					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/NapaCellars2.png">
-					</li>
-					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2013/08/dji.png">
-					</li>
-					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/TheMusicBed3.png">
-					</li>
-					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/CookingLight2.png">
-					</li>
-					<li style="margin-right: 39px;"><img
-						src="http://www.fortyonetwenty.com/wp-content/uploads/2012/12/TheRockChurch3.png">
-					</li>
+						src="resources/forest/images/skills/gitkraken_120.png"></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
 	<div class="full-width dark-grey flat footer">
-		<div class="container">
+		<div class="containers">
 			<div class="footer-foot">
 				<div class="info">
 					<p>
 						<span>CoMu Project</span>
 					</p>
 					<p>© Copyright 2017 CoMu. All Rights Reserved.</p>
-				</div>
-				<div class="footer-icons">
-					<ul>
-						<li><a class="video-icon" href="/work/" title=""></a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
