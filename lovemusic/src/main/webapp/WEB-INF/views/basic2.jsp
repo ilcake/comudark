@@ -22,14 +22,24 @@
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
-
+<!-- naviBar -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="resources/forest/components/sticky/jquery.sticky.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#stickymenu").sticky({
+			topSpacing : 0,
+			responsiveWidth : true,
+			zIndex : 100
+		});
+	});
+</script>
+<!-- naviBar End -->
 
 </head>
 
 <body>
-
-
-
 
 	<!-- ====================== MENU ================================================ -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
@@ -61,115 +71,10 @@
 	</div>
 	<!-- ====================== MENU END ================================================ -->
 
+	<!-- Insert Contents Here! -->
+	<div></div>
+	<!-- Insert Contents Here! -->
 
-	<div style="background-color: white;">
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-		<h1>wow</h1>
-		<br />
-	</div>
-
-
-
-	<!-- QT FOOTER ================================ -->
-	<!-- <script src="js/modernizr-custom.js"></script> -->
-
-
-	<!--  CUSTOM JS LIBRARIES: =========================================================== -->
-	<script src="js/materializecss/bin/materialize.min.js"></script>
-	<script src="components/slick/slick.min.js"></script>
-	<script src="components/skrollr/skrollr.min.js"></script>
-	<!-- <script src="components/particles/particles.min.js"></script> -->
-
-	<!-- <script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script> -->
-
-	<!-- MAIN JAVASCRIPT FILE ================================ -->
-	<script src="js/qt-main.js"></script>
 
 </body>
 

@@ -110,30 +110,6 @@
 </script>
 </head>
 <body>
-	<!-- ====================== HEADER ================================================ -->
-	<!-- <header id="home" class="qt-header parallax-container scrollspy">
-		<div class="parallax"
-			data-start="width:100%;height:100%;top: 0%;left: 0%;"
-			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-1.jpg" alt="background">
-		</div>
-		<div class="qt-valign-wrapper">
-			<div class="qt-valign">
-				<div class="container center-align">
-					<img src="myfiles/images/logo_1.png" class="logo"
-						alt="Sonik template" style="width: 300px;">
-					<h4>
-						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
-					</h4>
-				</div>
-			</div>
-		</div>
-		<div class="qt-particles" id="particlesheader" data-color="#ffffff"
-			data-opacity="0.5" data-speed="1"></div>
-	</header> -->
-	<!-- ====================== HEADER END ================================================ -->
-
-
 	<!-- ====================== MENU ================================================ -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
 		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
