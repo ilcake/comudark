@@ -88,4 +88,8 @@ public class HomeController {
 		return "shared";
 	}
 
+	@RequestMapping(value = "/howto", method = RequestMethod.GET)
+	public String howto(){
+		return "howto";
+	}
 }

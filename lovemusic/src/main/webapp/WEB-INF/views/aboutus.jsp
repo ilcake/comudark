@@ -421,12 +421,7 @@
 								Integer vel fermentum nisl. Donec viverra metus quam, quis
 								blandit leo vehicula non. Donec luctus pharetra tempor. Etiam et
 								ex et libero volutpat egestas. Cras pharetra, mi sit amet
-								interdum egestas, ligula metus auctor ipsum, non semper massa
-								erat sit amet mi. Cras vulputate commodo ligula vel gravida.
-								Class aptent taciti sociosqu ad litora torquent per conubia
-								nostra, per inceptos himenaeos. Integer mi neque, vulputate sit
-								amet congue a, pretium a nisi.</p>
-							<span class="icon"></span>
+								interdum egestas, ligula metus auctor ipsum,</p>
 							<footer>
 								<cite> CoMu <span class="project">최유철, 김태현, 김고운,
 										이민호</span>
