@@ -17,14 +17,12 @@
 	href="myfiles/images/main/logo_comu.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
+<script src="resources/jquery-3.1.1.min.js"></script>
+<!-- <script src="js/jquery.js"></script>
+<script src="js/jquery-migrate.min.js"></script> -->
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <!-- naviBar -->
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="resources/forest/components/sticky/jquery.sticky.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -36,6 +34,7 @@
 	});
 </script>
 <!-- naviBar End -->
+
 
 </head>
 
@@ -72,7 +71,13 @@
 	<!-- ====================== MENU END ================================================ -->
 
 	<!-- Insert Contents Here! -->
-	<div></div>
+	<div id="totalWrapper" style="background-color: white;">
+		asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br />
+		asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br />
+		asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br />
+		asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br />
+		asdfasdfasdfasdfas<br /> asdfasdfasdfasdfas<br />
+	</div>
 	<!-- Insert Contents Here! -->
 
 
