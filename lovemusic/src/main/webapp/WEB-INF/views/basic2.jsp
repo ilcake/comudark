@@ -24,6 +24,8 @@
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <!-- naviBar -->
 <script src="resources/forest/components/sticky/jquery.sticky.js"></script>
+
+<style type="text/css"></style>
 <script type="text/javascript">
 	$(function() {
 		$("#stickymenu").sticky({
