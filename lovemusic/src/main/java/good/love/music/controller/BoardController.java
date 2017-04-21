@@ -107,17 +107,17 @@ public class BoardController {
 
 	// [글 검색] Board searchBoard(String search) return "shared";
 
-	// [댓글 등록] reply writeReply(Reply reply) return "result"; //(ajax)성공여부 전송
+	// 댓글 등록 int writeReply(Reply reply) return "result"; //(ajax)성공여부 전송
 	@RequestMapping(value = "/replyWrite", method = RequestMethod.GET)
 	public String replyWrite(Reply reply, HttpSession session) {
-
+		
 		String loginId = (String) session.getAttribute("loginId");
-		loginId = "15";
-
+		loginId = "a";
+		
 		reply.setUserid(loginId);
-
+		
 		boardRepository.replyWrite(reply);
-
+		
 		return "redirect:shared";
 	}
 
