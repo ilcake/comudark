@@ -131,17 +131,40 @@ img{
 	width: 30px;
 	height: 30px;
 }
+
+input, input:hover{
+	background: none;
+	border: none;
+	border-bottom: white 1px solid;
+}
 	
 }
 </style>
 
 <script>
 $(function(){
-	$("#loginbutton").on('click', function(){
+	
+	//중복체크 기능 미구현
+	$("중복체크").on('click', function(){
 		$.ajax({
-			url : "login"
+			url : "check"
 			, type : "post"
-			, data : {"userid" : $('#userid2').val(), "password" : $('#password2').val()}
+			, data : {"userid" : $('#userid').val()}
+			, success : function(resp) {
+				if(resp == "errorMsg") {
+					alert("이미 있는 ID입니다");
+				} else {
+					alert("ID 사용 가능");
+				}
+			}
+		});		
+	});
+	
+	$("#joinbutton").on('click', function(){
+		$.ajax({
+			url : "join"
+			, type : "post"
+			, data : {"userid" : $('#userid').val(), "password" : $('#password').val()}
 			, success : function(resp) {
 				if(resp == "errorMsg") {
 					alert("X");
@@ -200,20 +223,19 @@ $(function(){
 											<input type="password" placeholder="Password...."
 												class="form-control" />
 										</div>
-										<div class="input-group">
+<!-- 										<div class="input-group">
 											<input type="text" placeholder="Question"
 												class="form-control" name="question" />
 										</div>
-										<select><option>ddd</option></select>
 										<div class="input-group">
 											<input type="text" placeholder="Answer" class="form-control"
 												name="answer" />
-										</div>
+										</div> -->
 									</div>
 								</form>
 								<br>
 								<div class="footer text-center">
-									<button class="btn btn-primary">JOIN</button>
+									<button class="btn btn-primary" id="joinbutton">JOIN</button>
 								</div>
 							</div>
 							<br><br><br>

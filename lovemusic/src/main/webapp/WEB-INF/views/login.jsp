@@ -131,6 +131,12 @@ img{
 	width: 30px;
 	height: 30px;
 }
+
+input, input:hover{
+background: none;
+border: none;
+border-bottom: white 1px solid;
+}
 	
 }
 </style>
@@ -144,9 +150,12 @@ $(function(){
 			, data : {"userid" : $('#userid2').val(), "password" : $('#password2').val()}
 			, success : function(resp) {
 				if(resp == "errorMsg") {
-					alert("X");
+					alert("로그인 실패");
+					$("#userid2").val("");
+					$("#password2").val("");
 				} else {
-					location.href=".";
+					alert("로그인 성공");
+					location.href="home";
 				}
 			}
 		});

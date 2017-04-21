@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import good.love.music.repository.UserRepository;
 import good.love.music.vo.User;
@@ -27,10 +28,16 @@ public class UserController {
 
 	// login 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String userid, String password, Model model, HttpSession session, HttpServletRequest request) {
-		userRepository.login(userid, password);
-		String uri = request.getHeader("referer");
-		return "redirect:" + uri;
+	public @ResponseBody String login(String userid, String password, HttpSession session, HttpServletRequest request) {
+		User user = userRepository.login(userid, password);
+		if(user != null){
+			if(user.getPassword().equals(password)){
+				session.setAttribute("loginId", user.getUserid());
+				String uri = request.getHeader("referer");
+				return uri;
+			}
+		}
+		return "errorMsg";
 	}
 
 	// logout 처리
