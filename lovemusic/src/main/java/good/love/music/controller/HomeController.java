@@ -51,6 +51,13 @@ public class HomeController {
 		return "basic2";
 	}
 
+	@RequestMapping(value = "/naviex", method = RequestMethod.GET)
+	public String naviex() {
+		logger.info("pulling HOME");
+
+		return "naviex";
+	}
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home2() {
 		logger.info("pulling HOME");
