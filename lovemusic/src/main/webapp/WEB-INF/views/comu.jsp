@@ -75,8 +75,8 @@
 	width: 100%;
 	height: 120%;
 	padding-top: 5%;
-	background-color: rgb(255, 255, 255);
-	overflow: scroll;
+	background-color: rgba(255, 255, 255, 0);
+	overflow: auto;
 }
 
 .text {
@@ -186,7 +186,7 @@ textarea {
 			return false;
 		}
 		$.ajax({
-			type : "get",
+			type : "post",
 			url : "compile",
 			data : {
 				"source" : source
@@ -321,20 +321,20 @@ textarea {
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
 				class="button-collapse qt-menu-switch"><span

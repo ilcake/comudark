@@ -5,12 +5,14 @@ options
 
 PARSER_BEGIN(MyNewGrammar)
 /** Simple brace matcher. */
-package global.sesoc.boot.javaCC;
+package good.love.music.comu;
 import java.util.ArrayList;
-import global.sesoc.boot.service.URLGenerator;
-import global.sesoc.boot.Exception.TempoUnderflowException;
-import global.sesoc.boot.Exception.TempoOverflowException;
-import global.sesoc.boot.Exception.SoundFileNotFoundException;
+import good.love.music.service.URLGenerator;
+import good.love.music.Exception.TempoUnderflowException;
+import good.love.music.Exception.TempoOverflowException;
+import good.love.music.Exception.SoundFileNotFoundException;
+import good.love.music.Exception.BpmNotDefinedException;
+import good.love.music.Exception.AlreadySetBPMException;
 import java.io.IOException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -39,6 +41,7 @@ public class MyNewGrammar
   String delay = "";
   String low = "";
   String high = "";
+  boolean isSetBPM = false;
 
   public String getResult()
   {
@@ -64,6 +67,12 @@ public class MyNewGrammar
   public void setURLGenerator(URLGenerator generator)
   {
     this.generator = generator;
+  }
+
+  public void setCustomBPM(double value)
+  {
+    double theTempoValue = 16;
+    bpm = ((theTempoValue * 60) / value) / 4;
   }
 
   public double getLoc(double loc, double dloc)
@@ -115,6 +124,7 @@ TOKEN :
 TOKEN :
 {
   < TEMPO : "tempo" >
+| < BPM : "bpm" >
 | < DO : "do" >
 | < LOCATION : "location" >
 | < NUMBER : (< DIGIT >)+ >
@@ -124,9 +134,9 @@ TOKEN :
 | < NOTE : ([ "A"-"Z", "a"-"z" ])+ ("#")* (< NUMBER >)* ("m")* >
 }
 
-boolean readLine() throws TempoOverflowException, TempoUnderflowException, UnsupportedAudioFileException, IOException, SoundFileNotFoundException, NumberFormatException :
+boolean readLine() throws TempoOverflowException, TempoUnderflowException, UnsupportedAudioFileException, IOException, SoundFileNotFoundException, NumberFormatException, BpmNotDefinedException, AlreadySetBPMException :
 {
-  Token number, loops, ins, notes;
+  Token loops, ins, notes;
 }
 {
   LOOKAHEAD(2)
@@ -140,51 +150,75 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
     return true;
   }
 | LOOKAHEAD(2)
+  < BPM > number = < NUMBER > ";"
+  {
+    if (isSetBPM)
+    {
+      throw new AlreadySetBPMException();
+    }
+    setCustomBPM(Double.parseDouble(number.image));
+    isSetBPM = true;
+    return true;
+  }
+| LOOKAHEAD(2)
   ins = < INS > notes = < PIANO >
   {
     url = notes.image;
-    return true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < DRUM >
   {
     url = notes.image;
-    return true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < GUITARNOTE >
   {
     url = notes.image;
-    return true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < GUITARCODE >
   {
     url = notes.image;
-    return true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   loops = < MELODY > number = < NUMBER >
   {
     url = loops.image + number.image;
     setBPM(url);
-    return true;
+    isSetBPM = true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   loops = < BEAT > number = < NUMBER >
   {
     url = loops.image + number.image;
     setBPM(url);
-    return true;
+    isSetBPM = true;
+    return inTheMethod();
   }
 | LOOKAHEAD(2)
   loops = < BASS > number = < NUMBER >
   {
     url = loops.image + number.image;
     setBPM(url);
+    isSetBPM = true;
     return true;
   }
-| "{"
+| < EOF >
+  {
+    return false;
+  }
+}
+
+boolean inTheMethod() throws NumberFormatException, TempoOverflowException, SoundFileNotFoundException, BpmNotDefinedException :
+{
+}
+{
+  "{"
   {
     location = 0;
     loop = 1;
@@ -221,13 +255,9 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
     }
     return true;
   }
-| < EOF >
-  {
-    return false;
-  }
 }
 
-boolean makeSound() throws TempoOverflowException, SoundFileNotFoundException, NumberFormatException :
+boolean makeSound() throws TempoOverflowException, SoundFileNotFoundException, NumberFormatException, BpmNotDefinedException :
 {
 }
 {
@@ -269,6 +299,10 @@ boolean makeSound() throws TempoOverflowException, SoundFileNotFoundException, N
 | 
   < SETNOTE > "(" note = < NOTE > "," number = < NUMBER > ");"
   {
+    if (!isSetBPM)
+    {
+      throw new BpmNotDefinedException();
+    }
     if (tempo < Integer.parseInt(number.image))
     {
       throw new TempoOverflowException();
