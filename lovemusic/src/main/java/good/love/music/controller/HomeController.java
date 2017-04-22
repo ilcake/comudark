@@ -37,6 +37,27 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/basic", method = RequestMethod.GET)
+	public String basic() {
+		logger.info("pulling HOME");
+
+		return "basic";
+	}
+
+	@RequestMapping(value = "/basic2", method = RequestMethod.GET)
+	public String basic2() {
+		logger.info("pulling HOME");
+
+		return "basic2";
+	}
+
+	@RequestMapping(value = "/naviex", method = RequestMethod.GET)
+	public String naviex() {
+		logger.info("pulling HOME");
+
+		return "naviex";
+	}
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home2() {
 		logger.info("pulling HOME");
