@@ -249,7 +249,7 @@ boolean inTheMethod() throws NumberFormatException, TempoOverflowException, Soun
       }
       else
       {
-        result += String.format("loadAudio('%s', %lf); \n", generator.getFilePath(url), getLoc(btLocation, 0));
+        result += String.format("loadAudio('%s', %f); \n", generator.getFilePath(url), getLoc(btLocation, 0));
         btLocation++;
       }
     }

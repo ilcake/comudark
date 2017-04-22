@@ -189,7 +189,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       }
       else
       {
-        result += String.format("loadAudio('%s', %lf); \u005cn", generator.getFilePath(url), getLoc(btLocation, 0));
+        result += String.format("loadAudio('%s', %f); \u005cn", generator.getFilePath(url), getLoc(btLocation, 0));
         btLocation++;
       }
     }
