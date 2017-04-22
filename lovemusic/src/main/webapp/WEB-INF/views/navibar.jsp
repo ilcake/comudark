@@ -6,9 +6,6 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/qt-main.css">
-<link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
-
 <style type="text/css">
 #totalWrapper {
 	width: 100%;
@@ -34,28 +31,15 @@
 <!-- ====================== MENU ================================================ -->
 <div id="menu" class="qt-menu-wrapper" data-0-top>
 	<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
-		<!-- desktop menu -->
 		<ul class="qt-desktopmenu">
 			<li><a href="home">Home</a></li>
-			<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-			<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-			<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-			<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-			<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-			<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
+			<li><a href="comu">CoMu</a></li>
+			<li><a href="hicu">HiCu</a></li>
+			<li><a href="mypage">MyPage</a></li>
+			<li><a href="shared">Shared</a></li>
+			<li><a href="howto">HowTo</a></li>
+			<li><a href="aboutus">AboutUs</a></li>
 		</ul>
-		<!-- mobile menu -->
-		<ul id="slide-out" class="side-nav qt-mobilemenu">
-			<li><a href="home" class="qwsmoothscroll">Home</a></li>
-			<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-			<li><a href="#hicu" class="qwsmoothscroll">HiCu</a></li>
-			<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-			<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-			<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-			<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
-		</ul>
-		<a href="#" data-activates="slide-out"
-			class="button-collapse qt-menu-switch"><span class="lnr lnr-menu"></span></a>
 	</nav>
 </div>
 <!-- ====================== MENU END ================================================ -->

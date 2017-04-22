@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,6 @@ public class URLGenerator {
 
 	private Map<String, MusicSource> map;
 	private String dirName = "";
-
 	private Map<String, ArrayList<MusicSource>> list;
 
 	@PostConstruct
@@ -44,13 +43,15 @@ public class URLGenerator {
 				if (file.isFile()) {
 					String fileName = deleteExtension(file.getName());
 					MusicSource nfl = new MusicSource(file);
+					if (!list.containsKey(dirName)) {
+						list.put(dirName, new ArrayList<MusicSource>());
+					}
 					map.put((dirName + fileName).toLowerCase(), nfl);
 					list.get(dirName).add(nfl);
-					System.out.println("the Key=" + (dirName + fileName).toLowerCase());
+					// System.out.println("the Key=" + (dirName +
+					// fileName).toLowerCase());
 				} else if (file.isDirectory()) {
 					dirName = file.getName();
-					ArrayList<MusicSource> neList = new ArrayList<>();
-					list.put(dirName, neList);
 					subDirList(file.getCanonicalPath().toString());
 				}
 			}
@@ -65,14 +66,14 @@ public class URLGenerator {
 		return fileName.substring(0, fileName.indexOf("."));
 	}
 
-	public double getBPM(String key) throws SoundFileNotFoundException {
+	public double getBPM(String key) throws Exception {
 		MusicSource musicSource = map.get(key);
 		if (musicSource == null)
 			throw new SoundFileNotFoundException();
 		return musicSource.getBpm();
 	}
 
-	public String getFilePath(String key) throws SoundFileNotFoundException {
+	public String getFilePath(String key) throws Exception {
 		System.out.println("요청 키 ==" + key);
 		MusicSource musicSource = map.get(key);
 		if (musicSource == null) {

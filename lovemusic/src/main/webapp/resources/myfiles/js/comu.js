@@ -4,7 +4,6 @@ $(function() {
 	 * if (typeof jQuery != 'undefined') { // jQuery is loaded => print the
 	 * version alert(jQuery.fn.jquery); }
 	 */
-
 	setJqueryFn();
 	$("#myCarousel").css("height", "100%").css("padding-top", "2%");
 	$(".get-started").click(getStarted);
@@ -52,9 +51,13 @@ function comuRun(source) {
 			"source" : source
 		},
 		success : function(resp) {
-			$("#modalBtn").trigger("click");
-			alert(resp);
-			eval(resp);
+			var check = resp.substring(0, 5);
+			if (check == "error") {
+				alert(resp.substring(5, resp.length));
+			} else {
+				$("#modalBtn").trigger("click");
+				eval(resp);
+			}
 		}
 	});
 }
@@ -144,76 +147,4 @@ function setJqueryFn() {
 			}
 		})
 	}
-}
-
-$(document).ready(function() {
-	// setBackGroundMusic();
-
-	scaleVideoContainer();
-	initBannerVideoSize('.video-container .poster img');
-	initBannerVideoSize('.video-container .filter');
-	initBannerVideoSize('.video-container video');
-
-	$(window).on('resize', function() {
-		scaleVideoContainer();
-		scaleBannerVideoSize('.video-container .poster img');
-		scaleBannerVideoSize('.video-container .filter');
-		scaleBannerVideoSize('.video-container video');
-	});
-
-});
-
-/*
- * function setBackGroundMusic() { var bgm = new Audio(''); if
- * (!bgm.canPlayType('audio/ogg')) alert('브라우저가 ogg 재생을 지원하지 않습니다.');else { var
- * bgm_url =
- * 'http://upload.wikimedia.org/wikipedia/commons/d/d7/Wikinews_Remix_Jingle.ogg';
- * bgm = new Audio(bgm_url); bgm.addEventListener('ended', function() {
- * this.currentTime = 0; this.play(); }, false); bgm.play(); }
- */
-
-/*
- * var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", { m4a :
- * "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a", oga :
- * "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg" }, {
- * cssSelectorAncestor : "#cp_container_1", swfPath : "../dist/jplayer", wmode :
- * "window", keyEnabled : true });
- */
-
-// }
-function scaleVideoContainer() {
-	var height = $(window).height() + 5;
-	var unitHeight = parseInt(height) + 'px';
-	$('.homepage-hero-module').css('height', unitHeight);
-
-}
-
-function initBannerVideoSize(element) {
-	$(element).each(function() {
-		$(this).data('height', $(this).height());
-		$(this).data('width', $(this).width());
-	});
-	scaleBannerVideoSize(element);
-}
-
-function scaleBannerVideoSize(element) {
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height() + 5;
-	var videoWidth, videoHeight;
-	// console.log(windowHeight);
-	$(element).each(
-			function() {
-				var videoAspectRatio = $(this).data('height')
-				// $(this).data('width');
-
-				$(this).width(windowWidth);
-				/*
-				 * if (windowWidth < 1000) { videoHeight = windowHeight;
-				 * videoWidth = videoHeight / videoAspectRatio; $(this).css( {
-				 * 'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) /
-				 * 2 + 'px' }); $(this).width(videoWidth).height(videoHeight); }
-				 */
-				$('.homepage-hero-module .video-container video').addClass(
-						'fadeIn animated');
-			});
 }
