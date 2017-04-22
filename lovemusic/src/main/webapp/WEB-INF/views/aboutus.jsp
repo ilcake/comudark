@@ -139,7 +139,7 @@
 		ga.async = true;
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl'
 				: 'http://www')
-				+ '.google-analytics.com/ga.js';
+			+ '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(ga, s);
 	})();
@@ -257,9 +257,9 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
 				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
@@ -267,9 +267,9 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
 				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
@@ -297,28 +297,28 @@
 	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT ================ -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-
+	
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-
+	
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-
+	
 		});
-
+	
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-
+	
 		}
-
+	
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -326,19 +326,20 @@
 			});
 			scaleBannerVideoSize(element);
 		}
-
+	
 		function scaleBannerVideoSize(element) {
 			var windowWidth = $(window).width();
 			var windowHeight = $(window).height() + 5;
-			var videoWidth, videoHeight;
+			var videoWidth,
+				videoHeight;
 			$(element).each(
-					function() {
-						var videoAspectRatio = $(this).data('height')
-
-						$(this).width(windowWidth);
-						$('.homepage-hero-module .video-container video')
-								.addClass('fadeIn animated');
-					});
+				function() {
+					var videoAspectRatio = $(this).data('height')
+	
+					$(this).width(windowWidth);
+					$('.homepage-hero-module .video-container video')
+						.addClass('fadeIn animated');
+				});
 		}
 	</script>
 	<!-- 기존 적용 기능 끝 -->
@@ -413,9 +414,7 @@
 				<ul class="swipe-wrap">
 					<li class="testimonial">
 						<div class="avatar">
-							<img
-								src="resources/forest/images/java.png"
-								alt="Peter Higgins ">
+							<img src="resources/forest/images/java.png" alt="Peter Higgins ">
 						</div>
 						<blockquote>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.

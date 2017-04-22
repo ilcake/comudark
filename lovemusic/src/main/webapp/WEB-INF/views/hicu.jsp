@@ -110,30 +110,6 @@
 </script>
 </head>
 <body>
-	<!-- ====================== HEADER ================================================ -->
-	<!-- <header id="home" class="qt-header parallax-container scrollspy">
-		<div class="parallax"
-			data-start="width:100%;height:100%;top: 0%;left: 0%;"
-			data-end="width:260%;height:260%;top:-80%;left:-80%;">
-			<img src="images/galaxy-1.jpg" alt="background">
-		</div>
-		<div class="qt-valign-wrapper">
-			<div class="qt-valign">
-				<div class="container center-align">
-					<img src="myfiles/images/logo_1.png" class="logo"
-						alt="Sonik template" style="width: 300px;">
-					<h4>
-						<a href='#login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='#join'>Join</a>
-					</h4>
-				</div>
-			</div>
-		</div>
-		<div class="qt-particles" id="particlesheader" data-color="#ffffff"
-			data-opacity="0.5" data-speed="1"></div>
-	</header> -->
-	<!-- ====================== HEADER END ================================================ -->
-
-
 	<!-- ====================== MENU ================================================ -->
 	<div id="menu" class="qt-menu-wrapper" data-0-top>
 		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
@@ -144,20 +120,20 @@
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
 				class="button-collapse qt-menu-switch"><span
@@ -215,34 +191,7 @@
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
-												<span class="label blank">GO</span> <img class="leds"
-													id="LED_1" src="myfiles/images/hicu/LED_off.png"><img
-													class="leds" id="LED_2"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_3"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_4" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_5"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_6" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_7"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_8" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img id="LED_9"
-													class="leds" src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_10" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_11" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_12" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_13" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_14" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_15" class="leds"
-													src="myfiles/images/hicu/LED_off.png"><img
-													id="LED_16" class="leds"
-													src="myfiles/images/hicu/LED_off.png">
+												<span class="label blank">GO</span>
 											</div>
 										</div>
 										<hr />
@@ -374,6 +323,8 @@
 		* 
 		********************************************/
 		function initHiCu() {
+			makeLED();
+	
 			console.log("=============Get Ins List==============");
 			/*******************************************
 			*
@@ -398,6 +349,7 @@
 				error : function(resp) {}
 			});
 			console.log("==================================");
+	
 		}
 	
 	
@@ -439,7 +391,6 @@
 		*              on click Add Btn
 		*
 		***********************************************/
-	
 		function insAddEvent() {
 			var ins = $(this).attr("dt-ins");
 			console.log(ins + " is requested");
@@ -495,7 +446,7 @@
 	
 		/********************************************** 
 		*
-		*             INS Remove Event!
+		*               INS Remove Event!
 		*
 		***********************************************/
 		function insRemoveEvent() {
@@ -506,11 +457,36 @@
 	
 		/********************************************** 
 		*
+		*                make LED Line!
+		*
+		***********************************************/
+		function makeLED() {
+			var theLeds = "";
+			for (var i = 1; i < 17; i++) {
+				theLeds += "<img class='leds'	id='LED_1' src='myfiles/images/hicu/LED_off.png'>";
+			}
+			$("#LED_row").append(theLeds);
+		}
+
+		/********************************************** 
+		*
+		*                set Height automatic!
+		*
+		***********************************************/
+		function setMaxHeightRow() {
+			var winHeight = $(window).height();
+			console.log(winHeight);
+			$(".row").css("max-height", (winHeight - 100));
+		}
+	
+		/********************************************** 
+		*
 		*                 on Ready!
 		*
 		***********************************************/
 		$(function() {
 			initHiCu();
+			setMaxHeightRow();
 			$("#play").on("click", playEvent);
 			$("#stop").on("click", stopEvent);
 			$(".ins_add").on("click", insAddEvent);
@@ -661,7 +637,7 @@ select {
 }
 
 .row {
-	max-height: 460px;
+	max-height: 480px;
 	overflow: auto;
 }
 

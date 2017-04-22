@@ -73,10 +73,10 @@
 	z-index: 2;
 	top: 9%;
 	width: 100%;
-	height: 120%;
 	padding-top: 5%;
-	background-color: rgb(255, 255, 255);
-	overflow: scroll;
+	background-color: rgba(255, 255, 255, 0);
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .text {
@@ -95,32 +95,26 @@ h4 {
 	display: inline;
 }
 
-#addBtn {
-	position: relative;
-	left: 60%;
-	top: 0%;
-}
-
-#sampleRun {
-	position: relative;
-	left: 180%;
-	top: 0%;
-}
-
-#mainRun {
-	position: relative;
-	left: 130%;
-	top: 0%;
-}
-
-.saveBtn {
-	position: relative;
-	top: 0%;
-	left: 170%;
-}
-
 textarea {
 	resize: none;
+}
+
+.inlineD {
+	position: relative;
+}
+
+.float-right {
+	float: right;
+	margin-bottom: 8px;
+}
+
+.center {
+	position: absolute;
+	top: 0;
+	left: 40%;
+	right: 0;
+	bottom: 0;
+	margin: auto;
 }
 </style>
 
@@ -186,7 +180,7 @@ textarea {
 			return false;
 		}
 		$.ajax({
-			type : "get",
+			type : "post",
 			url : "compile",
 			data : {
 				"source" : source
@@ -321,20 +315,20 @@ textarea {
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<!-- mobile menu -->
 			<ul id="slide-out" class="side-nav qt-mobilemenu">
 				<li><a href="home" class="qwsmoothscroll">Home</a></li>
 				<li><a href="comu" class="qwsmoothscroll active">CoMu</a></li>
 				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="#mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="#shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="#howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="#aboutus" class="qwsmoothscroll">AboutUs</a></li>
+				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
+				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
+				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
+				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out"
 				class="button-collapse qt-menu-switch"><span
@@ -361,43 +355,56 @@ textarea {
 			<div class="col-md-6 centerPlace">
 				<form id="form" action="save" method="post"
 					enctype="multipart/form-data">
-					<label for="comment"><h4>SAMPLE:</h4>
+					<div class="inlineD">
 						<button type="button" data-toggle="modal" data-target="#visual"
 							id="modalBtn" hidden="hidden">Open Modal</button>
-						<button type="button" class="btn btn-default btn-md"
+						<label for="comment"><h4>SAMPLE:</h4></label>
+						<button type="button" class="btn btn-default btn-md float-right"
 							id="sampleRun">
 							RUN <span class="glyphicon glyphicon-play"></span>
-						</button> </label>
+						</button>
+					</div>
 					<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>
-					<br> <label class="control-label"><h4>MAIN:</h4>
-						<button type="button" class="btn btn-default btn-md" id="addBtn">
+					<br>
+					<div class="inlineD">
+						<label class="control-label"><h4>MAIN:</h4></label>
+						<button type="button" class="btn btn-default btn-md center"
+							id="addBtn">
 							ADD <span class="glyphicon glyphicon-arrow-down"></span>
 						</button>
-						<button type="button" class="btn btn-default btn-md" id="mainRun">
+						<button type="button" class="btn btn-default btn-md float-right"
+							id="mainRun">
 							RUN <span class="glyphicon glyphicon-play"></span>
-						</button> </label>
-					<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>
-					<br>
-					<div class="row">
-						<div class="col-md-2">
-							<label> <img id="imgView"
-								src="resources/covers/${file.cover_re}"
-								onERROR="this.src='resources/myfiles/images/comu/robot.png'"
-								style="width: 100px; height: 100px; border-radius: 100px;">
-								<input type="file" style="display: none;" id="imgInp"
-								name="upload" />
-							</label>
-						</div>
-						<div class="col-md-10">
-							<label class="control-label">
-								<h4>TITLE:</h4>
-								<button type="button" class="btn btn-default btn-md saveBtn">
-									SAVE <span class="glyphicon glyphicon-saved"></span>
-								</button>
-							</label> <input type="text" class="form-control" id="title"
-								name="file_title" value="${file.file_title}" />
-						</div>
+						</button>
 					</div>
+					<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>
+					<c:if test="${not empty loginId}">
+						<br>
+						<div class="row">
+							<div class="col-md-2">
+								<img id="imgView" src="resources/covers/${file.cover_re}"
+									onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+									style="width: 100px; height: 100px; border-radius: 100px;">
+								<input type="file" style="display: none;" id="imgInp"
+									name="upload" />
+							</div>
+							<div class="col-md-10">
+								<div class="inlineD">
+									<label class="control-label">
+										<h4>TITLE:</h4>
+									</label>
+									<button type="button"
+										class="btn btn-default btn-md saveBtn float-right">
+										SAVE <span class="glyphicon glyphicon-saved"></span>
+									</button>
+								</div>
+								<input type="text" class="form-control" id="title"
+									name="file_title" value="${file.file_title}" />
+							</div>
+						</div>
+						<br>
+						<br>
+					</c:if>
 				</form>
 			</div>
 			<div class="col-md-3 leftplace"></div>

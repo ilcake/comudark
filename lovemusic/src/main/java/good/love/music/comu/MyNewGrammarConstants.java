@@ -36,19 +36,21 @@ public interface MyNewGrammarConstants {
   /** RegularExpression Id. */
   int TEMPO = 16;
   /** RegularExpression Id. */
-  int DO = 17;
+  int BPM = 17;
   /** RegularExpression Id. */
-  int LOCATION = 18;
+  int DO = 18;
   /** RegularExpression Id. */
-  int NUMBER = 19;
+  int LOCATION = 19;
   /** RegularExpression Id. */
-  int DIGIT = 20;
+  int NUMBER = 20;
   /** RegularExpression Id. */
-  int INS = 21;
+  int DIGIT = 21;
   /** RegularExpression Id. */
-  int SETNOTE = 22;
+  int INS = 22;
   /** RegularExpression Id. */
-  int NOTE = 23;
+  int SETNOTE = 23;
+  /** RegularExpression Id. */
+  int NOTE = 24;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -72,6 +74,7 @@ public interface MyNewGrammarConstants {
     "\"low\"",
     "\"high\"",
     "\"tempo\"",
+    "\"bpm\"",
     "\"do\"",
     "\"location\"",
     "<NUMBER>",

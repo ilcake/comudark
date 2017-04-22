@@ -487,33 +487,33 @@
 		// $("#stickymenu").sticky({topSpacing:0, responsiveWidth: true, zIndex: 100});
 
 		// Materializecss carousel http://materializecss.com/media.html#two!
-		$.fn.gridstackCarousel();
+		//$.fn.gridstackCarousel();
 
 		// Slick gallery based on slickJs
-		$.fn.slickGallery();
+		//$.fn.slickGallery();
 
-		$(".modal-trigger").on("click", function(e) {
+		/*$(".modal-trigger").on("click", function(e) {
 			e.preventDefault();
 			if ($(this).attr("data-iframe") !== undefined) {
 				$("#modalframe").attr("src", $(this).attr("data-iframe"));
 			}
 			return true;
-		});
+		});*/
 
 		//  initialize the modal window of the album
-		$('.modal-trigger').leanModal();
+		//$('.modal-trigger').leanModal();
 
 		//  initialize the animated background polygons
 		//$.fn.parallaxPolydecor();
 
 		// background particles
-		$.fn.qtparticlesJs();
+		//$.fn.qtparticlesJs();
 
 		// smooth internal links scrolling
 		//$.fn.qtSmoothScroll();
 
 		// http://materializecss.com/scrollspy.html
-		$('.scrollspy').scrollSpy();
+		//$('.scrollspy').scrollSpy();
 
 		// mobile navigation
 		$('.button-collapse').sideNav({
@@ -524,10 +524,10 @@
 		);
 
 		// video lightbox
-		$('.swipebox').swipebox();
+		//$('.swipebox').swipebox();
 
 		// materializecss slideshow
-		$('.slider').slider();
+		//$('.slider').slider();
 
 		jQuery(window).load(function() {
 			if (false === $.fn.mobilecheck()) {
