@@ -180,7 +180,6 @@
 														<th><span class="label">Melody</span> <img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
 															dt-ins="melody"></th>
-
 													</tr>
 												</table>
 											</div>
@@ -208,10 +207,10 @@
 										</div>
 									</div>
 								</div>
-
+								<!-- 
 								<footer class="footer">
 									<div class="container"></div>
-								</footer>
+								</footer> -->
 							</div>
 						</div>
 
@@ -234,7 +233,7 @@
 
 
 	<!-- ======= QT FOOTER ================================ -->
-	<script src="js/modernizr-custom.js"></script>
+	<!-- 	<script src="js/modernizr-custom.js"></script> -->
 
 
 	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
@@ -324,8 +323,8 @@
 		********************************************/
 		function initHiCu() {
 			makeLED();
-	
 			console.log("=============Get Ins List==============");
+	
 			/*******************************************
 			*
 			* 				get Ins List
@@ -334,7 +333,6 @@
 			$.ajax({
 				url : "getList",
 				type : "POST",
-				data : {},
 				success : function(resp) {
 					theMap = resp;
 					$.each(theMap, function(index, item) {
