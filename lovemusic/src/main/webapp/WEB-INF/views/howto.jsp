@@ -1,19 +1,26 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/qt-main.css">
+<!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
+<link rel="shortcut icon" type="image/png"
+	href="myfiles/images/main/logo_comu.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
+<!-- <script src="js/jquery.js"></script>
+<script src="js/jquery-migrate.min.js"></script> -->
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
 <link rel="stylesheet"
@@ -21,229 +28,100 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
 <link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
 <link href='components/swipebox/src/css/swipebox.min.css'
 	rel='stylesheet' type='text/css'>
 <link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
 <link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/qt-main.css">
-<!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
-<link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
 
-
-<!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">
-.qt-particles {
-	background-image: url("images/galaxy-2.jpg");
-}
-
-.video-container {
-	position: relative;
-	top: 0%;
-	left: 0%;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	background: #000;
-	z-index: 0;
-}
-
-.video-container video {
-	position: fixed;
-}
-
-.video-container video.fillWidth {
-	width: 100%;
-}
-
-/*                          GET STARTED BUTTON                             */
-.get-started {
-	position: absolute;
-	z-index: 3;
-	top: 45%;
-	left: 45%;
-}
-
-/*                 COMU PAGE AFTER 'GET STARTED'                   */
-.comu-container {
-	position: absolute;
-	z-index: 2;
-	top: 9%;
-	width: 100%;
-	height: 120%;
-	padding-top: 5%;
-	background-color: rgb(255, 255, 255);
-	overflow: scroll;
-}
-
-.text {
-	color: black;
-}
-
-.text-thin {
-	font-weight: 100
-}
-
-.carousel-control {
-	width: 5%;
-}
-
-h4 {
-	display: inline;
-}
-
-#addBtn {
-	position: relative;
-	left: 60%;
-	top: 0%;
-}
-
-#sampleRun {
-	position: relative;
-	left: 180%;
-	top: 0%;
-}
-
-#mainRun {
-	position: relative;
-	left: 130%;
-	top: 0%;
-}
-
-.saveBtn {
-	position: relative;
-	top: 0%;
-	left: 170%;
+body {
+	text-align: center;
 }
 
 textarea {
-	resize: none;
+	min-height: 200px;
 }
 </style>
 
-<!-- ================   INCLUDE AUDIO JS   =================== -->
-<script src="resources/audiojs/three.min.js"></script>
-<script src="resources/audiojs/ATUtil.js"></script>
-<script src="resources/audiojs/Stats.js"></script>
-<script src="resources/audiojs/RequestAnimationFrame.js"></script>
-<script src="resources/audiojs/jquery.mousewheel.js"></script>
-<script src="resources/audiojs/ImprovedNoise.js"></script>
-<script src="resources/audiojs/Visualizer.js"></script>
-<script src="resources/audiojs/comu.js"></script>
-<script src="resources/audiojs/jquery.session.js"></script>
-
 </head>
 <body>
-	<!-- ====================== MENU ============================== -->
-	<div id="menu" class="qt-menu-wrapper" data-0-top>
-		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
-			<!-- desktop menu -->
-			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll active">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
-			</ul>
-			<!-- mobile menu -->
-			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll active">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
-			</ul>
-			<a href="#" data-activates="slide-out"
-				class="button-collapse qt-menu-switch"><span
-				class="lnr lnr-menu"></span></a>
-		</nav>
-	</div>
-	<!-- ====================== MENU END ====================== -->
-	<div class="video-container">
-		<video autoplay loop class="fillWidth">
-			<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-		</video>
-	</div>
-
-	<!-- Modal -->
-	<div id="visual" class="modal fade" role="dialog"></div>
-
-	<!-- ============== HowTo CONTENT START ================= -->
-	<!-- <div class="comu-container">
-		<div class="row">
-			<div class="col-md-6">test</div>
-			<div class="col-md-6">test</div>
-		</div>
-	</div> -->
-	<!-- ============== HowTo CONTENT END ================= -->
-
-	<!-- ======= QT FOOTER ================================ -->
-	<script src="js/modernizr-custom.js"></script>
-
-
-	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
-	<script src="js/materializecss/bin/materialize.min.js"></script>
-	<script src="components/slick/slick.min.js"></script>
-	<script src="components/skrollr/skrollr.min.js"></script>
-	<script src="components/particles/particles.min.js"></script>
-
-	<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
-
-	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
-	<script src="js/qt-main.js"></script>
-
+	<jsp:include page="navibar.jsp" flush="false" />
 	<script type="text/javascript">
-		$(document).ready(function() {
-			scaleVideoContainer();
-			initBannerVideoSize('.video-container .poster img');
-			initBannerVideoSize('.video-container .filter');
-			initBannerVideoSize('.video-container video');
-
-			$(window).on('resize', function() {
-				scaleVideoContainer();
-				scaleBannerVideoSize('.video-container .poster img');
-				scaleBannerVideoSize('.video-container .filter');
-				scaleBannerVideoSize('.video-container video');
-			});
-
-		});
-
-		function scaleVideoContainer() {
-			var height = $(window).height() + 5;
-			var unitHeight = parseInt(height) + 'px';
-			$('.homepage-hero-module').css('height', unitHeight);
-
-		}
-
-		function initBannerVideoSize(element) {
-			$(element).each(function() {
-				$(this).data('height', $(this).height());
-				$(this).data('width', $(this).width());
-			});
-			scaleBannerVideoSize(element);
-		}
-
-		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width();
-			var windowHeight = $(window).height() + 5;
-			var videoWidth, videoHeight;
-			$(element).each(
-					function() {
-						var videoAspectRatio = $(this).data('height')
-
-						$(this).width(windowWidth);
-						$('.homepage-hero-module .video-container video')
-								.addClass('fadeIn animated');
-					});
-		}
+		$(".qwsmoothscroll").eq(5).addClass("active");
 	</script>
-	<!-- ======= COMU BACKGRUOUND VIDEO SCRIPT END =========== -->
+
+	<!-- HowTo content START -->
+	<div id="totalWrapper" style="background-color: white;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					CoMu 사용법
+					<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Morbi enim quam, cursus ut metus non, posuere pulvinar purus.
+						Vestibulum et lorem vel neque consectetur finibus vitae id tortor.
+						Donec leo felis, rutrum at porta nec, pulvinar faucibus sapien.
+						Integer sollicitudin neque eget facilisis iaculis. Phasellus
+						ultrices rutrum orci, in imperdiet urna vestibulum a. Phasellus ut
+						odio nec augue ullamcorper sodales. In consectetur et arcu a
+						dignissim."</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Sample Code</h5>
+					<textarea style="resize: none; wrap: hard;" rows="50" cols="50"
+						readonly="readonly">"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Morbi enim quam, cursus ut metus non, posuere pulvinar purus.
+						Vestibulum et lorem vel neque consectetur finibus vitae id tortor.
+						Donec leo felis, rutrum at porta nec, pulvinar faucibus sapien.
+						Integer sollicitudin neque eget facilisis iaculis. Phasellus
+						ultrices rutrum orci, in imperdiet urna vestibulum a. Phasellus ut
+						odio nec augue ullamcorper sodales. In consectetur et arcu a
+						dignissim."</textarea>
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">1.사용법</div>
+				<div class="col-md-1">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</div>
+				<div class="col-md-3">1. 사용법을 알려준다</div>
+				<div class="col-md-6">
+					<audio controls="controls">
+						<!-- <source src="C:\Users\Public\Music\Sample Music\Kalimba.mp3"> -->
+					</audio>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">2.사용법</div>
+				<div class="col-md-1">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</div>
+				<div class="col-md-3">2. 사용법을 알려준다</div>
+				<div class="col-md-6">
+					<audio controls="controls">
+						<!-- <source src="C:\Users\Public\Music\Sample Music\Kalimba.mp3"> -->
+					</audio>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">3.사용법</div>
+				<div class="col-md-1">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</div>
+				<div class="col-md-3">3. 사용법을 알려준다</div>
+				<div class="col-md-6">
+					<audio controls="controls">
+						<!-- <source src="C:\Users\Public\Music\Sample Music\Kalimba.mp3"> -->
+					</audio>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- HowTo content END -->
 </body>
-<!-- COMU PAGE MAIN SPACE CSS  -->
 </html>

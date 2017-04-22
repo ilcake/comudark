@@ -1,111 +1,27 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-
-<!-- 기존 적용 기능 시작 -->
 <meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
 	rel='stylesheet' type='text/css'>
-<link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
-<link href='components/swipebox/src/css/swipebox.min.css'
-	rel='stylesheet' type='text/css'>
-<link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
-<link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/main/logo_comu.png" />
 
-
-<!-- COMU BACKGROUND VIDEO CSS -->
-<style type="text/css">
-/* .qt-particles {
-	background-image: url("images/galaxy-2.jpg");
-} */
-.homepage-hero-module {
-	border-right: none;
-	border-left: none;
-	position: relative;
-}
-
-.no-video .video-containers video, .touch .video-containers video {
-	display: none;
-}
-
-.no-video .video-containers .poster, .touch .video-containers .poster {
-	display: block !important;
-}
-
-.video-containers {
-	position: relative;
-	bottom: 0%;
-	left: 0%;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	background: #000;
-}
-
-.video-containers .poster img {
-	width: 100%;
-	bottom: 0;
-	position: absolute;
-}
-
-.video-containers .filter {
-	z-index: 100;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.4);
-	width: 100%;
-}
-
-.video-containers video {
-	position: absolute;
-	z-index: 0;
-	bottom: 0;
-}
-
-.video-containers video.fillWidth {
-	width: 100%;
-}
-
-.video-containers .title-containers {
-	z-index: 1000;
-	position: fixed;
-	top: 9%;
-	margin-left: 10%;
-	width: 80%;
-	background-color: rgba(255, 255, 255, 0.8);
-	width: 80%;
-}
-
-.text {
-	color: black;
-}
-
-.text-thin {
-	font-weight: 100
-}
-</style>
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<script src="resources/jquery-3.1.1.min.js"></script>
+<!-- <script src="js/jquery.js"></script>
+<script src="js/jquery-migrate.min.js"></script> -->
+<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
 <!-- 기존 적용 기능 끝 -->
 
@@ -251,33 +167,10 @@
 <body class="page page-id-7 page-template page-template-page-about-php">
 	<!-- 기존 적용 기능 시작 -->
 	<!-- ====================== MENU ================================================ -->
-	<div id="menu" class="qt-menu-wrapper" data-0-top>
-		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
-			<!-- desktop menu -->
-			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
-			</ul>
-			<!-- mobile menu -->
-			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll active">AboutUs</a></li>
-			</ul>
-			<a href="#" data-activates="slide-out"
-				class="button-collapse qt-menu-switch"><span
-				class="lnr lnr-menu"></span></a>
-		</nav>
-	</div>
+	<jsp:include page="navibar.jsp" flush="false" />
+	<script type="text/javascript">
+		$(".qwsmoothscroll").eq(6).addClass("active");
+	</script>
 	<!-- ====================== MENU END ================================================ -->
 
 	<!-- ======= QT FOOTER ================================ -->
@@ -480,7 +373,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- ============== AboutUs CONTENT END ================= -->
 
