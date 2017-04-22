@@ -8,11 +8,28 @@
 <title>Insert title here</title>
 </head>
 
-<!--==============   APPENDING JS AND CSS   =================-->
+<!--==============   INCLUDE JS AND CSS   =================-->
 <script src="resources/jquery-3.1.1.min.js"></script>
 <script src="resources/myfiles/js/comu.js"></script>
 <link href='resources/myfiles/css/comu.css' rel='stylesheet'
 	type='text/css'>
+<script src="resources/myfiles/js/bg-movie.js"></script>
+<link href='resources/myfiles/css/bg-movie.css' rel='stylesheet'
+	type='text/css'>
+
+<link rel="shortcut icon" type="image/png"
+	href="myfiles/images/main/logo_comu.png" />
+
+<!-- ================   INCLUDE AUDIO JS   =================== -->
+<script src="resources/audiojs/three.min.js"></script>
+<script src="resources/audiojs/ATUtil.js"></script>
+<script src="resources/audiojs/Stats.js"></script>
+<script src="resources/audiojs/RequestAnimationFrame.js"></script>
+<script src="resources/audiojs/jquery.mousewheel.js"></script>
+<script src="resources/audiojs/ImprovedNoise.js"></script>
+<script src="resources/audiojs/Visualizer.js"></script>
+<script src="resources/audiojs/comu.js"></script>
+<script src="resources/audiojs/jquery.session.js"></script>
 
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
@@ -38,7 +55,7 @@
 						<div class="inlineD">
 							<button type="button" data-toggle="modal" data-target="#visual"
 								id="modalBtn" hidden="hidden">Open Modal</button>
-							<label for="comment"><h4>SAMPLE:</h4></label>
+							<h4>SAMPLE:</h4>
 							<button type="button" class="btn btn-default btn-md float-right"
 								id="sampleRun">
 								RUN <span class="glyphicon glyphicon-play"></span>
@@ -47,7 +64,7 @@
 						<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>
 						<br>
 						<div class="inlineD">
-							<label class="control-label"><h4>MAIN:</h4></label>
+							<h4>MAIN:</h4>
 							<button type="button" class="btn btn-default btn-md center"
 								id="addBtn">
 								ADD <span class="glyphicon glyphicon-arrow-down"></span>
@@ -70,9 +87,7 @@
 								</div>
 								<div class="col-md-10">
 									<div class="inlineD">
-										<label class="control-label">
-											<h4>TITLE:</h4>
-										</label>
+										<h4>TITLE:</h4>
 										<button type="button"
 											class="btn btn-default btn-md saveBtn float-right">
 											SAVE <span class="glyphicon glyphicon-saved"></span>
