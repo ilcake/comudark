@@ -57,6 +57,11 @@ public class HomeController {
 
 		return "naviex";
 	}
+	@RequestMapping(value = "/comutest", method = RequestMethod.GET)
+	public String comutest() {
+		
+		return "comuTesting";
+	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home2() {

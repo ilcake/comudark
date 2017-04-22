@@ -27,22 +27,6 @@
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper" style="background-color: white;">
 		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
-		asdfasdfasdf<br /> asdfasdfasdf<br /> asdfasdfasdf<br />
 	</div>
 </body>
 </html>

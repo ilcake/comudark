@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+.qt-particles {
+	background-image: url("images/galaxy-2.jpg");
+}
+
+.video-container {
+	position: relative;
+	top: 0%;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: #000;
+	z-index: 0;
+}
+
+.video-container video {
+	position: fixed;
+}
+
+.video-container video.fillWidth {
+	width: 100%;
+}
+
+/*                          GET STARTED BUTTON                             */
+.get-started {
+	position: absolute;
+	z-index: 3;
+	top: 45%;
+	left: 45%;
+}
+
+/*                 COMU PAGE AFTER 'GET STARTED'                   */
+.comu-container {
+	position: absolute;
+	z-index: 2;
+	top: 9%;
+	width: 100%;
+	padding-top: 5%;
+	background-color: rgba(255, 255, 255, 0);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.text {
+	color: black;
+}
+
+.text-thin {
+	font-weight: 100
+}
+
+.carousel-control {
+	width: 5%;
+}
+
+h4 {
+	display: inline;
+}
+
+textarea {
+	resize: none;
+}
+
+.inlineD {
+	position: relative;
+}
+
+.float-right {
+	float: right;
+	margin-bottom: 8px;
+}
+
+.center {
+	position: absolute;
+	top: 0;
+	left: 40%;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}

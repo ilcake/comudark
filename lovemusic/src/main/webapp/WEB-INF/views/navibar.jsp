@@ -1,5 +1,22 @@
-
 <script src="resources/forest/components/sticky/jquery.sticky.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/qt-main.css">
+<link rel="shortcut icon" type="image/png"
+	href="myfiles/images/main/logo_comu.png" />
+
+<style type="text/css">
+#totalWrapper {
+	width: 100%;
+	height: 100vh;
+	background-color: white;
+}
+</style>
+
 <script type="text/javascript">
 	$(function() {
 		$("#stickymenu").sticky({
@@ -11,7 +28,7 @@
 	});
 
 	function moveTotalWrapper() {
-		$("#totalWrapper").css("padding-top", 88);
+		$("#totalWrapper").css("padding-top", $("#stickymenu").height());
 	}
 </script>
 <!-- ====================== MENU ================================================ -->
@@ -19,7 +36,7 @@
 	<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
 		<!-- desktop menu -->
 		<ul class="qt-desktopmenu">
-			<li><a href="home" class="qwsmoothscroll">Home</a></li>
+			<li><a href="home">Home</a></li>
 			<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
 			<li><a href="hicu" class="qwsmoothscroll">HiCu</a></li>
 			<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
