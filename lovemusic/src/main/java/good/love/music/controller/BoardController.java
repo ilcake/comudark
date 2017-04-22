@@ -113,9 +113,11 @@ public class BoardController {
 
 	// [글 삭제]
 	@RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
-	public String deleteBoard(int boardnum) {
+	public @ResponseBody String deleteBoard(int boardnum) {
 		boardRepository.deleteBoard(boardnum);
-		return "mypage";
+		
+		String uri = request.getHeader("referer");
+		return uri;
 	}
 
 	// 글 검색
@@ -136,10 +138,7 @@ public class BoardController {
 	public String replyWrite(Reply reply, HttpSession session) {
 		
 		String loginId = (String) session.getAttribute("loginId");
-		loginId = "a";
-		
 		reply.setUserid(loginId);
-		
 		boardRepository.replyWrite(reply);
 		
 		return "redirect:shared";
@@ -154,8 +153,9 @@ public class BoardController {
 
 	// 댓글 삭제
 	@RequestMapping(value = "/deleteReply", method = RequestMethod.GET)
-	public String deleteReply(int Replynum) {
-		int result = boardRepository.deleteReply(Replynum);
+	public String deleteReply(int replynum) {
+		System.out.println(replynum);
+		int result = boardRepository.deleteReply(replynum);
 		
 		System.out.println("삭제완료 ==> " + result + "개");
 		
@@ -203,6 +203,13 @@ public class BoardController {
 	@RequestMapping(value = "/writeSubscribe", method = RequestMethod.GET)
 	public @ResponseBody String writeSubscribe(Subscribe subscribe) {
 		boardRepository.writeSubscribe(subscribe);
+		return "result";
+	}
+	
+	// 구독 취소
+	@RequestMapping(value = "/deleteSubscribe", method = RequestMethod.GET)
+	public @ResponseBody String deleteSubscribe(Subscribe subscribe) {
+		boardRepository.deleteSubscribe(subscribe);
 		return "result";
 	}
 

@@ -268,20 +268,24 @@ public class BoardRepository {
 		return result;
 	}
 
+	//구독 취소
+	public int deleteSubscribe(Subscribe subscribe) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		int result = dao.deleteSubscribe(subscribe);
+		return result;
+	}
+
 	// 구독 리스트
 	public ArrayList<Subscribe> subscribeList(String userid) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		ArrayList<Subscribe> list = new ArrayList<>();
-
 		try {
 			list = dao.subscribeList(userid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return list;
 	}
-
 
 }
