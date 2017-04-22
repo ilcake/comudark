@@ -200,6 +200,13 @@ public class BoardRepository {
 
 		return result;
 	}
+	
+	//좋아요 취소
+	public int deleteLike(Like like) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		int result = dao.deleteLike(like);
+		return result;
+	}
 
 	// 좋아요 리스트(랭킹) ?
 	public ArrayList<Like> rankList() {
@@ -275,4 +282,6 @@ public class BoardRepository {
 
 		return list;
 	}
+
+
 }

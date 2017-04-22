@@ -110,7 +110,7 @@
 		inputdate DESC
 	</select>
 
-	<!-- 댓글 불려오기 -->
+	<!-- 댓글 불러오기 -->
 	<select id="replylist" resultType="Reply" parameterType="int">
 		SELECT *
 		FROM cm_reply
@@ -154,11 +154,11 @@
 		like_userid = #{like_userid}
 	</select>
 
-	<!-- 접속 ID가 좋아요 누른 사람 리스트 -->
+	<!-- 좋아요 리스트(전체) -->
 	<select id="likeList" resultType="Like">
 		SELECT * FROM cm_like
-		WHERE
-		like_userid = #{userid}
+		<!-- WHERE
+		like_userid = #{userid} -->
 	</select>
 
 	<!-- 구독 -->
@@ -180,6 +180,6 @@
 	<select id="subscribeList" parameterType="String" resultType="Subscribe">
 		SELECT * FROM cm_subscribe
 		WHERE
-		userid = #{userid}
+		sub_userid = #{sub_userid}
 	</select>
 </mapper>

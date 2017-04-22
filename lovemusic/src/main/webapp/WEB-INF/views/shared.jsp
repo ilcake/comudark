@@ -119,6 +119,7 @@ cvfdfdsd
 	font-weight: 100
 }
 
+/* board css */
 a, a:link, a:hover, a:visited, a:active {
 	text-decoration: none;
 	color: black;
@@ -205,20 +206,87 @@ table{
 
 $(function(){
 
-	//좋아요, 구독 버튼 클릭 시 색 변환
-	$(".glyphicon").on("click", function(){
+	//사용자가 이전에 좋아요 누른 게시물 표시
+	$.ajax({
+		type: "get",
+		url: "idList",
+		success: function(resp){
+			 $.each(resp,function(index, item) {
+				var likeboard = $("span[boardnum="+item.boardnum+"][like_userid="+item.like_userid+"]");
+				likeboard.css("color", "rgb(255, 0, 0)");
+			 });
+		}
+	});
+	
+	//사용자가 이전에 구독 누른 유저 표시
+	$.ajax({
+		type: "get",
+		url: "subscribeList",
+		success: function(resp){
+			 $.each(resp,function(index, item) {
+				var subboard = $("span[sub_userid="+item.sub_userid+"]");
+				subboard.css("color", "lightgray");
+			 });
+		}
+	});
+	
+	
+	//좋아요 버튼 클릭 이벤트
+	$(".glyphicon-thumbs-up").on("click", function(){
+		
+		var boardnum = $(this).attr("boardnum");
+		var userid = $(this).attr("userid");
+		var like_userid = $(this).attr("like_userid");
+		
+		//좋아요
 		if($(this).css("color") == "rgb(255, 0, 0)"){
 			$(this).css("color", "black");
 			$.ajax({
-				type: post,
-				
+				type: "get",
+				url: "deleteLike",
+				data: {"boardnum":boardnum, "userid":userid, "like_userid":like_userid},
+				success: function(resp){
+					alert("deletelike");
+				}
 			});
+		//좋아요 취소
 		}else{
 			$(this).css("color", "red");
+			$.ajax({
+				type: "get",
+				url: "like",
+				data: {"boardnum":boardnum, "userid":userid, "like_userid":like_userid},
+				success: function(resp){
+					alert("like");
+				}
+			});
 		}
 	});
-
-	$(".glyphicon-heart-empty").on("click", function(){
+	
+	//구독 버튼 클릭 이벤트
+	$(".glyphicon-user").on("click", function(){
+		
+		var userid = $(this).attr("userid");
+		var sub_userid = $(this).attr("sub_userid");
+		var sub_userid = "b";							//test용 id
+		
+		//구독
+		if($(this).css("color") == "rgb(0, 0, 0)"){	
+			$(this).css("color", "lightgray");
+			$.ajax({
+				type: "get",
+				url: "writeSubscribe",
+				data: {"userid":userid, "sub_userid":sub_userid},
+				success: function(resp){
+					alert("subscribe");
+				}
+			});
+		}else{
+			
+		}
+	});
+	
+/* 	$(".glyphicon-heart-empty").on("click", function(){
 		$(this).removeClass("glyphicon-heart-empty").addClass("glyphicon-thumbs-up");
 	});
 	
@@ -229,7 +297,7 @@ $(function(){
 		function(){
 			$(this).removeClass("glyphicon-heart").addClass("glyphicon-heart-empty");
 		}
-	);
+	); */
 	
 	/*
 	$(".glyphicon").hover(
@@ -332,8 +400,8 @@ $(function(){
 											<br><span style="font-size:small; text-align:right; margin-top:-20px; margin-bottom:-20px;">${board.inputdate}</span>
 										</td>
 										<!-- 좋아요/구독 버튼 -->
-										<td class="td_button">${board.like_userid}<a href="#" data-toggle="tooltip" title="좋아요"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span></a>
-											<a href="#" data-toggle="tooltip" title="구독하기"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></a>
+										<td class="td_button">${board.like_userid}<a href="#" data-toggle="tooltip" title="좋아요"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;" boardnum="${board.boardnum}" userid="${board.userid}" like_userid="${loginId}"></span></a>
+											<a href="#" data-toggle="tooltip" title="구독하기"><span class="glyphicon glyphicon-user" aria-hidden="true" userid="${board.userid}" sub_userid="${loginId}"></span></a>
 										</td>
 									</tr>
 									<tr><td colspan='3'><hr class="tr_header"></td></tr>
