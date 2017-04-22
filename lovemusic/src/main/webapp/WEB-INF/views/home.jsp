@@ -105,6 +105,12 @@
 
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
+	<script type="text/javascript">	
+		//  initialize the animated background polygons
+		$.fn.parallaxPolydecor();	
+		// background particles
+		$.fn.qtparticlesJs();
+	</script>
 
 	<script type="text/javascript">
 		$(function() {

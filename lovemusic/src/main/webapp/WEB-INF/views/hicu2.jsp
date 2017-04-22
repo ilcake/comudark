@@ -1,44 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html">
 <html>
 <head>
-<title>Home</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Insert title here</title>
+<link>
 
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
-<link href='components/swipebox/src/css/swipebox.min.css'
-	rel='stylesheet' type='text/css'>
-<link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
-<link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/qt-main.css">
-<!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
-<link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
-
-
-<!-- COMU BACKGROUND VIDEO CSS -->
 <style type="text/css">
-/* .qt-particles {
-	background-image: url("images/galaxy-2.jpg");
-} */
 .homepage-hero-module {
 	border-right: none;
 	border-left: none;
@@ -105,149 +74,69 @@
 	font-weight: 100
 }
 </style>
-<script type="text/javascript">
-	var theMap;
-</script>
 </head>
 <body>
-	<!-- ====================== MENU ================================================ -->
-	<div id="menu" class="qt-menu-wrapper" data-0-top>
-		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
-			data-opacity="0.5" data-speed="1"></div> -->
-		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
-			<!-- desktop menu -->
-			<ul class="qt-desktopmenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
-			</ul>
-			<!-- mobile menu -->
-			<ul id="slide-out" class="side-nav qt-mobilemenu">
-				<li><a href="home" class="qwsmoothscroll">Home</a></li>
-				<li><a href="comu" class="qwsmoothscroll">CoMu</a></li>
-				<li><a href="hicu" class="qwsmoothscroll active">HiCu</a></li>
-				<li><a href="mypage" class="qwsmoothscroll">MyPage</a></li>
-				<li><a href="shared" class="qwsmoothscroll">Shared</a></li>
-				<li><a href="howto" class="qwsmoothscroll">HowTo</a></li>
-				<li><a href="aboutus" class="qwsmoothscroll">AboutUs</a></li>
-			</ul>
-			<a href="#" data-activates="slide-out"
-				class="button-collapse qt-menu-switch"><span
-				class="lnr lnr-menu"></span></a>
-		</nav>
-	</div>
-	<!-- ====================== MENU END ================================================ -->
+	<jsp:include page="navibar.jsp" flush="false" />
+	<script type="text/javascript">
+		$(".qwsmoothscroll").eq(2).addClass("active");
+	</script>
+	<div id="totalWrapper">
+		<!-- ============== HICU CONTENT  ================= -->
 
-	<!-- <img src="images/galaxy-2.jpg" alt="background"> -->
+		<div class="row">
+			<div class="main main-raised">
+				<div class="section section-basic">
 
-	<div id="presskit"
-		class="section section-presskit parallax-container scrollspy">
-		<div class="parallax">
-			<div class="homepage-hero-module">
-				<div class="video-container">
-					<div class="title-container">
-						<!--Original logo height 80px-->
-						<!-- 로고 위치 
-               			<img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
-                  		height="80" alt=""> -->
+					<!-- outer container -->
+					<div class="containerB">
 
-						<!-- ============== HICU CONTENT  ================= -->
-						<div class="row">
-							<div class="main main-raised">
-								<div class="section section-basic">
+						<!--  whole pad  -->
+						<div class="containerBIN" id="pad">
+							<div class="selectLine" id="beatLine">
+								<table class="theSelectionTable">
+									<tr>
+										<th><span class="label">Beats</span><select
+											id="beatSelection"><option value="loops">MadeSet</option>
+												<option value="acu">Acustic</option>
+												<option value="r8">R8</option></select> <img
+											src="myfiles/images/hicu/ins_add.png" class="ins_add"
+											dt-ins="beats"></th>
+										<th><span class="label">Bass</span> <img
+											src="myfiles/images/hicu/ins_add.png" class="ins_add"
+											dt-ins="bass"></th>
+										<th><span class="label">Melody</span> <img
+											src="myfiles/images/hicu/ins_add.png" class="ins_add"
+											dt-ins="melody"></th>
 
-									<!-- outer container -->
-									<div class="containerB">
+									</tr>
+								</table>
+							</div>
 
-										<!--  whole pad  -->
-										<div class="containerBIN" id="pad">
-											<div class="selectLine" id="beatLine">
-												<table class="theSelectionTable">
-													<tr>
-														<th><span class="label">Beats</span><select
-															id="beatSelection"><option value="loops">MadeSet</option>
-																<option value="acu">Acustic</option>
-																<option value="r8">R8</option></select> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="beats"></th>
-														<th><span class="label">Bass</span> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="bass"></th>
-														<th><span class="label">Melody</span> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="melody"></th>
+							<!-- Buttons Row -->
+							<div class="btnsArea" id="btnsArea"></div>
 
-													</tr>
-												</table>
-											</div>
-
-											<!-- Buttons Row -->
-											<div class="btnsArea" id="btnsArea"></div>
-
-											<!--------   LED Row   --------->
-											<div class="buttons_row" id="LED_row">
-												<span class="label blank">GO</span>
-											</div>
-										</div>
-										<hr />
-										<div class="containerBIN" id="tools">
-											<img id="play" src="myfiles/images/hicu/btn_play.png"
-												width="80" height="33"><img id="stop"
-												src="myfiles/images/hicu/btn_stop.png" width="80"
-												height="33"> <img id="save"
-												src="myfiles/images/hicu/btn_save.png"><img id="load"
-												src="myfiles/images/hicu/btn_load.png"><img id="reset"
-												src="myfiles/images/hicu/btn_reset.png">
-											<div>
-												<textarea id="resultCode"></textarea>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<footer class="footer">
-									<div class="container"></div>
-								</footer>
+							<!--------   LED Row   --------->
+							<div class="buttons_row" id="LED_row">
+								<span class="label blank">GO</span>
 							</div>
 						</div>
-
+						<hr />
+						<div class="containerBIN" id="tools">
+							<img id="play" src="myfiles/images/hicu/btn_play.png" width="80"
+								height="33"><img id="stop"
+								src="myfiles/images/hicu/btn_stop.png" width="80" height="33">
+							<img id="save" src="myfiles/images/hicu/btn_save.png"><img
+								id="load" src="myfiles/images/hicu/btn_load.png"><img
+								id="reset" src="myfiles/images/hicu/btn_reset.png">
+							<!-- <div>
+												<textarea id="resultCode"></textarea>
+											</div> -->
+						</div>
 					</div>
-
-					<div class="filter"></div>
-					<video autoplay loop class="fillWidth">
-						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-					</video>
-
-					<!--    영상 로딩 전 보여줄 화면
-         <div class="poster hidden">
-            <img src="PATH_TO_JPEG" alt="">
-         </div> -->
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-	<!-- ======= QT FOOTER ================================ -->
-	<script src="js/modernizr-custom.js"></script>
-
-
-	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
-	<script src="js/materializecss/bin/materialize.min.js"></script>
-	<script src="components/slick/slick.min.js"></script>
-	<script src="components/skrollr/skrollr.min.js"></script>
-	<script src="components/particles/particles.min.js"></script>
-
-	<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
-
-	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
-	<script src="js/qt-main.js"></script>
 
 	<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
 	<script type="text/javascript">
@@ -311,10 +200,10 @@
 	</script>
 	<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
 
+
 	<!--  HICU Action  -->
 	<script type="text/javascript">
 	
-		var thePicked = [];
 		var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
 	
 		/*******************************************
@@ -373,7 +262,7 @@
 					$("#stop").addClass("playing");
 				},
 				error : function(resp) {
-					alert(JSON.stringify(resp));
+					alert(resp);
 				}
 			});
 		}
@@ -406,7 +295,7 @@
 					theContents += "<div class='buttons_row'>";
 					theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></span> ";
 					for (var i = 1; i < 17; i++) {
-						theContents += "<img dt-cla='loops' dt-sta='off' dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+						theContents += "<img dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
 					}
 					theContents += "</div>";
 					break;
@@ -423,7 +312,7 @@
 						theContents += "<div class='buttons_row'>";
 						theContents += "<span class='label'>" + item + "</span> ";
 						for (var i = 1; i < 17; i++) {
-							theContents += "<img dt-sta='off' dt-ins='" + btSelected + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
+							theContents += "<img dt-ins='" + ins + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn' src='myfiles/images/hicu/button_off.png'>";
 						}
 						theContents += "</div>";
 					//plusSize += 41.33;
@@ -441,7 +330,7 @@
 			theContents += "</div>";
 			$("#btnsArea").append(theContents);
 			$(".ins_remove").on("click", insRemoveEvent);
-			$(".hiBtn").on("click", btnEvent);
+			$(".btn").on("click", btnEvent);
 			console.log("wow!! " + serial + " added");
 		}
 	
@@ -464,7 +353,7 @@
 		function makeLED() {
 			var theLeds = "";
 			for (var i = 1; i < 17; i++) {
-				theLeds += "<img class='leds'	id='LED_" + i + "' src='myfiles/images/hicu/LED_off.png'>";
+				theLeds += "<img class='leds' id='LED_" + i + "' src='myfiles/images/hicu/LED_off.png'>";
 			}
 			$("#LED_row").append(theLeds);
 		}
@@ -487,92 +376,44 @@
 		***********************************************/
 	
 		function btnEvent() {
-			console.log("clicked!");
 			var theOne = $(this);
 	
-			var status = $(this).attr("dt-sta");
-			var isLoop = ($(this).attr("dt-cla")) == "loops";
-	
-			if (status == "off") {
+			var status = $(this).attr("src");
+			if (status == "images/button_off.png") {
 				var insData = theOne.attr("dt-ins");
 				var ntData = theOne.attr("dt-nt");
 				var locData = theOne.attr("dt-loc");
-				if (isLoop) {
-					$.each(thePicked, function(index, item) {
-						var whoIsIt = item.split("-")[0];
-						if ((whoIsIt == "beat") || (whoIsIt == "melody") || (whoIsIt == "bass")) {
-							thePicked.splice(index, 1);
-						}
-					});
-					for (var i = 0; i < 17; i++) {
-						$("#beat_" + i).attr("src", "myfiles/images/hicu/button_off.png");
-						$("#beat_" + i).attr("dt-sta", "off");
-					}
-				}
-				theOne.attr("src", "myfiles/images/hicu/button_on.png");
-				theOne.attr("dt-sta", "on");
+				theOne.attr("src", "images/button_on.png");
+	
+				muArray.notes.push({
+					"ins" : insData,
+					"note" : ntData,
+					"location" : locData
+				});
+				theOne.attr("id", insData + "-" + ntData + "-" + locData);
 				thePicked.push(insData + "-" + ntData + "-" + locData);
 				thePicked.sort();
+			/* muArray.notes.push({
+				"note" : theOne.attr("dt-nt"),
+				"location" : theOne.attr("dt-loc")
+			}); */
 			} else {
-				theOne.attr("src", "myfiles/images/hicu/button_off.png");
-				theOne.attr("dt-sta", "off");
+				theOne.attr("src", "images/button_off.png");
 				var nin = theOne.attr("dt-ins");
 				var nnt = theOne.attr("dt-nt");
 				var nlc = theOne.attr("dt-loc");
 				var who = thePicked.indexOf(insData + "-" + ntData + "-" + locData);
 				thePicked.splice(who, 1);
-	
+				$.each(muArray.notes, function(index, item) {
+					console.log("item.note = " + item.note + "    //  item.loc = " + item.location);
+					if (item.note == nnt && item.location == nlc && item.ins == nin) {
+						muArray.notes.splice(index, 1);
+					}
+				});
 			}
-			thePicked.sort();
 			mkCode();
-		}
 	
-	
-		/********************************************** 
-		*
-		*                  makeCode!
-		*
-		***********************************************/
-	
-		function mkCode() {
-			var theCode = "";
-			var theBeatCode = "";
-			var temp = "";
-			var beatTemp = "";
-			var leng = thePicked.length;
-			$.each(thePicked, function(index, item) {
-				var theOne = item.split("-");
-				console.log(theOne);
-			});
-	
-			thePicked.sort();
-			$.each(thePicked, function(num, who) {
-				console.log("Each Num==" + num);
-				var theOne = who.split("-");
-				var theIns = theOne[0];
-				if (theIns == "beat") {
-					beatTemp = theOne;
-				} else {
-					var isChange = (num == 0 || temp != theIns);
-					if (isChange) {
-						theCode += "\nins " + theIns + "{\n";
-						theCode += "  location 1;\n";
-						temp = theIns;
-					}
-					theCode += "  note(" + theOne[1] + "," + theOne[2] + ");\n";
-					if ((num + 1) == leng) {
-						theCode += "}\n";
-					} else if ( (thePicked[num + 1].split("-")[0] != theIns) ) {
-						theCode += "}\n";
-					}
-				}
-				if (beatTemp.length > 0) {
-					theBeatCode = "beat " + beatTemp[1] + "{\n  location 1;\n  do 1;\n}\n";
-				}
-			});
-	
-	
-			$("#resultCode").text(theBeatCode + theCode);
+			console.log(thePicked);
 		}
 	
 	
@@ -590,7 +431,6 @@
 		});
 	</script>
 </body>
-
 <!-- COMU PAGE MAIN SPACE CSS  -->
 <style>
 .containerB {
@@ -649,7 +489,6 @@
 	background-repeat: no-repeat;
 	font-size: x-small;
 	resize: none;
-	line-height: normal;
 }
 
 .label {
