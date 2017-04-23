@@ -103,8 +103,8 @@ TOKEN :
 | < NUMBER : (< DIGIT >)+ >
 | < DIGIT : [ "0"-"9" ] >
 | < ALPHA : [ "A"-"Z", "a"-"z" ] >
-| < WORD : (< ALPHA >)+ >
 | < NOTE : < WORD > (< NUMBER >)* >
+| < WORD : (< ALPHA >)+ >
 }
 
 boolean readLine() throws Exception :
@@ -132,7 +132,7 @@ boolean readLine() throws Exception :
     return true;
   }
 | 
-  < INS > word = < WORD >
+  < INS > word = < NOTE >
   {
     if (generator.getList().containsKey(word.image))
     {

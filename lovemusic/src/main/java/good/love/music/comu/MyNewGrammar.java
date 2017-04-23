@@ -96,7 +96,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       break;
     case INS:
       jj_consume_token(INS);
-      word = jj_consume_token(WORD);
+      word = jj_consume_token(NOTE);
     if (generator.getList().containsKey(word.image))
     {
       url = word.image;
