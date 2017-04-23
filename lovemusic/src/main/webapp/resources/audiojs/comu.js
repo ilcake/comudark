@@ -203,7 +203,7 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-$(window).mousewheel(function(event, delta) {
+$(window).on("mousewheel",function(event, delta) {
 	// set camera Z
 	camera.position.z -= delta * 50;
 });

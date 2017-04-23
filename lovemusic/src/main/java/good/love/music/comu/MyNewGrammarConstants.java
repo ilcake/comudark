@@ -12,43 +12,31 @@ public interface MyNewGrammarConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int MELODY = 5;
+  int TEMPO = 5;
   /** RegularExpression Id. */
-  int BEAT = 6;
+  int BPM = 6;
   /** RegularExpression Id. */
-  int BASS = 7;
+  int DO = 7;
   /** RegularExpression Id. */
-  int PIANO = 8;
+  int LOCATION = 8;
   /** RegularExpression Id. */
-  int DRUM = 9;
+  int INS = 9;
   /** RegularExpression Id. */
-  int GUITARNOTE = 10;
+  int LOOP = 10;
   /** RegularExpression Id. */
-  int GUITARCODE = 11;
+  int EFFECT = 11;
   /** RegularExpression Id. */
-  int REVERB = 12;
+  int SETNOTE = 12;
   /** RegularExpression Id. */
-  int DELAY = 13;
+  int NUMBER = 13;
   /** RegularExpression Id. */
-  int LOWFILTER = 14;
+  int DIGIT = 14;
   /** RegularExpression Id. */
-  int HIGHFILTER = 15;
+  int ALPHA = 15;
   /** RegularExpression Id. */
-  int TEMPO = 16;
+  int WORD = 16;
   /** RegularExpression Id. */
-  int DO = 17;
-  /** RegularExpression Id. */
-  int LOCATION = 18;
-  /** RegularExpression Id. */
-  int NUMBER = 19;
-  /** RegularExpression Id. */
-  int DIGIT = 20;
-  /** RegularExpression Id. */
-  int INS = 21;
-  /** RegularExpression Id. */
-  int SETNOTE = 22;
-  /** RegularExpression Id. */
-  int NOTE = 23;
+  int NOTE = 17;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -60,24 +48,18 @@ public interface MyNewGrammarConstants {
     "\"\\t\"",
     "\"\\r\"",
     "\"\\n\"",
-    "\"melody\"",
-    "\"beat\"",
-    "\"bass\"",
-    "\"piano\"",
-    "\"drum\"",
-    "\"guitarcode\"",
-    "\"guitarnote\"",
-    "\"reverb\"",
-    "\"delay\"",
-    "\"low\"",
-    "\"high\"",
     "\"tempo\"",
+    "\"bpm\"",
     "\"do\"",
     "\"location\"",
+    "\"ins\"",
+    "\"loop\"",
+    "<EFFECT>",
+    "\"note\"",
     "<NUMBER>",
     "<DIGIT>",
-    "\"ins\"",
-    "\"note\"",
+    "<ALPHA>",
+    "<WORD>",
     "<NOTE>",
     "\";\"",
     "\"{\"",

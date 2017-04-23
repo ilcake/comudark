@@ -47,8 +47,10 @@
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/logo_comu.png" />
 
+
 <!-- comu Vidio back css -->
 <style type="text/css">
+
 .qt-particles {
 	background-image: url("images/galaxy-2.jpg");
 }
@@ -58,7 +60,7 @@
 	border-left: none;
 	position: relative;
 }
-
+cvfdfdsd
 .no-video .video-container video, .touch .video-container video {
 	display: none;
 }
@@ -74,7 +76,7 @@
 	height: 100%;
 	width: 100%;
 	overflow: scroll;
-	background: #000;
+	background: #000;  
 }
 
 .video-container .poster img {
@@ -122,16 +124,16 @@ a, a:link, a:hover, a:visited, a:active {
 	color: black;
 }
 
-.tr_header {
+.tr_header{
 	margin-top: -5%;
 	margin-bottom: -5%;
 }
 
-.td_img {
-	width: 20%;
+.td_img{
+	width:20%;
 }
 
-.td_center {
+.td_center{
 	width: 60%;
 }
 
@@ -141,12 +143,12 @@ img {
 	height: 65px;
 }
 
-.td_button {
-	width: 20%;
+.td_button{
+	width:20%;
 	text-align: right;
 }
 
-.glyphicon {
+.glyphicon{
 	font-size: 20px;
 }
 
@@ -157,122 +159,111 @@ img {
 	text-align: left;
 }
 
-.panel-heading {
+.panel-heading{
 	background-color: blue;
 }
 
 /*게시판 블록*/
-.box {
+.box{
 	width: 30%;
 	margin: 20px;
 	padding: 10px;
 	border-radius: 20px;
-	float: left;
-	display: inline;
-	color: black;
-	background-color: white;
+	float:left;
+	display:inline;
+	color:black;
+	background-color:white;
 }
 
-table {
+table{
 	font-size: medium;
 }
 
-.reply>td {
+.reply > td{
 	/*border: solid white 2px;*/
-	background-color: #f0f5f5;
+	background-color:#f0f5f5;
 	font-size: small;
 	padding: 5px;
 }
 
-.writerButton {
+.writerButton{
 	position: relative;
 	float: left;
-	font-size: small;
+	font-size:small;
 	margin-bottom: -20%;
 }
 
-.replybutton {
+.replybutton{
 	position: relative;
 	float: right;
-	font-size: small;
+	font-size:small;
 	margin-bottom: -20%;
 }
 </style>
 
-
 <script>
-	$(function() {
 
-		$('#inline').wallyti(function() {
-			console.info("FATTO!");
-		});
+$(function(){
 
-		//좋아요, 구독 버튼 클릭 시 색 변환
-		$(".glyphicon").on("click", function() {
-			if ($(this).css("color") == "rgb(255, 0, 0)") {
-				$(this).css("color", "black");
-			} else {
-				$(this).css("color", "red");
-			}
-		});
-
-		$(".glyphicon-heart-empty").on(
-				"click",
-				function() {
-					$(this).removeClass("glyphicon-heart-empty").addClass(
-							"glyphicon-thumbs-up");
-				});
-
-		$(".glyphicon-heart-empty").hover(
-				function() {
-					$(this).removeClass("glyphicon-heart-empty").addClass(
-							"glyphicon-heart");
-				},
-				function() {
-					$(this).removeClass("glyphicon-heart").addClass(
-							"glyphicon-heart-empty");
-				});
-
-		/*
-		$(".glyphicon").hover(
-				function(){
-					$(this).animate({ scale: "+=0.2%" }, 300 );
-				},
-				function(){
-					$(this).removeClass("glyphicon-star").addClass("glyphicon-star-empty");
-				}
-			);
-		 */
-
-		$(".cover").hover(function() {
-			$(this).css("opacity", "0.5");
-		}, function() {
-			$(this).css("opacity", "1");
-		});
-
-		jQuery.fn.center = function() {
-			this.css("position", "absolute");
-			this.css("top", Math.max(0, (($(window).height() - $(this)
-					.outerHeight()) / 2)
-					+ $(window).scrollTop())
-					+ "px");
-			this.css("left", Math.max(0, (($(window).width() - $(this)
-					.outerWidth()) / 2)
-					+ $(window).scrollLeft())
-					+ "px");
-			return this;
+	//좋아요, 구독 버튼 클릭 시 색 변환
+	$(".glyphicon").on("click", function(){
+		if($(this).css("color") == "rgb(255, 0, 0)"){
+			$(this).css("color", "black");
+			$.ajax({
+				type: post,
+				
+			});
+		}else{
+			$(this).css("color", "red");
 		}
-
-		$(".cover")
-				.on(
-						"click",
-						function() {
-							window
-									.open("player", "player",
-											"height=200, width=400, resizable=no, top=200, left=400");
-						});
-
 	});
+
+	$(".glyphicon-heart-empty").on("click", function(){
+		$(this).removeClass("glyphicon-heart-empty").addClass("glyphicon-thumbs-up");
+	});
+	
+	$(".glyphicon-heart-empty").hover(
+		function(){
+			$(this).removeClass("glyphicon-heart-empty").addClass("glyphicon-heart");
+		},
+		function(){
+			$(this).removeClass("glyphicon-heart").addClass("glyphicon-heart-empty");
+		}
+	);
+	
+	/*
+	$(".glyphicon").hover(
+			function(){
+				$(this).animate({ scale: "+=0.2%" }, 300 );
+			},
+			function(){
+				$(this).removeClass("glyphicon-star").addClass("glyphicon-star-empty");
+			}
+		);
+	*/
+	
+	$(".cover").hover(
+		function(){
+			$(this).css("opacity", "0.5");		
+		},
+		function(){
+			$(this).css("opacity", "1");		
+		}
+	);
+	
+	jQuery.fn.center = function () {
+	    this.css("position","absolute");
+	    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+	    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+	    return this;
+	}
+
+	$(".cover").on("click", function(){
+		window.open("player", "player", "height=200, width=400, resizable=no, top=200, left=400");
+	});
+	
+});
+
 </script>
 
 </head>
@@ -327,87 +318,77 @@ table {
 					<h3 class="text-white text-thin">beautiful, free videos for
 						your homepage</h3>
 					<h4 class="text-white text-thin">7 new videos every monday</h4> -->
-
-				<div class="wrapper">
-					<div id="container">
-						<!-- 게시물 시작 (Collapse) -->
-						<c:forEach var="board" items="${boardList}">
-							<div class="box">
+				<div class = "wrapper">	
+				<div id="container">
+				<!-- 게시물 시작 (Collapse) -->			
+				<c:forEach var="board" items="${boardList}">	
+					<div class="box">	
 								<table class='board'>
 									<tr>
-										<td class="td_img"><img src="images/galaxy-1.jpg"
-											alt="image" class="cover"></td>
-										<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
-											&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>
-											<br> <span
-											style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>
+										<td class="td_img"><img src="images/galaxy-1.jpg" alt="image" class="cover"></td>
+										<td class="td_center" style="line-height:1.3em;">
+											<span>${board.userid}</span> 
+											&nbsp;l&nbsp;<span style="font-weight: bold; color:red;">${board.title}</span>
+											<br><span style="font-size:small; text-align:right; margin-top:-20px; margin-bottom:-20px;">${board.inputdate}</span>
 										</td>
 										<!-- 좋아요/구독 버튼 -->
-										<td class="td_button">${board.like_userid}<a href="#"
-											data-toggle="tooltip" title="좋아요"><span
-												class="glyphicon glyphicon-thumbs-up" aria-hidden="true"
-												style="color: black;"></span></a> <a href="#"
-											data-toggle="tooltip" title="구독하기"><span
-												class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></a>
+										<td class="td_button">${board.like_userid}<a href="#" data-toggle="tooltip" title="좋아요"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span></a>
+											<a href="#" data-toggle="tooltip" title="구독하기"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></a>
 										</td>
 									</tr>
+									<tr><td colspan='3'><hr class="tr_header"></td></tr>
 									<tr>
-										<td colspan='3'><hr class="tr_header"></td>
-									</tr>
-									<tr>
-										<td colspan="3">${board.content}<br> <!-- 자기가 올린 글 수정, 삭제 버튼 활성화-->
-											<c:if test="${board.userid == loginId}">
-												<span class="writerButton"> <span
-													class="glyphicon glyphicon-pencil" aria-hidden="true"
-													style="font-size: small;"></span> <!-- 글 수정 버튼 --> <a
-													href="${board.boardnum}">X</a> <!-- 글 삭제 버튼 -->
-												</span>
-											</c:if> <span class="replybutton"> <a role="button"
-												data-toggle="collapse" href="#col${board.boardnum}"
-												aria-expanded="false" aria-controls="col${board.boardnum}">
-													reply ▼ </a>
+										<td colspan="3">${board.content}
+										<br>
+										<!-- 자기가 올린 글 수정, 삭제 버튼 활성화-->
+										<c:if test="${board.userid == loginId}">
+											<span class="writerButton">
+												<span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size:small;"></span> <!-- 글 수정 버튼 -->
+												<a href="${board.boardnum}">X</a> 	<!-- 글 삭제 버튼 -->
+											</span>
+										</c:if>
+										<span class="replybutton">
+											<a role="button" data-toggle="collapse" href="#col${board.boardnum}" aria-expanded="false" aria-controls="col${board.boardnum}">
+						  						reply ▼
+											</a>
 										</span>
 										</td>
 									</tr>
 									<tr>
 										<td colspan="3"><hr></td>
 									</tr>
-								</table>
-								<table class="collapse" id="col${board.boardnum}">
+							</table>
+							<table class="collapse" id="col${board.boardnum}">
 									<!-- 댓글 -->
 									<c:forEach var="reply" items="${replyAll}">
 										<c:if test="${reply.boardnum == board.boardnum}">
 											<tr class="reply">
-												<td class="td_img">${reply.userid}</td>
-												<td>${reply.replytext}<span style="color: gray;">${reply.inputdate}</span></td>
-												<td><a href="updatereply?replynum=${reply.replynum}"><span
-														class="glyphicon glyphicon-pencil" aria-hidden="true"
-														style="font-size: small;"></span></a> <a
-													href="deletereply?replynum=${reply.replynum}">X</a></td>
+												<td class="td_img">
+													${reply.userid}</td>
+												<td>${reply.replytext} <span style="color:gray;">${reply.inputdate}</span></td>
+												<td>
+													<a href="updatereply?replynum=${reply.replynum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size:small;"></span></a>
+													<a href="deletereply?replynum=${reply.replynum}">X</a> 
+												</td>
 											</tr>
 										</c:if>
 									</c:forEach>
 									<tr>
 										<form action="replyWrite" method="get">
-											<input type="hidden" name="boardnum"
-												value="${board.boardnum}" />
-											<td class="td_img">댓글</td>
-											<td class="td_center" style="width: 70%;"><input
-												type="text" name="replytext" id="replytext"></td>
-											<td><button style="border: none; background: none;">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</button></td>
+										<input type="hidden" name="boardnum" value="${board.boardnum}" />
+										<td class="td_img">댓글</td>
+										<td class="td_center" style="width:70%;"><input type="text" name="replytext" id="replytext"></td>
+										<td><button style="border:none; background:none;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td>
 										</form>
 									</tr>
-								</table>
-							</div>
-						</c:forEach>
-						<!-- 게시물 END -->
-					</div>
+							</table>
+						</div>
+				</c:forEach>
+				<!-- 게시물 END -->
 				</div>
-
-			</div>
-			<!-- title-container 끝 -->
+				</div>
+				
+			</div>	<!-- title-container 끝 -->
 
 			<div class="filter"></div>
 			<video autoplay loop class="fillWidth">
@@ -440,35 +421,30 @@ table {
 
 	<!-- MAIN JAVASCRIPT FILE ================================ -->
 	<script src="js/qt-main.js"></script>
-
-	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-		rel="stylesheet" type="text/css">
-	<script src="https://code.jquery.com/jquery-3.2.0.slim.min.js"></script>
-	<script src="js/jquery.wallyti.js"></script>
-
-
+	
 	<!-- comu Video back Script -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".panel-heading").css('background-color', 'white');
-			$(".panel-heading").css('color', 'blue');
-
+				$(".panel-heading").css('background-color', 'white');
+				$(".panel-heading").css('color', 'blue');
+			
 			//setBackGroundMusic();
-
+	
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-
+	
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-
+	
+	
 		});
-
+	
 		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
@@ -481,7 +457,8 @@ table {
 				}, false);
 				bgm.play();
 			} */
-
+	
+	
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -492,15 +469,16 @@ table {
 		   keyEnabled : true
 		});
 		 */
-
+	
 		//}
+	
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-
+	
 		}
-
+	
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -508,32 +486,35 @@ table {
 			});
 			scaleBannerVideoSize(element);
 		}
-
+	
 		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width(), windowHeight = $(window)
-					.height() + 5, videoWidth, videoHeight;
+			var windowWidth = $(window).width(),
+				windowHeight = $(window).height() + 5,
+				videoWidth,
+				videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
-					function() {
-						var videoAspectRatio = $(this).data('height')
-						//$(this).data('width');
-
-						$(this).width(windowWidth);
-						/* if (windowWidth < 1000) {
-						   videoHeight = windowHeight;
-						   videoWidth = videoHeight / videoAspectRatio;
-						   $(this).css(
-						         {
-						            'margin-top' : 0,
-						            'margin-left' : -(videoWidth - windowWidth)
-						                  / 2 + 'px'
-						         });
-						   $(this).width(videoWidth).height(videoHeight);
-						} */
-						$('.homepage-hero-module .video-container video')
-								.addClass('fadeIn animated');
-					});
+				function() {
+					var videoAspectRatio = $(this).data('height')
+					//$(this).data('width');
+	
+					$(this).width(windowWidth);
+					/* if (windowWidth < 1000) {
+					   videoHeight = windowHeight;
+					   videoWidth = videoHeight / videoAspectRatio;
+					   $(this).css(
+					         {
+					            'margin-top' : 0,
+					            'margin-left' : -(videoWidth - windowWidth)
+					                  / 2 + 'px'
+					         });
+					   $(this).width(videoWidth).height(videoHeight);
+					} */
+					$('.homepage-hero-module .video-container video').addClass(
+						'fadeIn animated');
+				});
 		}
+		
 	</script>
 
 </body>

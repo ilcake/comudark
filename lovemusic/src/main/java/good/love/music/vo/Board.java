@@ -10,13 +10,13 @@ public class Board {
 	private int filenum;
 	private String shared;
 	private String cover_re;
+	private String like_userid;
 
 	public Board() {
 	}
 
 	public Board(int boardnum, String userid, String title, String content, String inputdate, int filenum,
-			String shared, String cover_re) {
-		super();
+			String shared, String cover_re, String like_userid) {
 		this.boardnum = boardnum;
 		this.userid = userid;
 		this.title = title;
@@ -25,7 +25,9 @@ public class Board {
 		this.filenum = filenum;
 		this.shared = shared;
 		this.cover_re = cover_re;
+		this.like_userid = like_userid;
 	}
+
 
 	public int getBoardnum() {
 		return boardnum;
@@ -91,11 +93,19 @@ public class Board {
 		this.cover_re = cover_re;
 	}
 
+	public String getLike_userid() {
+		return like_userid;
+	}
+
+	public void setLike_userid(String like_userid) {
+		this.like_userid = like_userid;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [boardnum=" + boardnum + ", userid=" + userid + ", title=" + title + ", content=" + content
 				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", shared=" + shared + ", cover_re=" + cover_re
-				+ "]";
+				+ ", like_userid=" + like_userid + "]";
 	}
-
+	
 }

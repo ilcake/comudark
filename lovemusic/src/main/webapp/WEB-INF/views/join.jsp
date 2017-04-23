@@ -203,20 +203,19 @@ img {
 											<input type="password" placeholder="Password...."
 												class="form-control" />
 										</div>
-										<div class="input-group">
+<!-- 										<div class="input-group">
 											<input type="text" placeholder="Question"
 												class="form-control" name="question" />
 										</div>
-										<select><option>ddd</option></select>
 										<div class="input-group">
 											<input type="text" placeholder="Answer" class="form-control"
 												name="answer" />
-										</div>
+										</div> -->
 									</div>
 								</form>
 								<br>
 								<div class="footer text-center">
-									<button class="btn btn-primary">JOIN</button>
+									<button class="btn btn-primary" id="joinbutton">JOIN</button>
 								</div>
 							</div>
 							<br>

@@ -57,6 +57,11 @@ public class HomeController {
 
 		return "naviex";
 	}
+	@RequestMapping(value = "/comutest", method = RequestMethod.GET)
+	public String comutest() {
+		
+		return "comuTesting";
+	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home2() {
@@ -103,12 +108,12 @@ public class HomeController {
 	@RequestMapping(value = "/shared", method = RequestMethod.GET)
 	public String shared(HttpSession session) {
 
-		// 湲 遺덈윭?ㅺ린
+		//글 불러오기
 		ArrayList<Board> list = boardRepository.list();
 		System.out.println(list);
 		session.setAttribute("boardList", list);
-
-		// ?볤? 遺덈윭?ㅺ린
+		
+		//댓글 불러오기
 		List<Reply> replyAll = boardRepository.replyAll();
 		session.setAttribute("replyAll", replyAll);
 		return "shared";
