@@ -21,6 +21,7 @@
 	<resources mapping="/components/**" location="/resources/forest/components/" />
 	<resources mapping="/js/**" location="/resources/forest/js/" />
 	<resources mapping="/myfiles/images/**" location="/resources/myfiles/images/" />
+	<resources mapping="/myfiles/**" location="/resources/myfiles/" />
 	<resources mapping="/myfiles/video/**" location="/resources/myfiles/video/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
