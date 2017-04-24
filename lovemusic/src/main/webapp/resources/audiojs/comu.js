@@ -94,7 +94,7 @@ function init() {
 	$(window).resize(onWindowResize);
 	createAnalyser();
 	startViz();
-	loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
+	//loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
 	// onWindowResize(null);
 
 }

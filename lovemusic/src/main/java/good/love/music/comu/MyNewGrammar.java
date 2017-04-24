@@ -400,3 +400,394 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   }
 
 }
+
+public class MyNewGrammar implements MyNewGrammarConstants {
+  private int btLocation = 0;
+
+  private String result = "";
+
+  private String url = "";
+
+  private int tempo = 16;
+
+  private double bpm;
+  URLGenerator generator;
+  int location = 0;
+  int doit = 1;
+  Token note = new Token();
+  Token effect = new Token();
+  Token value = new Token();
+  Token word = new Token();
+  Token number = new Token();
+  ArrayList < Integer > list = new ArrayList < Integer > ();
+  ArrayList < String > noteList = new ArrayList < String > ();
+  String reverb = "";
+  String delay = "";
+  String low = "";
+  String high = "";
+  boolean isSetBPM = false;
+
+  public String getResult() throws Exception, Error
+  {
+    while (readLine())
+    {
+    }
+    return result;
+  }
+
+  public void setURLGenerator(URLGenerator generator)
+  {
+    this.generator = generator;
+  }
+
+  public void setCustomBPM(double value)
+  {
+    double theTempoValue = 16;
+    bpm = ((theTempoValue * 60) / value) / 4;
+  }
+
+  public double getLoc(double loc, double dloc)
+  {
+    double where = loc * bpm;
+    double fwhere = where + (bpm / tempo * dloc);
+    return fwhere;
+  }
+
+  public void setBPM(String key) throws Exception
+  {
+    bpm = generator.getBPM(key);
+  }
+
+  final public boolean readLine() throws ParseException, Exception {
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case TEMPO:
+      jj_consume_token(TEMPO);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(18);
+    tempo = Integer.parseInt(number.image);
+    if (tempo <= 0)
+    {
+      {if (true) throw new TempoUnderflowException();}
+    }
+    {if (true) return true;}
+      break;
+    case BPM:
+      jj_consume_token(BPM);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(18);
+    if (isSetBPM)
+    {
+      {if (true) throw new AlreadySetBPMException();}
+    }
+    setCustomBPM(Double.parseDouble(number.image));
+    isSetBPM = true;
+    {if (true) return true;}
+      break;
+    case INS:
+      jj_consume_token(INS);
+      word = jj_consume_token(WORD);
+    if (generator.getList().containsKey(word.image))
+    {
+      url = word.image;
+    }
+    else
+    {
+      {if (true) throw new InstrumentNotFoundException();}
+    }
+    {if (true) return inTheMethod();}
+      break;
+    case LOOP:
+      jj_consume_token(LOOP);
+      word = jj_consume_token(WORD);
+      number = jj_consume_token(NUMBER);
+    if (generator.getList().containsKey(word.image))
+    {
+      url = word.image + number.image;
+      setBPM(url);
+      isSetBPM = true;
+    }
+    else
+    {
+      {if (true) throw new InstrumentNotFoundException();}
+    }
+    {if (true) return inTheMethod();}
+      break;
+    case 0:
+      jj_consume_token(0);
+    {if (true) return false;}
+      break;
+    default:
+      jj_la1[0] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+    throw new Error("Missing return statement in function");
+  }
+
+  final public boolean inTheMethod() throws ParseException, Exception {
+    jj_consume_token(19);
+    location = 0;
+    doit = 1;
+    effect = new Token();
+    note = new Token();
+    number = new Token();
+    list = new ArrayList < Integer > ();
+    noteList = new ArrayList < String > ();
+    reverb = "null";
+    delay = "null";
+    low = "null";
+    high = "null";
+    while (makeSound())
+    {}
+    jj_consume_token(20);
+    for (int i = 0; i < doit; i++)
+    {
+      if (list.size() > 0)
+      {
+        for (int j = 0; j < list.size(); j++)
+        {
+          result += String.format("loadAudio('%s', %f,%s,%s,%s,%s); \u005cn", generator.getFilePath(url + noteList.get(j)), getLoc(location + i, list.get(j)), reverb, delay, low, high);
+        }
+      }
+      else
+      {
+        result += String.format("loadAudio('%s', %f); \u005cn", generator.getFilePath(url), getLoc(btLocation, 0));
+        btLocation++;
+      }
+    }
+    {if (true) return true;}
+    throw new Error("Missing return statement in function");
+  }
+
+  final public boolean makeSound() throws ParseException, Exception {
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case DO:
+      jj_consume_token(DO);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(18);
+    doit = Integer.parseInt(number.image);
+    {if (true) return true;}
+      break;
+    case LOCATION:
+      jj_consume_token(LOCATION);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(18);
+    location = Integer.parseInt(number.image);
+    {if (true) return true;}
+      break;
+    case EFFECT:
+      effect = jj_consume_token(EFFECT);
+      value = jj_consume_token(NOTE);
+      jj_consume_token(18);
+    switch (effect.image)
+    {
+      case "reverb" :
+      reverb = value.image;
+      break;
+      case "delay" :
+      delay = value.image;
+      break;
+      case "low" :
+      low = value.image;
+      break;
+      case "high" :
+      high = value.image;
+      break;
+    }
+    {if (true) return true;}
+      break;
+    case SETNOTE:
+      jj_consume_token(SETNOTE);
+      jj_consume_token(21);
+      note = jj_consume_token(NOTE);
+      jj_consume_token(22);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(23);
+    if (!isSetBPM)
+    {
+      {if (true) throw new BpmNotDefinedException();}
+    }
+    if (tempo < Integer.parseInt(number.image))
+    {
+      {if (true) throw new TempoOverflowException();}
+    }
+    list.add(Integer.parseInt(number.image));
+    noteList.add(note.image);
+    {if (true) return true;}
+      break;
+    default:
+      jj_la1[1] = jj_gen;
+    {if (true) return false;}
+    }
+    throw new Error("Missing return statement in function");
+  }
+
+  /** Generated Token Manager. */
+  public MyNewGrammarTokenManager token_source;
+  SimpleCharStream jj_input_stream;
+  /** Current token. */
+  public Token token;
+  /** Next token. */
+  public Token jj_nt;
+  private int jj_ntk;
+  private int jj_gen;
+  final private int[] jj_la1 = new int[2];
+  static private int[] jj_la1_0;
+  static {
+      jj_la1_init_0();
+   }
+   private static void jj_la1_init_0() {
+      jj_la1_0 = new int[] {0x661,0x1980,};
+   }
+
+  /** Constructor with InputStream. */
+  public MyNewGrammar(java.io.InputStream stream) {
+     this(stream, null);
+  }
+  /** Constructor with InputStream and supplied encoding */
+  public MyNewGrammar(java.io.InputStream stream, String encoding) {
+    try { jj_input_stream = new SimpleCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
+    token_source = new MyNewGrammarTokenManager(jj_input_stream);
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  /** Reinitialise. */
+  public void ReInit(java.io.InputStream stream) {
+     ReInit(stream, null);
+  }
+  /** Reinitialise. */
+  public void ReInit(java.io.InputStream stream, String encoding) {
+    try { jj_input_stream.ReInit(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
+    token_source.ReInit(jj_input_stream);
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  /** Constructor. */
+  public MyNewGrammar(java.io.Reader stream) {
+    jj_input_stream = new SimpleCharStream(stream, 1, 1);
+    token_source = new MyNewGrammarTokenManager(jj_input_stream);
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  /** Reinitialise. */
+  public void ReInit(java.io.Reader stream) {
+    jj_input_stream.ReInit(stream, 1, 1);
+    token_source.ReInit(jj_input_stream);
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  /** Constructor with generated Token Manager. */
+  public MyNewGrammar(MyNewGrammarTokenManager tm) {
+    token_source = tm;
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  /** Reinitialise. */
+  public void ReInit(MyNewGrammarTokenManager tm) {
+    token_source = tm;
+    token = new Token();
+    jj_ntk = -1;
+    jj_gen = 0;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+  }
+
+  private Token jj_consume_token(int kind) throws ParseException {
+    Token oldToken;
+    if ((oldToken = token).next != null) token = token.next;
+    else token = token.next = token_source.getNextToken();
+    jj_ntk = -1;
+    if (token.kind == kind) {
+      jj_gen++;
+      return token;
+    }
+    token = oldToken;
+    jj_kind = kind;
+    throw generateParseException();
+  }
+
+
+/** Get the next Token. */
+  final public Token getNextToken() {
+    if (token.next != null) token = token.next;
+    else token = token.next = token_source.getNextToken();
+    jj_ntk = -1;
+    jj_gen++;
+    return token;
+  }
+
+/** Get the specific Token. */
+  final public Token getToken(int index) {
+    Token t = token;
+    for (int i = 0; i < index; i++) {
+      if (t.next != null) t = t.next;
+      else t = t.next = token_source.getNextToken();
+    }
+    return t;
+  }
+
+  private int jj_ntk() {
+    if ((jj_nt=token.next) == null)
+      return (jj_ntk = (token.next=token_source.getNextToken()).kind);
+    else
+      return (jj_ntk = jj_nt.kind);
+  }
+
+  private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
+  private int[] jj_expentry;
+  private int jj_kind = -1;
+
+  /** Generate ParseException. */
+  public ParseException generateParseException() {
+    jj_expentries.clear();
+    boolean[] la1tokens = new boolean[24];
+    if (jj_kind >= 0) {
+      la1tokens[jj_kind] = true;
+      jj_kind = -1;
+    }
+    for (int i = 0; i < 2; i++) {
+      if (jj_la1[i] == jj_gen) {
+        for (int j = 0; j < 32; j++) {
+          if ((jj_la1_0[i] & (1<<j)) != 0) {
+            la1tokens[j] = true;
+          }
+        }
+      }
+    }
+    for (int i = 0; i < 24; i++) {
+      if (la1tokens[i]) {
+        jj_expentry = new int[1];
+        jj_expentry[0] = i;
+        jj_expentries.add(jj_expentry);
+      }
+    }
+    int[][] exptokseq = new int[jj_expentries.size()][];
+    for (int i = 0; i < jj_expentries.size(); i++) {
+      exptokseq[i] = jj_expentries.get(i);
+    }
+    return new ParseException(token, exptokseq, tokenImage);
+  }
+
+  /** Enable tracing. */
+  final public void enable_tracing() {
+  }
+
+  /** Disable tracing. */
+  final public void disable_tracing() {
+  }
+
+}
