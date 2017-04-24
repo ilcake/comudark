@@ -118,10 +118,13 @@ function insAddEvent() {
 		switch (btSelected) {
 		case "beat":
 			theContents += "<div class='buttons_row'>";
+			theContents += "<table class='tbContainer'><tr><td class='tdLbContainer'>";
 			theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='beat'></span> ";
+			theContents += "</td><td class='tdBtContainer'>";
 			for (var i = 1; i < 17; i++) {
 				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn beat' src='myfiles/images/hicu/button_off.png'>";
 			}
+			theContents += "</td></tr></table>";
 			theContents += "</div>";
 			$("#btnsBeat").html(theContents);
 			break;
@@ -137,10 +140,13 @@ function insAddEvent() {
 			theContents += "</th></tr></table></div>";
 			$.each(drumSet, function(index, item) {
 				theContents += "<div class='buttons_row'>";
+				theContents += "<table class='tbContainer'><tr><td class='tdLbContainer'>";
 				theContents += "<span class='label'>" + item + "</span> ";
+				theContents += "</td><td class='tdBtContainer'>";
 				for (var i = 1; i < 17; i++) {
 					theContents += "<img dt-sta='off' dt-ins='" + btSelected + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn " + btSelected + "' src='myfiles/images/hicu/button_off.png'>";
 				}
+				theContents += "</td></tr></table>";
 				theContents += "</div>";
 			//plusSize += 41.33;
 			});
@@ -167,12 +173,16 @@ function insAddEvent() {
 
 		theContents += "<div id='area_" + serial + "' class='addedLines'>";
 		theContents += "<div class='buttons_row'>";
+		theContents += "<table class='tbContainer'><tr><td class='tdLbContainer'>";
 		theContents += "<span class='label'>" + ins + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='bass'></span> ";
+		theContents += "</td><td class='tdBtContainer'>";
+
 		$.each(newBass, function(index, item) {
 			if (index < 16) {
 				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='bass' dt-loc='1' dt-nt='" + item.fileName + "' id='beat_" + item.fileName + "' class='hiBtn bass' src='myfiles/images/hicu/button_off.png'>";
 			}
 		});
+		theContents += "</td></tr></table>";
 		theContents += "</div></div>";
 
 		$("#btnsBass").html(theContents);
@@ -192,15 +202,18 @@ function insAddEvent() {
 		});
 		console.log(newMel);
 		newMel = shuffle(newMel);
-
 		theContents += "<div id='area_" + serial + "' class='addedLines'>";
 		theContents += "<div class='buttons_row'>";
+		theContents += "<table class='tbContainer'><tr><td class='tdLbContainer'>";
 		theContents += "<span class='label'>Melo <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='bass'></span> ";
+		theContents += "</td><td class='tdBtContainer'>";
+
 		$.each(newMel, function(index, item) {
 			if (index < 16) {
 				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='" + ins + "' dt-loc='1' dt-nt='" + item.fileName + "' id='" + ins + "_" + item.fileName + "' class='hiBtn " + ins + "' src='myfiles/images/hicu/button_off.png'>";
 			}
 		});
+		theContents += "</td></tr></table>";
 		theContents += "</div></div>";
 
 		$("#btnsMelody").html(theContents);
@@ -258,9 +271,11 @@ function insRemoveEvent() {
 ***********************************************/
 function makeLED() {
 	var theLeds = "";
+	theLeds += "<table class='tbContainer'><tr><td class='tdLbContainer'><span class='label blank'>GO</span></td><td class='tdBtContainer'>";
 	for (var i = 1; i < 17; i++) {
-		theLeds += "<img class='leds'	id='LED_" + i + "' src='myfiles/images/hicu/LED_off.png'>";
+		theLeds += "<img class='leds' id='LED_" + i + "' src='myfiles/images/hicu/LED_off.png'>";
 	}
+	theLeds += "</td></tr></table>";
 	$("#LED_row").append(theLeds);
 }
 
@@ -525,6 +540,29 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 	});
 }
 
+
+/********************************************** 
+*
+*                 on save!!!!
+*
+***********************************************/
+function saveEvent() {
+	var theCodes = $("#resultCode").text();
+	$("#codeResult").text(theCodes);
+	$.ajax({
+		url : "compile",
+		data : {
+			"source" : theCodes
+		},
+		type : "POST",
+		success : function(resp) {
+			console.log(resp);
+			$("#compiledResult").text(resp);
+		},
+		error : function() {}
+	});
+}
+
 /********************************************** 
 *
 *                 on Ready!
@@ -536,4 +574,8 @@ $(function() {
 	$("#play").on("click", playEvent);
 	$("#stop").on("click", stopEvent);
 	$(".ins_add").on("click", insAddEvent);
+	$("#reset").on("click", function() {
+		location.reload();
+	});
+	$("#save").on("click", saveEvent);
 });

@@ -65,7 +65,49 @@
 		</nav>
 	</div>
 	<!-- ====================== MENU END ================================================ -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
 
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h5 class="modal-title">Save as File</h5>
+				</div>
+				<div class="modal-body">
+					<form role="form">
+						<div class="form-group">
+							<label for="codeTitle"><span
+								class="glyphicon glyphicon-user"></span> Title</label> <input
+								type="text" class="form-control" id="codeTitle"
+								placeholder="Enter title">
+						</div>
+						<div class="form-group">
+							<label for="codeResult"><span
+								class="glyphicon glyphicon-eye-open"></span> CodeResult</label>
+							<textarea class="form-control" rows="5" id="codeResult"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="compiledResult"><span
+								class="glyphicon glyphicon-random"></span> compiledResult</label>
+							<textarea class="form-control" rows="5" id="compiledResult"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn-success" data-dismiss="modal">
+						<span class="glyphicon glyphicon-floppy-disk">Save</span>
+					</button>
+					<button type="button" class="btn-danger" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove">close</span>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Modal End! -->
 
 	<div id="presskit"
 		class="section section-presskit parallax-container scrollspy">
@@ -110,9 +152,7 @@
 											<div class="btnsArea" id="btnsMelody"></div>
 
 											<!--------   LED Row   --------->
-											<div class="buttons_row" id="LED_row">
-												<span class="label blank">GO</span>
-											</div>
+											<div class="buttons_row" id="LED_row"></div>
 										</div>
 										<hr />
 										<div class="containerBIN" id="tools">
@@ -123,8 +163,9 @@
 													src="myfiles/images/hicu/btn_stop.png" width="80"
 													height="33"></span> <span id="toolBlank"></span><span
 													id="saveReset"><img id="save"
-													src="myfiles/images/hicu/btn_save.png"><img
-													id="reset" src="myfiles/images/hicu/btn_reset.png"></span>
+													src="myfiles/images/hicu/btn_save.png" data-toggle="modal"
+													data-target="#myModal"><img id="reset"
+													src="myfiles/images/hicu/btn_reset.png"></span>
 											</div>
 											<div>
 												<textarea id="resultCode"></textarea>
@@ -147,10 +188,12 @@
 					</video>
 
 
+
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
 	<script src="js/materializecss/bin/materialize.min.js"></script>

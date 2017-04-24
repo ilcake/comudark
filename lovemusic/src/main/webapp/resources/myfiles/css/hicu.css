@@ -1,5 +1,28 @@
 @CHARSET "UTF-8";
 
+.modal {
+	text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
+
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+
+label {
+	color: black;
+}
+
 .homepage-hero-module {
 	border-right: none;
 	border-left: none;
@@ -205,7 +228,7 @@ select {
 
 .buttons_row {
 	margin: auto;
-	padding: 5px;
+	padding: 1px;
 }
 
 .ins_add {
@@ -265,4 +288,15 @@ select {
 #toolBlank {
 	width: 80px;
 	display: inline-block;
+}
+
+.tdLbContainer {
+	width: 150px;
+	text-align: right;
+	padding: 1px;
+}
+
+.tdBtContainer {
+	text-align: center;
+	padding: 1px;
 }
