@@ -86,7 +86,6 @@ a, a:link, a:hover, a:visited, a:active {
 
 .td_img{
 	width:20%;
-	padding: 20px;
 }
 
 .td_center{
@@ -95,8 +94,8 @@ a, a:link, a:hover, a:visited, a:active {
 
 img {
 	border-radius: 100px;
-	width: 55px;
-	height: 55px;
+	width: 65px;
+	height: 65px;
 }
 
 .td_button{
@@ -162,9 +161,124 @@ input[type=text]{
 	width: auto;
 }
 
-.fileField{
-	border: solid 2px black; 
-	margin-top: -30px; 
-	margin-bottom: 5px; 
-	padding: 5px;	
+/* mypage css */
+  .center, td, tr{
+   text-align : center; 
+  }
+  
+  td{
+   width: 80px;
+   max-width: 80px;
+  }
+  
+  #div3{
+   border: solid 1px black;
+  }
+  
+  #div4{
+   background-image: url("images/album.jpg");
+   background-size: 10%;
+   background-repeat: no-repeat;
+   background-position: center;
+  }
+  
+  .font{
+   font-size: 14px;
+  }
+  
+  .border{
+   border: solid 1px gray;
+  }
+  
+  #imgtable{
+   width: 20px;
+  }
+  
+  /* board css */
+a, a:link, a:hover, a:visited, a:active {
+	text-decoration: none;
+	color: black;
 }
+
+.tr_header{
+	margin-top: -5%;
+	margin-bottom: -5%;
+}
+
+.td_img{
+	width:20%;
+}
+
+.td_center{
+	width: 60%;
+}
+
+img {
+	border-radius: 100px;
+	width: 65px;
+	height: 65px;
+}
+
+.td_button{
+	width:20%;
+	text-align: right;
+}
+
+.glyphicon{
+	font-size: 20px;
+}
+
+.panel-group, .panel panel-default {
+	margin: auto;
+	background: rgba(0, 0, 0, 0.4);
+	color: black;
+	text-align: left;
+}
+
+.panel-heading{
+	background-color: blue;
+}
+
+/*게시판 블록*/
+.box{
+	min-width: 70px;
+	width: 30%;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 20px;
+	float:left;
+	display:inline;
+	color:black;
+	background-color:white;
+}
+
+table{
+	font-size: medium;
+}
+
+.reply > td{
+	/*border: solid white 2px;*/
+	background-color:#f0f5f5;
+	font-size: small;
+	padding: 5px;
+}
+
+.writerButton{
+	position: relative;
+	float: left;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+.replybutton{
+	position: relative;
+	float: right;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+a{
+	color:green;
+}
+
+

@@ -187,7 +187,6 @@ public class BoardController {
 	@RequestMapping(value = "/idList", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Like> idList() {
 		String userid = (String)session.getAttribute("loginId");
-		userid = "b";	//test용
 		ArrayList<Like> list = boardRepository.idList(userid);
 		return list;
 	}

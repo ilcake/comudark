@@ -78,10 +78,18 @@ public class HomeController {
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
-		//String id = (String) session.getAttribute("loginId");
-		String id = "a";
+		
+		String id = (String) session.getAttribute("loginId");
 		ArrayList<Board> list = boardRepository.boardList(id);
-		session.setAttribute("boardlist", list);
+		session.setAttribute("boardList", list);
+		
+		//댓글 불러오기
+		List<Reply> replyAll = boardRepository.replyAll();
+		session.setAttribute("replyAll", replyAll);
+
+		//사용자가 좋아요 누른 게시물 정보 불러오기
+		ArrayList<Like> likelist = boardRepository.likeList();
+		
 		return "mypage";
 	}
 
@@ -115,7 +123,6 @@ public class HomeController {
 
 		//글 불러오기
 		ArrayList<Board> list = boardRepository.list();
-		System.out.println(list);
 		session.setAttribute("boardList", list);
 		
 		//댓글 불러오기
@@ -124,7 +131,6 @@ public class HomeController {
 
 		//사용자가 좋아요 누른 게시물 정보 불러오기
 		ArrayList<Like> likelist = boardRepository.likeList();
-		System.out.println(likelist);
 
 		return "shared";
 	}

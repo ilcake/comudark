@@ -38,17 +38,18 @@
 					<div class="box">
 						<table class='board'>
 							<tr>
-								<td class="td_img"><img src="images/galaxy-1.jpg"
-									alt="image" class="cover"></td>
+								<td class="td_img">
+									<img src="images/galaxy-1.jpg" alt="image" class="cover">
+								</td>
 								<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
 									&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>
 									<br>
 								<span
 									style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>
 								</td>
-								<!-- 좋아요/구독 버튼 -->
+								<!-- 좋아요/구독 버튼 --> <!-- 작성 ID가 로그인 ID와 같으면 표시하지 않음 -->
 								<td class="td_button">
-								<c:if test="${loginId != board.userid}">	<!-- 작성 ID가 로그인 ID와 같으면 표시하지 않음 -->
+								<c:if test="${loginId != board.userid}">
 								<a href="#" data-toggle="tooltip" title="좋아요"><span
 										class="glyphicon glyphicon-thumbs-up" aria-hidden="true"
 										style="color: black;" boardnum="${board.boardnum}"
@@ -63,13 +64,18 @@
 								<td colspan='3'><hr class="tr_header"></td>
 							</tr>
 							<tr>
-								<td colspan="3" style="word-break:break-all;" class="content">
-								 ${fn:replace(board.content, crcn, br)}	<!-- 글 내용 줄바꿈 처리 -->
+								<!-- 글 내용 (줄바꿈 처리) -->
+								<td colspan="3" style="word-break:break-all;" class="content"> 
+								<div class="fileField" style="background-color:#f0f5f5; margin-top: -30px; margin-bottom: 10px; padding: 10px; border: dotted 0.5px white;">
+									<img src="images/galaxy-1.jpg"> &nbsp;&nbsp; File Title ${board.filenum}
+								</div>
+								 ${fn:replace(board.content, crcn, br)}	
 								 <br>
-									<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 다를 때만 표시 -->
+								 <!-- 글 수정,삭제 버튼 : 작성ID와 로그인ID가 다를 때만 표시 -->	
+									<c:if test="${board.userid == loginId}">					
 										<span class="writerButton" style="float:right; padding-right:8px;"> 
-											<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 
-											<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->
+											<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a>
+											<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> 
 										</span>
 									</c:if> 
 						<%-- 			<span class="replybutton" id="replybutton"> <a role="button"

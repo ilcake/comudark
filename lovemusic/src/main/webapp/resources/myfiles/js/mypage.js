@@ -1,7 +1,7 @@
 $(function(){
 	
 	//반응형 그리드
-	$('#container').wallyti();
+	//$('#container').wallyti();
 
 	//사용자가 이전에 좋아요 누른 게시물 표시
 	$.ajax({
