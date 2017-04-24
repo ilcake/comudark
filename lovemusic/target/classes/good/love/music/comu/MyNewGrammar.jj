@@ -34,7 +34,6 @@ public class MyNewGrammar
   Token note = new Token();
   Token effect = new Token();
   Token value = new Token();
-  Token word = new Token();
   Token number = new Token();
   ArrayList < Integer > list = new ArrayList < Integer > ();
   ArrayList < String > noteList = new ArrayList < String > ();
@@ -102,9 +101,7 @@ TOKEN :
 | < SETNOTE : "note" >
 | < NUMBER : (< DIGIT >)+ >
 | < DIGIT : [ "0"-"9" ] >
-| < ALPHA : [ "A"-"Z", "a"-"z" ] >
-| < WORD : (< ALPHA >)+ >
-| < NOTE : < WORD > (< NUMBER >)* >
+| < NOTE : ([ "A"-"Z", "a"-"z" ])+ (< NUMBER >)* >
 }
 
 boolean readLine() throws Exception :
@@ -132,11 +129,11 @@ boolean readLine() throws Exception :
     return true;
   }
 | 
-  < INS > word = < WORD >
+  < INS > note = < NOTE >
   {
-    if (generator.getList().containsKey(word.image))
+    if (generator.getList().containsKey(note.image))
     {
-      url = word.image;
+      url = note.image;
     }
     else
     {
@@ -145,11 +142,11 @@ boolean readLine() throws Exception :
     return inTheMethod();
   }
 | 
-  < LOOP > word = < WORD > number = < NUMBER >
+  < LOOP > note = < NOTE >
   {
-    if (generator.getList().containsKey(word.image))
+    if (generator.getList().containsKey(note.image.replaceAll("\\d", "")))
     {
-      url = word.image + number.image;
+      url = note.image;
       setBPM(url);
       isSetBPM = true;
     }
@@ -198,8 +195,8 @@ boolean inTheMethod() throws Exception :
       }
       else
       {
-        result += String.format("loadAudio('%s', %f); \n", generator.getFilePath(url), getLoc(btLocation, 0));
-        btLocation++;
+        result += String.format("loadAudio('%s', %f); \n", generator.getFilePath(url), getLoc(location, 0));
+        location++;
       }
     }
     return true;

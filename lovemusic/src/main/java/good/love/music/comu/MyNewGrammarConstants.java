@@ -32,11 +32,7 @@ public interface MyNewGrammarConstants {
   /** RegularExpression Id. */
   int DIGIT = 14;
   /** RegularExpression Id. */
-  int ALPHA = 15;
-  /** RegularExpression Id. */
-  int WORD = 16;
-  /** RegularExpression Id. */
-  int NOTE = 17;
+  int NOTE = 15;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -58,8 +54,6 @@ public interface MyNewGrammarConstants {
     "\"note\"",
     "<NUMBER>",
     "<DIGIT>",
-    "<ALPHA>",
-    "<WORD>",
     "<NOTE>",
     "\";\"",
     "\"{\"",

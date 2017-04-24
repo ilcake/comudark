@@ -1,8 +1,9 @@
 
 var theMap;
 var bpm;
-var tempol
+var tempo;
 var beatStack;
+var selectedBeat;
 var melodyStack;
 var bassStack;
 var thePicked = [];
@@ -27,6 +28,7 @@ function initHiCu() {
 		type : "POST",
 		success : function(resp) {
 			theMap = resp;
+			console.log((theMap));
 			$.each(theMap, function(index, item) {
 				if (item.length != 0) {
 					console.log("index_" + index);
@@ -58,8 +60,8 @@ function playEvent() {
 			"source" : theSource
 		},
 		success : function(resp) {
-			alert(resp);
 			eval(resp);
+			goLed();
 			$("#play").addClass("playing");
 			$("#stop").addClass("playing");
 		},
@@ -85,27 +87,31 @@ function stopEvent() {
 function insAddEvent() {
 	var ins = $(this).attr("dt-ins");
 	console.log(ins + " is requested");
-	var serial = 1 + Math.floor(Math.random() * 50000);
 
 	var theContents = "";
-	theContents += "<div id='area_" + serial + "' class='addedLines'>";
+	var serial = 1 + Math.floor(Math.random() * 50000);
 	switch (ins) {
 	case "beats":
+		beatStack = "";
+		thePicked = [];
+		theContents += "<div id='area_" + serial + "' class='addedLines'>";
 		var btSelected = $("#beatSelection").val();
 		switch (btSelected) {
-		case "loops":
+		case "beat":
 			theContents += "<div class='buttons_row'>";
-			theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></span> ";
+			theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='beat'></span> ";
 			for (var i = 1; i < 17; i++) {
-				theContents += "<img dt-cla='loops' dt-sta='off' dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn beat' src='myfiles/images/hicu/button_off.png'>";
+				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn beat' src='myfiles/images/hicu/button_off.png'>";
 			}
 			theContents += "</div>";
+			$("#btnsBeat").html(theContents);
 			break;
 
 		case "acu":
 		case "r8":
+			theContents += "<div id='area_" + serial + "' class='addedLines'>";
 			theContents += "<div class='selectLine'><table class='theSelectionTable'><tr>";
-			theContents += "<th><span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'></th>";
+			theContents += "<th><span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'  dt-who='beat'></th>";
 			theContents += "<th><div class='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
 			theContents += "<span class='tempocontrol'><img class='tempC' src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>";
 			theContents += "<img class='tempC' src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>";
@@ -119,25 +125,102 @@ function insAddEvent() {
 				theContents += "</div>";
 			//plusSize += 41.33;
 			});
+			$("#btnsBeat").html(theContents);
+			tmpControl();
 			break;
 		}
 		break;
 
 	case "bass":
+		bassStack = "";
+		console.log("the Bpm Now == " + bpm);
+		console.log("search Bass == " + (bpm - 0.2) + "~" + (bpm + 0.2));
+
+		var bassArr = theMap.bass;
+		var newBass = [];
+		$.each(bassArr, function(index, item) {
+			if ((bpm - 0.2 <= item.bpm) && (bpm + 0.2) >= item.bpm) {
+				newBass.push(item);
+			}
+		});
+		console.log(newBass);
+		newBass = shuffle(newBass);
+
+		theContents += "<div id='area_" + serial + "' class='addedLines'>";
+		theContents += "<div class='buttons_row'>";
+		theContents += "<span class='label'>" + ins + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='bass'></span> ";
+		$.each(newBass, function(index, item) {
+			if (index < 16) {
+				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='bass' dt-loc='1' dt-nt='" + item.fileName + "' id='beat_" + item.fileName + "' class='hiBtn bass' src='myfiles/images/hicu/button_off.png'>";
+			}
+		});
+		theContents += "</div></div>";
+
+		$("#btnsBass").html(theContents);
 
 		break;
 
 	case "melody":
+		melodyStack = "";
+		console.log("the Bpm Now == " + bpm);
+		var melodyArr = theMap.melody;
+		console.log(melodyArr);
+		var newMel = [];
+		$.each(melodyArr, function(index, item) {
+			if ((item.bpm - 0.1 <= bpm) && (item.bpm + 0.1) >= bpm) {
+				newMel.push(item);
+			}
+		});
+		console.log(newMel);
+		newMel = shuffle(newMel);
+
+		theContents += "<div id='area_" + serial + "' class='addedLines'>";
+		theContents += "<div class='buttons_row'>";
+		theContents += "<span class='label'>Melo <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='bass'></span> ";
+		$.each(newMel, function(index, item) {
+			if (index < 16) {
+				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='" + ins + "' dt-loc='1' dt-nt='" + item.fileName + "' id='" + ins + "_" + item.fileName + "' class='hiBtn " + ins + "' src='myfiles/images/hicu/button_off.png'>";
+			}
+		});
+		theContents += "</div></div>";
+
+		$("#btnsMelody").html(theContents);
 		break;
 	}
 	theContents += "</div>";
-	$("#btnsArea").html(theContents);
+
 	$(".ins_remove").on("click", insRemoveEvent);
 	$(".hiBtn").on("click", btnEvent);
-	tmpControl();
 	console.log("wow!! " + serial + " added");
 }
 
+
+
+/********************************************** 
+*
+*               Shuffle Array!!!
+*
+***********************************************/
+function shuffle(array) {
+	var currentIndex = array.length,
+		temporaryValue,
+		randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
 /********************************************** 
 *
 *               INS Remove Event!
@@ -184,7 +267,7 @@ function btnEvent() {
 	var theOne = $(this);
 
 	var status = $(this).attr("dt-sta");
-	var isLoop = ($(this).attr("dt-cla")) == "loops";
+	var isLoop = ($(this).attr("dt-cla")) == "loop";
 
 	if (status == "off") {
 		var insData = theOne.attr("dt-ins");
@@ -195,6 +278,24 @@ function btnEvent() {
 			switch (insData) {
 			case "beat":
 				beatStack = theCodeDt;
+				$.each(theMap.beat, function(index, item) {
+					if (item.fileName == ntData) {
+						bpm = item.bpm;
+						console.log("theDuration now = " + bpm);
+					}
+				});
+
+
+				$.each(thePicked, function(index, item) {
+					var whoIsIt = item.split("-")[0];
+					if ( (whoIsIt == "beat") ) {
+						thePicked.splice(index, 1);
+					}
+				});
+				for (var i = 0; i < 17; i++) {
+					$("#beat_" + i).attr("src", "myfiles/images/hicu/button_off.png");
+					$("#beat_" + i).attr("dt-sta", "off");
+				}
 				break;
 			case "melody":
 				melodyStack = theCodeDt;
@@ -206,16 +307,6 @@ function btnEvent() {
 
 
 
-			$.each(thePicked, function(index, item) {
-				var whoIsIt = item.split("-")[0];
-				if ((whoIsIt == "beat") || (whoIsIt == "melody") || (whoIsIt == "bass")) {
-					thePicked.splice(index, 1);
-				}
-			});
-			for (var i = 0; i < 17; i++) {
-				$("#beat_" + i).attr("src", "myfiles/images/hicu/button_off.png");
-				$("#beat_" + i).attr("dt-sta", "off");
-			}
 		}
 		theOne.attr("src", "myfiles/images/hicu/button_on.png");
 		theOne.attr("dt-sta", "on");
@@ -263,16 +354,16 @@ function mkCode() {
 		var theOne = who.split("-");
 		var theIns = theOne[0];
 		if (theIns == "beat") {
-			beatTemp = theOne;
+			beatTemp = beatStack.split("-");
 		} else if (theIns == "melody") {
-			melodyTemp = theOne;
+			melodyTemp = melodyStack.split("-");
 		} else if (theIns == "bass") {
-			bassTemp = theOne;
+			bassTemp = bassStack.split("-");
 		} else {
 			var isChange = (num == 0 || temp != theIns);
 			if (isChange) {
 				theCode += "\nins " + theIns + "{\n";
-				theCode += "  location 1;\n";
+				theCode += "  location 0; do 3;\n";
 				temp = theIns;
 			}
 			theCode += "  note(" + theOne[1] + "," + theOne[2] + ");\n";
@@ -282,18 +373,18 @@ function mkCode() {
 				theCode += "}\n";
 			}
 		}
-		if (beatTemp.length > 0) {
-			theBeatCode = "loop beat " + beatTemp[1] + "{\n  location 1;\n  do 1;\n}\n";
+		if (beatTemp.length > 0 && (beatStack != "")) {
+			theBeatCode = "loop beat" + beatTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
 		} else {
 			theBeatCode = "bpm " + $("#tempo").text() + ";";
 		}
 
-		if (bassTemp.length > 0) {
-			theBassCode = "loop bass " + bassTemp[1] + "{\n  location 1;\n  do 1;\n}\n";
+		if (bassTemp.length > 0 && (bassStack != "")) {
+			theBassCode = "loop bass" + bassTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
 		}
 
-		if (melodyTemp.length > 0) {
-			theMelodyCode = "loop melody " + melodyTemp[1] + "{\n  location 1;\n  do 1;\n}\n";
+		if (melodyTemp.length > 0 && (melodyStack != "")) {
+			theMelodyCode = "loop melody" + melodyTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
 		}
 	});
 
@@ -309,6 +400,7 @@ function mkCode() {
 function tmpControl() {
 	var bpmNow = Number($("#tempo").text());
 	$("#tempo").text(bpmNow);
+	goNewTempo(bpmNow);
 
 
 	$("#tempodec").on("click", function() {
@@ -317,6 +409,7 @@ function tmpControl() {
 		console.log("tempodec is on" + bpmNow);
 		$("#tempo").text(bpmNow);
 		goNewTempo(bpmNow);
+		console.log("theDuration now = " + bpm);
 	});
 	$("#tempoinc").on("click", function() {
 		var bpmNow = Number($("#tempo").text());
@@ -324,6 +417,7 @@ function tmpControl() {
 		console.log("tempoinc is on" + bpmNow);
 		$("#tempo").text(bpmNow);
 		goNewTempo(bpmNow);
+		console.log("theDuration now = " + bpm);
 	});
 	console.log("tmp Control loaded //==" + bpm);
 }
@@ -339,6 +433,54 @@ function goNewTempo(theod) {
 	bpm = ((theTempoValue * 60) / theod) / 4;
 	tempo = bpm / theTempoValue;
 }
+
+
+
+
+
+/********************************************** 
+*
+*                 Led Controls
+*
+***********************************************/
+
+function goLed() {
+	onLeds();
+	offLeds();
+}
+
+function onLeds() {
+	console.log("onLeds start");
+	for (var i = 1; i < 17; i++) {
+		var thisMan = ("#LED_" + i);
+		var theTime = ((bpm / 16) * i * 1000);
+		mkOnLed(thisMan, theTime);
+	}
+}
+
+function mkOnLed(who, time) {
+	setTimeout(function() {
+		$(who).attr("src", "myfiles/images/hicu/LED_on.png");
+	}, time);
+}
+function mkOffLed(who, time) {
+	setTimeout(function() {
+		$(who).attr("src", "myfiles/images/hicu/LED_off.png");
+	}, time);
+}
+
+function offLeds() {
+	for (var i = 1; i < 17; i++) {
+		var thisMan = ("#LED_" + i);
+		var theTime = ((bpm / 16) * i * 1000) + ((bpm / 16) * 1000);
+		mkOffLed(thisMan, theTime);
+	}
+}
+
+function initLeds() {
+	$(".leds").attr("src", "myfiles/images/hicu/LED_off.png");
+}
+
 
 /********************************************** 
 *

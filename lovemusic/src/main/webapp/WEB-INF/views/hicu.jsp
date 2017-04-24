@@ -86,25 +86,28 @@
 										<div class="containerBIN" id="pad">
 											<div class="selectLine" id="beatLine">
 												<table class="theSelectionTable">
-													<tr>
-														<th><span class="label">Beats</span><select
-															id="beatSelection"><option value="loops">MadeSet</option>
-																<option value="acu">Acustic</option>
-																<option value="r8">R8</option></select> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="beats"></th>
-														<th><span class="label">Bass</span> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="bass"></th>
-														<th><span class="label">Melody</span> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="melody"></th>
+
+													<th><span class="label">Beats</span><select
+														id="beatSelection"><option value="beat">MadeSet</option>
+															<option value="acu">Acustic</option>
+															<option value="r8">R8</option></select> <img
+														src="myfiles/images/hicu/ins_add.png" class="ins_add"
+														dt-ins="beats"></th>
+
+													<th><span class="label">Bass</span><img
+														src="myfiles/images/hicu/ins_add.png" class="ins_add"
+														dt-ins="bass"> &nbsp;&nbsp;&nbsp; <span
+														class="label">Melody</span><img
+														src="myfiles/images/hicu/ins_add.png" class="ins_add"
+														dt-ins="melody"></th>
 													</tr>
 												</table>
 											</div>
 
 											<!-- Buttons Row -->
-											<div class="btnsArea" id="btnsArea"></div>
+											<div class="btnsArea" id="btnsBeat"></div>
+											<div class="btnsArea" id="btnsBass"></div>
+											<div class="btnsArea" id="btnsMelody"></div>
 
 											<!--------   LED Row   --------->
 											<div class="buttons_row" id="LED_row">
@@ -113,13 +116,16 @@
 										</div>
 										<hr />
 										<div class="containerBIN" id="tools">
-											<img id="play" src="myfiles/images/hicu/btn_play.png"
-												width="80" height="33"><img id="stop"
-												src="myfiles/images/hicu/btn_stop.png" width="80"
-												height="33"> <img id="save"
-												src="myfiles/images/hicu/btn_save.png"><img id="load"
-												src="myfiles/images/hicu/btn_load.png"><img id="reset"
-												src="myfiles/images/hicu/btn_reset.png">
+											<div class="toolBtns" id="toolBtns">
+												<span id="playStop"> <img id="play"
+													src="myfiles/images/hicu/btn_play.png" width="80"
+													height="33"><img id="stop"
+													src="myfiles/images/hicu/btn_stop.png" width="80"
+													height="33"></span> <span id="toolBlank"></span><span
+													id="saveReset"><img id="save"
+													src="myfiles/images/hicu/btn_save.png"><img
+													id="reset" src="myfiles/images/hicu/btn_reset.png"></span>
+											</div>
 											<div>
 												<textarea id="resultCode"></textarea>
 											</div>

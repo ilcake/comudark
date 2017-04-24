@@ -71,6 +71,10 @@
 
 
  */
+th {
+	text-align: center;
+}
+
 .containerB {
 	border-radius: 10px;
 	border: 1px solid rgb(230, 230, 230);
@@ -154,7 +158,7 @@
 }
 
 .tempodisplay {
-	background-image: url('resources/myfiles/images/hicu/tempo_bg.png');
+	background-image: url('../images/hicu/tempo_bg.png');
 	width: 97px;
 	height: 37px;
 	display: inline-block;
@@ -235,4 +239,30 @@ select {
 
 #stop.playing {
 	display: inline;
+}
+
+#toolBtns {
+	width: 90%;
+	text-align: center;
+	padding: 1px;
+	margin: 0px auto;
+}
+
+#playStop {
+	width: 30%;
+	text-align: center;
+	padding: 1px;
+	margin: 0px auto;
+}
+
+#saveReset {
+	width: 30%;
+	text-align: center;
+	padding: 1px;
+	margin: 0px auto;
+}
+
+#toolBlank {
+	width: 80px;
+	display: inline-block;
 }
