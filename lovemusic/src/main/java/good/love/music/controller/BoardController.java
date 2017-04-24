@@ -141,7 +141,8 @@ public class BoardController {
 		reply.setUserid(loginId);
 		boardRepository.replyWrite(reply);
 		
-		return "redirect:shared";
+		String uri = request.getHeader("referer");
+		return uri;
 	}
 
 	// 댓글 수정

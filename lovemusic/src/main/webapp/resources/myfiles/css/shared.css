@@ -162,9 +162,44 @@ input[type=text]{
 	width: auto;
 }
 
+input[type=text]:focus{
+	outline: none !important;
+}
+
+.search:focus{ outline: none;}
+
 .fileField{
 	border: solid 2px black; 
 	margin-top: -30px; 
 	margin-bottom: 5px; 
 	padding: 5px;	
 }
+
+.wrapper > .search{
+	height: 38px; 
+	color:white; 
+	top:100px; 
+	right: 20px; 
+	margin:auto; 
+	position: absolute; 
+	border-radius:10px; 
+	border: solid 2px red; 
+	padding: 2px; 
+	padding-bottom:10px; 
+	padding-right:10px;
+	
+}
+
+.wrapper > .search > .searchText{
+	background:none; 
+	border:none; 
+	color:white; 
+	padding-top:-20px; 
+	margin-top:-10px;
+}
+
+.wrapper > .search > .glyphicon-search{
+	color:white; 
+	padding-top:-10px;
+}
+

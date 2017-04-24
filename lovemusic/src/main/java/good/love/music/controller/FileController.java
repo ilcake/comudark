@@ -2,6 +2,7 @@ package good.love.music.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class FileController {
 	@Autowired
 	FileRepository fileRepository;
 	
+	@Autowired
+	HttpServletRequest request;
+	
 	//이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
 	
@@ -36,6 +40,9 @@ public class FileController {
 	//COMU : 음악 저장 / 수정 후 저장
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String save(MultipartFile upload, Files file, HttpSession session){
+
+		//이미지 파일 업로드 경로
+		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/covers";
 
 		//이미지 파일 처리
 		if(!upload.isEmpty()){
@@ -65,6 +72,12 @@ public class FileController {
 		return list;
 	}
 	
+	// 개인 음악 목록 불러오기(ajax)
+	@RequestMapping(value = "/userlist", method=RequestMethod.GET)
+	public @ResponseBody ArrayList<Files> userlist(HttpSession session) {
+		ArrayList<Files> userlist = fileRepository.userlist((String)session.getAttribute("loginId"));
+		return userlist;
+	}
 	
 	//특정 음악 불러오기
 	@RequestMapping(value="/load", method=RequestMethod.GET)

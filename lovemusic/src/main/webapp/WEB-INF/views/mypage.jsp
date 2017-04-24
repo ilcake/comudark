@@ -42,20 +42,26 @@
  	text-align: center;
   }
   
-  #div2:hover, #div3:hover, #div4:hover{
- 	background-color:white;
- 	opacity: 0.5;
+   #div2, #div3, #div4{
+ 	background-image: url("images/galaxy-2.jpg");
+ 	background-size: 100%;
+   background-repeat: no-repeat;
+   background-position: center;
+ 	color: black;
+  	opacity: 0.5;
  }
   
-  #div4{
+/*   #div4{
    background-image: url("images/album.jpg");
    background-size: 10%;
    background-repeat: no-repeat;
    background-position: center;
-  }
+  } */
   
   .font{
    font-size: 14px;
+   color: white;
+   text-align: center;
   }
   
   .border{
@@ -121,7 +127,8 @@ img {
 /* 	float:left;
 	display:inline; */
 	color:black;
-	background-color:white; */
+	background-color:white;
+	margin: auto;
 }
 
 table{
@@ -155,6 +162,8 @@ table{
 	margin: auto;
 	left: 15%;
 	width: 800px;
+	margin-bottom: 20px;
+	bottom: 50px;
 }
 
 .loader, .center, #loadlist{
@@ -239,6 +248,29 @@ table {
 </style>
 
 <script type="text/javascript">
+
+$(function(){
+   var page = 1;
+   
+   $(window).scroll(function(){
+         var scrollHeight = $(window).scrollTop() + $(window).height();
+         var documentHeight = $(document).height();
+         
+         if(scrollHeight == documentHeight) {
+        	 alert("page");
+               page=page+2;
+               
+             //board 3번 이후로 불러오기
+             if(page==3){
+              $('<c:forEach var="board" items="${boardList}" begin="3" end="4"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
+             }else if(page==5){
+              $('<c:forEach var="board" items="${boardList}" begin="5" end="6"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
+
+             }
+         }
+    });
+});
+
 $(document).ready(function() {
 	   //fileList START======
 	   $.ajax({
@@ -250,7 +282,7 @@ $(document).ready(function() {
 	         //img 주소 : 테스트용 임시 주소!!
 	         msg += '<td class="font"><img src="resources/covers/'
 	           + item.cover_re
-	           + '" style="width:60px; height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
+	           + '" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
 	           + item.filenum
 	           + '><br>';
 	         var title = item.file_title;
@@ -267,24 +299,6 @@ $(document).ready(function() {
 	   });
 	   //fileList END=====
 
-	   var page = 1;
-	    
-	   $(window).scroll(function(){
-	         var scrollHeight = $(window).scrollTop() + $(window).height();
-	         var documentHeight = $(document).height();
-	         
-	         if(scrollHeight == documentHeight) {
-	               page=page+2;
-	               
-	             //board 3번 이후로 불러오기
-	             if(page==3){
-	              $('<c:forEach var="board" items="${boardList}" begin="3" end="4"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
-	             }else if(page==5){
-	              $('<c:forEach var="board" items="${boardList}" begin="5" end="6"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
-
-	             }
-	         }
-	    });
 	  });
 
 	  
@@ -338,16 +352,16 @@ $(document).ready(function() {
 							</li>
 					</ul>
 					
-				 <div class="tab-content">
+				 <div class="tab-content" style="margin-top: 1px;">
 					<!-- ====================== tab1 : MY FILES===================== -->
-					<div id="myfiles" class="tab-pane in active" style=""> 
+					<div id="myfiles" class="tab-pane in active"> 
 						<div id="loader" style="padding:20px; padding-left: 40px; border:none;"></div>
 						<!-- loaded file -->
 						<table style="border: white solid 3px; text-align: center; color:white; padding:10px;">
 							<tr>
-								<td id="div2"><a href="write">&lt; go write</a></td>
+								<td id="div2"><a href="write" style="color:white;" id="hov2">&lt; go write</a></td>
 								<td id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
-									<span style="z-index: -1;">Drop & write</span></td>
+									<span style="color:white;" id="hov3">Drop & write</span></td>
 								<td id="div4" ondrop="drop2(event)"
 									ondragover="allowDrop(event)"></td>
 							</tr>

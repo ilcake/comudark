@@ -19,7 +19,48 @@
 <script src="js/jquery.wallyti.js"></script>
 <link href='resources/myfiles/css/shared.css' rel='stylesheet' type='text/css'>
 <script src="resources/myfiles/js/shared.js"></script>
-
+<style>
+	input[type=text]{
+		font-size: medium;
+	}
+	input:focus{
+		outline: none;
+	}
+	
+	.card-container {
+  cursor: pointer;
+  height: 55px;
+  perspective: 600;
+  position: relative;
+  width: 55px;
+}
+.card {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+}
+.card:hover {
+  transform: rotateY(180deg);
+}
+.card .side {
+  backface-visibility: hidden;
+  border-radius: 100px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+.card .back {
+	border-radius: 100px;
+	background: #eaeaed;
+  color: #0087cc;
+  line-height: 150px;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+</style>
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper" style="background:none;">
@@ -32,14 +73,24 @@
 
 		<!-- =============================== CONTENT ============================= -->
 		<div class="wrapper">
-			<div id="container" style="margin: 30px; padding:30px;" >
+		<div class="search" style="height: 38px; color:white; top:100px; right: 20px; margin:auto; position: absolute; border-radius:10px; border: solid 2px red; padding: 2px; padding-bottom:10px; padding-right:10px;">
+			<input type="text" style="background:none; border:none; color:white; padding-top:-20px; margin-top:-10px;">&nbsp;
+			<a href="search"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></a> </div>
+		<div></div><div></div><hr><hr><hr>
+			<div id="container" style="margin: 30px; padding:30px; padding-top:50px;" >
+			
 				<!-- 게시물 시작 (Collapse) -->
 				<c:forEach var="board" items="${boardList}">
 					<div class="box">
 						<table class='board'>
 							<tr>
 								<td class="td_img">
-									<img src="images/galaxy-1.jpg" alt="image" class="cover">
+									<div class="card-container">
+										<div class="card">
+										<div class="side"><img src="images/galaxy-1.jpg" alt="image" class="cover"></div>
+										<div class="side back">▶</div>
+										</div>
+									</div>
 								</td>
 								<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
 									&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>
@@ -109,11 +160,10 @@
 							</c:forEach>
 							<tr>
 								<form action="replyWrite" method="get">
-									<input type="hidden" name="boardnum" value="${board.boardnum}" />
 									<td class="td_img">댓글</td>
 									<td class="td_center" style="width: 70%;"><input
 										type="text" name="replytext" id="replytext" style="width:100%;"></td>
-									<td><button style="border: none; background: none;">
+									<td><button style="border: none; background: none;" class="reply" boardnum="${board.boardnum }">
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</button></td>
 								</form>
