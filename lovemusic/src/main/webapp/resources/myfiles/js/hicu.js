@@ -382,10 +382,10 @@ function mkCode() {
 			var isChange = (num == 0 || temp != theIns);
 			if (isChange) {
 				theCode += "\nins " + theIns + "{\n";
-				theCode += "  location 0; do 1;\n";
+				theCode += "  location 0;\n  do 1;\n";
 				temp = theIns;
 			}
-			theCode += "  note(" + theOne[1] + "," + theOne[2] + ");\n";
+			theCode += "  note(" + theOne[1] + "," + (theOne[2] - 1) + ");\n";
 			if ((num + 1) == leng) {
 				theCode += "}\n";
 			} else if ( (thePicked[num + 1].split("-")[0] != theIns) ) {
@@ -393,17 +393,17 @@ function mkCode() {
 			}
 		}
 		if (beatTemp.length > 0 && (beatStack != "")) {
-			theBeatCode = "loop beat" + beatTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+			theBeatCode = "\nloop beat" + beatTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		} else {
-			theBeatCode = "bpm " + $("#tempo").text() + ";";
+			theBeatCode = "bpm " + $("#tempo").text() + ";\n";
 		}
 
 		if (bassTemp.length > 0 && (bassStack != "")) {
-			theBassCode = "loop bass" + bassTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+			theBassCode = "\nloop bass" + bassTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		}
 
 		if (melodyTemp.length > 0 && (melodyStack != "")) {
-			theMelodyCode = "loop melody" + melodyTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+			theMelodyCode = "\nloop melody" + melodyTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		}
 	});
 
