@@ -98,69 +98,71 @@
 }
 
 /*로그인 페이지 css*/
-#loginBox{
-	width:600px; 
-	margin: auto; 
-	border: 3px solid white; 
-	border-radius: 0px; 
+#loginBox {
+	width: 600px;
+	margin: auto;
+	border: 3px solid white;
+	border-radius: 0px;
 	padding: 70px;
 	padding-top: 30px;
 }
 
-#menu{
+#menu {
 	background: none;
 	text-aline: right;
 	font-size: large;
-	color:white; 
+	color: white;
 }
 
-#find{
+#find {
 	font-size: small;
 	text-align: right;
 }
 
-#x{
-	right:0px; 
-	position: absolute; 
+#x {
+	right: 0px;
+	position: absolute;
 	padding-top: 10px;
-	padding-right: 30px; 
+	padding-right: 30px;
 	font-size: xx-large;
 }
 
-img{	
+img {
 	width: 30px;
 	height: 30px;
 }
 
-input, input:hover{
-background: none;
-border: none;
-border-bottom: white 1px solid;
+input, input:hover {
+	background: none;
+	border: none;
+	border-bottom: white 1px solid;
 }
-	
 }
 </style>
 
 <script>
-$(function(){
-	$("#loginbutton").on('click', function(){
-		$.ajax({
-			url : "login"
-			, type : "post"
-			, data : {"userid" : $('#userid2').val(), "password" : $('#password2').val()}
-			, success : function(resp) {
-				if(resp == "errorMsg") {
-					alert("로그인 실패");
-					$("#userid2").val("");
-					$("#password2").val("");
-				} else {
-					alert("로그인 성공");
-					location.href="home";
+	$(function() {
+		$("#loginbutton").on('click', function() {
+			$.ajax({
+				url : "login",
+				type : "post",
+				data : {
+					"userid" : $('#userid2').val(),
+					"password" : $('#password2').val()
+				},
+				success : function(resp) {
+					if (resp == "errorMsg") {
+						alert("로그인 실패");
+						$("#userid2").val("");
+						$("#password2").val("");
+					} else {
+						alert("로그인 성공");
+						location.href = resp;
+					}
 				}
-			}
+			});
 		});
 	});
-});
 </script>
 
 </head>
@@ -172,7 +174,8 @@ $(function(){
 		<!-- <div class="qt-particles" id="particlesheader" data-color="#ffffff"
 			data-opacity="0.5" data-speed="1"></div> -->
 		<nav id="stickymenu" class="qt-menu white-text">
-			<a href="."><span id="x"><img src="myfiles/images/cross-out.png"></span></a>
+			<a href="#" onclick="history.go(-1);"><span id="x"><img
+					src="myfiles/images/cross-out.png"></span></a>
 		</nav>
 	</div>
 	<!-- ====================== MENU END ================================================ -->
@@ -187,25 +190,28 @@ $(function(){
 					<div class="title-container">
 						<div class="headline">
 							<!-- 로그인 -->
-				    		<div id="loginBox">
-							<h3>LOGIN</h3>
-										<div class="content">
-												<div class="input-group">
-													<input type="text" class="form-control" placeholder="ID"
-														name="userid" id="userid2"> 
-												</div>
-												<div class="input-group">
-													<input type="password" placeholder="Password"
-														class="form-control" name="password" id="password2" />
-												</div>
-										</div>
-										<br>
-										<div class="footer text-center" >
-												<button class="btn btn-primary" id="loginbutton" style="display:inline;">LOGIN</button>
-												<div id="find"><a href="find">FIND ID & password</a></div>
-										</div>
+							<div id="loginBox">
+								<h3>LOGIN</h3>
+								<div class="content">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="ID"
+											name="userid" id="userid2">
+									</div>
+									<div class="input-group">
+										<input type="password" placeholder="Password"
+											class="form-control" name="password" id="password2" />
+									</div>
 								</div>
-				
+								<br>
+								<div class="footer text-center">
+									<button class="btn btn-primary" id="loginbutton"
+										style="display: inline;">LOGIN</button>
+									<div id="find">
+										<a href="find">FIND ID & password</a>
+									</div>
+								</div>
+							</div>
+
 							<!--Original logo height 80px-->
 							<!-- 로고 위치 
                <img src="/assets/Coverr-40bfea29db9c1dff5dbea5f6238cc98a.svg"
@@ -258,22 +264,21 @@ $(function(){
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
-	
+
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-	
+
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-	
-	
+
 		});
-	
+
 		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
@@ -286,8 +291,7 @@ $(function(){
 				}, false);
 				bgm.play();
 			} */
-	
-	
+
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -298,16 +302,15 @@ $(function(){
 		   keyEnabled : true
 		});
 		 */
-	
+
 		//}
-	
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-	
+
 		}
-	
+
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -315,33 +318,31 @@ $(function(){
 			});
 			scaleBannerVideoSize(element);
 		}
-	
+
 		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width(),
-				windowHeight = $(window).height() + 5,
-				videoWidth,
-				videoHeight;
+			var windowWidth = $(window).width(), windowHeight = $(window)
+					.height() + 5, videoWidth, videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
-				function() {
-					var videoAspectRatio = $(this).data('height')
-					//$(this).data('width');
-	
-					$(this).width(windowWidth);
-					/* if (windowWidth < 1000) {
-					   videoHeight = windowHeight;
-					   videoWidth = videoHeight / videoAspectRatio;
-					   $(this).css(
-					         {
-					            'margin-top' : 0,
-					            'margin-left' : -(videoWidth - windowWidth)
-					                  / 2 + 'px'
-					         });
-					   $(this).width(videoWidth).height(videoHeight);
-					} */
-					$('.homepage-hero-module .video-container video').addClass(
-						'fadeIn animated');
-				});
+					function() {
+						var videoAspectRatio = $(this).data('height')
+						//$(this).data('width');
+
+						$(this).width(windowWidth);
+						/* if (windowWidth < 1000) {
+						   videoHeight = windowHeight;
+						   videoWidth = videoHeight / videoAspectRatio;
+						   $(this).css(
+						         {
+						            'margin-top' : 0,
+						            'margin-left' : -(videoWidth - windowWidth)
+						                  / 2 + 'px'
+						         });
+						   $(this).width(videoWidth).height(videoHeight);
+						} */
+						$('.homepage-hero-module .video-container video')
+								.addClass('fadeIn animated');
+					});
 		}
 	</script>
 </body>

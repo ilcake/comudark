@@ -30,18 +30,17 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody String login(String userid, String password, HttpSession session, HttpServletRequest request) {
 		User user = userRepository.login(userid, password);
-		if(user != null){
-			if(user.getPassword().equals(password)){
+		if (user != null) {
+			if (user.getPassword().equals(password)) {
 				session.setAttribute("loginId", user.getUserid());
-				String uri = request.getHeader("referer");
-				return uri;
+				return (String) session.getAttribute("fromPage");
 			}
 		}
 		return "errorMsg";
 	}
 
 	// logout 처리
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
 		String uri = request.getHeader("referer");

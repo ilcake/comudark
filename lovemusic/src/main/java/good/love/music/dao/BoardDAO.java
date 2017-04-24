@@ -51,8 +51,8 @@ public interface BoardDAO {
 	// 좋아요 등록
 	public int like(Like like) throws Exception;
 
-	// 좋아요 리스트(랭킹)
-	public ArrayList<Like> rankList() throws Exception;
+	// 좋아요 랭킹
+	public Map<String, Object> likeRanking() throws Exception;
 
 	// 좋아요 리스트(개인)
 	public ArrayList<Like> idList(String userid) throws Exception;
@@ -65,4 +65,7 @@ public interface BoardDAO {
 
 	// 구독 리스트
 	public ArrayList<Subscribe> subscribeList(String userid) throws Exception;
+	
+	// 구독 랭킹
+		public Map<String, Object> subscribeRanking() throws Exception;
 }
