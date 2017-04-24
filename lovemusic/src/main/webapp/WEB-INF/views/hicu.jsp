@@ -169,9 +169,9 @@
 	<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
 
 	<!--  HICU Action  -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
 	<script src="myfiles/js/hicu.js"></script>
-	<script src="resources/audiojs/three.min.js"></script>
-	<script src="resources/audiojs/comu.js"></script>
 
 </body>
 

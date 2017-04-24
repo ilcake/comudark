@@ -6,6 +6,10 @@ var beatStack;
 var selectedBeat;
 var melodyStack;
 var bassStack;
+var playGroup;
+var interPlay;
+var interLed;
+var codeResult;
 var thePicked = [];
 var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
 
@@ -47,7 +51,7 @@ function initHiCu() {
 
 /********************************************** 
 *
-*                 on Click Play !
+*        on Click Play ! / Stop !
 *
 ***********************************************/
 function playEvent() {
@@ -60,21 +64,36 @@ function playEvent() {
 			"source" : theSource
 		},
 		success : function(resp) {
-			eval(resp);
-			goLed();
+			console.log(resp);
+			codeResult = resp;
+			playAction();
 			$("#play").addClass("playing");
 			$("#stop").addClass("playing");
+
 		},
 		error : function(resp) {
 			alert(JSON.stringify(resp));
 		}
 	});
 }
+function goResult() {
+	eval(codeResult);
+}
+
+function playAction(theCord) {
+	goResult();
+	goLed();
+	interPlay = setInterval(goResult, (bpm * 1000));
+	interLed = setInterval(goLed, (bpm * 1000));
+}
 
 function stopEvent() {
 	console.log("STOP!!");
 	$("#stop").removeClass("playing");
 	$("#play").removeClass("playing");
+	clearInterval(interPlay);
+	clearInterval(interLed);
+	playGroup.stop();
 
 }
 
@@ -363,7 +382,7 @@ function mkCode() {
 			var isChange = (num == 0 || temp != theIns);
 			if (isChange) {
 				theCode += "\nins " + theIns + "{\n";
-				theCode += "  location 0; do 3;\n";
+				theCode += "  location 0; do 1;\n";
 				temp = theIns;
 			}
 			theCode += "  note(" + theOne[1] + "," + theOne[2] + ");\n";
@@ -374,17 +393,17 @@ function mkCode() {
 			}
 		}
 		if (beatTemp.length > 0 && (beatStack != "")) {
-			theBeatCode = "loop beat" + beatTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
+			theBeatCode = "loop beat" + beatTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		} else {
 			theBeatCode = "bpm " + $("#tempo").text() + ";";
 		}
 
 		if (bassTemp.length > 0 && (bassStack != "")) {
-			theBassCode = "loop bass" + bassTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
+			theBassCode = "loop bass" + bassTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		}
 
 		if (melodyTemp.length > 0 && (melodyStack != "")) {
-			theMelodyCode = "loop melody" + melodyTemp[1] + "{\n  location 0;\n  do 3;\n}\n";
+			theMelodyCode = "loop melody" + melodyTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
 		}
 	});
 
@@ -401,6 +420,7 @@ function tmpControl() {
 	var bpmNow = Number($("#tempo").text());
 	$("#tempo").text(bpmNow);
 	goNewTempo(bpmNow);
+	mkCode();
 
 
 	$("#tempodec").on("click", function() {
@@ -410,6 +430,7 @@ function tmpControl() {
 		$("#tempo").text(bpmNow);
 		goNewTempo(bpmNow);
 		console.log("theDuration now = " + bpm);
+		mkCode();
 	});
 	$("#tempoinc").on("click", function() {
 		var bpmNow = Number($("#tempo").text());
@@ -418,6 +439,7 @@ function tmpControl() {
 		$("#tempo").text(bpmNow);
 		goNewTempo(bpmNow);
 		console.log("theDuration now = " + bpm);
+		mkCode();
 	});
 	console.log("tmp Control loaded //==" + bpm);
 }
@@ -481,6 +503,27 @@ function initLeds() {
 	$(".leds").attr("src", "myfiles/images/hicu/LED_off.png");
 }
 
+
+/********************************************** 
+*
+*               loadAudio~
+*
+***********************************************/
+function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
+	playGroup = new Pizzicato.Group();
+
+	var sound1 = new Pz.Sound({
+		source : 'file',
+		options : {
+			path : url,
+			loop : false
+		}
+	}, function() {
+		console.log(url + ' file loaded!' + time);
+		sound1.play(time, 0);
+		playGroup.addSound(sound1);
+	});
+}
 
 /********************************************** 
 *
