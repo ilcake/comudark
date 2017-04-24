@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,11 +80,13 @@
 							<br>
 							<div class="row">
 								<div class="col-md-2">
-									<img id="imgView" src="resources/covers/${file.cover_re}"
+									<label> <img id="imgView"
+										src="resources/covers/${file.cover_re}"
 										onERROR="this.src='resources/myfiles/images/comu/robot.png'"
 										style="width: 100px; height: 100px; border-radius: 100px;">
-									<input type="file" style="display: none;" id="imgInp"
+										<input type="file" style="display: none;" id="imgInp"
 										name="upload" />
+									</label>
 								</div>
 								<div class="col-md-10">
 									<div class="inlineD">
@@ -102,7 +105,15 @@
 						</c:if>
 					</form>
 				</div>
-				<div class="col-md-3 leftplace"></div>
+
+				<div class="col-md-3 rightPlace">
+					<div class="errorPlace">
+						<div>
+							<a href="#" id="errorClick"></a>
+						</div>
+						<div id="errorContent"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- Modal -->

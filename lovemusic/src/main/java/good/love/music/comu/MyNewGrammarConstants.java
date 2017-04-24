@@ -12,27 +12,29 @@ public interface MyNewGrammarConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int TEMPO = 5;
+  int TEMPO = 4;
   /** RegularExpression Id. */
-  int BPM = 6;
+  int BPM = 5;
   /** RegularExpression Id. */
-  int DO = 7;
+  int DO = 6;
   /** RegularExpression Id. */
-  int LOCATION = 8;
+  int LOCATION = 7;
   /** RegularExpression Id. */
-  int INS = 9;
+  int INS = 8;
   /** RegularExpression Id. */
-  int LOOP = 10;
+  int LOOP = 9;
   /** RegularExpression Id. */
-  int EFFECT = 11;
+  int EFFECT = 10;
   /** RegularExpression Id. */
-  int SETNOTE = 12;
+  int SETNOTE = 11;
   /** RegularExpression Id. */
-  int NUMBER = 13;
+  int NUMBER = 12;
   /** RegularExpression Id. */
-  int DIGIT = 14;
+  int DIGIT = 13;
   /** RegularExpression Id. */
-  int NOTE = 15;
+  int NOTE = 14;
+  /** RegularExpression Id. */
+  int EOL = 15;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -43,7 +45,6 @@ public interface MyNewGrammarConstants {
     "\" \"",
     "\"\\t\"",
     "\"\\r\"",
-    "\"\\n\"",
     "\"tempo\"",
     "\"bpm\"",
     "\"do\"",
@@ -55,6 +56,7 @@ public interface MyNewGrammarConstants {
     "<NUMBER>",
     "<DIGIT>",
     "<NOTE>",
+    "\"\\n\"",
     "\";\"",
     "\"{\"",
     "\"}\"",

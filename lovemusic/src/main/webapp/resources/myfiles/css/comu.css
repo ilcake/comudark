@@ -54,3 +54,11 @@ textarea {
 	top: -5px;
 	left: 27%;
 }
+
+.errorPlace {
+	background-color: wheat;
+	position: relative;
+	top: 60px;
+	width: 80%;
+	left: 6%;
+}
