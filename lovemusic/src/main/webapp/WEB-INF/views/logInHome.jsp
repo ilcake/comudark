@@ -22,23 +22,61 @@
 <script type="text/javascript">
 	$(function() {
 		$.ajax({
-			url : "login",
-			type : "post",
-			data : {
-				"userid" : $('#userid2').val(),
-				"password" : $('#password2').val()
-			},
+			url : "likeRanking",
+			type : "get",
 			success : function(resp) {
-				if (resp == "errorMsg") {
-					alert("로그인 실패");
-					$("#userid2").val("");
-					$("#password2").val("");
-				} else {
-					alert("로그인 성공");
-					location.href = resp;
-				}
+				console.log(resp);
+				var res = "<table class='table table-hover'><thead><tr>";
+				res += "<td>NO.</td>";
+				res += "<td>ID</td>";
+				res += "<td>TITLE</td>";
+				res += "<td>TOTAL</td>";
+				res += "</tr></thead>";
+				$.each(resp, function(index, item) {
+					res += "<tbody><tr>";
+					res += "<td>";
+					res += index + 1;
+					res += "</td>";
+					res += "<td>";
+					res += item.USERID;
+					res += "</td>";
+					res += "<td>";
+					res += item.TITLE;
+					res += "</td>";
+					res += "<td>";
+					res += item.RANK;
+					res += "</td>";
+					res += "</tr></tbody>";
+				});
+				res += "</table>";
+				$(".like").html(res);
 			}
 		});
+
+		$.ajax({
+			url : "subscribeRanking",
+			type : "get",
+			success : function(resp) {
+				console.log(resp);
+				var res = "<table class='table table-hover'><thead><tr>";
+				res += "<td>TOTAL</td>";
+				res += "<td>ID</td>";
+				res += "</tr></thead>";
+				$.each(resp, function(index, item) {
+					res += "<tbody><tr>";
+					res += "<td>";
+					res += item.RANK;
+					res += "</td>";
+					res += "<td>";
+					res += item.USERID;
+					res += "</td>";
+					res += "</tr></tbody>";
+				});
+				res += "</table>";
+				$(".subscribe").html(res);
+			}
+		});
+
 	});
 </script>
 </head>
@@ -53,10 +91,12 @@
 				<div class="row score">
 					<div class="col-md-5" style="background-color: red;">
 						<h3>Favorite Ranking</h3>
+						<div class="like"></div>
 					</div>
 					<div class="col-md-1"></div>
 					<div class="col-md-5" style="background-color: red;">
 						<h3>Subscribe Ranking</h3>
+						<div class="subscribe"></div>
 					</div>
 				</div>
 			</div>

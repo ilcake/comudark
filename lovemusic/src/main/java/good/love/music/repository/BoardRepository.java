@@ -170,9 +170,9 @@ public class BoardRepository {
 	}
 
 	// 좋아요 랭킹
-	public Map<String, Object> likeRanking() {
+	public ArrayList<Map<String, Object>> likeRanking() {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		Map<String, Object> raking = new HashMap<>();
+		ArrayList<Map<String, Object>> raking = new ArrayList<>();
 		try {
 			raking = dao.likeRanking();
 		} catch (Exception e) {
@@ -237,9 +237,9 @@ public class BoardRepository {
 	}
 
 	// 구독 랭킹
-	public Map<String, Object> subscribeRanking() {
+	public ArrayList<Map<String, Object>> subscribeRanking() {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		Map<String, Object> raking = new HashMap<>();
+		ArrayList<Map<String, Object>> raking = new ArrayList<>();
 		try {
 			raking = dao.subscribeRanking();
 		} catch (Exception e) {

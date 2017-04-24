@@ -145,7 +145,7 @@
 		AND like_userid = #{like_userid}
 	</delete>
 
-	<!-- 좋아요 리스트(랭킹) -->
+	<!-- 좋아요 랭킹 -->
 	<select id="likeRanking" resultType="map">
 		select rr.rank as rank,
 		bb.boardnum as boardnum, bb.title as title, bb.userid as userid
@@ -153,11 +153,12 @@
 		(select rank, boardnum
 		from
 		(SELECT count(*) rank, boardnum FROM cm_like
-		GROUP BY boardnum
-		ORDER BY count(*) desc)
+		GROUP BY boardnum)
 		where rownum BETWEEN 1 and 10
 		) rr, cm_board bb
-		where rr.boardnum = bb.BOARDNUM
+		where
+		rr.boardnum = bb.BOARDNUM
+		ORDER BY rank desc
 	</select>
 
 	<!-- 좋아요 리스트(개인) -->
@@ -171,8 +172,7 @@
 	<!-- 좋아요 리스트(전체) -->
 	<select id="likeList" resultType="Like">
 		SELECT * FROM cm_like
-		<!-- WHERE
-		like_userid = #{userid} -->
+		<!-- WHERE like_userid = #{userid} -->
 	</select>
 
 	<!-- 구독 -->
@@ -204,6 +204,6 @@
 		(SELECT count(*) rank, userid FROM CM_SUBSCRIBE
 		GROUP BY USERID
 		ORDER BY count(*) desc)
-		where rownum BETWEEN 1 and 10;
+		where rownum BETWEEN 1 and 10
 	</select>
 </mapper>

@@ -2,6 +2,7 @@ package good.love.music.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,7 @@ public class BoardController {
 
 	@Autowired
 	HttpSession session;
-	
+
 	@Autowired
 	HttpServletRequest request;
 
@@ -97,7 +98,7 @@ public class BoardController {
 		return list;
 	}
 
-	// 글 목록(전체) 
+	// 글 목록(전체)
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list() {
 		boardRepository.list();
@@ -115,7 +116,7 @@ public class BoardController {
 	@RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
 	public @ResponseBody String deleteBoard(int boardnum) {
 		boardRepository.deleteBoard(boardnum);
-		
+
 		String uri = request.getHeader("referer");
 		return uri;
 	}
@@ -136,11 +137,11 @@ public class BoardController {
 	// 댓글 등록
 	@RequestMapping(value = "/replyWrite", method = RequestMethod.GET)
 	public String replyWrite(Reply reply, HttpSession session) {
-		
+
 		String loginId = (String) session.getAttribute("loginId");
 		reply.setUserid(loginId);
 		boardRepository.replyWrite(reply);
-		
+
 		return "redirect:shared";
 	}
 
@@ -156,37 +157,37 @@ public class BoardController {
 	public String deleteReply(int replynum) {
 		System.out.println(replynum);
 		int result = boardRepository.deleteReply(replynum);
-		
+
 		System.out.println("삭제완료 ==> " + result + "개");
-		
+
 		return "shared";
 	}
 
-	//좋아요
+	// 좋아요
 	@RequestMapping(value = "/like", method = RequestMethod.GET)
 	public @ResponseBody String like(Like like) {
 		boardRepository.like(like);
 		return "result";
 	}
-	
-	//좋아요 취소
+
+	// 좋아요 취소
 	@RequestMapping(value = "/deleteLike", method = RequestMethod.GET)
 	public @ResponseBody String deleteLike(Like like) {
 		boardRepository.deleteLike(like);
 		return "result";
 	}
 
-	// 좋아요 리스트(랭킹)
-	@RequestMapping(value = "/rankList", method = RequestMethod.GET)
-	public String rankList() {
-		boardRepository.rankList();
-		return "result";
+	// 좋아요 랭킹
+	@RequestMapping(value = "/likeRanking", method = RequestMethod.GET)
+	public @ResponseBody ArrayList<Map<String, Object>> likeRanking() {
+		ArrayList<Map<String, Object>> map = boardRepository.likeRanking();
+		return map;
 	}
 
 	// 좋아요 리스트(개인)
 	@RequestMapping(value = "/idList", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Like> idList() {
-		String userid = (String)session.getAttribute("loginId");
+		String userid = (String) session.getAttribute("loginId");
 		ArrayList<Like> list = boardRepository.idList(userid);
 		return list;
 	}
@@ -204,7 +205,7 @@ public class BoardController {
 		boardRepository.writeSubscribe(subscribe);
 		return "result";
 	}
-	
+
 	// 구독 취소
 	@RequestMapping(value = "/deleteSubscribe", method = RequestMethod.GET)
 	public @ResponseBody String deleteSubscribe(Subscribe subscribe) {
@@ -215,10 +216,16 @@ public class BoardController {
 	// 구독 리스트
 	@RequestMapping(value = "/subscribeList", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Subscribe> subscribeList() {
-		String userid = (String)session.getAttribute("loginId");
+		String userid = (String) session.getAttribute("loginId");
 		ArrayList<Subscribe> list = boardRepository.subscribeList(userid);
 		System.out.println(list);
 		return list;
 	}
 
+	// 구독 랭킹
+	@RequestMapping(value = "/subscribeRanking", method = RequestMethod.GET)
+	public @ResponseBody ArrayList<Map<String, Object>> subscribeRanking() {
+		ArrayList<Map<String, Object>> map = boardRepository.subscribeRanking();
+		return map;
+	}
 }
