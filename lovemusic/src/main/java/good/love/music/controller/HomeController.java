@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import good.love.music.repository.BoardRepository;
 import good.love.music.vo.Board;
+import good.love.music.vo.Like;
 import good.love.music.vo.Reply;
 
 /**
@@ -79,6 +80,23 @@ public class HomeController {
 	public String comu() {
 		return "comu";
 	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String mypage(HttpSession session) {
+		
+		String id = (String) session.getAttribute("loginId");
+		ArrayList<Board> list = boardRepository.boardList(id);
+		session.setAttribute("boardList", list);
+		
+		//댓글 불러오기
+		List<Reply> replyAll = boardRepository.replyAll();
+		session.setAttribute("replyAll", replyAll);
+
+		//사용자가 좋아요 누른 게시물 정보 불러오기
+		ArrayList<Like> likelist = boardRepository.likeList();
+		
+		return "mypage";
+	}
 
 	@RequestMapping(value = "/hicu", method = RequestMethod.GET)
 	public String hicu() {
@@ -111,12 +129,15 @@ public class HomeController {
 
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.list();
-		System.out.println(list);
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기
 		List<Reply> replyAll = boardRepository.replyAll();
 		session.setAttribute("replyAll", replyAll);
+
+		//사용자가 좋아요 누른 게시물 정보 불러오기
+		ArrayList<Like> likelist = boardRepository.likeList();
+
 		return "shared";
 	}
 

@@ -21,8 +21,17 @@ public class UserController {
 
 	// join 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(User user) {
-		userRepository.join(user);
+	public @ResponseBody String join(User user) {
+		
+		//테스트
+		user.setEmail("test@naver.com");
+		user.setQuestion("questsion");
+		user.setAnswer("answer");
+		
+		int result = userRepository.join(user);
+		if(result==0){
+			return "error";
+		}
 		return "home";
 	}
 

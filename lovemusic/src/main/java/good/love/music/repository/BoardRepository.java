@@ -161,6 +161,13 @@ public class BoardRepository {
 		}
 		return result;
 	}
+	
+	//좋아요 취소
+	public int deleteLike(Like like) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		int result = dao.deleteLike(like);
+		return result;
+	}
 
 	// 좋아요 랭킹
 	public Map<String, Object> likeRanking() {
@@ -207,6 +214,13 @@ public class BoardRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+
+	//구독 취소
+	public int deleteSubscribe(Subscribe subscribe) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		int result = dao.deleteSubscribe(subscribe);
 		return result;
 	}
 
