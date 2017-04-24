@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
 #wiki-left, .quick-links, .quick-links a, .quick-links li, article {
 	position: relative
@@ -70,73 +70,25 @@ html[dir=rtl] .banner, html[dir=rtl] .blockIndicator, html[dir=rtl] .geckoVersio
 .param
 
 
-
-
-
-
-
-
-
-
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 .required
 
 
-
-
-
-
 	
-
-
-
-
 
 ){
 font-style
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 italic
-
-
-
-
-
-
-
-
 
 
 
@@ -231,38 +183,14 @@ html[dir=rtl] .badge:before, html[dir=rtl] .indicatorInHeadline:before,
 #doc-rendering-in-progress
 
 
-
-
-
-
-
-
-
-
 .warning
 ,
 #doc-rendering-scheduled
 
 
-
-
-
-
-
-
-
-
 .warning
 ,
 #kserrors
-
-
-
-
-
-
-
-
 
 
 .warning
@@ -288,14 +216,6 @@ html[dir=rtl] .badge:before, html[dir=rtl] .indicatorInHeadline:before,
 .overheadIndicator
 
 
-
-
-
-
-
-
-
-
 [
 style
 =
@@ -303,14 +223,6 @@ style
 ]
 ,
 .overheadIndicator
-
-
-
-
-
-
-
-
 
 
 [
@@ -326,86 +238,30 @@ style
 .warning
 
 
-
-
-
-
-
-
-
-
 .warning-review
 ,
 .warning
 
 
-
-
-
-
-
-
-
-
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 .notification
 
-
-
-
-
  
-
-
-
-
 
 ){
 padding-left
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 30
 px
-
-
-
-
-
-
-
-
 
 
 
@@ -414,52 +270,20 @@ px
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 #doc-rendering-in-progress
 
 
-
-
-
-
-
-
-
-
 .warning
 ,
 html
-
-
-
-
-
-
-
-
 
 
 [
@@ -468,38 +292,14 @@ dir
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 #doc-rendering-scheduled
 
 
-
-
-
-
-
-
-
-
 .warning
 ,
 html
-
-
-
-
-
-
-
-
 
 
 [
@@ -508,38 +308,14 @@ dir
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 #kserrors
 
 
-
-
-
-
-
-
-
-
 .warning
 ,
 html
-
-
-
-
-
-
-
-
 
 
 [
@@ -548,286 +324,126 @@ dir
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .deprecated
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .draft
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .experimental
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .experimentalBadge
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .install
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .nonStandard
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .nonstandardBadge
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .note
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .obsolete
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
 
-
-
-
-
 .overheadIndicator
-
-
-
-
-
-
-
-
 
 
 [
@@ -839,39 +455,15 @@ style
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
 
-
-
-
-
 .overheadIndicator
-
-
-
-
-
-
-
-
 
 
 [
@@ -883,97 +475,41 @@ style
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .privilegedBadge
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .translationInProgress
 ,
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
 
-
-
-
-
 .warning
-
-
-
-
-
-
-
-
 
 
 .warning-review
@@ -981,136 +517,48 @@ rtl
 html
 
 
-
-
-
-
-
-
-
-
 [
 dir
 =
 rtl
 ]
 
-
-
-
-
  
-
-
-
-
 
 .warning
 
 
-
-
-
-
-
-
-
-
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 .notification
 
 
-
-
-
-
 	
-
-
-
-
 
 ){
 padding-right
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 30
 px
-
-
-
-
-
-
-
-
 
 
 ;
 padding-left
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 .35em
-
-
-
-
-
-
-
-
 
 
 
@@ -1198,25 +646,9 @@ article a.new {
 .external-icon
 
 
-
-
-
-
-
-
-
-
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 [
@@ -1225,76 +657,28 @@ href
 'https://mdn.mozillademos.org'
 ]
 
-
-
-
-
  
-
-
-
-
 
 )
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 .ignore-external
 
 
-
-
-
-
 	
-
-
-
-
 
 ){
 white-space
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 pre-line
-
-
-
-
-
-
-
-
 
 
 
@@ -1370,7 +754,7 @@ html[dir=rtl] .external-icon:not ([href^='https://mdn.mozillademos.org']
 		padding-bottom: 40px
 	}
 	.wiki-left-present:not (.wiki-left-closed ) #wiki-right #toc {
-		padding: 10px 20px
+		padding: 10px 20px;
 	}
 	.wiki-left-present:not (.wiki-left-closed ) #wiki-right #toc .toggler {
 		pointer-events: auto;
@@ -1654,7 +1038,10 @@ html[dir=rtl] .contributors i[class^=icon-] {
 
 #toc {
 	background: #f4f7f8;
-	padding: 20px 15px
+	padding: 20px 15px;
+	position: fixed;
+	top: 88px;
+	left: 10%;
 }
 
 #toc a {
@@ -2696,7 +2083,7 @@ html[dir=rtl] #edit-document .page-buttons, html[dir=rtl] #new-document .page-bu
 .summary {
 	font-weight: 700;
 	padding: 20px;
-	margin-bottom: 20px
+	margin-bottom: 20px;
 }
 
 .summary>p:last-child {
@@ -4340,181 +3727,61 @@ html[dir=rtl] .zone-landing-header .zone-image {
 
 .zone-landing-header
 
-
-
-
-
  
 
-
-
-
-
 a
-
-
-
-
-
-
-
-
 
 
 .button
 
 
-
-
-
-
-
-
-
-
 :not
 
-
-
-
-
  
-
-
-
-
 
 (
 .transparent
 
-
-
-
-
  
-
-
-
-
 
 ),
 .zone-landing-header
 
-
-
-
-
  
 
-
-
-
-
 button
-
-
-
-
-
-
-
-
 
 
 :not
 
 
-
-
-
-
 	
-
-
-
-
 
 (
 .transparent
 
-
-
-
-
  
-
-
-
-
 
 ){
 background-color
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 #e6e6e6
-
-
-
-
-
-
-
-
 
 
 ;
 background-color
 
 
-
-
-
-
-
-
-
-
 :
-
-
-
-
 
  
 
-
-
-
-
 rgba
-
-
-
-
-
-
-
-
 
 
 (0
@@ -4522,75 +3789,27 @@ rgba
 0,
 0,
 .1
-
-
-
-
-
-
-
-
 
 
 );
 box-shadow
 
 
-
-
-
-
-
-
-
-
 :
 
-
-
-
-
  
-
-
-
-
 
 inset
 
-
-
-
-
  
-
-
-
-
 
 0
 -1
 px
 
-
-
-
-
  
 
-
-
-
-
 rgba
-
-
-
-
-
-
-
-
 
 
 (0
@@ -4598,14 +3817,6 @@ rgba
 0,
 0,
 .1
-
-
-
-
-
-
-
-
 
 
 )
