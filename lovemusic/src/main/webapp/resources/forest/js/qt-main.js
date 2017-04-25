@@ -509,11 +509,13 @@
 		//  initialize the modal window of the album
 		//$('.modal-trigger').leanModal();
 
+
+
 		//  initialize the animated background polygons
 		$.fn.parallaxPolydecor();
 
 		// background particles
-		//$.fn.qtparticlesJs();
+		$.fn.qtparticlesJs();
 
 		// smooth internal links scrolling
 		//$.fn.qtSmoothScroll();

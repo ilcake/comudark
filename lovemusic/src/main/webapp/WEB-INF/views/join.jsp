@@ -170,7 +170,7 @@ img {
 					alert("가입 완료");
 					location.href=".";
 				}
-			}
+			
 		});
 	});
 </script>
@@ -216,13 +216,13 @@ img {
 
 										<div class="input-group">
 											<input type="password" placeholder="Password.."
-												class="form-control" name="password" id="password"/>
+												class="form-control" name="password" id="password" />
 										</div>
 										<div class="input-group">
 											<input type="password" placeholder="Password...."
 												class="form-control" />
 										</div>
-<!-- 										<div class="input-group">
+										<!-- 										<div class="input-group">
 											<input type="text" placeholder="Question"
 												class="form-control" name="question" />
 										</div>
@@ -237,9 +237,7 @@ img {
 									<button class="btn btn-primary" id="joinbutton">JOIN</button>
 								</div>
 							</div>
-							<br>
-							<br>
-							<br>
+							<br> <br> <br>
 
 							<!--Original logo height 80px-->
 							<!-- 로고 위치 
