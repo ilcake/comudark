@@ -90,6 +90,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/howto", method = RequestMethod.GET)
 	public String howto(){
-		return "howto_test";
+		return "howto";
 	}
 }

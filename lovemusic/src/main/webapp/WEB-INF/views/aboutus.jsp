@@ -162,6 +162,12 @@
 
 <!-- About Us END -->
 
+<style type="text/css">
+.img-circle {
+	border-radius: 50%;
+}
+</style>
+
 </head>
 
 <body class="page page-id-7 page-template page-template-page-about-php">
@@ -248,7 +254,7 @@
 							<br />
 							<p class="fittext" data-max-font-size="60px">CoMu Project</p>
 							<cite class="fittext" data-max-font-size="24px"
-								data-min-font-size="12px"> - 2조 </cite>
+								data-min-font-size="12px"> 2조 (Whole Note)</cite>
 						</blockquote>
 					</li>
 				</ul>
@@ -262,39 +268,51 @@
 			<div class="emblem-row">
 				<div class="emblem-col">
 					<div class="icon">
-						<img
-							src="http://www.fortyonetwenty.com/wp-content/uploads/2012/10/video-camera.png"
-							alt="Craft">
+						<img src="resources/forest/images/members/cyc_159.jpg" alt="cyc"
+							class="img-circle">
 					</div>
 					<h2>최유철</h2>
 					<p>조장</p>
+					<div class="icon">Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit. In varius tellus at fermentum dignissim. Praesent
+						pharetra ante erat, vel scelerisque tellus tempor quis. Duis
+						eleifend massa nec sodales luctus.</div>
 				</div>
 				<div class="emblem-col">
 					<div class="icon">
-						<img
-							src="http://www.fortyonetwenty.com/wp-content/uploads/2012/10/video-camera.png"
-							alt="Craft">
+						<img src="resources/forest/images/members/kth_159.jpg" alt="kth"
+							class="img-circle">
 					</div>
 					<h2>김태현</h2>
 					<p>조원</p>
+					<div class="icon">Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit. In varius tellus at fermentum dignissim. Praesent
+						pharetra ante erat, vel scelerisque tellus tempor quis. Duis
+						eleifend massa nec sodales luctus.</div>
 				</div>
 				<div class="emblem-col">
 					<div class="icon">
-						<img
-							src="http://www.fortyonetwenty.com/wp-content/uploads/2012/10/paint-brush.png"
-							alt="Error">
+						<img src="resources/forest/images/members/kgw_159.jpg" alt="kgw"
+							class="img-circle">
 					</div>
 					<h2>김고운</h2>
 					<p>조원</p>
+					<div class="icon">Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit. In varius tellus at fermentum dignissim. Praesent
+						pharetra ante erat, vel scelerisque tellus tempor quis. Duis
+						eleifend massa nec sodales luctus.</div>
 				</div>
 				<div class="emblem-col">
 					<div class="icon">
-						<img
-							src="http://www.fortyonetwenty.com/wp-content/uploads/2012/10/mustache.png"
-							alt="Character">
+						<img src="resources/forest/images/members/lmh_159.jpg" alt="lmh"
+							class="img-circle">
 					</div>
 					<h2>이민호</h2>
 					<p>조원</p>
+					<div class="icon">Lorem ipsum dolor sit amet, consectetur
+						adipiscing elit. In varius tellus at fermentum dignissim. Praesent
+						pharetra ante erat, vel scelerisque tellus tempor quis. Duis
+						eleifend massa nec sodales luctus.</div>
 				</div>
 				<hr>
 			</div>
@@ -361,7 +379,7 @@
 		</div>
 	</div>
 
-	<div class="full-width dark-grey flat footer">
+	<!-- <div class="full-width dark-grey flat footer">
 		<div class="containers">
 			<div class="footer-foot">
 				<div class="info">
@@ -372,7 +390,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- ============== AboutUs CONTENT END ================= -->
 
