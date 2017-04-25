@@ -39,9 +39,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="resources/forest/css/howto.css" />
+</head>
 
-<style type="text/css">
-</style>
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<script type="text/javascript">
@@ -51,7 +50,7 @@
 	<div id="totalWrapper" style="background-color: white;">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<!-- start the main content container -->
 					<div id="wiki-column-container"
 						class="wiki-right-present wiki-left-present">
@@ -69,9 +68,9 @@
 											<ul>
 												<li><a rel="internal" href="#CoMu_기본문법">CoMu 기본문법</a>
 													<ul>
-														<li><a>1. CoMu 1</a>
-														<li><a>2. CoMu 2</a>
-														<li><a>3. CoMu 3</a>
+														<li><a rel="internal" href="#">1. CoMu 1</a>
+														<li><a rel="internal" href="#">2. CoMu 2</a>
+														<li><a rel="internal" href="#">3. CoMu 3</a>
 													</ul>
 												<li><a rel="internal" href="#Sample_Code">샘플코드 재생</a>
 												<li><a rel="internal" href="#HiCu">HiCu</a>
@@ -83,7 +82,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<!-- start the main content container -->
 					<div id="wiki-column-container"
 						class="wiki-right-present wiki-left-present">
