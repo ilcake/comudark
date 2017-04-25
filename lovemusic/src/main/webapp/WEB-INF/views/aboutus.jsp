@@ -282,7 +282,7 @@
 					<div class="icon">
 						<img
 							src="http://www.fortyonetwenty.com/wp-content/uploads/2012/10/paint-brush.png"
-							alt="Creativity">
+							alt="Error">
 					</div>
 					<h2>김고운</h2>
 					<p>조원</p>
