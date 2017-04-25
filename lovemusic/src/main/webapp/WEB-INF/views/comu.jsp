@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 
-<!--==============   INCLUDE JS AND CSS   =================-->
+<!-- ==============   INCLUDE JS AND CSS   ================= -->
 <script src="resources/jquery-3.1.1.min.js"></script>
 <script src="resources/myfiles/js/comu.js"></script>
 <link href='resources/myfiles/css/comu.css' rel='stylesheet'
@@ -32,6 +32,11 @@
 <script src="resources/audiojs/comu.js"></script>
 <script src="resources/audiojs/jquery.session.js"></script>
 
+<!-- ===================   INCLUDE JSTREE   ===================  -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper">
@@ -49,7 +54,10 @@
 		<div class="comu-container" hidden="">
 			<div class="row">
 				<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->
-				<div class="col-md-3 leftplace"></div>
+				<div class="col-md-3 leftplace">
+					<h4 class="treeViewName">LIST:</h4>
+					<div id="treeViewDiv"></div>
+				</div>
 				<div class="col-md-6 centerPlace">
 					<form id="form" action="save" method="post"
 						enctype="multipart/form-data">
