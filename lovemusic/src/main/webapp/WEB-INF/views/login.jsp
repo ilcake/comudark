@@ -23,10 +23,13 @@
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
+<!-- <script src="js/jquery.js"></script> -->
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 <!-- comu Vidio back css -->
 <style type="text/css">
 .qt-particles {
@@ -152,11 +155,17 @@ input, input:hover {
 				},
 				success : function(resp) {
 					if (resp == "errorMsg") {
-						alert("로그인 실패");
+						$.alert({
+							title : '로그인 실패!',
+							content : '아이디, 비밀번호를 확인해 주세요!',
+						});
 						$("#userid2").val("");
 						$("#password2").val("");
+
 					} else {
-						alert("로그인 성공");
+						/* $.alert({
+						    content: '아이디, 비밀번호를 확인해 주세요!'
+						}); */
 						location.href = resp;
 					}
 				}
