@@ -548,6 +548,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 ***********************************************/
 function saveEvent() {
 	var theCodes = $("#resultCode").text();
+
 	$("#codeResult").text(theCodes);
 	$.ajax({
 		url : "compile",
@@ -563,6 +564,7 @@ function saveEvent() {
 	});
 }
 
+
 /********************************************** 
 *
 *                 on Ready!
@@ -574,8 +576,8 @@ $(function() {
 	$("#play").on("click", playEvent);
 	$("#stop").on("click", stopEvent);
 	$(".ins_add").on("click", insAddEvent);
+	$("#save").on("click", saveEvent);
 	$("#reset").on("click", function() {
 		location.reload();
 	});
-	$("#save").on("click", saveEvent);
 });

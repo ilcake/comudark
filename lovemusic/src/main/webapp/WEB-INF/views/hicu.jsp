@@ -70,33 +70,36 @@
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div class="modal-content alert">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h5 class="modal-title">Save as File</h5>
 				</div>
 				<div class="modal-body">
-					<form role="form">
+					<form role="form" id="hicuSaveForm">
 						<div class="form-group">
 							<label for="codeTitle"><span
 								class="glyphicon glyphicon-user"></span> Title</label> <input
 								type="text" class="form-control" id="codeTitle"
-								placeholder="Enter title">
+								name="file_title" placeholder="Enter title">
 						</div>
 						<div class="form-group">
 							<label for="codeResult"><span
 								class="glyphicon glyphicon-eye-open"></span> CodeResult</label>
-							<textarea class="form-control" rows="5" id="codeResult"></textarea>
+							<textarea class="form-control" rows="5" id="codeResult"
+								name="file_ori"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="compiledResult"><span
 								class="glyphicon glyphicon-random"></span> compiledResult</label>
-							<textarea class="form-control" rows="5" id="compiledResult"></textarea>
+							<textarea class="form-control" rows="5" id="compiledResult"
+								name="file_com"></textarea>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn-success" data-dismiss="modal">
+					<button id="saveHicuCode" type="button" class="btn-success"
+						data-dismiss="modal">
 						<span class="glyphicon glyphicon-floppy-disk">Save</span>
 					</button>
 					<button type="button" class="btn-danger" data-dismiss="modal">
@@ -128,20 +131,20 @@
 										<div class="containerBIN" id="pad">
 											<div class="selectLine" id="beatLine">
 												<table class="theSelectionTable">
+													<tr>
+														<th><span class="label">Beats</span><select
+															id="beatSelection"><option value="beat">MadeSet</option>
+																<option value="acu">Acustic</option>
+																<option value="r8">R8</option></select> <img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins="beats"></th>
 
-													<th><span class="label">Beats</span><select
-														id="beatSelection"><option value="beat">MadeSet</option>
-															<option value="acu">Acustic</option>
-															<option value="r8">R8</option></select> <img
-														src="myfiles/images/hicu/ins_add.png" class="ins_add"
-														dt-ins="beats"></th>
-
-													<th><span class="label">Bass</span><img
-														src="myfiles/images/hicu/ins_add.png" class="ins_add"
-														dt-ins="bass"> &nbsp;&nbsp;&nbsp; <span
-														class="label">Melody</span><img
-														src="myfiles/images/hicu/ins_add.png" class="ins_add"
-														dt-ins="melody"></th>
+														<th><span class="label">Bass</span><img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins="bass"> &nbsp;&nbsp;&nbsp; <span
+															class="label">Melody</span><img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins="melody"></th>
 													</tr>
 												</table>
 											</div>
@@ -173,10 +176,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- 
-								<footer class="footer">
-									<div class="container"></div>
-								</footer> -->
+
 							</div>
 						</div>
 
@@ -186,9 +186,6 @@
 					<video autoplay loop class="fillWidth">
 						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
 					</video>
-
-
-
 				</div>
 			</div>
 		</div>
@@ -196,6 +193,7 @@
 
 
 	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
+	<script src="js/bootbox.min.js"></script>
 	<script src="js/materializecss/bin/materialize.min.js"></script>
 	<script src="components/slick/slick.min.js"></script>
 	<script src="components/skrollr/skrollr.min.js"></script>
