@@ -27,39 +27,47 @@
 		outline: none;
 	}
 	
+	
+	/* ========= 이미지 뒤집기 ========= */
 	.card-container {
-  cursor: pointer;
-  height: 55px;
-  perspective: 600;
-  position: relative;
-  width: 55px;
-}
-.card {
-  height: 100%;
-  position: absolute;
-  transform-style: preserve-3d;
-  transition: all 1s ease-in-out;
-  width: 100%;
-}
-.card:hover {
-  transform: rotateY(180deg);
-}
-.card .side {
-  backface-visibility: hidden;
-  border-radius: 100px;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-}
-.card .back {
-	border-radius: 100px;
-	background: #eaeaed;
-  color: #0087cc;
-  line-height: 150px;
-  text-align: center;
-  transform: rotateY(180deg);
-}
+	  cursor: pointer;
+	  height: 55px;
+	  perspective: 600;
+	  position: relative;
+	  width: 55px;
+	}
+
+	.card {
+	  height: 100%;
+	  position: absolute;
+	  transform-style: preserve-3d;
+	  transition: all 1s ease-in-out;
+	  width: 100%;
+	}
+	
+	.card:hover {
+	  transform: rotateY(180deg);
+	}
+	
+	.card .side {
+	  backface-visibility: hidden;
+	  border-radius: 100px;
+	  height: 100%;
+	  position: absolute;
+	  overflow: hidden;
+	  width: 100%;
+	}
+	
+	.card .back {
+		border-radius: 100px;
+		background-color: white;
+	  color: #0087cc;
+	  line-height: 150px;
+	  text-align: center;
+	  transform: rotateY(180deg);
+	}
+	/* ==========이미지 뒤집기  END =========*/
+	
 </style>
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
@@ -88,7 +96,7 @@
 									<div class="card-container">
 										<div class="card">
 										<div class="side"><img src="images/galaxy-1.jpg" alt="image" class="cover"></div>
-										<div class="side back">▶</div>
+										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>
 								</td>
@@ -118,14 +126,14 @@
 								<!-- 글 내용 (줄바꿈 처리) -->
 								<td colspan="3" style="word-break:break-all;" class="content"> 
 								<div class="fileField" style="background-color:#f0f5f5; margin-top: -30px; margin-bottom: 10px; padding: 10px; border: dotted 0.5px white;">
-									<img src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; File Title ${board.filenum}
+									<img src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
 								</div>
 								 ${fn:replace(board.content, crcn, br)}	
 								 <br>
 								 <!-- 글 수정,삭제 버튼 : 작성ID와 로그인ID가 다를 때만 표시 -->	
 									<c:if test="${board.userid == loginId}">					
 										<span class="writerButton" style="float:right; padding-right:8px;"> 
-											<a href="write?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a>
+											<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a>
 											<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> 
 										</span>
 									</c:if> 

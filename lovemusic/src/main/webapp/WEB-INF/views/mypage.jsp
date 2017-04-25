@@ -16,12 +16,18 @@
 <!--==============   APPENDING JS AND CSS   =================-->
 <script src="resources/jquery-3.1.1.min.js"></script>
 <script src="resources/myfiles/js/mypage.js"></script>
-<link href='resources/myfiles/css/mypage.css' rel='stylesheet'
-	type='text/css'>
+<link href='resources/myfiles/css/mypage.css' rel='stylesheet' type='text/css'>
 	
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- draggable -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+
+<!-- alert 효과 -->
+<link rel="stylesheet" href="resources/myfiles/css/jquery-confirm.css">
+<script type="text/javascript" src="resources/myfiles/js/jquery-confirm.js" ></script>
 
 <style>
 /* mypage css */
@@ -47,8 +53,6 @@
  	background-size: 100%;
    background-repeat: no-repeat;
    background-position: center;
- 	color: black;
-  	opacity: 0.5;
  }
   
 /*   #div4{
@@ -91,7 +95,7 @@ a, a:link, a:hover, a:visited, a:active {
 	width: 60%;
 }
 
-img {
+.image {
 	border-radius: 100px;
 	width: 65px;
 	height: 65px;
@@ -250,7 +254,39 @@ table {
 <script type="text/javascript">
 
 $(function(){
-   var page = 1;
+	
+	$.alert({
+	    title: 'Alert!',
+	    content: 'Simple alert!',
+	});
+	
+	$("#test").draggable();
+	$('#resizeDiv')
+	.resizable({
+		start: function(e, ui) {
+			alert('resizing started');
+		},
+		resize: function(e, ui) {
+		
+		},
+		stop: function(e, ui) {
+			alert('resizing stopped');
+		}
+	});
+	$("#test").resizable();
+	
+	//MYPAGE에서 글 등록이나 수정 시 BOARD 탭으로 이동
+	var re = document.referrer;
+	var re = re.split("/");
+	var re = re[4].split("?");
+	
+	if(re[0] == "dragwrite" || re[0] == "selectBoard"){
+ 		$("#myfiles").removeClass().addClass("tab-pane fade");
+		$("#myboards").removeClass().addClass("tab-pane in active");
+		$("#myB").click();
+		
+	}
+/*    var page = 1; 	//무한 스크롤
    
    $(window).scroll(function(){
          var scrollHeight = $(window).scrollTop() + $(window).height();
@@ -268,7 +304,10 @@ $(function(){
 
              }
          }
-    });
+    }); */
+   
+   
+   
 });
 
 $(document).ready(function() {
@@ -279,10 +318,9 @@ $(document).ready(function() {
 	     success : function(resp) {
 	      var msg = "<table class='center' id='loadlist'><tr>";
 	      $.each(resp,function(index, item) {
-	         //img 주소 : 테스트용 임시 주소!!
 	         msg += '<td class="font"><img src="resources/covers/'
 	           + item.cover_re
-	           + '" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
+	           + '" class="image" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
 	           + item.filenum
 	           + '><br>';
 	         var title = item.file_title;
@@ -336,16 +374,18 @@ $(document).ready(function() {
 				<source src="myfiles/video/Blurry-Lights.mp4" type="video/mp4" />
 			</video>
 		</div>
+		
 
    <!-- ====================== SECTION BOOKING AND CONTACTS ================================================ -->
 	<div class="container" style="border:none;">
 		<div class="row" style="border:none;">
+				<!-- <div id="test" style="color:white">test</div> -->
 					<ul class="nav nav-tabs" style="border:none;">
 						<li class="active">
 								<a href="#myfiles" data-toggle="tab">MY FILES</a>
 							</li>
 						<li>
-								<a data-toggle="tab" href="#myboards">MY BOARDS</a>
+								<a data-toggle="tab" href="#myboards" id="myB">MY BOARDS</a>
 							</li>
 						<li>
 								<a data-toggle="tab" href="#likes">LIKE/SUBSCRIBE</a>
@@ -377,7 +417,7 @@ $(document).ready(function() {
 										<table class='board' style="width:100%;">
 											<tr>
 												<td class="td_img"><img src="images/galaxy-1.jpg"
-													alt="image" class="cover"></td>
+													alt="image" class="image"></td>
 												<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
 													&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>
 													<br>
@@ -397,7 +437,7 @@ $(document).ready(function() {
 												 <br>
 													<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 다를 때만 표시 -->
 														<span class="writerButton" style="float:right; padding-right:8px;"> 
-															<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 
+															<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 
 															<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->
 														</span>
 													</c:if> 

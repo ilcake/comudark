@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 작성</title>
+<title>글 수정</title>
 </head>
 
 <!--==============   APPENDING JS AND CSS   =================-->
@@ -74,7 +74,7 @@
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper">
-		<div class="video-container" style="position:absolute;">	<!-- ★ -->
+		<div class="video-container" style="position:absolute;">	
 			<video autoplay loop class="fillWidth">
 				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
 			</video>
@@ -85,9 +85,11 @@
 	    		<form id="form1" runat="server" action="writing" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="userid" value="${loginId}" />
 	    			<input type="hidden" name="filenum" value="${boardFile.filenum}" />
+	    			<input type="hidden" name="boardnum" value="${boardFile.boardnum}" />
+	    			<input type="hidden" name="file_ori" value="${boardFile.file_ori}" />
 		    		<div class="col-md-3" id="center">
 		    		<br>
-				        
+		    		
 				   		 <label>
 			                <img id="imgView" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='images/album.jpg'"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
 			            </label>
@@ -102,7 +104,7 @@
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
 						<div class="form-group label-floating">
 							<label class="control-label">Title (*Default : File Title)</label>
-								<input type="text" class="form-control" name="title" value="${boardFile.file_title}">
+								<input type="text" class="form-control" name="title" value="${boardFile.title}">
 						</div>
 						<div class="form-group label-floating" id="code">
 						<label class="control-label">Code</label>
@@ -110,7 +112,7 @@
 						</div>
 						<div class="form-group label-floating">
 						<label class="control-label">Detail</label>
-						<textarea class="form-control" rows="5" name="content"></textarea>
+						<textarea class="form-control" rows="5" name="content">${boardFile.content }</textarea>
 						</div>
 						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
 					</div>

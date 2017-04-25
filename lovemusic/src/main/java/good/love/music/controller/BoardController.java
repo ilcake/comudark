@@ -56,19 +56,31 @@ public class BoardController {
 	// MYPAGE : 글쓰기 페이지로 이동(드래그)
 	@RequestMapping(value = "/dragwrite", method = RequestMethod.GET)
 	public String write(int filenum) {
+		
+		session.setAttribute("uri", request.getHeader("referer"));	//페이지 호출한 주소 저장
+		
 		if (filenum != 0) {
 			Files file = fileRepository.loadFile(filenum);
 			session.setAttribute("boardFile", file);
 		}
 		return "write";
 	}
+	
+	// 글 수정 페이지로 이동
+	@RequestMapping(value = "/selectBoard", method = RequestMethod.GET)
+	public String updateBoard(int boardnum) {
+		
+		session.setAttribute("uri", request.getHeader("referer"));	//페이지 호출한 주소 저장
+		
+		Board board = boardRepository.selectBoard(boardnum);
+		session.setAttribute("boardFile", board);
+		return "write2";
+	}
 
-	// 글 쓰기
+	// 글 쓰기 및 수정
 	@RequestMapping(value = "/writing", method = RequestMethod.POST)
 	public String writing(MultipartFile upload, Board board) {
-
-		System.out.println(board);
-
+		
 		// 이미지 파일 업로드 경로
 		String uploadPath = request.getSession().getServletContext().getResourcePaths("/") + "/resources/covers";
 
@@ -81,12 +93,24 @@ public class BoardController {
 		} else {
 
 		}
+
+		//shared 설정
 		if (board.getShared() == null) {
 			board.setShared("unshare");
 		}
-		boardRepository.write(board);
+		
+		System.out.println("testing"+board);
+		
+		if(board.getBoardnum() == 0){		//boardnum이 없으면 새로 저장
+			boardRepository.write(board);
+		}else{								//boardnum이 있으면 덮어쓰기
+			boardRepository.updateBoard(board);
+		}
+		
 		// session.setAttribute("message", "등록 완료");
-		return "mypage";
+		
+		String uri = (String)session.getAttribute("uri");
+		return "redirect:"+uri;
 	}
 
 	// 글 목록 불러오기(개인) (ajax)
@@ -103,21 +127,14 @@ public class BoardController {
 		boardRepository.list();
 		return "shared";
 	}
-
-	// [글 수정]
-	@RequestMapping(value = "/updateBoard", method = RequestMethod.GET)
-	public String updateBoard(Board board) {
-		boardRepository.updateBoard(board);
-		return "mypage";
-	}
-
+	
 	// [글 삭제]
 	@RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
 	public @ResponseBody String deleteBoard(int boardnum) {
 		boardRepository.deleteBoard(boardnum);
 		
 		String uri = request.getHeader("referer");
-		return uri;
+		return "redirect:"+uri;
 	}
 
 	// 글 검색

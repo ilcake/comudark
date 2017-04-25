@@ -2,30 +2,77 @@ package good.love.music.vo;
 
 public class Board {
 
-	private int boardnum;
-	private String userid;
-	private String title;
-	private String content;
-	private String inputdate;
-	private int filenum;
-	private String shared;
-	private String cover_re;
-	private String like_userid;
-
+	private int filenum;			//파일 번호
+	private String file_title;		//파일 제목
+	private String file_ori;		//코드
+	private String cover_re;		//커버 이미지
+	
+	private int boardnum;			//보드 번호
+	private String userid;			//작성자
+	private String title;			//제목
+	private String content;			//내용
+	private String inputdate;		//작성 날짜
+	private String shared;			//공유 설정
+	
+	private String like_userid;		//LIKE한 유저
+	
+	
 	public Board() {
 	}
-
-	public Board(int boardnum, String userid, String title, String content, String inputdate, int filenum,
-			String shared, String cover_re, String like_userid) {
+	
+	public Board(int filenum, String file_title, String file_ori, String cover_re, int boardnum, String userid,
+			String title, String content, String inputdate, String shared, String like_userid) {
+		super();
+		this.filenum = filenum;
+		this.file_title = file_title;
+		this.file_ori = file_ori;
+		this.cover_re = cover_re;
 		this.boardnum = boardnum;
 		this.userid = userid;
 		this.title = title;
 		this.content = content;
 		this.inputdate = inputdate;
-		this.filenum = filenum;
 		this.shared = shared;
-		this.cover_re = cover_re;
 		this.like_userid = like_userid;
+	}
+
+	public int getFilenum() {
+		return filenum;
+	}
+
+
+	public void setFilenum(int filenum) {
+		this.filenum = filenum;
+	}
+
+
+	public String getFile_title() {
+		return file_title;
+	}
+
+
+	public void setFile_title(String file_title) {
+		this.file_title = file_title;
+	}
+
+
+	public String getFile_ori() {
+		return file_ori;
+	}
+
+
+	public void setFile_ori(String file_ori) {
+		this.file_ori = file_ori;
+	}
+
+
+	public String getCover_re() {
+		return cover_re;
+	}
+
+
+	public void setCover_re(String cover_re) {
+		this.cover_re = cover_re;
 	}
 
 
@@ -33,69 +80,66 @@ public class Board {
 		return boardnum;
 	}
 
+
 	public void setBoardnum(int boardnum) {
 		this.boardnum = boardnum;
 	}
+
 
 	public String getUserid() {
 		return userid;
 	}
 
+
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+
 
 	public String getTitle() {
 		return title;
 	}
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 	public String getContent() {
 		return content;
 	}
 
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 
 	public String getInputdate() {
 		return inputdate;
 	}
 
+
 	public void setInputdate(String inputdate) {
 		this.inputdate = inputdate;
 	}
 
-	public int getFilenum() {
-		return filenum;
-	}
-
-	public void setFilenum(int filenum) {
-		this.filenum = filenum;
-	}
 
 	public String getShared() {
 		return shared;
 	}
 
+
 	public void setShared(String shared) {
 		this.shared = shared;
 	}
 
-	public String getCover_re() {
-		return cover_re;
-	}
-
-	public void setCover_re(String cover_re) {
-		this.cover_re = cover_re;
-	}
 
 	public String getLike_userid() {
 		return like_userid;
 	}
+
 
 	public void setLike_userid(String like_userid) {
 		this.like_userid = like_userid;
@@ -103,9 +147,9 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [boardnum=" + boardnum + ", userid=" + userid + ", title=" + title + ", content=" + content
-				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", shared=" + shared + ", cover_re=" + cover_re
-				+ ", like_userid=" + like_userid + "]";
+		return "Board [filenum=" + filenum + ", file_title=" + file_title + ", file_ori=" + file_ori + ", cover_re="
+				+ cover_re + ", boardnum=" + boardnum + ", userid=" + userid + ", title=" + title + ", content="
+				+ content + ", inputdate=" + inputdate + ", shared=" + shared + ", like_userid=" + like_userid + "]";
 	}
-	
+
 }

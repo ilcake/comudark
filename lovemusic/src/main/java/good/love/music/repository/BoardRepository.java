@@ -107,6 +107,13 @@ public class BoardRepository {
 
 		return boardList;
 	}
+	
+	//글 수정(글 검색)
+	public Board selectBoard(int boardnum) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		Board board = dao.selectBoard(boardnum);
+		return board;
+	}
 
 	// 댓글 등록
 	public int replyWrite(Reply reply) {

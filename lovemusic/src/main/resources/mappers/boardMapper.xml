@@ -38,12 +38,20 @@
 		b.filenum = f.filenum
 		ORDER BY boardnum DESC
 	</select>
+	
+	<!-- (글 수정)특정 Board 불러오기 -->
+	<select id="selectBoard" parameterType="int" resultType="Board">
+		SELECT *
+		FROM cm_board b, cm_file f
+		WHERE b.boardnum = #{boardnum}
+		AND b.filenum = f.filenum
+	</select>
 
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="Board">
 		UPDATE cm_board
 		SET
-		title = #{title}, content = #{cotent}, shared = #{shared}
+		title = #{title}, content = #{content}, shared = #{shared}
 		WHERE
 		boardnum = #{boardnum} and userid = #{userid}
 	</update>
