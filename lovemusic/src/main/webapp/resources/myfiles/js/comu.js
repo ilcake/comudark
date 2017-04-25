@@ -1,3 +1,5 @@
+var errorLine;
+var recentTA;
 $(function() {
 
 	/*
@@ -13,11 +15,17 @@ $(function() {
 		readURL(this);
 	});
 	$("#sampleRun").click(function() {
+		recentTA = $("#sample").get(0);
 		comuRun($("#sample").val());
 	});
 	$("#mainRun").click(function() {
+		recentTA = $("#main").get(0);
 		comuRun($("#main").val());
 	});
+	$("#errorClick").click(function() {
+		selectTextareaLine(recentTA, errorLine);
+	});
+
 	if ($("#title").val() != null && $("#title").val() > 0) {
 		$(".get-started").trigger("click");
 	}
@@ -53,7 +61,11 @@ function comuRun(source) {
 		success : function(resp) {
 			var check = resp.substring(0, 5);
 			if (check == "error") {
-				alert(resp.substring(5, resp.length));
+				var errorMsg = resp.substring(5, resp.length);
+				errorLine = parseInt(errorMsg);
+				$("#errorClick").html("errorLine :  " + errorLine);
+				$("#errorContent").html(
+						errorMsg.substring(errorLine, errorMsg.length));
 			} else {
 				$("#modalBtn").trigger("click");
 				eval(resp);
@@ -147,4 +159,45 @@ function setJqueryFn() {
 			}
 		})
 	}
+}
+
+// 에러 메세지 클릭시 해당 하는 라인 셀렉트
+function selectTextareaLine(tarea, lineNum) {
+	lineNum--; // array starts at 0
+	var lines = tarea.value.split("\n");
+
+	// calculate start/end
+	var startPos = 0, endPos = tarea.value.length;
+	for (var x = 0; x < lines.length; x++) {
+		if (x == lineNum) {
+			break;
+		}
+		startPos += (lines[x].length + 1);
+
+	}
+
+	var endPos = lines[lineNum].length + startPos;
+
+	// do selection
+	// Chrome / Firefox
+
+	if (typeof (tarea.selectionStart) != "undefined") {
+		tarea.focus();
+		tarea.selectionStart = startPos;
+		tarea.selectionEnd = endPos;
+		return true;
+	}
+
+	// IE
+	if (document.selection && document.selection.createRange) {
+		tarea.focus();
+		tarea.select();
+		var range = document.selection.createRange();
+		range.collapse(true);
+		range.moveEnd("character", endPos);
+		range.moveStart("character", startPos);
+		range.select();
+		return true;
+	}
+	return false;
 }

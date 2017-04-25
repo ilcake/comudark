@@ -8,14 +8,16 @@
 	<insert id="write" parameterType="Board">
 		INSERT INTO cm_board
 		VALUES
-		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{shared})
+		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate,
+		#{filenum}, #{shared})
 	</insert>
 
 	<!-- 글 등록시 이미지 변경 ? -->
 	<update id="fileUpdate" parameterType="File">
 		UPDATE cm_file
 		SET
-		cover_re = #{cover_re}
+		cover_re
+		= #{cover_re}
 		WHERE
 		filenum = #{filenum}
 	</update>
@@ -27,7 +29,8 @@
 		WHERE
 		b.filenum = f.filenum
 		AND
-		b.userid = #{userid}
+		b.userid =
+		#{userid}
 		ORDER BY boardnum DESC
 	</select>
 
@@ -43,9 +46,11 @@
 	<update id="updateBoard" parameterType="Board">
 		UPDATE cm_board
 		SET
-		title = #{title}, content = #{cotent}, shared = #{shared}
+		title =
+		#{title}, content = #{cotent}, shared = #{shared}
 		WHERE
-		boardnum = #{boardnum} and userid = #{userid}
+		boardnum =
+		#{boardnum} and userid = #{userid}
 	</update>
 
 	<!-- 글 삭제 -->
@@ -140,10 +145,20 @@
 		AND like_userid = #{like_userid}
 	</delete>
 
-	<!-- 좋아요 리스트(랭킹) -->
-	<select id="rankList" resultType="Like">
-		SELECT count(*) FROM cm_like
-		GROUP BY boardnum
+	<!-- 좋아요 랭킹 -->
+	<select id="likeRanking" resultType="map">
+		select rr.rank as rank,
+		bb.boardnum as boardnum, bb.title as title, bb.userid as userid
+		from
+		(select rank, boardnum
+		from
+		(SELECT count(*) rank, boardnum FROM cm_like
+		GROUP BY boardnum)
+		where rownum BETWEEN 1 and 10
+		) rr, cm_board bb
+		where
+		rr.boardnum = bb.BOARDNUM
+		ORDER BY rank desc
 	</select>
 
 	<!-- 좋아요 리스트(개인) -->
@@ -157,8 +172,7 @@
 	<!-- 좋아요 리스트(전체) -->
 	<select id="likeList" resultType="Like">
 		SELECT * FROM cm_like
-		<!-- WHERE
-		like_userid = #{userid} -->
+		<!-- WHERE like_userid = #{userid} -->
 	</select>
 
 	<!-- 구독 -->
@@ -181,5 +195,15 @@
 		SELECT * FROM cm_subscribe
 		WHERE
 		sub_userid = #{sub_userid}
+	</select>
+
+	<!-- 구독 랭킹 -->
+	<select id="subscribeRanking" resultType="map">
+		select rank, userid
+		from
+		(SELECT count(*) rank, userid FROM CM_SUBSCRIBE
+		GROUP BY USERID
+		ORDER BY count(*) desc)
+		where rownum BETWEEN 1 and 10
 	</select>
 </mapper>

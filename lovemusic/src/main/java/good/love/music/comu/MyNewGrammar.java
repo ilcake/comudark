@@ -36,6 +36,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   String low = "";
   String high = "";
   boolean isSetBPM = false;
+  int errorLine = 1;
 
   public String getResult() throws Exception, Error
   {
@@ -43,6 +44,11 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     {
     }
     return result;
+  }
+
+  public int getErrorLine()
+  {
+    return errorLine;
   }
 
   public void setURLGenerator(URLGenerator generator)
@@ -120,6 +126,11 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       {if (true) throw new InstrumentNotFoundException();}
     }
     {if (true) return inTheMethod();}
+      break;
+    case EOL:
+      jj_consume_token(EOL);
+    errorLine++;
+    {if (true) return true;}
       break;
     case 0:
       jj_consume_token(0);
@@ -224,6 +235,11 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     noteList.add(note.image);
     {if (true) return true;}
       break;
+    case EOL:
+      jj_consume_token(EOL);
+    errorLine++;
+    {if (true) return true;}
+      break;
     default:
       jj_la1[1] = jj_gen;
     {if (true) return false;}
@@ -246,7 +262,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x661,0x1980,};
+      jj_la1_0 = new int[] {0x8331,0x8cc0,};
    }
 
   /** Constructor with InputStream. */

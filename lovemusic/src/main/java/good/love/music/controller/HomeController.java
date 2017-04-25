@@ -3,11 +3,13 @@ package good.love.music.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,10 +34,12 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String home(HttpSession session) {
 		logger.info("pulling HOME");
-
-		return "home";
+		if (session.getAttribute("loginId") == null)
+			return "home";
+		else
+			return "logInHome";
 	}
 
 	@RequestMapping(value = "/basic", method = RequestMethod.GET)
@@ -58,9 +62,10 @@ public class HomeController {
 
 		return "naviex";
 	}
+
 	@RequestMapping(value = "/comutest", method = RequestMethod.GET)
 	public String comutest() {
-		
+
 		return "comuTesting";
 	}
 
@@ -68,7 +73,7 @@ public class HomeController {
 	public String home2() {
 		logger.info("pulling HOME");
 
-		return "home";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/comu", method = RequestMethod.GET)
@@ -109,7 +114,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(HttpSession session, HttpServletRequest request) {
+		session.setAttribute("fromPage", request.getHeader("referer"));
 		return "login";
 	}
 
@@ -126,11 +132,11 @@ public class HomeController {
 	@RequestMapping(value = "/shared", method = RequestMethod.GET)
 	public String shared(HttpSession session) {
 
-		//글 불러오기
+		// 글 불러오기
 		ArrayList<Board> list = boardRepository.list();
 		session.setAttribute("boardList", list);
-		
-		//댓글 불러오기
+
+		// 댓글 불러오기
 		List<Reply> replyAll = boardRepository.replyAll();
 		session.setAttribute("replyAll", replyAll);
 

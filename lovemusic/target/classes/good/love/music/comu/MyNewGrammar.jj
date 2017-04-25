@@ -42,6 +42,7 @@ public class MyNewGrammar
   String low = "";
   String high = "";
   boolean isSetBPM = false;
+  int errorLine = 1;
 
   public String getResult() throws Exception, Error
   {
@@ -49,6 +50,11 @@ public class MyNewGrammar
     {
     }
     return result;
+  }
+
+  public int getErrorLine()
+  {
+    return errorLine;
   }
 
   public void setURLGenerator(URLGenerator generator)
@@ -82,7 +88,6 @@ SKIP :
   " "
 | "\t"
 | "\r"
-| "\n"
 }
 
 TOKEN :
@@ -102,6 +107,7 @@ TOKEN :
 | < NUMBER : (< DIGIT >)+ >
 | < DIGIT : [ "0"-"9" ] >
 | < NOTE : ([ "A"-"Z", "a"-"z" ])+ (< NUMBER >)* >
+| < EOL : "\n" >
 }
 
 boolean readLine() throws Exception :
@@ -155,6 +161,11 @@ boolean readLine() throws Exception :
       throw new InstrumentNotFoundException();
     }
     return inTheMethod();
+  }
+| < EOL >
+  {
+    errorLine++;
+    return true;
   }
 | < EOF >
   {
@@ -251,6 +262,11 @@ boolean makeSound() throws Exception :
     }
     list.add(Integer.parseInt(number.image));
     noteList.add(note.image);
+    return true;
+  }
+| < EOL >
+  {
+    errorLine++;
     return true;
   }
 |
