@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +16,26 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
+<script src="js/qt-main.js"></script>
+
+<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
+<script src="js/bootbox.min.js"></script>
+<script src="js/materializecss/bin/materialize.min.js"></script>
+<script src="components/slick/slick.min.js"></script>
+<script src="components/skrollr/skrollr.min.js"></script>
+<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
+<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
+
+
+<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
+<script src="myfiles/js/bg-movie.js"></script>
+<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
+
+<!--  HICU Action  -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+<script src="myfiles/js/hicu.js"></script>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,44 +49,16 @@
 	rel='stylesheet' type='text/css'>
 <link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
 <link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_1pa.png" />
+	href="myfiles/images/main/logo_comu.png" />
 <!-- COMU BACKGROUND VIDEO CSS -->
 <link rel="stylesheet" type="text/css" href="myfiles/css/hicu.css">
 </head>
 <body>
 
-	<!-- ====================== MENU ================================================ -->
-	<div id="menu" class="qt-menu-wrapper" data-0-top>
-		<nav id="stickymenu" class="qt-menu grey-text text-lighten-4">
-			<ul class="qt-desktopmenu">
-				<li><img class="logo-img" src="myfiles/images/main/logo_5.png"></li>
-				<li><a href="home">Home</a></li>
-				<li><a href="comu">CoMu</a></li>
-				<li><a href="hicu">HiCu</a></li>
-				<li><a href="mypage">MyPage</a></li>
-				<li><a href="shared">Shared</a></li>
-				<li><a href="howto">HowTo</a></li>
-				<li><a href="aboutus">AboutUs</a></li>
-				<li class="login-status"><c:if test="${empty loginId}">
-						<span class="btn btn-primary"
-							style="background-color: rgba(255, 33, 78, 0.7);" id="logIn">login
-							<span class="glyphicon glyphicon-log-in"></span>
-						</span>
-					</c:if> <c:if test="${not empty loginId}">
-						<span class="btn btn-primary"
-							style="background-color: rgba(255, 33, 78, 0.7);" id="logOut">logout
-							<span class="glyphicon glyphicon-log-out"></span>
-						</span>
-					</c:if></li>
-			</ul>
-		</nav>
-	</div>
-
-
-	<!-- ====================== MENU END ================================================ -->
+	<jsp:include page="navibar.jsp" flush="false" />
+	<link rel="stylesheet" href="css/qt-main.css">
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
@@ -193,42 +186,7 @@
 	</div>
 
 
-	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
-	<script src="js/bootbox.min.js"></script>
-	<script src="js/materializecss/bin/materialize.min.js"></script>
-	<script src="components/slick/slick.min.js"></script>
-	<script src="components/skrollr/skrollr.min.js"></script>
-	<script src="components/particles/particles.min.js"></script>
 
-	<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
-
-	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
-	<script src="js/qt-main.js"></script>
-
-	<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
-	<script src="myfiles/js/bg-movie.js"></script>
-	<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
-
-	<!--  HICU Action  -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
-	<script src="myfiles/js/hicu.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			moveTotalWrapper();
-			$("#logIn").click(function() {
-				location.href = "login";
-			});
-			$("#logOut").click(function() {
-				location.href = "logout";
-			});
-			$(".qwsmoothscroll").eq(2).addClass("active");
-		});
-		function moveTotalWrapper() {
-			$("#totalWrapper").css("padding-top", $("#stickymenu").height());
-		}
-	</script>
 </body>
 
 </html>

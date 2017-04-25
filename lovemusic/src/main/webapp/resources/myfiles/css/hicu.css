@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.qt-menu-wrapper .qt-menu {
+	height: 80px;
+}
+
 .modal {
 	text-align: center;
 }
@@ -17,6 +21,18 @@
 	display: inline-block;
 	text-align: left;
 	vertical-align: middle;
+}
+
+.login-status {
+	position: absolute;
+	right: 2.5%;
+}
+
+.logo-img {
+	position: absolute;
+	left: 19px;
+	height: 40px;
+	top: 26px;
 }
 
 label {

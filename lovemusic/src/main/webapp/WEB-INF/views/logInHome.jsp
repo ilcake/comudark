@@ -11,7 +11,7 @@
 <script src="resources/jquery-3.1.1.min.js"></script>
 
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
+	href="myfiles/images/main/logo_1pa.png" />
 
 <style type="text/css">
 .score {

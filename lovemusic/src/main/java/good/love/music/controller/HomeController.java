@@ -80,32 +80,27 @@ public class HomeController {
 	public String comu() {
 		return "comu";
 	}
-	
+
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
-		
+
 		String id = (String) session.getAttribute("loginId");
 		ArrayList<Board> list = boardRepository.boardList(id);
 		session.setAttribute("boardList", list);
-		
-		//댓글 불러오기
+
+		// 댓글 불러오기
 		List<Reply> replyAll = boardRepository.replyAll();
 		session.setAttribute("replyAll", replyAll);
 
-		//사용자가 좋아요 누른 게시물 정보 불러오기
+		// 사용자가 좋아요 누른 게시물 정보 불러오기
 		ArrayList<Like> likelist = boardRepository.likeList();
-		
+
 		return "mypage";
 	}
 
 	@RequestMapping(value = "/hicu", method = RequestMethod.GET)
 	public String hicu() {
 		return "hicu";
-	}
-
-	@RequestMapping(value = "/hicu2", method = RequestMethod.GET)
-	public String hicu2() {
-		return "hicu2";
 	}
 
 	@RequestMapping(value = "/aboutus", method = RequestMethod.GET)
@@ -140,14 +135,14 @@ public class HomeController {
 		List<Reply> replyAll = boardRepository.replyAll();
 		session.setAttribute("replyAll", replyAll);
 
-		//사용자가 좋아요 누른 게시물 정보 불러오기
+		// 사용자가 좋아요 누른 게시물 정보 불러오기
 		ArrayList<Like> likelist = boardRepository.likeList();
 
 		return "shared";
 	}
 
 	@RequestMapping(value = "/howto", method = RequestMethod.GET)
-	public String howto(){
+	public String howto() {
 		return "howto_test";
 	}
 }

@@ -19,7 +19,7 @@
 	type='text/css'>
 
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
+	href="myfiles/images/main/logo_1pa.png" />
 
 <!-- ================   INCLUDE AUDIO JS   =================== -->
 <script src="resources/audiojs/three.min.js"></script>

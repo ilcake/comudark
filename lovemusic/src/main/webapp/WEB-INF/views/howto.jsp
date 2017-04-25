@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/main/logo_comu.png" />
+	href="myfiles/images/main/logo_1pa.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
