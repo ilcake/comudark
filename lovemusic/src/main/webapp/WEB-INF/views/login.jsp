@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/qt-main.css">
 <!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
 <link rel="shortcut icon" type="image/png"
-	href="myfiles/images/logo_comu.png" />
+	href="myfiles/images/main/logo_1pa.png" />
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
@@ -264,21 +264,21 @@ input, input:hover {
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//setBackGroundMusic();
-
+	
 			scaleVideoContainer();
 			initBannerVideoSize('.video-container .poster img');
 			initBannerVideoSize('.video-container .filter');
 			initBannerVideoSize('.video-container video');
-
+	
 			$(window).on('resize', function() {
 				scaleVideoContainer();
 				scaleBannerVideoSize('.video-container .poster img');
 				scaleBannerVideoSize('.video-container .filter');
 				scaleBannerVideoSize('.video-container video');
 			});
-
+	
 		});
-
+	
 		/* function setBackGroundMusic() {
 			var bgm = new Audio('');
 			if (!bgm.canPlayType('audio/ogg'))
@@ -291,7 +291,7 @@ input, input:hover {
 				}, false);
 				bgm.play();
 			} */
-
+	
 		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
 		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
 		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
@@ -302,15 +302,15 @@ input, input:hover {
 		   keyEnabled : true
 		});
 		 */
-
+	
 		//}
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';
 			$('.homepage-hero-module').css('height', unitHeight);
-
+	
 		}
-
+	
 		function initBannerVideoSize(element) {
 			$(element).each(function() {
 				$(this).data('height', $(this).height());
@@ -318,31 +318,34 @@ input, input:hover {
 			});
 			scaleBannerVideoSize(element);
 		}
-
+	
 		function scaleBannerVideoSize(element) {
-			var windowWidth = $(window).width(), windowHeight = $(window)
-					.height() + 5, videoWidth, videoHeight;
+			var windowWidth = $(window).width(),
+				windowHeight = $(window)
+						.height() + 5,
+				videoWidth,
+				videoHeight;
 			// console.log(windowHeight);
 			$(element).each(
-					function() {
-						var videoAspectRatio = $(this).data('height')
-						//$(this).data('width');
-
-						$(this).width(windowWidth);
-						/* if (windowWidth < 1000) {
-						   videoHeight = windowHeight;
-						   videoWidth = videoHeight / videoAspectRatio;
-						   $(this).css(
-						         {
-						            'margin-top' : 0,
-						            'margin-left' : -(videoWidth - windowWidth)
-						                  / 2 + 'px'
-						         });
-						   $(this).width(videoWidth).height(videoHeight);
-						} */
-						$('.homepage-hero-module .video-container video')
-								.addClass('fadeIn animated');
-					});
+				function() {
+					var videoAspectRatio = $(this).data('height')
+					//$(this).data('width');
+	
+					$(this).width(windowWidth);
+					/* if (windowWidth < 1000) {
+					   videoHeight = windowHeight;
+					   videoWidth = videoHeight / videoAspectRatio;
+					   $(this).css(
+					         {
+					            'margin-top' : 0,
+					            'margin-left' : -(videoWidth - windowWidth)
+					                  / 2 + 'px'
+					         });
+					   $(this).width(videoWidth).height(videoHeight);
+					} */
+					$('.homepage-hero-module .video-container video')
+						.addClass('fadeIn animated');
+				});
 		}
 	</script>
 </body>
