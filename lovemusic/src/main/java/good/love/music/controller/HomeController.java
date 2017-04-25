@@ -56,7 +56,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/aboutus", method = RequestMethod.GET)
 	public String aboutus() {
-		return "aboutus";
+		return "aboutus_test";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

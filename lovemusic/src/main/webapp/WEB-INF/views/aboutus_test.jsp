@@ -23,135 +23,23 @@
 <script src="js/jquery-migrate.min.js"></script> -->
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 
-<!-- 기존 적용 기능 끝 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
+<link href='components/swipebox/src/css/swipebox.min.css'
+	rel='stylesheet' type='text/css'>
+<link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
+<link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/qt-main.css">
 
 <!-- About Us START -->
-<meta name="keywords"
-	content="video production san diego,san diego video production,video production in san diego,san diego video productions,san diego production companies">
-<meta name="description"
-	content="We have combined all of our creative backgrounds to produce an experience tailored to your specific needs.">
-<link href="https://plus.google.com/101694146701986480596/about"
-	rel="publisher">
-
-<!-- <link rel="stylesheet" href="resources/forest/css/aboutus.css"
-	type="text/css" media="screen" /> -->
-
-<link rel="alternate" type="application/rss+xml"
-	title="FortyOneTwenty Inc. RSS Feed"
-	href="http://www.fortyonetwenty.com/feed/" />
-<link rel="alternate" type="application/atom+xml"
-	title="FortyOneTwenty Inc. Atom Feed"
-	href="http://www.fortyonetwenty.com/feed/atom/" />
-<link rel="pingback" href="http://www.fortyonetwenty.com/xmlrpc.php" />
-
-<script type="text/javascript"
-	src="http://www.fortyonetwenty.com/wp-content/themes/4120/4120.js"></script>
-
-<link rel="alternate" type="application/rss+xml"
-	title="FortyOneTwenty Inc. &raquo; About Us Comments Feed"
-	href="http://www.fortyonetwenty.com/about-us/feed/" />
-
-<link rel='stylesheet' id='dot-irecommendthis-css'
-	href='http://www.fortyonetwenty.com/wp-content/plugins/i-recommend-this/css/dot-irecommendthis-heart.css?ver=3.5'
-	type='text/css' media='all' />
-
-<script type='text/javascript'
-	src='http://www.fortyonetwenty.com/wp-includes/js/jquery/jquery.js?ver=1.8.3'></script>
-
-<script type='text/javascript'>
-	var dot = {
-		"ajaxurl" : "http:\/\/www.fortyonetwenty.com\/wp-admin\/admin-ajax.php"
-	};
-	var dot_irecommendthis = {
-		"ajaxurl" : "http:\/\/www.fortyonetwenty.com\/wp-admin\/admin-ajax.php"
-	};
-</script>
-
-<script type='text/javascript'
-	src='http://www.fortyonetwenty.com/wp-content/plugins/i-recommend-this/js/dot_irecommendthis.js?ver=3.5'></script>
-
-<!-- Start Fluid Video Embeds Style Tag -->
-<style type="text/css">
-.fve-video-wrapper {
-	position: relative;
-	overflow: hidden;
-	height: 0;
-	padding-bottom: 56.25%;
-	margin: 0.5em 0;
-}
-
-.fve-video-wrapper iframe, .fve-video-wrapper object, .fve-video-wrapper embed
-	{
-	position: absolute;
-	display: block;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-</style>
-<!-- End Fluid Video Embeds Style Tag -->
-
-<script charset="utf-8" type="text/javascript">
-	var switchTo5x = true;
-</script>
-<script charset="utf-8" type="text/javascript"
-	src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">
-	stLight.options({
-		publisher : 'wp.631a12d8-6bb4-4eff-a368-18fc70a9eb8d'
-	});
-	var st_type = 'wordpress3.4.2';
-</script>
-
-<style type="text/css">
-.recentcomments a {
-	display: inline !important;
-	padding: 0 !important;
-	margin: 0 !important;
-}
-</style>
-
-<style>
-#logo h1 a {
-	background: transparent
-		url(http://www.fortyonetwenty.com/wp-content/uploads/2012/10/4120_logo.png)
-		no-repeat center center;
-	width: 112px;
-	height: 112px;
-}
-/* Retina ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5) , only screen and
-		( min--moz-device-pixel-ratio: 1.5) , only screen and (
-		-o-min-device-pixel-ratio: 1.5/1) , only screen and (
-		min-device-pixel-ratio: 1.5) , only screen and ( min-resolution:
-		192dpi) , only screen and ( min-resolution: 2dppx) {
-	/* Retina-specific stuff here */
-	#logo h1 a {
-		background: transparent
-			url(http://www.fortyonetwenty.com/wp-content/uploads/2012/10/4120_logo@2x.png)
-			no-repeat center center;
-		background-size: 112px 112px;
-	}
-}
-
-#mainNav ul a {
-	line-height: 112px;
-}
-
-#mainNav li.nav-logo a {
-	width: 112px;
-	height: 112px;
-}
-</style>
-
+<link rel="stylesheet" href="resources/forest/css/aboutus_test.css">
 <!-- About Us END -->
-
-<style type="text/css">
-.img-circle {
-	border-radius: 50%;
-}
-</style>
 
 </head>
 
@@ -164,50 +52,25 @@
 	</script>
 	<!-- ====================== MENU END ================================================ -->
 
-	<!-- ======= QT FOOTER ================================ -->
-	<script src="js/modernizr-custom.js"></script>
-
-	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
-	<script src="js/materializecss/bin/materialize.min.js"></script>
-	<script src="components/slick/slick.min.js"></script>
-	<script src="components/skrollr/skrollr.min.js"></script>
-	<script src="components/particles/particles.min.js"></script>
-
-	<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-	<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
-
-	<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
-	<script src="js/qt-main.js"></script>
-
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-	<link rel="stylesheet" href="resources/forest/css/aboutus.css"
-		type="text/css" media="screen" />
-
-	<!-- 기존 적용 기능 끝 -->
-
 	<!-- ============== AboutUs CONTENT START ================= -->
 	<div class="full-width flush-top quotes"
 		style="background-image: url('resources/forest/images/galaxy-3.jpg');">
 		<div class="container">
-			<div class="swipers">
-				<ul>
+			<div class="swipers" style="overflow: hidden;">
+				<ul style="list-style: none; margin: 0px;">
 					<li>
 						<blockquote>
-							<br />
-							<p class="fittext" data-max-font-size="60px">CoMu Project</p>
+							<p class="fittext" data-max-font-size="60px"
+								style="font-size: 60px;">CoMu Project</p>
 							<cite class="fittext" data-max-font-size="24px"
-								data-min-font-size="12px"> 2조 (Whole Note)</cite>
+								data-min-font-size="12px" style="font-size: 24px;"> 2조
+								(Whole Note)</cite>
 						</blockquote>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<!-- <div class="filter"></div> -->
 
 	<div class="full-width flush-top">
 		<div class="container">
@@ -260,7 +123,6 @@
 						pharetra ante erat, vel scelerisque tellus tempor quis. Duis
 						eleifend massa nec sodales luctus.</div>
 				</div>
-				<hr>
 			</div>
 		</div>
 	</div>
@@ -316,31 +178,10 @@
 						src="resources/forest/images/skills/java_cc_120.png"></li>
 					<li style="margin-right: 39px;"><img
 						src="resources/forest/images/skills/git_120.png"></li>
-					<li style="margin-right: 39px;"><img
-						src="resources/forest/images/skills/github_120.png"></li>
-					<li style="margin-right: 39px;"><img
-						src="resources/forest/images/skills/gitkraken_120.png"></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<!-- <div class="full-width dark-grey flat footer">
-		<div class="container">
-			<div class="footer-foot">
-				<div class="info">
-					<p>
-						<span>CoMu Project</span>
-					</p>
-					<p>© Copyright 2017 CoMu. All Rights Reserved.</p>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- ============== AboutUs CONTENT END ================= -->
-
 </body>
-
-<!-- COMU PAGE MAIN SPACE CSS  -->
 </html>

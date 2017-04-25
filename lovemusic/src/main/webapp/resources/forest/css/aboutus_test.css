@@ -1,0 +1,116 @@
+@CHARSET "UTF-8";
+
+body {
+	border-top: 3px solid #da594c;
+	color: #838383;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+/* ===== 상단 화면 CSS START ===== */
+.page-template-page-about-php .quotes {
+	height: 300px;
+	padding: 0px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.page-template-page-about-php .quotes .container {
+	height: 100%;
+	position: relative;
+	padding-top: 110px;
+}
+
+.container {
+	zoom: 1;
+	max-width: 62.5em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul {
+	padding-left: 0px;
+}
+
+menu, ol, ul {
+	padding: 0 0 0 40px;
+}
+
+ul, menu, dir {
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.page-template-page-about-php .quotes blockquote {
+	text-align: center;
+	color: #fffffc;
+	text-shadow: 0 0 15px black;
+	margin: 0;
+}
+
+blockquote {
+	font-family: "MenschRegular", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 30px;
+	line-height: 35px;
+}
+
+blockquote {
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 40px;
+	-webkit-margin-end: 40px;
+}
+
+.page-template-page-about-php .quotes blockquote p {
+	line-height: 64px;
+	color: inherit;
+	margin: 0;
+	display: block;
+	width: 100%;
+}
+
+blockquote p {
+	quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+p {
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+
+.page-template-page-about-php .quotes blockquote cite {
+	display: block;
+	margin: 20px 0 0 0;
+	font-style: normal;
+}
+
+/* ===== 상단 화면 CSS END ===== */
+
+/* ===== 조원 화면 CSS START ===== */
+.full-width.flush-top {
+	padding-top: 0px;
+}
+
+.full-width {
+	width: 100%;
+	background-repeat: repeat;
+	background-color: #fffffa;
+	padding: 50px 0px;
+}
+
+/* ===== 조원 화면 CSS END ===== */
