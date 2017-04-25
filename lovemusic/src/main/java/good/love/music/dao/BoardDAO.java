@@ -50,6 +50,9 @@ public interface BoardDAO {
 
 	// 좋아요 등록
 	public int like(Like like) throws Exception;
+	
+	//좋아요 취소
+	public int deleteLike(Like like);
 
 	// 좋아요 리스트(랭킹)
 	public ArrayList<Like> rankList() throws Exception;
@@ -63,6 +66,10 @@ public interface BoardDAO {
 	// 구독
 	public int writeSubscribe(Subscribe subscribe) throws Exception;
 
+	//구독 취소
+	public int deleteSubscribe(Subscribe subscribe);
+
 	// 구독 리스트
 	public ArrayList<Subscribe> subscribeList(String userid) throws Exception;
+
 }

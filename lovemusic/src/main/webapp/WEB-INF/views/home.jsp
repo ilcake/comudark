@@ -25,8 +25,68 @@
 <script src="resources/jquery-3.1.1.min.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate.min.js"></script>
+
+<link rel="stylesheet" href="myfiles/css/animate.css"/>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 </head>
+
+<style>
+#menu, h4 {
+    /* width: 100px;
+    height: 100px; */
+    /* position: relative; */
+    animation: slideInDown 1s;
+}
+
+span{
+    animation: zoomIn 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zoomIn {
+
+  from {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+</style>
+
+<script>
+$(function(){
+	$(".slideDown").
+});
+</script>
 
 <body>
 	<!-- ====================== HEADER ================================================ -->
@@ -39,8 +99,10 @@
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
+					<span class="mymove" style="display:block;">
 					<img src="myfiles/images/main/logo_1.png" class="logo"
-						alt="Sonik template" style="width: 300px;">
+						alt="COMU" style="width: 300px;">
+					</span>
 					<h4>
 						<a href='login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='join'>Join</a>
 					</h4>

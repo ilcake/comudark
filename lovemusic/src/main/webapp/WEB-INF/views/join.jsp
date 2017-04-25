@@ -151,7 +151,26 @@ img {
 						location.href = ".";
 					}
 				}
-			});
+			}
+		});		
+	});
+	
+	//미완료
+	$("#joinbutton").on('click', function(){
+		$.ajax({
+			url : "join"
+			, type : "post"
+			, data : {"userid" : $('#userid').val(), "password" : $('#password').val()}
+			, success : function(resp) {
+				if(resp == "error") {
+					alert("가입 실패");
+					$("input").val("");	//전체 초기화
+					
+				} else {
+					alert("가입 완료");
+					location.href=".";
+				}
+			}
 		});
 	});
 </script>
@@ -187,17 +206,17 @@ img {
 									<div class="content">
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="ID"
-												name="userid" id="joinid">
+												name="userid" id="userid">
 										</div>
 
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="E-MAIL"
-												name="email">
+												name="email" id="email">
 										</div>
 
 										<div class="input-group">
 											<input type="password" placeholder="Password.."
-												class="form-control" name="password" />
+												class="form-control" name="password" id="password"/>
 										</div>
 										<div class="input-group">
 											<input type="password" placeholder="Password...."

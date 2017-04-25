@@ -2,8 +2,10 @@
 	$.fn.wallyti = function(args) {	
 		
 		var defaults = {
-			blockMaxWidth: 360,
-			blockMinWidth: 240,
+			blockMaxWidth: 420,
+			blockMinWidth: 400,
+			// blockMinWidth: 240,
+			// blockMaxWidth: 360,
 			blockMargin: 35,			
 			delayOnResize: 60,
 			disableTransitions: false,
@@ -100,7 +102,7 @@
 			else blockMargin=options.blockMargin;
 			
 			// col num from wich to start
-			var maxCols = Math.floor(containerWidth/blockMinWidth)+2;
+			var maxCols = Math.floor(containerWidth/blockMinWidth)+1;
 			
 			// finding column number
 			for (c=maxCols;c>0;c--) {
@@ -154,7 +156,9 @@
 				cloned.remove();				
 				
 				// adding movement class and take it out when animation end
-				if (hasCssTransition ) {// only if position is changed && block.css('top')!=arrange.top && block.css('left')!=arrange.left
+				if (hasCssTransition ) {// only if position is changed &&
+										// block.css('top')!=arrange.top &&
+										// block.css('left')!=arrange.left
 					block.addClass('wallyti-moving').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function(e){
 						block.removeClass('wallyti-moving');
 						onMoved();

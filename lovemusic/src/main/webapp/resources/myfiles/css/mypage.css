@@ -1,0 +1,284 @@
+@CHARSET "UTF-8";
+
+.qt-particles {
+	background-image: url("images/galaxy-2.jpg");
+}
+
+.homepage-hero-module {
+	border-right: none;
+	border-left: none;
+	position: relative;
+}
+
+.no-video .video-container video, .touch .video-container video {
+	display: none;
+}
+
+.no-video .video-container .poster, .touch .video-container .poster {
+	display: block !important;
+}
+
+.video-container {
+	position: relative;
+	bottom: 0%;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	overflow: scroll;
+	background: #000;  
+}
+
+.video-container .poster img {
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+}
+
+.video-container .filter {
+	z-index: 100;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.4);
+	width: 100%;
+}
+
+.video-container video {
+	position: fixed;
+	z-index: 0;
+	bottom: 0;
+}
+
+.video-container video.fillWidth {
+	width: 100%;
+}
+
+.video-container .title-container {
+	z-index: 2;
+	position: absolute;
+	top: 20%;
+	width: 100%;
+	text-align: center;
+	color: #fff
+}
+
+.text-white {
+	color: #fff !important
+}
+
+.text-thin {
+	font-weight: 100
+}
+
+/* board css */
+a, a:link, a:hover, a:visited, a:active {
+	text-decoration: none;
+	color: black;
+}
+
+*, *:link, *:hover, *:visited, *:active {
+	text-decoration: none;
+	color: black;
+}
+
+.tr_header{
+	margin-top: -5%;
+	margin-bottom: -5%;
+}
+
+.td_img{
+	width:20%;
+}
+
+.td_center{
+	width: 60%;
+}
+
+img {
+	border-radius: 100px;
+	width: 65px;
+	height: 65px;
+}
+
+.td_button{
+	width:20%;
+	text-align: right;
+}
+
+.glyphicon{
+	font-size: 20px;
+}
+
+.panel-group, .panel panel-default {
+	margin: auto;
+	background: rgba(0, 0, 0, 0.4);
+	color: black;
+	text-align: left;
+}
+
+.panel-heading{
+	background-color: blue;
+}
+
+/*================게시판 블록===============*/
+.box{
+	width: 30%;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 20px;
+	float:left;
+	display:inline;
+	color:black;
+	background-color:white;
+}
+
+table{
+	font-size: medium;
+}
+
+.reply > td{
+	/*border: solid white 2px;*/
+	background-color:#f0f5f5;
+	font-size: small;
+	padding: 5px;
+}
+
+.writerButton{
+	position: relative;
+	float: right;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+.replybutton{
+	position: relative;
+	float: right;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+input[type=text]{
+	border: none;
+	border-bottom: black solid 1px;
+	width: auto;
+}
+
+/* mypage css */
+  .center, td, tr{
+   text-align : center; 
+  }
+  
+  td{
+   width: 80px;
+   max-width: 80px;
+  }
+  
+  #div3{
+   border: solid 1px black;
+  }
+  
+  #div4{
+   background-image: url("images/album.jpg");
+   background-size: 10%;
+   background-repeat: no-repeat;
+   background-position: center;
+  }
+  
+  .font{
+   font-size: 14px;
+  }
+  
+  .border{
+   border: solid 1px gray;
+  }
+  
+  #imgtable{
+   width: 20px;
+  }
+  
+  /* board css */
+a, a:link, a:hover, a:visited, a:active {
+	text-decoration: none;
+	color: black;
+}
+
+.tr_header{
+	margin-top: -5%;
+	margin-bottom: -5%;
+}
+
+.td_img{
+	width:20%;
+}
+
+.td_center{
+	width: 60%;
+}
+
+img {
+	border-radius: 100px;
+	width: 65px;
+	height: 65px;
+}
+
+.td_button{
+	width:20%;
+	text-align: right;
+}
+
+.glyphicon{
+	font-size: 20px;
+}
+
+.panel-group, .panel panel-default {
+	margin: auto;
+	background: rgba(0, 0, 0, 0.4);
+	color: black;
+	text-align: left;
+}
+
+.panel-heading{
+	background-color: blue;
+}
+
+/*게시판 블록*/
+.box{
+	min-width: 70px;
+	width: 30%;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 20px;
+	float:left;
+	display:inline;
+	color:black;
+	background-color:white;
+}
+
+table{
+	font-size: medium;
+}
+
+.reply > td{
+	/*border: solid white 2px;*/
+	background-color:#f0f5f5;
+	font-size: small;
+	padding: 5px;
+}
+
+.writerButton{
+	position: relative;
+	float: left;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+.replybutton{
+	position: relative;
+	float: right;
+	font-size:small;
+	margin-bottom: -20%;
+}
+
+a{
+	color:green;
+}
+
+
