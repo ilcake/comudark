@@ -40,11 +40,7 @@
 
 span{
     animation: zoomIn 1s;
-    animation-iteration-count: 1;
-}
-
-span:hover{
-    animation: pulse 0.5s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes slideInDown {
@@ -85,6 +81,12 @@ span:hover{
 }
 
 </style>
+
+<script>
+$(function(){
+	$(".slideDown").
+});
+</script>
 
 <body>
 	<!-- ====================== HEADER ================================================ -->

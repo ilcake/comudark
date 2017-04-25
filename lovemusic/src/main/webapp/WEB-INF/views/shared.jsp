@@ -118,14 +118,14 @@
 								<!-- 글 내용 (줄바꿈 처리) -->
 								<td colspan="3" style="word-break:break-all;" class="content"> 
 								<div class="fileField" style="background-color:#f0f5f5; margin-top: -30px; margin-bottom: 10px; padding: 10px; border: dotted 0.5px white;">
-									<img src="images/galaxy-1.jpg"> &nbsp;&nbsp; File Title ${board.filenum}
+									<img src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; File Title ${board.filenum}
 								</div>
 								 ${fn:replace(board.content, crcn, br)}	
 								 <br>
 								 <!-- 글 수정,삭제 버튼 : 작성ID와 로그인ID가 다를 때만 표시 -->	
 									<c:if test="${board.userid == loginId}">					
 										<span class="writerButton" style="float:right; padding-right:8px;"> 
-											<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a>
+											<a href="write?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a>
 											<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> 
 										</span>
 									</c:if> 

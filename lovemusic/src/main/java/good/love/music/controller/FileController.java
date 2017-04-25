@@ -52,6 +52,7 @@ public class FileController {
 		}else{}
 		
 		file.setFile_com("comfiled code");
+		file.setFile_type("COMU");
 		
 		System.out.println("test"+file);
 		

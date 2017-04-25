@@ -94,12 +94,10 @@
 			            </label>
 						<hr>
 
-						<div class="togglebutton">
 							<label>
 						    	<input type="checkbox" id="checkbox" value="share" name="shared">
 								<span id="shared">unshared</span>
 							</label>
-						</div>
 					</div>
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">

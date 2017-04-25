@@ -90,7 +90,7 @@ $(function(){
 			});
 		}
 	});
-	
+    
 	//글 삭제
 	$(".deleteBoard").on("click", function(){
 		if(confirm('delete?')){

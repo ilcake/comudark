@@ -355,6 +355,7 @@ textarea {
 			<div class="col-md-6 centerPlace">
 				<form id="form" action="save" method="post"
 					enctype="multipart/form-data">
+					<input type="hidden" name="userid" value="${loginId }">
 					<div class="inlineD">
 						<button type="button" data-toggle="modal" data-target="#visual"
 							id="modalBtn" hidden="hidden">Open Modal</button>
@@ -382,11 +383,9 @@ textarea {
 						<br>
 						<div class="row">
 							<div class="col-md-2">
-								<img id="imgView" src="resources/covers/${file.cover_re}"
-									onERROR="this.src='resources/myfiles/images/comu/robot.png'"
-									style="width: 100px; height: 100px; border-radius: 100px;">
-								<input type="file" style="display: none;" id="imgInp"
-									name="upload" />
+								<label>
+					                <img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='images/album.jpg'" style="width:100px; height:100px; border-radius:100px;"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
+					            </label>
 							</div>
 							<div class="col-md-10">
 								<div class="inlineD">
