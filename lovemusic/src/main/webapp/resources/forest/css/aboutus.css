@@ -261,7 +261,7 @@ sub {
  * Addresses margins set differently in IE 6/7.
  */
 dl,
-menu,
+/* menu, */
 ol,
 ul {
   margin: 1em 0;
@@ -274,7 +274,7 @@ dd {
 /*
  * Addresses paddings set differently in IE 6/7.
  */
-menu,
+/* menu, */
 ol,
 ul {
   padding: 0 0 0 40px;
@@ -1615,7 +1615,7 @@ header.containers nav.site-nav ul li a {
 header.containers nav.site-nav ul li a:hover {
   color: #42c1d5;
 }
-header.containers nav.site-nav ul li.current-menu-item:not(.logo) a,
+/* header.containers nav.site-nav ul li.current-menu-item:not(.logo) a, */
 header.containers nav.site-nav ul li.current_page_item:not(.logo) a,
 .single-projects header.containers nav.site-nav ul li.work a,
 .single-post header.containers nav.site-nav ul li.blog a {

@@ -513,7 +513,7 @@
 		$.fn.parallaxPolydecor();
 
 		// background particles
-		$.fn.qtparticlesJs();
+		//$.fn.qtparticlesJs();
 
 		// smooth internal links scrolling
 		//$.fn.qtSmoothScroll();
