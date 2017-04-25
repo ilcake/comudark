@@ -1,11 +1,14 @@
 var errorLine;
 var recentTA;
 $(function() {
-
-	/*
-	 * if (typeof jQuery != 'undefined') { // jQuery is loaded => print the
-	 * version alert(jQuery.fn.jquery); }
-	 */
+	setStringFormat();
+	getMusicTree();
+	
+	if (typeof jQuery != 'undefined') { 
+		// jQuery is loaded => print the version
+	 alert(jQuery.fn.jquery); 
+	 }
+	
 	setJqueryFn();
 	$("#myCarousel").css("height", "100%").css("padding-top", "2%");
 	$(".get-started").click(getStarted);
@@ -30,6 +33,67 @@ $(function() {
 		$(".get-started").trigger("click");
 	}
 });
+
+function setStringFormat(){
+	if (!String.format) {
+		  String.format = function(format) {
+		    var args = Array.prototype.slice.call(arguments, 1);
+		    return format.replace(/{(\d+)}/g, function(match, number) { 
+		      return typeof args[number] != 'undefined'
+		        ? args[number] 
+		        : match
+		      ;
+		    });
+		  };
+		}
+}
+
+function getMusicTree() {
+	$.ajax({
+		type : "post",
+		url : "getList",
+		success : function(resp) {
+			var tree = '{ "data" : [';
+			var mapKey = Object.keys(resp);
+			var insId = 0;
+			var arr = [];
+			$.each(mapKey, function(index, item) {
+				// console.log(JSON.stringify(resp[item][0]));
+				// console.log(resp[item][0]["motherName"]);
+				// console.log(resp[item][0]["insName"]);
+				// console.log(resp[item][0]["fileName"]);
+				// tree += String.format("{'id' : '{0}' , 'parent' : '#', 'text'
+				// : '{1}' }", );
+				if($.inArray(resp[item][0]["motherName"],arr) == -1){
+					if(index != 0){
+						tree += ", "
+					}
+					tree += String.format('{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}', resp[item][0]["motherName"], resp[item][0]["motherName"]);
+					arr.push(resp[item][0]["motherName"]);
+				}
+				if(resp[item][0]["insName"] != 'effect'){
+					tree += String.format(', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }', resp[item][0]["insName"], resp[item][0]["motherName"], resp[item][0]["insName"]);
+				}
+				var arrayList = resp[item];
+				$.each(arrayList, function(listIndex, listItem) {
+					var id = insId++;
+					var parent  = listItem["insName"];
+					var text = listItem["fileName"];
+					tree += String.format(', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }', id, parent, text);
+				});
+			});
+			console.log(arr);
+			tree += "] }";
+			console.log(tree);
+			var jsonTree = JSON.parse(tree);
+			console.log(jsonTree);
+			$('#treeViewDiv').jstree({
+				'plugins' : [ "wholerow" ],
+				'core' : jsonTree
+					});
+		}
+	});
+}
 
 // 시작 버튼이 눌러졌을 때 혹은 MY MUSIC에서 로드 될 때
 function getStarted() {
