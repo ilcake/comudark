@@ -138,7 +138,9 @@
 															dt-ins="bass"> &nbsp;&nbsp;&nbsp; <span
 															class="label">Melody</span><img
 															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="melody"></th>
+															dt-ins="melody"> <span class="label">Voice</span><img
+															src="myfiles/images/hicu/ins_add.png" class="ins_add"
+															dt-ins="voice"></th>
 													</tr>
 												</table>
 											</div>

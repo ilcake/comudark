@@ -218,6 +218,16 @@ function insAddEvent() {
 
 		$("#btnsMelody").html(theContents);
 		break;
+
+
+	case "voice":
+		var voice = new Pizzicato.Sound({
+			source : 'input',
+			options : {
+				volume : 0.5
+			}
+		});
+		break;
 	}
 	theContents += "</div>";
 
