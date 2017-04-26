@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="css/qt-main.css">
 
 <link rel="stylesheet" type="text/css"
-	href="resources/forest/css/howto.css" />
+	href="resources/myfiles/css/howto.css" />
 
 </head>
 

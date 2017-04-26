@@ -191,6 +191,14 @@
 			</div>
 		</div>
 	</div>
+	<div id="theSaveForm" hidden="">
+		<form action="save" id="saveForm">
+			<input type="text" name="userid" hidden="" value="${loginId}" /> <input
+				type="text" name="file_ori" hidden="" value="" /> <input
+				type="text" name="file_com" hidden="" value="" /> <input
+				type="text" name="file_type" value="hicu" hidden="" />
+		</form>
+	</div>
 
 
 	<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
