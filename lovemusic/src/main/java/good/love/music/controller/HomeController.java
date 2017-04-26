@@ -103,6 +103,11 @@ public class HomeController {
 		return "hicu";
 	}
 
+	@RequestMapping(value = "/hicu2", method = RequestMethod.GET)
+	public String hicu2() {
+		return "hicu2";
+	}
+
 	@RequestMapping(value = "/aboutus", method = RequestMethod.GET)
 	public String aboutus() {
 		return "aboutus";
@@ -142,7 +147,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/howto", method = RequestMethod.GET)
-	public String howto(){
+	public String howto() {
 		return "howto";
 	}
 }

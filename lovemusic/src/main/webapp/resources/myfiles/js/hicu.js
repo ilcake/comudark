@@ -2,10 +2,11 @@
 var theMap;
 var bpm;
 var tempo;
-var beatStack;
 var selectedBeat;
-var melodyStack;
-var bassStack;
+var beatStack = "";
+var melodyStack = "";
+var bassStack = "";
+var noteStack = [];
 var playGroup;
 var interPlay;
 var interLed;
@@ -55,6 +56,7 @@ function initHiCu() {
 *
 ***********************************************/
 function playEvent() {
+	if (isNaN(bpm)) return;
 	var theSource = $("#resultCode").val();
 	console.log("play ==> " + theSource);
 	$.ajax({
@@ -112,6 +114,7 @@ function insAddEvent() {
 	switch (ins) {
 	case "beats":
 		beatStack = "";
+		noteStack = [];
 		thePicked = [];
 		theContents += "<div id='area_" + serial + "' class='addedLines'>";
 		var btSelected = $("#beatSelection").val();
@@ -122,7 +125,7 @@ function insAddEvent() {
 			theContents += "<span class='label'>" + btSelected + " <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "' dt-who='beat'></span> ";
 			theContents += "</td><td class='tdBtContainer'>";
 			for (var i = 1; i < 17; i++) {
-				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='beat' dt-loc='1' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn beat' src='myfiles/images/hicu/button_off.png'>";
+				theContents += "<img dt-cla='loop' dt-nm='" + ins + "_" + serial + "'  dt-sta='off' dt-ins='beat' dt-loc='0' dt-nt='" + i + "' id='beat_" + i + "' class='hiBtn beats_" + serial + "' src='myfiles/images/hicu/button_off.png'>";
 			}
 			theContents += "</td></tr></table>";
 			theContents += "</div>";
@@ -132,19 +135,19 @@ function insAddEvent() {
 		case "acu":
 		case "r8":
 			theContents += "<div id='area_" + serial + "' class='addedLines'>";
-			theContents += "<div class='selectLine'><table class='theSelectionTable'><tr>";
-			theContents += "<th><span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'  dt-who='beat'></th>";
-			theContents += "<th><div class='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
+			theContents += "<div class='selectLine'><table class='tbContainer'><tr><td class='tdLbContainer'>";
+			theContents += "<span class='label'>" + btSelected + "</span> <img src='myfiles/images/hicu/ins_remove.png' class='ins_remove' dt-line='" + serial + "'  dt-who='beat'></th>";
+			theContents += "</td><td class='tdBtContainer'><div class='tempodisplay'><span id='tempo'>120</span>&nbsp;<span id='bpm'>bpm</span></div>";
 			theContents += "<span class='tempocontrol'><img class='tempC' src='myfiles/images/hicu/tempo_dec.png' id='tempodec'>";
 			theContents += "<img class='tempC' src='myfiles/images/hicu/tempo_inc.png' id='tempoinc'></span>";
-			theContents += "</th></tr></table></div>";
+			theContents += "</td></tr></table></div>";
 			$.each(drumSet, function(index, item) {
 				theContents += "<div class='buttons_row'>";
 				theContents += "<table class='tbContainer'><tr><td class='tdLbContainer'>";
 				theContents += "<span class='label'>" + item + "</span> ";
 				theContents += "</td><td class='tdBtContainer'>";
 				for (var i = 1; i < 17; i++) {
-					theContents += "<img dt-sta='off' dt-ins='" + btSelected + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn " + btSelected + "' src='myfiles/images/hicu/button_off.png'>";
+					theContents += "<img dt-cla='note' dt-nm='" + ins + "_" + serial + "'   dt-sta='off' dt-ins='" + btSelected + "' dt-nt='" + item + "' dt-loc='" + i + "' id='" + item + "_" + i + "' class='hiBtn " + btSelected + "' src='myfiles/images/hicu/button_off.png'>";
 				}
 				theContents += "</td></tr></table>";
 				theContents += "</div>";
@@ -154,6 +157,7 @@ function insAddEvent() {
 			tmpControl();
 			break;
 		}
+		
 		break;
 
 	case "bass":
@@ -179,7 +183,7 @@ function insAddEvent() {
 
 		$.each(newBass, function(index, item) {
 			if (index < 16) {
-				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='bass' dt-loc='1' dt-nt='" + item.fileName + "' id='beat_" + item.fileName + "' class='hiBtn bass' src='myfiles/images/hicu/button_off.png'>";
+				theContents += "<img dt-cla='loop' dt-nm='" + ins + "_" + serial + "'  dt-sta='off' dt-ins='bass' dt-loc='0' dt-nt='" + item.fileName + "' id='beat_" + item.fileName + "' class='hiBtn bass_" + serial + "' src='myfiles/images/hicu/button_off.png'>";
 			}
 		});
 		theContents += "</td></tr></table>";
@@ -210,7 +214,7 @@ function insAddEvent() {
 
 		$.each(newMel, function(index, item) {
 			if (index < 16) {
-				theContents += "<img dt-cla='loop' dt-sta='off' dt-ins='" + ins + "' dt-loc='1' dt-nt='" + item.fileName + "' id='" + ins + "_" + item.fileName + "' class='hiBtn " + ins + "' src='myfiles/images/hicu/button_off.png'>";
+				theContents += "<img dt-cla='loop' dt-nm='" + ins + "_" + serial + "' dt-sta='off' dt-ins='melody' dt-loc='0' dt-nt='" + item.fileName + "' id='" + ins + "_" + item.fileName + "' class='hiBtn " + ins + "_" + serial + "' src='myfiles/images/hicu/button_off.png'>";
 			}
 		});
 		theContents += "</td></tr></table>";
@@ -218,21 +222,11 @@ function insAddEvent() {
 
 		$("#btnsMelody").html(theContents);
 		break;
-
-
-	case "voice":
-		var voice = new Pizzicato.Sound({
-			source : 'input',
-			options : {
-				volume : 0.5
-			}
-		});
-		break;
 	}
 	theContents += "</div>";
 
 	$(".ins_remove").on("click", insRemoveEvent);
-	$(".hiBtn").on("click", btnEvent);
+	$("#area_" + serial + " .hiBtn").on("click", newBtnEvent);
 	console.log("wow!! " + serial + " added");
 }
 
@@ -370,6 +364,87 @@ function btnEvent() {
 	mkCode();
 }
 
+/********************************************** 
+*
+*                 new btnEvent!
+*
+***********************************************/
+
+function newBtnEvent() {
+	var $this = $(this);
+	var status = $this.attr("dt-sta") == "on"; //on or off - return true false
+	var dtcla = $this.attr("dt-cla");
+	var dtins = $this.attr("dt-ins");
+	var dtnt = $this.attr("dt-nt");
+	var dtnm = $this.attr("dt-nm");
+	var dtloc = $this.attr("dt-loc");
+	var theCodeDt = dtins + "-" + dtnt + "-" + dtloc;
+
+	if (status) { //when off
+		$this.attr("src", "myfiles/images/hicu/button_off.png");
+		$this.attr("dt-sta", "off");
+		$this.removeClass("btnOn");
+		switch (dtcla) {
+		case "loop":
+			switch (dtins) {
+			case "beat":
+				beatStack = "";
+				bpm = "0"
+				break;
+			case "bass":
+				bassStack = "";
+				break;
+			case "melody":
+				melodyStack = "";
+				break;
+			}
+			break;
+
+		case "note":
+			var who = noteStack.indexOf(theCodeDt);
+			noteStack.splice(who, 1);
+			console.log(theCodeDt + " OFF!");
+			break;
+		}
+	} else { //when on
+		console.log(theCodeDt + " ON!");
+		switch (dtcla) {
+		case "loop":
+			$("." + dtnm).removeClass("btnOn");
+			$("." + dtnm).attr("src", "myfiles/images/hicu/button_off.png");
+			$("." + dtnm).attr("dt-sta", "off");
+			switch (dtins) {
+			case "beat":
+				beatStack = theCodeDt;
+				$.each(theMap.beat, function(index, item) {
+					if (item.fileName == dtnt) {
+						bpm = item.bpm;
+						console.log("theDuration now = " + bpm);
+					}
+				});
+				break;
+			case "bass":
+				bassStack = theCodeDt;
+				break;
+			case "melody":
+				melodyStack = theCodeDt;
+				break;
+			}
+			break;
+
+		case "note":
+			noteStack.push(theCodeDt);
+			break;
+		}
+		$this.attr("src", "myfiles/images/hicu/button_on.png");
+		$this.attr("dt-sta", "on");
+		$this.addClass("btnOn");
+	}
+
+
+
+	mkCode();
+}
 
 /********************************************** 
 *
@@ -378,6 +453,13 @@ function btnEvent() {
 ***********************************************/
 
 function mkCode() {
+	console.log("beatStack --->" + noteStack);
+	console.log("bassStack --->" + bassStack);
+	console.log("melodyStack --->" + melodyStack);
+	console.log("noteStack --->" + noteStack);
+
+
+	$("#resultCode").text("");
 	var theCode = "";
 	var theBeatCode = "";
 	var theMelodyCode = "";
@@ -386,14 +468,12 @@ function mkCode() {
 	var beatTemp = "";
 	var melodyTemp = "";
 	var bassTemp = "";
-	var leng = thePicked.length;
-	$.each(thePicked, function(index, item) {
+	/*$.each(thePicked, function(index, item) {
 		var theOne = item.split("-");
 		console.log(theOne);
 	});
-
-	thePicked.sort();
-	$.each(thePicked, function(num, who) {
+	thePicked.sort();*/
+	/*$.each(thePicked, function(num, who) {
 		console.log("Each Num==" + num);
 		var theOne = who.split("-");
 		var theIns = theOne[0];
@@ -417,21 +497,47 @@ function mkCode() {
 				theCode += "}\n";
 			}
 		}
-		if (beatTemp.length > 0 && (beatStack != "")) {
-			theBeatCode = "\nloop beat" + beatTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
-		} else {
+	});*/
+
+	if (beatStack != "") {
+		beatTemp = beatStack.split("-");
+		theBeatCode = "\nloop beat" + beatTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+	} else {
+		if (noteStack.length > 0) {
 			theBeatCode = "bpm " + $("#tempo").text() + ";\n";
 		}
+	}
 
-		if (bassTemp.length > 0 && (bassStack != "")) {
-			theBassCode = "\nloop bass" + bassTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
-		}
+	if (bassStack != "") {
+		bassTemp = bassStack.split("-");
+		theBassCode = "\nloop bass" + bassTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+	}
 
-		if (melodyTemp.length > 0 && (melodyStack != "")) {
-			theMelodyCode = "\nloop melody" + melodyTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
-		}
-	});
+	if (melodyStack != "") {
+		melodyTemp = melodyStack.split("-");
+		theMelodyCode = "\nloop melody" + melodyTemp[1] + "{\n  location 0;\n  do 1;\n}\n";
+	}
 
+
+	var leng = noteStack.length;
+	if (leng > 0) {
+		$.each(noteStack, function(num, who) {
+			var theOne = who.split("-");
+			var theIns = theOne[0];
+			var isChange = (num == 0 || temp != theIns);
+			if (isChange) {
+				theCode += "\nins " + theIns + "{\n";
+				theCode += "  location 0;\n  do 1;\n";
+				temp = theIns;
+			}
+			theCode += "  note(" + theOne[1] + "," + (theOne[2] - 1) + ");\n";
+			if ((num + 1) == leng) {
+				theCode += "}\n";
+			} else if ( (noteStack[num + 1].split("-")[0] != theIns) ) {
+				theCode += "}\n";
+			}
+		});
+	}
 	$("#resultCode").text(theBeatCode + theBassCode + theMelodyCode + theCode);
 }
 
