@@ -128,7 +128,7 @@ div {
 }
 
 .emblem-row .emblem-col {
-	width: 25%;
+	width: 33.33%;
 	display: block;
 	margin: 0px;
 	float: left;
@@ -147,8 +147,7 @@ div {
 h2 {
 	font-family: "MenschRegular", Helvetica, Arial, sans-serif;
 	font-weight: normal;
-	/* font-size: -webkit-xxx-large; */
-	font-size: 36px;
+	font-size: -webkit-xxx-large;
 	color: #2c2b2b;
 	line-height: 40px;
 	margin-bottom: 0px;
@@ -170,40 +169,4 @@ h2 {
 /* ===== 조원 화면 CSS END ===== */
 
 /* ===== CoMu 소개 CSS START ===== */
-.full-width.red {
-	background-color: #da594c;
-}
-
-.testimonials {
-	position: relative;
-}
-
-.testimonials li.testimonial blockquote p {
-	color: inherit;
-}
-
 /* ===== CoMu 소개 CSS END ===== */
-
-/* ===== 사용기술 CSS START ===== */
-.clients {
-	text-align: center;
-}
-
-.clients h2 {
-	color: #2c2b2b;
-	font-size: 24px;
-}
-
-.clients ul {
-	list-style-type: none;
-	width: 100%;
-	padding: 0;
-	margin: 13px 0 0 0;
-}
-
-.clients ul li {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-/* ===== 사용기술 CSS END ===== */
