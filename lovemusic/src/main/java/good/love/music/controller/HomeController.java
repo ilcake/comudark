@@ -142,7 +142,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/howto", method = RequestMethod.GET)
-	public String howto(){
+	public String howto() {
 		return "howto";
 	}
 }
