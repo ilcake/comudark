@@ -3,12 +3,12 @@ var recentTA;
 $(function() {
 	setStringFormat();
 	getMusicTree();
-	
-	if (typeof jQuery != 'undefined') { 
+
+	if (typeof jQuery != 'undefined') {
 		// jQuery is loaded => print the version
-	 alert(jQuery.fn.jquery); 
-	 }
-	
+		alert(jQuery.fn.jquery);
+	}
+
 	setJqueryFn();
 	$("#myCarousel").css("height", "100%").css("padding-top", "2%");
 	$(".get-started").click(getStarted);
@@ -34,18 +34,17 @@ $(function() {
 	}
 });
 
-function setStringFormat(){
+function setStringFormat() {
 	if (!String.format) {
-		  String.format = function(format) {
-		    var args = Array.prototype.slice.call(arguments, 1);
-		    return format.replace(/{(\d+)}/g, function(match, number) { 
-		      return typeof args[number] != 'undefined'
-		        ? args[number] 
-		        : match
-		      ;
-		    });
-		  };
-		}
+		String.format = function(format) {
+			var args = Array.prototype.slice.call(arguments, 1);
+			return format.replace(/{(\d+)}/g, function(match, number) {
+				return typeof args[number] != 'undefined'
+					? args[number]
+					: match;
+			});
+		};
+	}
 }
 
 function getMusicTree() {
@@ -64,20 +63,20 @@ function getMusicTree() {
 				// console.log(resp[item][0]["fileName"]);
 				// tree += String.format("{'id' : '{0}' , 'parent' : '#', 'text'
 				// : '{1}' }", );
-				if($.inArray(resp[item][0]["motherName"],arr) == -1){
-					if(index != 0){
+				if ($.inArray(resp[item][0]["motherName"], arr) == -1) {
+					if (index != 0) {
 						tree += ", "
 					}
 					tree += String.format('{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}', resp[item][0]["motherName"], resp[item][0]["motherName"]);
 					arr.push(resp[item][0]["motherName"]);
 				}
-				if(resp[item][0]["insName"] != 'effect'){
+				if (resp[item][0]["insName"] != 'effect') {
 					tree += String.format(', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }', resp[item][0]["insName"], resp[item][0]["motherName"], resp[item][0]["insName"]);
 				}
 				var arrayList = resp[item];
 				$.each(arrayList, function(listIndex, listItem) {
 					var id = insId++;
-					var parent  = listItem["insName"];
+					var parent = listItem["insName"];
 					var text = listItem["fileName"];
 					tree += String.format(', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }', id, parent, text);
 				});
@@ -90,7 +89,8 @@ function getMusicTree() {
 			$('#treeViewDiv').jstree({
 				'plugins' : [ "wholerow" ],
 				'core' : jsonTree
-					});
+			});
+
 		}
 	});
 }
@@ -129,7 +129,7 @@ function comuRun(source) {
 				errorLine = parseInt(errorMsg);
 				$("#errorClick").html("errorLine :  " + errorLine);
 				$("#errorContent").html(
-						errorMsg.substring(errorLine, errorMsg.length));
+					errorMsg.substring(errorLine, errorMsg.length));
 			} else {
 				$("#modalBtn").trigger("click");
 				eval(resp);
@@ -212,7 +212,7 @@ function setJqueryFn() {
 				var endPos = this.selectionEnd;
 				var scrollTop = this.scrollTop;
 				this.value = this.value.substring(0, startPos) + myValue
-						+ this.value.substring(endPos, this.value.length);
+				+ this.value.substring(endPos, this.value.length);
 				this.focus();
 				this.selectionStart = startPos + myValue.length;
 				this.selectionEnd = startPos + myValue.length;
@@ -231,7 +231,8 @@ function selectTextareaLine(tarea, lineNum) {
 	var lines = tarea.value.split("\n");
 
 	// calculate start/end
-	var startPos = 0, endPos = tarea.value.length;
+	var startPos = 0,
+		endPos = tarea.value.length;
 	for (var x = 0; x < lines.length; x++) {
 		if (x == lineNum) {
 			break;
