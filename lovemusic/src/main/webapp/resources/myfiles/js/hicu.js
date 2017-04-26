@@ -157,7 +157,7 @@ function insAddEvent() {
 			tmpControl();
 			break;
 		}
-		
+
 		break;
 
 	case "bass":
@@ -346,7 +346,7 @@ function btnEvent() {
 
 
 		}
-		theOne.attr("src", "myfiles/images/hicu/button_on.png");
+		theOne.attr("src", "myfiles/images/hicu/button_play.png");
 		theOne.attr("dt-sta", "on");
 		thePicked.push(insData + "-" + ntData + "-" + locData);
 		thePicked.sort();
@@ -436,7 +436,7 @@ function newBtnEvent() {
 			noteStack.push(theCodeDt);
 			break;
 		}
-		$this.attr("src", "myfiles/images/hicu/button_on.png");
+		$this.attr("src", "myfiles/images/hicu/button_play.png");
 		$this.attr("dt-sta", "on");
 		$this.addClass("btnOn");
 	}

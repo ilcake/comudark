@@ -108,7 +108,6 @@
 					</button>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- Modal End! -->
@@ -177,15 +176,13 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
-
 					</div>
 
 					<div class="filter"></div>
 					<video autoplay loop class="fillWidth">
-						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
+						<source src="myfiles/video/Hello-World.mp4" type="video/mp4" />
 					</video>
 				</div>
 			</div>
