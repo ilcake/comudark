@@ -5,7 +5,7 @@ public class Board {
 	private int filenum;			//파일 번호
 	private String file_title;		//파일 제목
 	private String file_ori;		//코드
-	private String cover_re;		//커버 이미지
+	private String cover_re = "images/album.jpg";		//커버 이미지
 	
 	private int boardnum;			//보드 번호
 	private String userid;			//작성자

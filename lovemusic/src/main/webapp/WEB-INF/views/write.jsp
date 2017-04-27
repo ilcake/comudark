@@ -10,9 +10,8 @@
 
 <!--==============   APPENDING JS AND CSS   =================-->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="resources/myfiles/js/comu.js"></script>
-<link href='resources/myfiles/css/comu.css' rel='stylesheet'
-	type='text/css'>
+<script src="resources/myfiles/js/bg-movie.js"></script>
+<link href='resources/myfiles/css/bg-movie.css' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript">
 
@@ -20,6 +19,9 @@
 	});
 	
 	$(function() {
+		if($("#filenum").attr("value") == "") {
+			$("#filenum").removeAttr("name");
+		}
 		
 		//이미지
 	    $("#imgInp").on('change', function(){
@@ -57,7 +59,7 @@
 </script>
 
 <style>
-	img{
+	.image{
 		width: 120px; height:120px;
 		border-radius: 5px;
 	}
@@ -84,12 +86,12 @@
 	    		<div class="row" style="margin: 30px;">
 	    		<form id="form1" runat="server" action="writing" method="post" enctype="multipart/form-data">
 	    			<input type="hidden" name="userid" value="${loginId}" />
-	    			<input type="hidden" name="filenum" value="${boardFile.filenum}" />
+	    			<input type="hidden" name="filenum" id="filenum" value="${boardFile.filenum}" />
 		    		<div class="col-md-3" id="center">
 		    		<br>
 				        
 				   		 <label>
-			                <img id="imgView" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='images/album.jpg'"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
+			                <img id="imgView" class="image" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='images/album.jpg'"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
 			            </label>
 						<hr>
 
@@ -101,13 +103,15 @@
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
 						<div class="form-group label-floating">
-							<label class="control-label">Title (*Default : File Title)</label>
-								<input type="text" class="form-control" name="title" value="${boardFile.file_title}">
+							<label class="control-label">Title <c:if test="${boardFile.file_title != null}">(*Default : File Title)</c:if></label>
+							<input type="text" class="form-control" name="title" value="${boardFile.file_title}">
 						</div>
-						<div class="form-group label-floating" id="code">
-						<label class="control-label">Code</label>
-						<textarea class="form-control"rows="5" readonly>${boardFile.file_ori}</textarea>
-						</div>
+						<c:if test="${boardFile.file_title != null}">
+							<div class="form-group label-floating" id="code">
+							<label class="control-label">Code</label>
+							<textarea class="form-control"rows="5" readonly>${boardFile.file_ori}</textarea>
+							</div>
+						</c:if>
 						<div class="form-group label-floating">
 						<label class="control-label">Detail</label>
 						<textarea class="form-control" rows="5" name="content"></textarea>

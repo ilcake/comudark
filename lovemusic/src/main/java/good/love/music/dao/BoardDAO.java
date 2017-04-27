@@ -24,6 +24,12 @@ public interface BoardDAO {
 	// 글 목록(전체)
 	public ArrayList<Board> list();
 	
+	//글 목록(좋아요)
+	public ArrayList<Board> myLikeList(String userid);
+	
+	//글 목록(구독)
+	public ArrayList<Board> mySubList(String userid);
+	
 	//글 수정(글 검색)
 	public Board selectBoard(int boardnum);
 

@@ -295,4 +295,16 @@ public class BoardRepository {
 		return list;
 	}
 
+	public ArrayList<Board> myLikeList(String userid) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		ArrayList<Board> list = dao.myLikeList(userid);
+		return list;
+	}
+
+	public ArrayList<Board> mySubList(String userid) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		ArrayList<Board> list = dao.mySubList(userid);
+		return list;
+	}
+
 }

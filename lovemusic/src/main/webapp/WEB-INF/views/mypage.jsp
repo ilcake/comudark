@@ -3,9 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
-	//치환 변수 선언
-	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
-	pageContext.setAttribute("br", "<br/>"); //br 태그
+	//치환 변수 선언	pageContext.setAttribute("crcn", "\r\n"); //Space, Enter	pageContext.setAttribute("br", "<br/>"); //br 태그
 %>
 <!DOCTYPE html>
 <html>
@@ -17,22 +15,9 @@
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/main/logo_1pa.png" />
 <!--==============   APPENDING JS AND CSS   =================-->
-<script src="resources/jquery-3.1.1.min.js"></script>
-<script src="resources/myfiles/js/mypage.js"></script>
-<link href='resources/myfiles/css/mypage.css' rel='stylesheet' type='text/css'>
-	
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<!-- draggable -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
-
-<!-- alert 효과 -->
-<link rel="stylesheet" href="resources/myfiles/css/jquery-confirm.css">
-<script type="text/javascript" src="resources/myfiles/js/jquery-confirm.js" ></script>
-
-<style>
+<script src="resources/jquery-3.1.1.min.js"></script><script src="resources/myfiles/js/mypage.js"></script><link href='resources/myfiles/css/mypage.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- draggable --><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script><style>
 /* mypage css */
   .center, td, tr{
    text-align : center; 
@@ -97,11 +82,9 @@ a, a:link, a:hover, a:visited, a:active {
 	width: 60%;
 }
 
-.image {
-	border-radius: 100px;
-	width: 65px;
-	height: 65px;
-}
+.image {	border-radius: 100px;
+	width: 65px;
+	height: 65px;}
 
 .td_button {
 	width: 20%;
@@ -234,150 +217,32 @@ border-radius: 0px; */
 	background: #ff5a5f !important;
 }
 
-.tab-content>.tab-pane {
-	border: 3px solid #ddd;
-	border-top: none;
-	padding: 25px 10px 10px;
-	border: solid 3px white;
+.tab-content>.tab-pane {	border: 3px solid #ddd;	border-top: none;	padding: 25px 10px 10px;	border: solid 3px white;}
+.container {	border: white solid 3px;	margin-bottom: 40px;
 }
-
-.container {
-	border: white solid 3px;
-	margin-bottom: 40px;
-}
-
-table {
-	table-layout: fixed;
-	position: relative;
+table {	table-layout: fixed;	position: relative;
 }
 </style>
-
 <script type="text/javascript">
 
-$(function(){
-	
-	$.alert({
-	    title: 'Alert!',
-	    content: 'Simple alert!',
-	});
-	
-	$("#test").draggable();
+$(function(){		$(".image").draggable();
 	$('#resizeDiv')
-	.resizable({
-		start: function(e, ui) {
-			alert('resizing started');
-		},
-		resize: function(e, ui) {
-		
-		},
-		stop: function(e, ui) {
-			alert('resizing stopped');
-		}
-	});
+	.resizable({		start: function(e, ui) {			alert('resizing started');		},		resize: function(e, ui) {		},		stop: function(e, ui) {			alert('resizing stopped');		}	});
 	$("#test").resizable();
-	
-	//MYPAGE에서 글 등록이나 수정 시 BOARD 탭으로 이동
-	var re = document.referrer;
-	var re = re.split("/");
-	var re = re[4].split("?");
-	
-	if(re[0] == "dragwrite" || re[0] == "selectBoard"){
- 		$("#myfiles").removeClass().addClass("tab-pane fade");
-		$("#myboards").removeClass().addClass("tab-pane in active");
-		$("#myB").click();
-		
+
+	//MYPAGE에서 글 등록이나 수정 시 BOARD 탭으로 이동	var re = document.referrer;	var re = re.split("/");	var re = re[4].split("?");	if(re[0] == "dragwrite" || re[0] == "selectBoard" || re[0] == "write"){ 		$("#myfiles").removeClass().addClass("tab-pane fade");		$("#myboards").removeClass().addClass("tab-pane in active");		$("#myB").click();
 	}
 /*    var page = 1; 	//무한 스크롤
    
    $(window).scroll(function(){
-         var scrollHeight = $(window).scrollTop() + $(window).height();
-         var documentHeight = $(document).height();
-         
-         if(scrollHeight == documentHeight) {
-        	 alert("page");
-               page=page+2;
-               
-             //board 3번 이후로 불러오기
-             if(page==3){
-              $('<c:forEach var="board" items="${boardList}" begin="3" end="4"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
-             }else if(page==5){
-              $('<c:forEach var="board" items="${boardList}" begin="5" end="6"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');
-
-             }
-         }
-    }); */
-   
-   
-   
+         var scrollHeight = $(window).scrollTop() + $(window).height();         var documentHeight = $(document).height();
+         if(scrollHeight == documentHeight) {        	 alert("page");               page=page+2;
+             //board 3번 이후로 불러오기             if(page==3){              $('<c:forEach var="board" items="${boardList}" begin="3" end="4"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');             }else if(page==5){              $('<c:forEach var="board" items="${boardList}" begin="5" end="6"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}'+page+'</td></tr></table></c:forEach>').appendTo('#more');             }         }    }); */
 });
-
-$(document).ready(function() {
-	   //fileList START======
-	   $.ajax({
-	     type : "get",
-	     url : "fileList",
-	     success : function(resp) {
-	      var msg = "<table class='center' id='loadlist'><tr>";
-	      $.each(resp,function(index, item) {
-	         msg += '<td class="font"><img src="resources/covers/'
-	           + item.cover_re
-	           + '" class="image" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
-	           + item.filenum
-	           + '><br>';
-	         var title = item.file_title;
-	         //if(title.length>8){title = title.substring(0,8)+'<br>'+title.substring(8,title.length);}
-	         msg += title
-	           + '</td>';
-	         if ((index + 7) % 6 == 0) {
-	          msg += "</tr><tr>";
-	         }
-	        });
-	      msg += "</tr><table>";
-	      $("#loader").html(msg);
-	     }
-	   });
-	   //fileList END=====
-
-				//board 3번 이후로 불러오기
-				if (page == 3) {
-					$('<c:forEach var="board" items="${boardList}" begin="3" end="4"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}' + page + '</td></tr></table></c:forEach>').appendTo('#more');
-				} else if (page == 5) {
-					$('<c:forEach var="board" items="${boardList}" begin="5" end="6"><table class="border" style="table-layout:fixed; width:600px; margin:auto;"><tr><td id="imgtable" class="border"><img src="" alt="image(클릭 시 곡 재생)"></td><td>${board.title}' + page + '</td></tr></table></c:forEach>').appendTo('#more');
-
-				}
-			}
-		});
-	});
-
+
 	$(document).ready(function() {
-		//fileList START======
-		$.ajax({
-			type : "get",
-			url : "fileList",
-			success : function(resp) {
-				var msg = "<table class='center' id='loadlist'><tr>";
-				$.each(resp, function(index, item) {
-					//img 주소 : 테스트용 임시 주소!!
-					msg += '<td class="font"><img src="resources/covers/'
-						+ item.cover_re
-						+ '" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
-						+ item.filenum
-						+ '><br>';
-					var title = item.file_title;
-					//if(title.length>8){title = title.substring(0,8)+'<br>'+title.substring(8,title.length);}
-					msg += title
-						+ '</td>';
-					if ((index + 7) % 6 == 0) {
-						msg += "</tr><tr>";
-					}
-				});
-				msg += "</tr><table>";
-				$("#loader").html(msg);
-			}
-		});
-		//fileList END=====
-
-	});
+/* 		//fileList START======		$.ajax({			type : "get",			url : "fileList",			success : function(resp) {				var msg = "<table class='center' id='loadlist'><tr>";				$.each(resp, function(index, item) {					msg += '<td class="font"><img class="cover" src="resources/covers/'						+ item.cover_re						+ '" style="width:60px; height:60px; max-height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='						+ item.filenum						+ '><br>';					var title = item.file_title;					//if(title.length>8){title = title.substring(0,8)+'<br>'+title.substring(8,title.length);}					msg += title						+ '</td>';					if ((index + 7) % 6 == 0) {						msg += "</tr><tr>";					}				});				msg += "</tr><table>";				$("#loader").html(msg);			}		});		//fileList END===== */
+	});		$(function(){			   $(".image").error(function(){	        	  }).attr('src', 'resources/myfiles/images/comu/robot.png');	   	});
 
 
 	function allowDrop(ev) {
@@ -404,138 +269,12 @@ $(document).ready(function() {
 		}
 	}
 </script>
-
-<body>
-	<jsp:include page="navibar.jsp" flush="false" />
-	<div id="totalWrapper">
-		<div class="video-container" style="position: absolute;">
-			<video autoplay loop class="fillWidth">
-				<source src="myfiles/video/Blurry-Lights.mp4" type="video/mp4" />
-			</video>
-		</div>
-		
-
-   <!-- ====================== SECTION BOOKING AND CONTACTS ================================================ -->
-	<div class="container" style="border:none;">
-		<div class="row" style="border:none;">
-				<!-- <div id="test" style="color:white">test</div> -->
-					<ul class="nav nav-tabs" style="border:none;">
-						<li class="active">
-								<a href="#myfiles" data-toggle="tab">MY FILES</a>
-							</li>
-						<li>
-								<a data-toggle="tab" href="#myboards" id="myB">MY BOARDS</a>
-							</li>
-						<li>
-								<a data-toggle="tab" href="#likes">LIKE/SUBSCRIBE</a>
-							</li>
-					</ul>
-					
-				 <div class="tab-content" style="margin-top: 1px;">
-					<!-- ====================== tab1 : MY FILES===================== -->
-					<div id="myfiles" class="tab-pane in active">
-						<div id="loader"
-							style="padding: 20px; padding-left: 40px; border: none;"></div>
-						<!-- loaded file -->
-						<table
-							style="border: white solid 3px; text-align: center; color: white; padding: 10px;">
-							<tr>
-								<td id="div2"><a href="write" style="color: white;"
-									id="hov2">&lt; go write</a></td>
-								<td id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
-									<span style="color: white;" id="hov3">Drop & write</span>
-								</td>
-								<td id="div4" ondrop="drop2(event)"
-									ondragover="allowDrop(event)"></td>
-							</tr>
-						</table>
-					</div>
-					<!-- ====================== tab2 : MY BOARDS===================== -->
-					<div id="myboards" class="tab-pane fade">
-						<!-- =============================== CONTENT ============================= -->
-							<div id="container" style="margin: 30px; padding:30px; border:none; position:relative;" >
-								<!-- 게시물 시작 (Collapse) -->
-								<c:forEach var="board" items="${boardList}">
-									<div class="s" style="border-radius:10px; background-color:white; padding: 20px; margin: 20px; width:100%;">
-										<table class='board' style="width:100%;">
-											<tr>
-												<td class="td_img"><img src="images/galaxy-1.jpg"
-													alt="image" class="image"></td>
-												<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
-													&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>
-													<br>
-												<span
-													style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>
-												</td>
-												<!-- 좋아요/구독 버튼 -->
-												<td class="td_button">
-												</td>
-											</tr>
-											<tr>
-												<td colspan='3'><hr style="margin-top:-5px;"></td>
-											</tr>
-											<tr>
-												<td colspan="3" style="word-break:break-all;" class="content">
-												 ${fn:replace(board.content, crcn, br)}	<!-- 글 내용 줄바꿈 처리 -->
-												 <br>
-													<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 다를 때만 표시 -->
-														<span class="writerButton" style="float:right; padding-right:8px;"> 
-															<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 
-															<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->
-														</span>
-													</c:if> 
-												</td>
-											</tr>
-											<tr>
-												<td colspan="3"><hr></td>
-											</tr>
-										</table>
-										<table class="board" id="col${board.boardnum}"> <!-- class="collapse" -->
-											<!-- 댓글 -->
-											<c:forEach var="reply" items="${replyAll}">
-												<c:if test="${reply.boardnum == board.boardnum}">
-													<tr class="reply">
-														<td class="td_img">${reply.userid}</td>
-														<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>
-														<td>
-														<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->
-														<a href="updateReply?replynum=${reply.replynum}"><span
-																class="glyphicon glyphicon-pencil" aria-hidden="true"
-																style="font-size: small;"></span></a>
-															<a href="deleteReply?replynum=${reply.replynum}">X</a>
-														</c:if></td>
-												</tr>
-											</c:if>
-										</c:forEach>
-										<tr>
-											<form action="replyWrite" method="get">
-												<input type="hidden" name="boardnum"
-													value="${board.boardnum}" />
-												<td class="td_img">댓글</td>
-												<td class="td_center" style="width: 70%;"><input
-													type="text" name="replytext" id="replytext"
-													style="width: 100%;"></td>
-												<td><button style="border: none; background: none;">
-														<span class="glyphicon glyphicon-pencil"
-															aria-hidden="true"></span>
-													</button></td>
-											</form>
-										</tr>
-									</table>
-								</div>
-							</c:forEach>
-							<!-- 게시물 END -->
-						</div>
-						<!-- =============================== CONTENT ============================= -->
-					</div>
-					<!-- ====================== tab1 : LIKE/SUBSCRIBE===================== -->
-					<div id="likes" class="tab-pane fade">
-						이건 중간에 오냐?<br> 내용이 길면<br> 어떻게 되니?<br> 어떻게 되니?<br>어떻게
-						되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게
-						되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게
-						되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게 되니?<br>어떻게
-						되니?<br>어떻게 되니?<br>어떻게 되니?<br>뜨나?
-					</div>
+<body>	<jsp:include page="navibar.jsp" flush="false" />	<div id="totalWrapper">		<div class="video-container" style="position: absolute;">			<video autoplay loop class="fillWidth">				<source src="myfiles/video/Blurry-Lights.mp4" type="video/mp4" />			</video>		</div>		   <!-- ====================== SECTION BOOKING AND CONTACTS ================================================ -->
+	<div class="container" style="border:none;">		<div class="row" style="border:none;">				<!-- <div id="test" style="color:white">test</div> -->					<ul class="nav nav-tabs" style="border:none;">						<li class="active">								<a data-toggle="tab" href="#myfiles">MY FILES</a>							</li>						<li>								<a data-toggle="tab" href="#myboards" id="myB">MY BOARDS</a>							</li>						<li>								<a data-toggle="tab" href="#like">LIKE</a>							</li>						<li>								<a data-toggle="tab" href="#subscribe">SUBSCRIBE</a>							</li>					</ul>
+				 <div class="tab-content" style="margin-top: 1px;">					<!-- ====================== tab1 : MY FILES===================== -->					<div id="myfiles" class="tab-pane in active">						<div id="loader" style="padding: 20px; padding-left: 40px; border: none;">						<!-- loaded file -->						<table style="" class="center">						<tr>						<c:forEach var="file" items="${fileList}" varStatus="index">												<c:if test="${index.count % 7 == 0}">						</tr><tr>						</c:if>																		<td style="font-size:small; color:white; text-align:center;"><img src="resources/covers/${file.cover_re}" class="image" onERROR="this.src='resources/myfiles/images/comu/robot.png'" draggable="true" ondragstart="drag(event)" id="${file.filenum}">						<br>${file.file_title} </td>						</c:forEach>						</tr>						</table>												<table style="border: white solid 3px; text-align: center; color: white; padding: 10px;">							<tr>								<td id="div2"><a href="write" style="color: white;"									id="hov2">&lt; EDIT FILE</a></td>								<td id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">									<span style="color: white;" id="hov3">DROP & WRITE</span>								</td>								<td id="div4" ondrop="drop2(event)"									ondragover="allowDrop(event)">DELETE</td>							</tr>						</table>						</div>					</div>
+					<!-- ====================== tab2 : MY BOARDS===================== -->					<div id="myboards" class="tab-pane fade">						<select><option>1</option><option>2</option></select>							<div id="container" style="margin: 30px; padding:30px; border:none; position:relative;" >								<!-- 게시물 시작 (Collapse) -->								<c:forEach var="board" items="${boardList}">								<!-- 자신의 게시물만 표시 -->								<c:if test="${board.userid == loginId }">									<div class="s" style="border-radius:10px; background-color:white; padding: 20px; margin: auto; margin-bottom:20px; width:100%;">										<table class='board' style="width:100%;">											<tr>												<td class="td_img"><img src="images/galaxy-1.jpg"													alt="image" class="image"></td>												<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>													&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>													<br>												<span													style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>												</td>												<!-- 좋아요/구독 버튼 -->												<td class="td_button">												</td>											</tr>											<tr>												<td colspan='3'><hr style="margin-top:-5px;"></td>											</tr>											<tr>												<td colspan="3" style="word-break:break-all;" class="content">												 ${fn:replace(board.content, crcn, br)}	<!-- 글 내용 줄바꿈 처리 -->												 <br>													<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 같을 때만 표시 -->														<span class="writerButton" style="float:right; padding-right:8px;"> 															<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 															<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->														</span>													</c:if> 												</td>											</tr>											<tr>												<td colspan="3"><hr></td>											</tr>										</table>										<table class="board" id="col${board.boardnum}"> <!-- class="collapse" -->											<!-- 댓글 -->											<c:forEach var="reply" items="${replyAll}">												<c:if test="${reply.boardnum == board.boardnum}">													<tr class="reply">														<td class="td_img">${reply.userid}</td>														<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>														<td>														<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->														<a href="updateReply?replynum=${reply.replynum}"><span																class="glyphicon glyphicon-pencil" aria-hidden="true"																style="font-size: small;"></span></a>															<a href="deleteReply?replynum=${reply.replynum}">X</a>														</c:if></td>												</tr>											</c:if>										</c:forEach>										<tr>											<form action="replyWrite" method="get">												<input type="hidden" name="boardnum"													value="${board.boardnum}" />												<td class="td_img">댓글</td>												<td class="td_center" style="width: 70%;"><input													type="text" name="replytext" id="replytext"													style="width: 100%;"></td>												<td><button style="border: none; background: none;">														<span class="glyphicon glyphicon-pencil"															aria-hidden="true"></span>													</button></td>											</form>										</tr>									</table>								</div>							</c:if>							</c:forEach>							<!-- 게시물 END -->						</div>					</div>
+					<!-- ====================== tab3 : LIKE===================== -->					<div id="like" class="tab-pane fade">						<select><option>1</option><option>2</option></select>							<div id="container" style="margin: 30px; padding:30px; border:none; position:relative;" >								<!-- 게시물 시작 (Collapse) -->								<c:forEach var="board" items="${myLikeList}">								<c:if test="${board.userid != loginId }">									<div class="divnum ${board.boardnum}" style="border-radius:10px; background-color:white; padding: 20px; margin: auto; margin-bottom:20px; width:100%;">										<table class='board' style="width:100%;">											<tr>												<td class="td_img"><img src="images/galaxy-1.jpg"													alt="image" class="image"></td>												<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>													&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>													<br>												<span													style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>												</td>												<!-- 좋아요/구독 버튼 --> <!-- 작성 ID가 로그인 ID와 같으면 표시하지 않음 -->												<td class="td_button">												<c:if test="${loginId != board.userid}">												<a href="#" data-toggle="tooltip" title="좋아요"><span														class="glyphicon glyphicon-thumbs-up" aria-hidden="true"														style="color: black;" boardnum="${board.boardnum}"														userid="${board.userid}" like_userid="${loginId}"></span></a> 												<a href="#" data-toggle="tooltip" title="구독하기"><span														class="glyphicon glyphicon-user" aria-hidden="true"														userid="${board.userid}" sub_userid="${loginId}"></span></a>												</c:if>												</td>											</tr>											<tr>												<td colspan='3'><hr style="margin-top:-5px;"></td>											</tr>											<tr>												<td colspan="3" style="word-break:break-all;" class="content">												 ${fn:replace(board.content, crcn, br)}	<!-- 글 내용 줄바꿈 처리 -->												 <br>													<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 같을 때만 표시 -->														<span class="writerButton" style="float:right; padding-right:8px;"> 															<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 															<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->														</span>													</c:if> 												</td>											</tr>											<tr>												<td colspan="3"><hr></td>											</tr>										</table>										<table class="board" id="col${board.boardnum}"> <!-- class="collapse" -->											<!-- 댓글 -->											<c:forEach var="reply" items="${replyAll}">												<c:if test="${reply.boardnum == board.boardnum}">													<tr class="reply">														<td class="td_img">${reply.userid}</td>														<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>														<td>														<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->														<a href="updateReply?replynum=${reply.replynum}"><span																class="glyphicon glyphicon-pencil" aria-hidden="true"																style="font-size: small;"></span></a>															<a href="deleteReply?replynum=${reply.replynum}">X</a>														</c:if></td>												</tr>											</c:if>										</c:forEach>										<tr>											<form action="replyWrite" method="get">												<input type="hidden" name="boardnum"													value="${board.boardnum}" />												<td class="td_img">댓글</td>												<td class="td_center" style="width: 70%;"><input													type="text" name="replytext" id="replytext"													style="width: 100%;"></td>												<td><button style="border: none; background: none;">														<span class="glyphicon glyphicon-pencil"															aria-hidden="true"></span>													</button></td>											</form>										</tr>									</table>								</div>							</c:if>							</c:forEach>							<!-- 게시물 END -->						</div>
+					</div>															<!-- ====================== tab4 : SUBSCRIBE===================== -->					<div id="subscribe" class="tab-pane fade">						<select style="height:50px;"><option>1</option><option>2</option></select>							<div id="container" style="margin: 30px; padding:30px; border:none; position:relative;" >								<!-- 게시물 시작 (Collapse) -->								<c:forEach var="board" items="${mySubList}">									<div style="border-radius:10px; background-color:white; padding: 20px; margin: auto; margin-bottom:20px; width:100%;">										<table class='board' style="width:100%;">											<tr>												<td class="td_img"><img src="images/galaxy-1.jpg"													alt="image" class="image"></td>												<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>													&nbsp;l&nbsp;<span style="font-weight: bold; color: red;">${board.title}</span>													<br>												<span													style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>												</td>												<!-- 좋아요/구독 버튼 --> <!-- 작성 ID가 로그인 ID와 같으면 표시하지 않음 -->												<td class="td_button">												<c:if test="${loginId != board.userid}">												<a href="#" data-toggle="tooltip" title="좋아요"><span														class="glyphicon glyphicon-thumbs-up" aria-hidden="true"														style="color: black;" boardnum="${board.boardnum}"														userid="${board.userid}" like_userid="${loginId}"></span></a> 												<a href="#" data-toggle="tooltip" title="구독하기"><span														class="glyphicon glyphicon-user" aria-hidden="true"														userid="${board.userid}" sub_userid="${loginId}"></span></a>												</c:if>												</td>											</tr>											<tr>												<td colspan='3'><hr style="margin-top:-5px;"></td>											</tr>											<tr>												<td colspan="3" style="word-break:break-all;" class="content">												 ${fn:replace(board.content, crcn, br)}	<!-- 글 내용 줄바꿈 처리 -->												 <br>													<c:if test="${board.userid == loginId}">	<!-- 작성ID와 로그인ID가 같을 때만 표시 -->														<span class="writerButton" style="float:right; padding-right:8px;"> 															<a href="selectBoard?boardnum=${board.boardnum}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="font-size:small;"></span></a> <!-- 글 수정 버튼 --> 															<a href=""><span class="deleteBoard" boardnum="${board.boardnum}">X</span></a> <!-- 글 삭제 버튼 -->														</span>													</c:if> 												</td>											</tr>											<tr>												<td colspan="3"><hr></td>											</tr>										</table>										<table class="board" id="col${board.boardnum}"> <!-- class="collapse" -->											<!-- 댓글 -->											<c:forEach var="reply" items="${replyAll}">												<c:if test="${reply.boardnum == board.boardnum}">													<tr class="reply">														<td class="td_img">${reply.userid}</td>														<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>														<td>														<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->														<a href="updateReply?replynum=${reply.replynum}"><span																class="glyphicon glyphicon-pencil" aria-hidden="true"																style="font-size: small;"></span></a>															<a href="deleteReply?replynum=${reply.replynum}">X</a>														</c:if></td>												</tr>											</c:if>										</c:forEach>										<tr>											<form action="replyWrite" method="get">												<input type="hidden" name="boardnum"													value="${board.boardnum}" />												<td class="td_img">댓글</td>												<td class="td_center" style="width: 70%;"><input													type="text" name="replytext" id="replytext"													style="width: 100%;"></td>												<td><button style="border: none; background: none;">														<span class="glyphicon glyphicon-pencil"															aria-hidden="true"></span>													</button></td>											</form>										</tr>									</table>								</div>							</c:forEach>							<!-- 게시물 END -->						</div>					</div>
 				</div>
 			</div>
 		</div>

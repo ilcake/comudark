@@ -135,10 +135,11 @@ img {
 	height: 30px;
 }
 
-input, input:hover {
+input, input:hover, input:focus {
 	background: none;
 	border: none;
 	border-bottom: white 1px solid;
+	outline: none;
 }
 }
 </style>

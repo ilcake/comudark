@@ -93,7 +93,7 @@ a, a:link, a:hover, a:visited, a:active {
 	width: 60%;
 }
 
-img {
+.image {
 	border-radius: 100px;
 	width: 55px;
 	height: 55px;

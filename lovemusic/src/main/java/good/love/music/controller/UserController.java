@@ -23,6 +23,8 @@ public class UserController {
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public @ResponseBody String join(User user) {
 		
+		System.out.println(user);
+		
 		//테스트
 		user.setEmail("test@naver.com");
 		user.setQuestion("questsion");

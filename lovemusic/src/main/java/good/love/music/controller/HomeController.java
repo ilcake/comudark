@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import good.love.music.repository.BoardRepository;
+import good.love.music.repository.FileRepository;
 import good.love.music.vo.Board;
+import good.love.music.vo.Files;
 import good.love.music.vo.Like;
 import good.love.music.vo.Reply;
 
@@ -29,6 +31,9 @@ public class HomeController {
 
 	@Autowired
 	BoardRepository boardRepository;
+	
+	@Autowired
+	FileRepository fileRepository;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -84,8 +89,12 @@ public class HomeController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
 
-		String id = (String) session.getAttribute("loginId");
-		ArrayList<Board> list = boardRepository.boardList(id);
+		// 파일 불러오기
+		ArrayList<Files> fileList = fileRepository.fileList();
+		session.setAttribute("fileList", fileList);
+		
+		// 글 불러오기
+		ArrayList<Board> list = boardRepository.list();
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기
@@ -93,8 +102,15 @@ public class HomeController {
 		session.setAttribute("replyAll", replyAll);
 
 		// 사용자가 좋아요 누른 게시물 정보 불러오기
-		ArrayList<Like> likelist = boardRepository.likeList();
-
+		String userid = (String)session.getAttribute("loginId"); 
+		ArrayList<Board> myLikeList = boardRepository.myLikeList(userid);
+		session.setAttribute("myLikeList", myLikeList);
+		
+		// 사용자가 구독한 유저 게시물 불러오기
+		ArrayList<Board> mySubList = boardRepository.mySubList(userid);
+		session.setAttribute("mySubList", mySubList);
+		System.out.println("쫌"+mySubList);
+		
 		return "mypage";
 	}
 
@@ -124,9 +140,9 @@ public class HomeController {
 		return "join";
 	}
 
-	@RequestMapping(value = "/player", method = RequestMethod.GET)
+	@RequestMapping(value = "/comuplayer", method = RequestMethod.GET)
 	public String player(HttpSession session) {
-		return "player";
+		return "comuplayer";
 	}
 
 	@RequestMapping(value = "/shared", method = RequestMethod.GET)
