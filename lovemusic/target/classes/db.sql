@@ -23,6 +23,7 @@ email VARCHAR2(30) NOT NULL,
 password VARCHAR2(30) NOT NULL,
 question VARCHAR2(30) NOT NULL,
 answer VARCHAR2(30) NOT NULL
+profile VARCHAR2(200)
 );
 
 -- 파일DB

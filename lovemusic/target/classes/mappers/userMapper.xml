@@ -6,9 +6,9 @@
 
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="User">
-		INSERT INTO cm_user
+		INSERT INTO cm_user(userid, email, password, question, answer<if test="profile !=null">, profile</if>)
 		VALUES
-		(#{userid}, #{email}, #{password}, #{question}, #{answer})
+		(#{userid}, #{email}, #{password}, #{question}, #{answer}<if test="profile !=null">, #{profile}</if>)
 	</insert>
 
 	<!-- 아이디로 회원 정보 가져오기 -->

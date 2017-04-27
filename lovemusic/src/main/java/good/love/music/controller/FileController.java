@@ -51,11 +51,9 @@ public class FileController {
 			file.setCover_re(savedFile);
 		}else{}
 		
+		//임시 셋팅
 		file.setFile_com("comfiled code");
 		file.setFile_type("COMU");
-		
-		System.out.println("test"+file);
-		
 		
 		if(file.getFilenum() == 0){
 			fileRepository.saveFile(file);		//저장 (Save)
@@ -93,6 +91,6 @@ public class FileController {
 	public String delete(int filenum){
 		System.out.println("지울 파일: "+filenum);
 		int result = fileRepository.deleteFile(filenum);
-		return "mypage";
+		return "redirect:mypage";
 	}
 }
