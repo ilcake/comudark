@@ -59,8 +59,7 @@
 					<div id="treeViewDiv"></div>
 				</div>
 				<div class="col-md-6 centerPlace">
-					<form id="form" action="save" method="post"
-						enctype="multipart/form-data">
+					<form id="form" action="save" method="post" enctype="multipart/form-data">					<input type="hidden" name="userid" value="${loginId}">
 						<div class="inlineD">
 							<button type="button" data-toggle="modal" data-target="#visual"
 								id="modalBtn" hidden="hidden">Open Modal</button>

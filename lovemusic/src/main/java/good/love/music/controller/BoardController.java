@@ -43,9 +43,9 @@ public class BoardController {
 	@Autowired
 	HttpServletRequest request;
 
-	// 이미지 파일 업로드 경로
+	//이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
-
+	
 	// MYPAGE : 글쓰기 페이지로 이동
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
@@ -83,23 +83,18 @@ public class BoardController {
 		
 		// 이미지 파일 업로드 경로
 		String uploadPath = request.getSession().getServletContext().getResourcePaths("/") + "/resources/covers";
-
+		
 		// 이미지 처리
 		if (!upload.isEmpty()) {
 			String savedFile = FileService.saveFile(upload, uploadPath);
-			System.out.println(savedFile);
-			// board.setOriginalfile(upload.getOriginalFilename());
-			// board.setSavedfile(savedFile);
+			board.setCover_re(savedFile);
 		} else {
-
 		}
 
 		//shared 설정
 		if (board.getShared() == null) {
 			board.setShared("unshare");
 		}
-		
-		System.out.println("testing"+board);
 		
 		if(board.getBoardnum() == 0){		//boardnum이 없으면 새로 저장
 			boardRepository.write(board);
@@ -151,7 +146,7 @@ public class BoardController {
 	}
 
 	// 댓글 등록
-	@RequestMapping(value = "/replyWrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
 	public String replyWrite(Reply reply, HttpSession session) {
 		
 		String loginId = (String) session.getAttribute("loginId");
@@ -159,7 +154,7 @@ public class BoardController {
 		boardRepository.replyWrite(reply);
 		
 		String uri = request.getHeader("referer");
-		return uri;
+		return "redirect:shared";
 	}
 
 	// 댓글 수정
@@ -172,12 +167,11 @@ public class BoardController {
 	// 댓글 삭제
 	@RequestMapping(value = "/deleteReply", method = RequestMethod.GET)
 	public String deleteReply(int replynum) {
-		System.out.println(replynum);
 		int result = boardRepository.deleteReply(replynum);
 		
 		System.out.println("삭제완료 ==> " + result + "개");
 		
-		return "shared";
+		return "redirect:shared";
 	}
 
 	//좋아요
@@ -235,7 +229,6 @@ public class BoardController {
 	public @ResponseBody ArrayList<Subscribe> subscribeList() {
 		String userid = (String)session.getAttribute("loginId");
 		ArrayList<Subscribe> list = boardRepository.subscribeList(userid);
-		System.out.println(list);
 		return list;
 	}
 

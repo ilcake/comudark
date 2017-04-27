@@ -10,9 +10,8 @@
 
 <!--==============   APPENDING JS AND CSS   =================-->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="resources/myfiles/js/comu.js"></script>
-<link href='resources/myfiles/css/comu.css' rel='stylesheet'
-	type='text/css'>
+<script src="resources/myfiles/js/bg-movie.js"></script>
+<link href='resources/myfiles/css/bg-movie.css' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript">
 

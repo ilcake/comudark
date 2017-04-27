@@ -68,7 +68,28 @@
 	}
 	/* ==========이미지 뒤집기  END =========*/
 	
+	.buttonEffect {
+	width:100%;
+	height: 80%;
+	  border: 0;
+	  background: #0087cc;
+	  border-radius: 4px;
+	  box-shadow: 0 5px 0 #006599;
+	  color: #fff;
+	  cursor: pointer;
+	  font: inherit;
+	  margin: 0;
+	  outline: 0;
+	  padding: 12px 20px;
+	  transition: all .1s linear;
+	}
+	.buttonEffect:active {
+	  box-shadow: 0 2px 0 #006599;
+	  transform: translateY(3px);
+	}
+	
 </style>
+
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper" style="background:none;">
@@ -85,17 +106,19 @@
 			<input type="text" style="background:none; border:none; color:white; padding-top:-20px; margin-top:-10px;">&nbsp;
 			<a href="search"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></a> </div>
 		<div></div><div></div><hr><hr><hr>
-			<div id="container" style="margin: 30px; padding:30px; padding-top:50px;" >
+			<div id="container" style="margin: 30px; padding:30px; padding-top:50px; right:20px;" >
 			
 				<!-- 게시물 시작 (Collapse) -->
 				<c:forEach var="board" items="${boardList}">
+				<!-- 공유 설정된 게시물만 표시 -->
+				<c:if test="${board.shared == 'share'}">
 					<div class="box">
 						<table class='board'>
 							<tr>
 								<td class="td_img">
 									<div class="card-container">
 										<div class="card">
-										<div class="side"><img src="images/galaxy-1.jpg" alt="image" class="cover"></div>
+										<div class="side"><img src="images/galaxy-1.jpg" onERROR="this.src='resources/myfiles/images/comu/robot.png'" alt="image" class="image"></div>
 										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>
@@ -125,11 +148,15 @@
 							<tr>
 								<!-- 글 내용 (줄바꿈 처리) -->
 								<td colspan="3" style="word-break:break-all;" class="content"> 
-								<div class="fileField" style="background-color:#f0f5f5; margin-top: -30px; margin-bottom: 10px; padding: 10px; border: dotted 0.5px white;">
-									<img src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
-								</div>
-								 ${fn:replace(board.content, crcn, br)}	
-								 <br>
+								
+									<!-- FILE -->
+									<c:if test="${board.file_title != null }">
+										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
+											<img class="image" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
+										<!-- </div> --></button><br><br>
+									</c:if>
+									 ${fn:replace(board.content, crcn, br)}	<br>
+									 
 								 <!-- 글 수정,삭제 버튼 : 작성ID와 로그인ID가 다를 때만 표시 -->	
 									<c:if test="${board.userid == loginId}">					
 										<span class="writerButton" style="float:right; padding-right:8px;"> 
@@ -167,7 +194,8 @@
 								</c:if>
 							</c:forEach>
 							<tr>
-								<form action="replyWrite" method="get">
+								<form action="replyWrite" method="post">
+								<input type="hidden" name="boardnum" value="${board.boardnum}" />
 									<td class="td_img">댓글</td>
 									<td class="td_center" style="width: 70%;"><input
 										type="text" name="replytext" id="replytext" style="width:100%;"></td>
@@ -178,6 +206,7 @@
 							</tr>
 						</table>
 					</div>
+				</c:if>
 				</c:forEach>
 				<!-- 게시물 END -->
 			</div>

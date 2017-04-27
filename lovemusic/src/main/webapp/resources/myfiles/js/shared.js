@@ -106,6 +106,12 @@ $(function(){
 		}
 	});
 	
+	//파일 영역 클릭 이벤트
+	$(".buttonEffect").on("click", function(){
+		window.open("comuplayer?boardnum="+$(this).attr("boardnum"), "PLAYER", "top=200, left=400, width=700, height=500, location=no, resizable=no");
+	});
+	
+	
 /* 	$(".glyphicon-heart-empty").on("click", function(){
 		$(this).removeClass("glyphicon-heart-empty").addClass("glyphicon-thumbs-up");
 	});

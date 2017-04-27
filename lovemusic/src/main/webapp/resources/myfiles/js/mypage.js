@@ -2,7 +2,7 @@ $(function(){
 	
 	//반응형 그리드
 	//$('#container').wallyti();
-
+	
 	//사용자가 이전에 좋아요 누른 게시물 표시
 	$.ajax({
 		type: "get",
@@ -11,6 +11,8 @@ $(function(){
 			 $.each(resp,function(index, item) {
 				var likeboard = $("span[boardnum="+item.boardnum+"][like_userid="+item.like_userid+"]");
 				likeboard.css("color", "rgb(255, 0, 0)");
+/*				var divs = $(".divnum "+item.boardnum);
+				divs.empty();*/
 			 });
 		}
 	});

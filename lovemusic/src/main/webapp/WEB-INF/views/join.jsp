@@ -131,47 +131,36 @@ img {
 	width: 30px;
 	height: 30px;
 }
+
+input, input:hover {
+	background: none;
+	border: none;
+	border-bottom: white 1px solid;
+	outline: none;
 }
 </style>
 
 <script>
 	$(function() {
-		$("#loginbutton").on('click', function() {
+		$("#joinbutton").on('click', function() {
 			$.ajax({
-				url : "login",
+				url : "join",
 				type : "post",
 				data : {
-					"userid" : $('#userid2').val(),
-					"password" : $('#password2').val()
+					"userid" : $('#userid').val(),
+					"password" : $('#password').val(),
+					"email" : $('#email').val()
 				},
 				success : function(resp) {
 					if (resp == "errorMsg") {
 						alert("X");
+						$("input").val("");	//전체 초기화
 					} else {
 						location.href = ".";
 					}
 				}
-			}
+			});	
 		});		
-	});
-	
-	//미완료
-	$("#joinbutton").on('click', function(){
-		$.ajax({
-			url : "join"
-			, type : "post"
-			, data : {"userid" : $('#userid').val(), "password" : $('#password').val()}
-			, success : function(resp) {
-				if(resp == "error") {
-					alert("가입 실패");
-					$("input").val("");	//전체 초기화
-					
-				} else {
-					alert("가입 완료");
-					location.href=".";
-				}
-			
-		});
 	});
 </script>
 
