@@ -91,8 +91,18 @@ function getMusicTree() {
 				'core' : jsonTree
 			});
 
+			/*	$('#treeViewDiv').jstree({
+					'plugins' : [ "wholerow" ],
+					"core" : jsonTree,
+					"types" : {
+						"thefiles" : {
+							"icon" : "myfiles/images/comu/robot.png"
+						}
+					}
+				});*/
+
+
 		}
-	
 	});
 }
 
@@ -133,6 +143,7 @@ function comuRun(source) {
 					errorMsg.substring(errorLine, errorMsg.length));
 			} else {
 				$("#modalBtn").trigger("click");
+				setCurrentTimevalue();
 				eval(resp);
 			}
 		}

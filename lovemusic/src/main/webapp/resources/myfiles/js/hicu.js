@@ -3,6 +3,7 @@ var theMap;
 var bpm;
 var tempo;
 var selectedBeat;
+var theTime;
 var beatStack = "";
 var melodyStack = "";
 var bassStack = "";
