@@ -29,6 +29,10 @@ div {
 	clear: both;
 }
 
+.container:before {
+	clear: both;
+}
+
 .bs-docs-sidenav>li>a {
 	color: #0088cc;
 	text-decoration: none;
@@ -173,10 +177,10 @@ ul ul, ul ol, ol ol, ol ul {
 	margin-bottom: 0;
 }
 
-li {
+/* li {
 	line-height: 20px;
 }
-
+ */
 ul.unstyled, ol.unstyled {
 	margin-left: 0;
 	list-style: none;
@@ -272,11 +276,12 @@ body {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
 }
 
-/* li {
-	line-height: 20px;
+li {
+	/* line-height: 20px; */
 	display: list-item;
 	text-align: -webkit-match-parent;
-} */
+}
+
 .bs-docs-sidenav>li:first-child>a {
 	-webkit-border-radius: 6px 6px 0 0;
 	-moz-border-radius: 6px 6px 0 0;
@@ -369,5 +374,9 @@ ol.linenums li {
 	color: #bebec5;
 	line-height: 20px;
 	text-shadow: 0 1px 0 #fff;
+}
+
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+	list-style-type: decimal !important
 }
 /* prettify.css END */

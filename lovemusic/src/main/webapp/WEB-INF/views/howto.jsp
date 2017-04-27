@@ -98,14 +98,26 @@
 						<p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit
 							amet, consectetur, adipisci velit..."</p>
 						<pre class="prettyprint linenums">
-						<ol class="linenums">
-						<li class="L0">
-						<span class="dec">Neque porro quisquam
-						</span>
-						</li>
-						</ol>
+							<ol class="linenums">
+								<li class="L0">
+									<span class="dec">&lt;!DOCTYPE html&gt;</span>
+								</li>
+								<li class="L1">
+									<span class="tag">&lt;html</span>
+									<span class="pln"> </span>
+									<span class="atn">lang</span>
+									<span class="pun">=</span>
+									<span class="atv">"ko"</span>
+									<span class="tag">&gt;</span>
+								</li>
+								<li class="L2">
+									<span class="pln">...</span>
+								</li>
+								<li class="L3">
+									<span class="tag">&lt;/html&gt;</span>
+								</li>
+							</ol>
 						</pre>
-
 
 					</section>
 
