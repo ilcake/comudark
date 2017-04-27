@@ -85,15 +85,17 @@ textarea {
 
 /* replace folder icons with another image, remove leaf image */
 li.jstree-open>a .jstree-icon {
-	background: url("folderO.png") 0px 0px no-repeat !important;
+	background: url("../images/comu/folderO.png") 0px 0px no-repeat
+		!important;
 }
 
 li.jstree-closed>a .jstree-icon {
-	background: url("folder.png") 0px 0px no-repeat !important;
+	background: url("../images/comu/folder.png") 0px 0px no-repeat
+		!important;
 }
 
 li.jstree-leaf>a .jstree-icon {
-	background: url("note.png") 0px 0px no-repeat !important;
+	background: url("../images/comu/note.png") 0px 0px no-repeat !important;
 }
 
 /* replace checkbox icons */

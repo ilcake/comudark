@@ -3,7 +3,9 @@ var theMap;
 var bpm;
 var tempo;
 var selectedBeat;
-var theTime;
+var audioContext;
+var analyser;
+var actCurrentTime;
 var beatStack = "";
 var melodyStack = "";
 var bassStack = "";
@@ -21,6 +23,8 @@ var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
 * 
 ********************************************/
 function initHiCu() {
+	audioContext = new window.AudioContext();
+	createAnalyser();
 	makeLED();
 	console.log("=============Get Ins List==============");
 
@@ -80,6 +84,7 @@ function playEvent() {
 	});
 }
 function goResult() {
+	setCurrentTimevalue();
 	eval(codeResult);
 }
 
@@ -638,28 +643,6 @@ function initLeds() {
 
 /********************************************** 
 *
-*               loadAudio~
-*
-***********************************************/
-function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
-	playGroup = new Pizzicato.Group();
-
-	var sound1 = new Pz.Sound({
-		source : 'file',
-		options : {
-			path : url,
-			loop : false
-		}
-	}, function() {
-		console.log(url + ' file loaded!' + time);
-		sound1.play(time, 0);
-		playGroup.addSound(sound1);
-	});
-}
-
-
-/********************************************** 
-*
 *                 on save!!!!
 *
 ***********************************************/
@@ -680,6 +663,88 @@ function saveEvent() {
 		error : function() {}
 	});
 }
+
+
+
+
+/********************************************** 
+*
+*               loadAudio~
+*
+***********************************************/
+
+function setCurrentTimevalue() {
+	actCurrentTime = audioContext.currentTime;
+}
+
+function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
+	playGroup = new Pizzicato.Group();
+
+	var sound1 = new Pz.Sound({
+		source : 'file',
+		options : {
+			path : url,
+			loop : false
+		}
+	}, function() {
+		console.log(url + ' file loaded!' + time + "      theTime=" + actCurrentTime);
+		sound1.play((time + bpm), 0);
+		playGroup.addSound(sound1);
+	});
+}
+
+
+
+/********************************************** 
+*
+*            audioJS loadAudio
+*
+***********************************************/
+/*
+function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
+	var req = new XMLHttpRequest();
+	req.open('GET', url, true);
+	req.responseType = 'arraybuffer';
+	var array = [];
+	if (hasReverb) {
+		var irRRequest = new XMLHttpRequest();
+		irRRequest.open("GET", hasReverb);
+		irRRequest.responseType = "arraybuffer";
+		irRRequest.onload = function() {
+			audioContext.decodeAudioData(irRRequest.response, function(buffer) {
+				reverb.buffer = buffer;
+				req.send();
+			});
+		}
+		irRRequest.send();
+	} else {
+		req.send();
+	}
+	req.onload = function() { // sound source loading
+		audioContext.decodeAudioData(req.response, function(buffer) {
+			source = audioContext.createBufferSource(); // creates a sound
+			// source
+			source.buffer = buffer;
+
+			source.connect(analyser);
+			analyser.connect(audioContext.destination);
+
+			//audioContext.currentTime +
+			var playTime = time + actCurrentTime;
+			console.log("playTime = " + playTime + "  actCurrentTime" + actCurrentTime);
+			source.start(playTime);
+		});
+	}
+}*/
+
+
+function createAnalyser() {
+	analyser = audioContext.createAnalyser();
+	analyser.smoothingTimeConstant = 0.1;
+	analyser.fftSize = 1024;
+	analyser.connect(audioContext.destination);
+}
+
 
 
 /********************************************** 
