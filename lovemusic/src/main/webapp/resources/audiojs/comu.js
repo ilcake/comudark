@@ -6,7 +6,15 @@
  * 
  */
 
-var mouseX = 0, mouseY = 0, windowHalfX = window.innerWidth / 2, windowHalfY = window.innerHeight / 2, camera, scene, renderer, material, container;
+var mouseX = 0,
+	mouseY = 0,
+	windowHalfX = window.innerWidth / 2,
+	windowHalfY = window.innerHeight / 2,
+	camera,
+	scene,
+	renderer,
+	material,
+	container;
 var source;
 var analyser;
 var buffer;
@@ -22,43 +30,44 @@ var lowfilter;
 var highfilter;
 var gainNode;
 var started = false;
+var theTime;
 
 $(document)
-		.ready(
-				function() {
-					// Chrome is only browser to currently support Web Audio API
-					var is_chrome = navigator.userAgent.toLowerCase().indexOf(
-							'chrome') > -1;
-					var is_webgl = (function() {
-						try {
-							return !!window.WebGLRenderingContext
-									&& !!document.createElement('canvas')
-											.getContext('experimental-webgl');
-						} catch (e) {
-							return false;
-						}
-					})();
+	.ready(
+		function() {
+			// Chrome is only browser to currently support Web Audio API
+			var is_chrome = navigator.userAgent.toLowerCase().indexOf(
+					'chrome') > -1;
+			var is_webgl = (function() {
+				try {
+					return !!window.WebGLRenderingContext
+						&& !!document.createElement('canvas')
+							.getContext('experimental-webgl');
+				} catch (e) {
+					return false;
+				}
+			})();
 
-					if (!is_chrome) {
-						$('#loading')
-								.html(
-										"This demo requires <a href='https://www.google.com/chrome'>Google Chrome</a>.");
-					} else if (!is_webgl) {
-						$('#loading')
-								.html(
-										'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />'
-												+ 'Find out how to get it <a href="http://get.webgl.org/">here</a>, or try restarting your browser.');
-					} else {
-						init();
+			if (!is_chrome) {
+				$('#loading')
+					.html(
+						"This demo requires <a href='https://www.google.com/chrome'>Google Chrome</a>.");
+			} else if (!is_webgl) {
+				$('#loading')
+					.html(
+						'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />'
+						+ 'Find out how to get it <a href="http://get.webgl.org/">here</a>, or try restarting your browser.');
+			} else {
+				init();
 
-					}
+			}
 
-				});
+		});
 
 function init() {
 	// init 3D scene
 	container = $('<div />', {
-		id: "container"
+		id : "container"
 	});
 	container.css("display", "inline");
 	container.css("position", "absolute");
@@ -74,7 +83,7 @@ function init() {
 		antialias : false,
 		sortObjects : false
 	});
-	renderer.setSize(window.innerWidth/2, window.innerHeight*2/3);
+	renderer.setSize(window.innerWidth / 2, window.innerHeight * 2 / 3);
 	container.append(renderer.domElement);
 
 	// stop the user getting a text cursor
@@ -108,6 +117,10 @@ function createEffect() {
 	highfilter.type = "highpass";
 }
 
+function setCurrentTimevalue() {
+	theTime = audioContext.currentTime;
+}
+
 function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
 	createEffect();
 	var req = new XMLHttpRequest();
@@ -131,7 +144,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 	req.onload = function() { // sound source loading
 		audioContext.decodeAudioData(req.response, function(buffer) {
 			source = audioContext.createBufferSource(); // creates a sound
-														// source
+			// source
 			source.buffer = buffer;
 			if (hasReverb || hasDelay || hasLowFilter || hasHighFilter) {
 				if (hasReverb) {
@@ -166,7 +179,8 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 				source.connect(analyser);
 				analyser.connect(audioContext.destination);
 			}
-			var playTime = audioContext.currentTime + time + 1;
+			//audioContext.currentTime +
+			var playTime = time + 1 + theTime;
 			source.start(playTime);
 		});
 	}
@@ -188,7 +202,7 @@ function onWindowResize(event) {
 function animate() {
 	requestAnimationFrame(animate);
 	render();
-	// stats.update();
+// stats.update();
 }
 
 function render() {
@@ -203,7 +217,7 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-$(window).on("mousewheel",function(event, delta) {
+$(window).on("mousewheel", function(event, delta) {
 	// set camera Z
 	camera.position.z -= delta * 50;
 });
