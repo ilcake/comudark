@@ -183,11 +183,19 @@
 			                <img id="imgView" class="image" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='images/album.jpg'"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
 			            </label>
 						<hr>
-    <label class="switch">
-      <input type="checkbox" id="checkbox" value="share" name="shared" class="switch-input" checked>
-      <span id="shared" class="switch-label" data-on="On" data-off="Off"> shared </span>
-      <span class="switch-handle"></span>
-    </label>
+						
+				<label class="toggler toggler--is-active" id="filt-css">CSS</label>
+				<div class="toggle">
+				  <input type="checkbox" id="switcher" class="check">
+				  <b class="b switch"></b> </div>
+				<label class="toggler" id="filt-javascript">Javascript</label>
+						
+						
+			    <label class="switch">
+			      <input type="checkbox" id="checkbox" value="share" name="shared" class="switch-input" checked>
+			      <span id="shared" class="switch-label" data-on="On" data-off="Off"> shared </span>
+			      <span class="switch-handle"></span>
+			    </label>
 					</div>
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
