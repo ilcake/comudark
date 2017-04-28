@@ -141,11 +141,35 @@ input, input:hover, input:focus {
 	border-bottom: white 1px solid;
 	outline: none;
 }
-}
+
+  label {
+    display: inline-block; width: 5em;
+  }
+  fieldset div {
+    margin-bottom: 2em;
+  }
+  fieldset .help {
+    display: inline-block;
+  }
+  .ui-tooltip {
+    width: 210px;
+  }
+
 </style>
 
 <script>
 	$(function() {
+		
+	    var tooltips = $( "[title]" ).tooltip({
+	        position: {
+	          my: "left top",
+	          at: "right+5 top-5",
+	          collision: "none"
+	        }
+	      });
+	    
+	    
+		
 		$("#loginbutton").on('click', function() {
 			$.ajax({
 				url : "login",
@@ -200,16 +224,15 @@ input, input:hover, input:focus {
 					<div class="title-container">
 						<div class="headline">
 							<!-- 로그인 -->
+							
 							<div id="loginBox">
 								<h3>LOGIN</h3>
 								<div class="content">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="ID"
-											name="userid" id="userid2">
+										<input type="text" class="form-control" placeholder="ID" name="userid" id="userid2" title="3자 이상 입력">
 									</div>
 									<div class="input-group">
-										<input type="password" placeholder="Password"
-											class="form-control" name="password" id="password2" />
+										<input type="password" placeholder="Password" class="form-control" name="password" id="password2" />
 									</div>
 								</div>
 								<br>

@@ -10159,9 +10159,9 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .slider {
-	position: relative;
+/* 	position: relative;
 	height: 400px;
-	width: 100%;
+	width: 100%; */
 }
 
 .slider.fullscreen {

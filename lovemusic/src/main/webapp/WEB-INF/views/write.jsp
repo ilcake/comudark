@@ -32,11 +32,11 @@
 	    var count = 0;
 	    $("input:checkbox").on('click', function(){
 	   	  	if(count>0){
-		    	$("#shared").html("unshared");
+		    	$("#shared").html("shared");
 		   	  	//$("#shared").css("color", "#CCCCCC");
 		    	count=0;
 	   	  	}else{
-		   	  	$("#shared").html("shared");
+		   	  	$("#shared").html("unshared");
 		   	  	//$("#shared").css("color", "#9c27b0");
 		   	  	//$("#code").html("");
 		    	count++;
@@ -71,94 +71,64 @@
 		margin: 20px;
 	}
 	
-	
-.switch {
+/* share 스위치 START */
+	.switch {
   position: relative;
   display: inline-block;
-  vertical-align: top;
-  width: 56px;
-  height: 20px;
-  padding: 3px;
-  background-color: white;
-  border-radius: 18px;
-  box-shadow: inset 0 -1px white,
-              inset 0 1px 1px rgba(black, .05);
-  cursor: pointer;
-  @include linear-gradient(top, #eee, white 25px);
+  width: 60px;
+  height: 34px;
 }
 
-.switch-input {
+.switch input {display:none;}
+
+.slider {
   position: absolute;
+  cursor: pointer;
   top: 0;
   left: 0;
-  opacity: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.switch-label {
-  position: relative;
-  display: block;
-  height: inherit;
-  font-size: 10px;
-  text-transform: uppercase;
-  background: #eceeef;
-  border-radius: inherit;
-  box-shadow: inset 0 1px 2px rgba(black, .12),
-              inset 0 0 2px rgba(black, .15);
-  @include transition($switchTransition);
-  @include transition-property(opacity background);
-
-  .switch:before, .switch:after {
-    position: absolute;
-    top: 50%;
-    margin-top: -.5em;
-    line-height: 1;
-    @include transition(inherit);
-  }
-
-  .switch:before {
-    content: attr(data-off);
-    right: 11px;
-    color: #aaa;
-    text-shadow: 0 1px rgba(white, .5);
-  }
-
-  .switch:after {
-    content: attr(data-on);
-    left: 11px;
-    color: white;
-    text-shadow: 0 1px rgba(black, .2);
-    opacity: 0;
-  }
-}
-
-.switch-handle {
+.slider:before {
   position: absolute;
-  top: 4px;
+  content: "";
+  height: 26px;
+  width: 26px;
   left: 4px;
-  width: 18px;
-  height: 18px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 1px 1px 5px rgba(black, .2);
-  @include linear-gradient(top, white 40%, #f0f0f0);
-
-  .switch:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -6px 0 0 -6px;
-    width: 12px;
-    height: 12px;
-    background: #f9f9f9;
-    border-radius: 6px;
-    box-shadow: inset 0 1px rgba(black, .02);
-    @include linear-gradient(top, #eee, white);
-  }
-
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.switch-green > .switch-input:checked ~ .switch-label { background: #4fb845; }
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* share 스위치 END */
+	
 </style>
 
 
@@ -184,18 +154,11 @@
 			            </label>
 						<hr>
 						
-				<label class="toggler toggler--is-active" id="filt-css">CSS</label>
-				<div class="toggle">
-				  <input type="checkbox" id="switcher" class="check">
-				  <b class="b switch"></b> </div>
-				<label class="toggler" id="filt-javascript">Javascript</label>
-						
-						
-			    <label class="switch">
-			      <input type="checkbox" id="checkbox" value="share" name="shared" class="switch-input" checked>
-			      <span id="shared" class="switch-label" data-on="On" data-off="Off"> shared </span>
-			      <span class="switch-handle"></span>
-			    </label>
+						<label class="switch">	<!-- share 체크박스 -->
+						  <input type="checkbox" value="true" name="shared" checked>
+						  <div class="slider round"></div><br>
+						  <span id="shared">shared</span>
+						</label>
 					</div>
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">

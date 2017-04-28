@@ -34,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	FileRepository fileRepository;
+	
+	@Autowired
+	HttpSession session;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -83,11 +86,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/comu", method = RequestMethod.GET)
 	public String comu() {
+		session.removeAttribute("file");	//load된 파일정보 삭제
 		return "comu";
 	}
 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(HttpSession session) {
+	public String mypage() {
 
 		// 파일 불러오기
 		ArrayList<Files> fileList = fileRepository.fileList();
@@ -141,6 +145,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/comuplayer", method = RequestMethod.GET)
 	public String player(HttpSession session) {
+		
 		return "comuplayer";
 	}
 
