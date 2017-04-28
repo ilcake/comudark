@@ -170,7 +170,7 @@
 													data-target="#myModal"><img id="reset"
 													src="myfiles/images/hicu/btn_reset.png"></span>
 											</div>
-											<div>
+											<div id="theResultArea">
 												<textarea id="resultCode"></textarea>
 											</div>
 										</div>

@@ -115,23 +115,25 @@ div.editor {
 
 /* replace folder icons with another image, remove leaf image */
 li.jstree-open>a .jstree-icon {
-	background: url("../images/comu/folderO.png") 0px 0px no-repeat
+	background: url("../images/comu/folder_open.png") 0px 0px no-repeat
 		!important;
 }
 
 li.jstree-closed>a .jstree-icon {
-	background: url("../images/comu/folder.png") 0px 0px no-repeat
+	background: url("../images/comu/folder_closed.png") 0px 0px no-repeat
 		!important;
 }
 
 li.jstree-leaf>a .jstree-icon {
-	background: url("../images/comu/note.png") 0px 0px no-repeat !important;
+	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
+		!important;
 }
 
 /* replace checkbox icons */
 li.jstree-unchecked>a .jstree-checkbox, li.jstree-undetermined>a .jstree-checkbox
 	{
-	background: url("../images/comu/note.png") 0px 0px no-repeat !important;
+	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
+		!important;
 	width: 32px;
 	height: 29px;
 	padding-top: 5px;

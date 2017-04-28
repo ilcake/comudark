@@ -313,3 +313,7 @@ select {
 	text-align: center;
 	padding: 1px;
 }
+
+#theResultArea {
+	display: none;
+}
