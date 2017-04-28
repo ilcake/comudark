@@ -93,12 +93,14 @@ public class HomeController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
 
+		String userid = (String)session.getAttribute("loginId"); 
+		
 		// 파일 불러오기
-		ArrayList<Files> fileList = fileRepository.fileList();
+		ArrayList<Files> fileList = fileRepository.userlist(userid);
 		session.setAttribute("fileList", fileList);
 		
 		// 글 불러오기
-		ArrayList<Board> list = boardRepository.list();
+		ArrayList<Board> list = boardRepository.boardList(userid);
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기
@@ -106,8 +108,8 @@ public class HomeController {
 		session.setAttribute("replyAll", replyAll);
 
 		// 사용자가 좋아요 누른 게시물 정보 불러오기
-		String userid = (String)session.getAttribute("loginId"); 
 		ArrayList<Board> myLikeList = boardRepository.myLikeList(userid);
+		System.out.println("좋아요"+myLikeList);
 		session.setAttribute("myLikeList", myLikeList);
 		
 		// 사용자가 구독한 유저 게시물 불러오기
