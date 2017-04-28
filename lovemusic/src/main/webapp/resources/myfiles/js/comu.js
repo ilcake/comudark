@@ -12,27 +12,91 @@ $(function() {
 	 * if (typeof jQuery != 'undefined') { // jQuery is loaded => print the
 	 * version alert(jQuery.fn.jquery); }
 	 */
-
-	$(".get-started").click(getStarted);
-	$("#addBtn").click(addBtn);
-	$("#saveBtn").click(save);
-	$("#imgInp").on('change', function() {
-		readURL(this);
-	});
-
 	$("#runBtn").click(function() {
 		if (recentEditor == null) {
 			alert("sample or main?")
 			return;
 		}
 		$("#errorContent").html("<a href='#' id='errorClick'></a><br>");
+		$("#errorClick").click(function() {
+			selectTextareaLine(errorLine);
+		});
 		comuRun(recentEditor.getValue());
 	});
-	$("#errorClick").click(function() {
-		selectTextareaLine(errorLine);
+
+	$("#addBtn").click(addBtn);
+
+	$("#saveBtn").click(function() {
+		$("#saveModalBtn").trigger("click");
+	});
+	$("#save").click(save);
+
+	$("#loadBtn").click(function() {
+		refreshLoadModal();
+		$("#loadModalBtn").trigger("click");
+	});
+	$("#load").click(load);
+
+	$("#fontSize").change(function() {
+		document.getElementById('sampleEditor').style.fontSize = $(this).val();
+		document.getElementById('mainEditor').style.fontSize = $(this).val();
 	});
 
+	$("#theme").change(function() {
+		sampleEditor.setTheme("ace/theme/" + $(this).val());
+		mainEditor.setTheme("ace/theme/" + $(this).val());
+	})
+
+	$("#imgInp").on('change', function() {
+		readURL(this);
+	});
+
+	mainEditor.setValue($("#mainText").val());
 });
+
+function save() {
+	if ($("#title").val().length <= 0) {
+		alert("Insert the Title")
+		return;
+	}
+	var txt = mainEditor.getValue();
+	$('<input>').attr({
+		type : 'hidden',
+		name : 'file_ori',
+		value : txt
+	}).appendTo('#saveForm');
+	$('#saveForm').submit();
+}
+
+function load() {
+
+}
+function refreshLoadModal() {
+	$
+			.ajax({
+				type : "get",
+				url : "fileList",
+				success : function(resp) {
+					var msg = "<table class='table' id='loadlist'><tr>";
+					$
+							.each(
+									resp,
+									function(index, item) {
+										msg += '<td><a href="load?filenum='
+												+ item.filenum
+												+ '"><img src="resources/covers/'
+												+ item.cover_re
+												+ '" style="width:80px; height:80px; border-radius:5px;"></a><br>';
+										msg += item.file_title + '</td>';
+										if ((index + 5) % 4 == 0) {
+											msg += "</tr><tr>";
+										}
+									});
+					msg += "</tr><table>";
+					$("#loader").html(msg);
+				}
+			});
+}
 
 function setClickable() {
 	$(".clickable").click(function() {
@@ -43,7 +107,6 @@ function setClickable() {
 		switch (tmp) {
 		case "list-explorer":
 			$(".list-explorer").addClass("clicked");
-			recentEditor = null;
 			break;
 		case "sample":
 			$(".sample").addClass("clicked");
@@ -55,7 +118,6 @@ function setClickable() {
 			break;
 		case "error":
 			$(".errorTag").addClass("clicked");
-			recentEditor = null;
 			break;
 		}
 	});
@@ -116,13 +178,13 @@ function setEditor() {
 	sampleEditor.resize();
 	sampleEditor.setTheme("ace/theme/vibrant_ink");
 	sampleEditor.session.setMode(dynamicMode);
-	document.getElementById('sampleEditor').style.fontSize = '18px';
+	document.getElementById('sampleEditor').style.fontSize = '14pt';
 
 	mainEditor = ace.edit("mainEditor");
 	mainEditor.resize();
 	mainEditor.setTheme("ace/theme/vibrant_ink");
 	mainEditor.session.setMode(dynamicMode);
-	document.getElementById('mainEditor').style.fontSize = '18px';
+	document.getElementById('mainEditor').style.fontSize = '14pt';
 
 }
 
@@ -208,12 +270,6 @@ function getMusicTree() {
 			});
 }
 
-// 시작 버튼이 눌러졌을 때 혹은 MY MUSIC에서 로드 될 때
-function getStarted() {
-	$(".comu-container").show("slow");
-	$(this).attr("hidden", "");
-}
-
 function addBtn() {
 	var sample = sampleEditor.getValue();
 	mainEditor.insert(sample);
@@ -222,7 +278,7 @@ function addBtn() {
 
 function comuRun(source) {
 	if (source == null || source.length == 0) {
-		alert("입력 값이 없습니다.");
+		alert("There is no INPUT");
 		return false;
 	}
 	$.ajax({
@@ -243,7 +299,7 @@ function comuRun(source) {
 				$("#errorClick").html("Error Line :  " + errorLine);
 				$("#errorContent").append(errorMsg);
 			} else {
-				$("#modalBtn").trigger("click");
+				$("#runModal").trigger("click");
 				eval(resp);
 			}
 		}
@@ -258,15 +314,6 @@ function readURL(input) {
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
-}
-
-// 파일 저장
-function save() {
-	if ($("#title").val() == null || $("#title").val() == 0) {
-		alert("제목을 입력하세요");
-		return false;
-	}
-	$("#form").submit();
 }
 
 // 에러 메세지 클릭시 해당 하는 라인 셀렉트

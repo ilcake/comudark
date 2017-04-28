@@ -20,78 +20,78 @@ import good.love.music.vo.Files;
 
 @Controller
 public class FileController {
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	BoardRepository boardRepository;
-	
+
 	@Autowired
 	FileRepository fileRepository;
-	
+
 	@Autowired
 	HttpServletRequest request;
-	
-	//이미지 파일 업로드 경로
+
+	// 이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
-	
-	
-	//COMU : 음악 저장 / 수정 후 저장
-	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String save(MultipartFile upload, Files file, HttpSession session){
 
-		//이미지 파일 업로드 경로
-		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"/resources/covers";
+	// COMU : 음악 저장 / 수정 후 저장
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(MultipartFile upload, Files file, HttpSession session) {
 
-		//이미지 파일 처리
-		if(!upload.isEmpty()){
+		// 이미지 파일 업로드 경로
+		String uploadPath = request.getSession().getServletContext().getRealPath("/") + "/resources/covers";
+
+		// 이미지 파일 처리
+		if (!upload.isEmpty()) {
 			String savedFile = FileService.saveFile(upload, uploadPath);
 			file.setCover_ori(upload.getOriginalFilename());
 			file.setCover_re(savedFile);
-		}else{}
-		
+		} else {
+		}
+
 		file.setFile_com("comfiled code");
 		file.setFile_type("COMU");
-		
-		System.out.println("test"+file);
-		
-		
-		if(file.getFilenum() == 0){
-			fileRepository.saveFile(file);		//저장 (Save)
-		}else{
-			fileRepository.updateFile(file);	//덮어쓰기 (Update)	//****ajax 형식으로 변환할 것!!
+
+		System.out.println("test" + file);
+
+		if (file.getFilenum() == 0) {
+			fileRepository.saveFile(file); // 저장 (Save)
+		} else {
+			fileRepository.updateFile(file); // 덮어쓰기 (Update) //****ajax 형식으로
+												// 변환할 것!!
 		}
-		return "comu";
+		return "comuTesting";
 	}
-	
-	
-	//모든 음악 목록 불러오기(ajax)
-	@RequestMapping(value="/fileList", method=RequestMethod.GET)
-	public @ResponseBody ArrayList<Files> fileList(){
+
+	// 모든 음악 목록 불러오기(ajax)
+	@RequestMapping(value = "/fileList", method = RequestMethod.GET)
+	public @ResponseBody ArrayList<Files> fileList() {
 		ArrayList<Files> list = fileRepository.fileList();
 		return list;
 	}
-	
+
 	// 개인 음악 목록 불러오기(ajax)
-	@RequestMapping(value = "/userlist", method=RequestMethod.GET)
+	@RequestMapping(value = "/userlist", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Files> userlist(HttpSession session) {
-		ArrayList<Files> userlist = fileRepository.userlist((String)session.getAttribute("loginId"));
+		ArrayList<Files> userlist = fileRepository.userlist((String) session.getAttribute("loginId"));
 		return userlist;
 	}
-	
-	//특정 음악 불러오기
-	@RequestMapping(value="/load", method=RequestMethod.GET)
-	public String loadFile(int filenum, HttpSession session){
+
+	// 특정 음악 불러오기
+	@RequestMapping(value = "/load", method = RequestMethod.GET)
+	public String loadFile(int filenum, HttpSession session) {
 		Files file = fileRepository.loadFile(filenum);
+		System.out.println(file);
 		session.setAttribute("file", file);
-		return "comu";
+		return "comuTesting";
 	}
-	
-	//음악 삭제
-	@RequestMapping(value="/dragdelete", method=RequestMethod.GET)
-	public String delete(int filenum){
-		System.out.println("지울 파일: "+filenum);
+
+	// 음악 삭제
+	@RequestMapping(value = "/dragdelete", method = RequestMethod.GET)
+	public String delete(int filenum) {
+		System.out.println("지울 파일: " + filenum);
 		int result = fileRepository.deleteFile(filenum);
 		return "mypage";
 	}

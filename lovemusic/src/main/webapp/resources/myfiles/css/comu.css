@@ -33,7 +33,7 @@
 	left: 15%;
 	width: 85%;
 	height: 88%;
-	z-index: 99999;
+	z-index: 99;
 }
 
 .mainEditorDiv #mainEditor {
@@ -42,7 +42,7 @@
 	height: 300px;
 	left: 15%;
 	width: 85%;
-	z-index: 99999;
+	z-index: 99;
 }
 
 .errorPlace {
@@ -58,11 +58,11 @@
 	background-color: black;
 	width: 15%;
 	position: fixed;
-	z-index: 99999;
+	z-index: 99;
 }
 
 .nameTag {
-	border: 5px solid rgb(51, 51, 51);
+	border: 3px solid rgb(51, 51, 51);
 	border-bottom: 5px solid black;
 	color: white;
 	font-size: 30px;
@@ -72,7 +72,7 @@
 }
 
 .window {
-	border: 5px solid rgb(51, 51, 51);
+	border: 3px solid rgb(51, 51, 51);
 	top: -3px;
 	height: 92%;
 	margin-right: 2px;
@@ -110,6 +110,28 @@ div.editor {
 }
 
 #visual {
-	z-index: 99999;
+	z-index: 999;
 }
+
+.modal {
+	z-index: 999;
+}
+
+.modal-dialog {
+	position: relative;
+	left: 30%;
+}
+
+.toolbar select {
+	height: 35px;
+}
+
+#theme {
+	width: 155px;
+}
+
+#fontSize {
+	width: 80px;
+}
+
 /*   ===========   button css   ==========   */

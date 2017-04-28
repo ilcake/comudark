@@ -64,7 +64,7 @@ function init() {
 	container.css("top", "15%");
 	container.css("left", "30%");
 	
-	$("#visual").append(container);
+	$("#visualModal").append(container);
 	camera = new THREE.PerspectiveCamera(60, 1, 1, 1000000);
 	camera.position.z = 2000;
 	scene = new THREE.Scene();
@@ -74,7 +74,7 @@ function init() {
 		sortObjects : false
 	});
 	renderer.setSize(window.innerWidth/2, window.innerHeight*2/3);
-	// 625.600,  522.550
+	// 625.600, 522.550
 	container.append(renderer.domElement);
 
 	// stop the user getting a text cursor
@@ -94,7 +94,8 @@ function init() {
 	$(window).resize(onWindowResize);
 	createAnalyser();
 	startViz();
-	//loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
+	// loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null,
+	// null);
 	// onWindowResize(null);
 
 }
