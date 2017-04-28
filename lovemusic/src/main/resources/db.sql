@@ -1,4 +1,4 @@
--- =================== DROP TABLE & SEQUENCE =================
+﻿-- =================== DROP TABLE & SEQUENCE =================
 DROP TABLE cm_subscribe;
 DROP TABLE cm_like;
 DROP TABLE cm_reply;
@@ -22,7 +22,7 @@ userid VARCHAR2(30) PRIMARY KEY,
 email VARCHAR2(30) NOT NULL,
 password VARCHAR2(30) NOT NULL,
 question VARCHAR2(30) NOT NULL,
-answer VARCHAR2(30) NOT NULL
+answer VARCHAR2(30) NOT NULL,
 profile VARCHAR2(200)
 );
 
@@ -83,6 +83,9 @@ userid VARCHAR2(30) NOT NULL CONSTRAINT cm_subscribe_fk
 REFERENCES cm_user(userid) ON DELETE CASCADE,
 sub_userid VARCHAR2(30) NOT NULL
 );
+
+
+
 
 
 -- test data    
