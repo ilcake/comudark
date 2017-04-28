@@ -97,11 +97,12 @@
 							<textarea class="form-control" rows="5" id="codeResult"
 								name="file_ori"></textarea>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display: none;">
 							<label for="compiledResult"><span
 								class="glyphicon glyphicon-random"></span> compiledResult</label>
 							<textarea class="form-control" rows="5" id="compiledResult"
 								name="file_com"></textarea>
+
 						</div>
 					</form>
 				</div>

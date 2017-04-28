@@ -1,4 +1,4 @@
-
+var userid;
 var theMap;
 var bpm;
 var tempo;
@@ -22,7 +22,7 @@ var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
  * Initiation Function
  * 
  ******************************************************************************/
-function initHiCu() {
+function initHiCu() {
 	audioContext = new window.AudioContext();
 	createAnalyser();
 	makeLED();
@@ -33,7 +33,7 @@ function initHiCu() {
 	 * get Ins List
 	 * 
 	 **************************************************************************/
-	$.ajax({
+	$.ajax({
 		url : "getList",
 		type : "POST",
 		success : function(resp) {
@@ -49,7 +49,7 @@ function initHiCu() {
 			});
 			console.log("==================================");
 		},
-		error : function(resp) {}
+		error : function(resp) {}
 	});
 
 }
@@ -60,15 +60,15 @@ function initHiCu() {
  * on Click Play ! / Stop !
  * 
  ******************************************************************************/
-function playEvent() {
+function playEvent() {
 	if (isNaN(bpm)) return;
 	var theSource = $("#resultCode").val();
 	console.log("play ==> " + theSource);
-	$.ajax({
+	$.ajax({
 		type : "POST",
 		url : "compile",
-		data : {
-			"source" : theSource
+		data : {
+			"source" : theSource
 		},
 		success : function(resp) {
 			console.log(resp);
@@ -80,26 +80,26 @@ function playEvent() {
 		},
 		error : function(resp) {
 			/* alert(JSON.stringify(resp)); */
-			$.alert({
-			    title: 'error!',
-			    content: JSON.stringify(resp),
+			$.alert({
+				title : 'error!',
+				content : JSON.stringify(resp),
 			});
-		}
+		}
 	});
 }
-function goResult() {
+function goResult() {
 	setCurrentTimevalue();
 	eval(codeResult);
 }
 
-function playAction(theCord) {
+function playAction(theCord) {
 	goResult();
 	goLed();
 	interPlay = setInterval(goResult, (bpm * 1000));
 	interLed = setInterval(goLed, (bpm * 1000));
 }
 
-function stopEvent() {
+function stopEvent() {
 	console.log("STOP!!");
 	$("#stop").removeClass("playing");
 	$("#play").removeClass("playing");
@@ -115,7 +115,7 @@ function stopEvent() {
  * on click Add Btn
  * 
  ******************************************************************************/
-function insAddEvent() {
+function insAddEvent() {
 	var ins = $(this).attr("dt-ins");
 	console.log(ins + " is requested");
 
@@ -161,7 +161,7 @@ function insAddEvent() {
 				}
 				theContents += "</td></tr></table>";
 				theContents += "</div>";
-			// plusSize += 41.33;
+				// plusSize += 41.33;
 			});
 			$("#btnsBeat").html(theContents);
 			tmpControl();
@@ -247,7 +247,7 @@ function insAddEvent() {
  * Shuffle Array!!!
  * 
  ******************************************************************************/
-function shuffle(array) {
+function shuffle(array) {
 	var currentIndex = array.length,
 		temporaryValue,
 		randomIndex;
@@ -272,7 +272,7 @@ function shuffle(array) {
  * INS Remove Event!
  * 
  ******************************************************************************/
-function insRemoveEvent() {
+function insRemoveEvent() {
 	var thisbtn = "area_" + ($(this).attr("dt-line"));
 	$("#" + thisbtn).remove();
 	console.log("wow!! " + thisbtn + " removed!");
@@ -283,7 +283,7 @@ function insRemoveEvent() {
  * make LED Line!
  * 
  ******************************************************************************/
-function makeLED() {
+function makeLED() {
 	var theLeds = "";
 	theLeds += "<table class='tbContainer'><tr><td class='tdLbContainer'><span class='label blank'>GO</span></td><td class='tdBtContainer'>";
 	for (var i = 1; i < 17; i++) {
@@ -298,7 +298,7 @@ function makeLED() {
  * set Height automatic!
  * 
  ******************************************************************************/
-function setMaxHeightRow() {
+function setMaxHeightRow() {
 	var winHeight = $(window).height();
 	console.log(winHeight);
 	$(".row").css("max-height", (winHeight - 100));
@@ -310,7 +310,7 @@ function setMaxHeightRow() {
  * 
  ******************************************************************************/
 
-function btnEvent() {
+function btnEvent() {
 	console.log("clicked!");
 	var theOne = $(this);
 
@@ -380,7 +380,7 @@ function btnEvent() {
  * 
  ******************************************************************************/
 
-function newBtnEvent() {
+function newBtnEvent() {
 	var $this = $(this);
 	var status = $this.attr("dt-sta") == "on"; // on or off - return true false
 	var dtcla = $this.attr("dt-cla");
@@ -462,7 +462,7 @@ function newBtnEvent() {
  * 
  ******************************************************************************/
 
-function mkCode() {
+function mkCode() {
 	console.log("beatStack --->" + noteStack);
 	console.log("bassStack --->" + bassStack);
 	console.log("melodyStack --->" + melodyStack);
@@ -543,7 +543,7 @@ function mkCode() {
  * tmpControl();
  * 
  ******************************************************************************/
-function tmpControl() {
+function tmpControl() {
 	var bpmNow = Number($("#tempo").text());
 	$("#tempo").text(bpmNow);
 	goNewTempo(bpmNow);
@@ -577,7 +577,7 @@ function tmpControl() {
  * 
  ******************************************************************************/
 
-function goNewTempo(theod) {
+function goNewTempo(theod) {
 	var theTempoValue = 16;
 	bpm = ((theTempoValue * 60) / theod) / 4;
 	tempo = bpm / theTempoValue;
@@ -593,12 +593,12 @@ function goNewTempo(theod) {
  * 
  ******************************************************************************/
 
-function goLed() {
+function goLed() {
 	onLeds();
 	offLeds();
 }
 
-function onLeds() {
+function onLeds() {
 	console.log("onLeds start");
 	for (var i = 1; i < 17; i++) {
 		var thisMan = ("#LED_" + i);
@@ -607,18 +607,18 @@ function onLeds() {
 	}
 }
 
-function mkOnLed(who, time) {
+function mkOnLed(who, time) {
 	setTimeout(function() {
 		$(who).attr("src", "myfiles/images/hicu/LED_on.png");
 	}, time);
 }
-function mkOffLed(who, time) {
+function mkOffLed(who, time) {
 	setTimeout(function() {
 		$(who).attr("src", "myfiles/images/hicu/LED_off.png");
 	}, time);
 }
 
-function offLeds() {
+function offLeds() {
 	for (var i = 1; i < 17; i++) {
 		var thisMan = ("#LED_" + i);
 		var theTime = ((bpm / 16) * i * 1000) + ((bpm / 16) * 1000);
@@ -626,7 +626,7 @@ function offLeds() {
 	}
 }
 
-function initLeds() {
+function initLeds() {
 	$(".leds").attr("src", "myfiles/images/hicu/LED_off.png");
 }
 
@@ -636,23 +636,21 @@ function initLeds() {
 *                 on save!!!!
 *
 ***********************************************/
-function saveEvent() {
-	var theCodes = $("#resultCode").text();
-
-	$("#codeResult").text(theCodes);
-	$.ajax({
-		url : "compile",
-		data : {
-			"source" : theCodes
-		},
-		type : "POST",
-		success : function(resp) {
-			console.log(resp);
-			$("#compiledResult").text(resp);
-		},
-		error : function() {}
-	});
-}
+function saveEvent() {	$.ajax({		url : "getLoginId",		type : "POST",		success : function(resp) {			userid = resp;		}	});
+	var theCodes = $("#resultCode").text();	$("#codeResult").text(theCodes);
+	$.ajax({
+		url : "compile",
+		data : {
+			"source" : theCodes
+		},
+		type : "POST",
+		success : function(resp) {
+			console.log(resp);
+			$("#compiledResult").text(resp);
+		},
+		error : function() {}
+	});
+}function saveCode() {	var fileori = $("#codeResult").val();	var filecom = $("#compiledResult").val();	var filetitle = $("#codeTitle").val();	$.ajax({		type : "POST",		url : "directsave",		data : {			"userid" : userid,			"file_ori" : fileori,			"file_com" : filecom,			"file_type" : "hicu",			"file_title" : filetitle		},		success : function(resp) {			console.log(resp);		},		error : function(resp) {			console.log(resp);		}	});	console.log("fileSaved");}
 
 
 
@@ -663,19 +661,19 @@ function saveEvent() {
 *
 ***********************************************/
 
-function setCurrentTimevalue() {
+function setCurrentTimevalue() {
 	actCurrentTime = audioContext.currentTime;
 }
 
-function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
+function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
 	playGroup = new Pizzicato.Group();
 
-	var sound1 = new Pz.Sound({
+	var sound1 = new Pz.Sound({
 		source : 'file',
-		options : {
+		options : {
 			path : url,
-			loop : false
-		}
+			loop : false
+		}
 	}, function() {
 		console.log(url + ' file loaded!' + time + "      theTime=" + actCurrentTime);
 		sound1.play((time + bpm), 0);
@@ -728,7 +726,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 }*/
 
 
-function createAnalyser() {
+function createAnalyser() {
 	analyser = audioContext.createAnalyser();
 	analyser.smoothingTimeConstant = 0.1;
 	analyser.fftSize = 1024;
@@ -748,8 +746,8 @@ $(function() {
 	$("#play").on("click", playEvent);
 	$("#stop").on("click", stopEvent);
 	$(".ins_add").on("click", insAddEvent);
-	$("#save").on("click", saveEvent);
+	$("#save").on("click", saveEvent);	$("#saveHicuCode").on("click", saveCode);
 	$("#reset").on("click", function() {
 		location.reload();
-	});
+	});
 });

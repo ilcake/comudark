@@ -44,13 +44,5 @@
 		</interceptor>
 	</interceptors>
 
-	<!-- <beans:bean class="good.love.music.interceptor.LoginInterceptor"
-		id="LoginInterceptor" />
-	<interceptors>
-		<interceptor>
-			<mapping path="/login" />
-			<beans:ref bean="LoginInterceptor" />
-		</interceptor>
-	</interceptors> -->
 
 </beans:beans>
