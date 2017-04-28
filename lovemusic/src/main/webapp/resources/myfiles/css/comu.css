@@ -1,12 +1,17 @@
 @CHARSET "UTF-8";
 
+.tools {
+	width: 70%;
+	padding: 1px;
+	height: 15vh;
+	margin: 0px auto;
+}
+
 .tree {
-	float: left;
-	width: 230px;
-	height: 73vh;
-	position: relative;
-	padding-top: 6px;
-	top: 125px;
+	width: 70%;
+	height: 70vh;
+	padding: 1px;
+	margin: 0px auto;
 }
 
 .tree div.treeOver {
@@ -27,7 +32,7 @@
 	top: 37px;
 }
 
-.sampleEditorDiv #sampleEditor {
+/* .sampleEditorDiv #sampleEditor {
 	position: absolute;
 	top: 37px;
 	left: 15%;
@@ -35,14 +40,26 @@
 	height: 88%;
 	z-index: 99999;
 }
+ */
+.sampleEditorDiv #sampleEditor {
+	width: 100%;
+	height: 100%;
+	z-index: 500;
+}
 
-.mainEditorDiv #mainEditor {
+/* .mainEditorDiv #mainEditor {
 	top: 36px;
 	position: absolute;
 	height: 300px;
 	left: 15%;
 	width: 85%;
 	z-index: 99999;
+}
+ */
+.mainEditorDiv #mainEditor {
+	width: 100%;
+	height: 100%;
+	z-index: 500;
 }
 
 .errorPlace {
@@ -53,12 +70,10 @@
 }
 
 .toolbar {
-	float: left;
-	height: 120px;
+	padding: 10px;
+	margin: 5px auto;
 	background-color: black;
-	width: 15%;
-	position: fixed;
-	z-index: 99999;
+	width: 100%;
 }
 
 .nameTag {
@@ -73,17 +88,17 @@
 
 .window {
 	border: 5px solid rgb(51, 51, 51);
-	top: -3px;
+	/* top: -3px; */
 	height: 92%;
 	margin-right: 2px;
 	z-index: 1;
-	position: relative;
+	/* 	position: relative; */
 }
 
 div.editor {
-	position: relative;
-	left: 15%;
-	width: 85%;
+	/* position: relative;
+	left: 15%;*/
+	width: 90%;
 }
 
 .clicked {
@@ -144,4 +159,8 @@ li.jstree-checked>a .jstree-checkbox {
 	width: 32px;
 	height: 29px;
 	padding-top: 5px;
+}
+
+.row {
+	padding-top: 15px;
 }
