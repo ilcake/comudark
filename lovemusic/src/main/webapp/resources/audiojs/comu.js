@@ -69,11 +69,10 @@ function init() {
 	container = $('<div />', {
 		id : "container"
 	});
-	container.css("display", "inline");
 	container.css("position", "absolute");
-	container.css("z-index", "5000");
-	container.css("top", "20%");
-	container.css("left", "25%");
+	container.css("top", "15%");
+	container.css("left", "30%");
+	
 	$("#visual").append(container);
 	camera = new THREE.PerspectiveCamera(60, 1, 1, 1000000);
 	camera.position.z = 2000;
@@ -83,7 +82,8 @@ function init() {
 		antialias : false,
 		sortObjects : false
 	});
-	renderer.setSize(window.innerWidth / 2, window.innerHeight * 2 / 3);
+	renderer.setSize(window.innerWidth/2, window.innerHeight*2/3);
+	// 625.600,  522.550
 	container.append(renderer.domElement);
 
 	// stop the user getting a text cursor
@@ -132,6 +132,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 		irRRequest.open("GET", hasReverb);
 		irRRequest.responseType = "arraybuffer";
 		irRRequest.onload = function() {
+			
 			audioContext.decodeAudioData(irRRequest.response, function(buffer) {
 				reverb.buffer = buffer;
 				req.send();
