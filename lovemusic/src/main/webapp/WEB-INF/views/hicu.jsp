@@ -34,6 +34,13 @@
 	href="myfiles/images/main/logo_1pa.png" />
 <!-- COMU BACKGROUND VIDEO CSS -->
 <link rel="stylesheet" type="text/css" href="myfiles/css/hicu.css">
+
+<!-- alert bootstrap START -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<!-- alert bootstrap END -->
 </head>
 <body>
 

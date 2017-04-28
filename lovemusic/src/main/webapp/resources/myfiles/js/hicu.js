@@ -14,20 +14,20 @@ var codeResult;
 var thePicked = [];
 var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
 
-/*******************************************
-*
-* 		     Initiation Function
-* 
-********************************************/
+/*******************************************************************************
+ * 
+ * Initiation Function
+ * 
+ ******************************************************************************/
 function initHiCu() {
 	makeLED();
 	console.log("=============Get Ins List==============");
 
-	/*******************************************
-	*
-	* 				get Ins List
-	* 
-	********************************************/
+	/***************************************************************************
+	 * 
+	 * get Ins List
+	 * 
+	 **************************************************************************/
 	$.ajax({
 		url : "getList",
 		type : "POST",
@@ -50,11 +50,11 @@ function initHiCu() {
 }
 
 
-/********************************************** 
-*
-*        on Click Play ! / Stop !
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * on Click Play ! / Stop !
+ * 
+ ******************************************************************************/
 function playEvent() {
 	if (isNaN(bpm)) return;
 	var theSource = $("#resultCode").val();
@@ -74,7 +74,11 @@ function playEvent() {
 
 		},
 		error : function(resp) {
-			alert(JSON.stringify(resp));
+			/* alert(JSON.stringify(resp)); */
+			$.alert({
+			    title: 'error!',
+			    content: JSON.stringify(resp),
+			});
 		}
 	});
 }
@@ -100,11 +104,11 @@ function stopEvent() {
 }
 
 
-/********************************************** 
-*
-*              on click Add Btn
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * on click Add Btn
+ * 
+ ******************************************************************************/
 function insAddEvent() {
 	var ins = $(this).attr("dt-ins");
 	console.log(ins + " is requested");
@@ -151,7 +155,7 @@ function insAddEvent() {
 				}
 				theContents += "</td></tr></table>";
 				theContents += "</div>";
-			//plusSize += 41.33;
+			// plusSize += 41.33;
 			});
 			$("#btnsBeat").html(theContents);
 			tmpControl();
@@ -232,11 +236,11 @@ function insAddEvent() {
 
 
 
-/********************************************** 
-*
-*               Shuffle Array!!!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * Shuffle Array!!!
+ * 
+ ******************************************************************************/
 function shuffle(array) {
 	var currentIndex = array.length,
 		temporaryValue,
@@ -257,22 +261,22 @@ function shuffle(array) {
 
 	return array;
 }
-/********************************************** 
-*
-*               INS Remove Event!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * INS Remove Event!
+ * 
+ ******************************************************************************/
 function insRemoveEvent() {
 	var thisbtn = "area_" + ($(this).attr("dt-line"));
 	$("#" + thisbtn).remove();
 	console.log("wow!! " + thisbtn + " removed!");
 }
 
-/********************************************** 
-*
-*                make LED Line!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * make LED Line!
+ * 
+ ******************************************************************************/
 function makeLED() {
 	var theLeds = "";
 	theLeds += "<table class='tbContainer'><tr><td class='tdLbContainer'><span class='label blank'>GO</span></td><td class='tdBtContainer'>";
@@ -283,22 +287,22 @@ function makeLED() {
 	$("#LED_row").append(theLeds);
 }
 
-/********************************************** 
-*
-*                set Height automatic!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * set Height automatic!
+ * 
+ ******************************************************************************/
 function setMaxHeightRow() {
 	var winHeight = $(window).height();
 	console.log(winHeight);
 	$(".row").css("max-height", (winHeight - 100));
 }
 
-/********************************************** 
-*
-*                  btnEvent!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * btnEvent!
+ * 
+ ******************************************************************************/
 
 function btnEvent() {
 	console.log("clicked!");
@@ -364,15 +368,15 @@ function btnEvent() {
 	mkCode();
 }
 
-/********************************************** 
-*
-*                 new btnEvent!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * new btnEvent!
+ * 
+ ******************************************************************************/
 
 function newBtnEvent() {
 	var $this = $(this);
-	var status = $this.attr("dt-sta") == "on"; //on or off - return true false
+	var status = $this.attr("dt-sta") == "on"; // on or off - return true false
 	var dtcla = $this.attr("dt-cla");
 	var dtins = $this.attr("dt-ins");
 	var dtnt = $this.attr("dt-nt");
@@ -380,7 +384,7 @@ function newBtnEvent() {
 	var dtloc = $this.attr("dt-loc");
 	var theCodeDt = dtins + "-" + dtnt + "-" + dtloc;
 
-	if (status) { //when off
+	if (status) { // when off
 		$this.attr("src", "myfiles/images/hicu/button_off.png");
 		$this.attr("dt-sta", "off");
 		$this.removeClass("btnOn");
@@ -406,7 +410,7 @@ function newBtnEvent() {
 			console.log(theCodeDt + " OFF!");
 			break;
 		}
-	} else { //when on
+	} else { // when on
 		console.log(theCodeDt + " ON!");
 		switch (dtcla) {
 		case "loop":
@@ -446,11 +450,11 @@ function newBtnEvent() {
 	mkCode();
 }
 
-/********************************************** 
-*
-*                  makeCode!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * makeCode!
+ * 
+ ******************************************************************************/
 
 function mkCode() {
 	console.log("beatStack --->" + noteStack);
@@ -468,36 +472,22 @@ function mkCode() {
 	var beatTemp = "";
 	var melodyTemp = "";
 	var bassTemp = "";
-	/*$.each(thePicked, function(index, item) {
-		var theOne = item.split("-");
-		console.log(theOne);
-	});
-	thePicked.sort();*/
-	/*$.each(thePicked, function(num, who) {
-		console.log("Each Num==" + num);
-		var theOne = who.split("-");
-		var theIns = theOne[0];
-		if (theIns == "beat") {
-			beatTemp = beatStack.split("-");
-		} else if (theIns == "melody") {
-			melodyTemp = melodyStack.split("-");
-		} else if (theIns == "bass") {
-			bassTemp = bassStack.split("-");
-		} else {
-			var isChange = (num == 0 || temp != theIns);
-			if (isChange) {
-				theCode += "\nins " + theIns + "{\n";
-				theCode += "  location 0;\n  do 1;\n";
-				temp = theIns;
-			}
-			theCode += "  note(" + theOne[1] + "," + (theOne[2] - 1) + ");\n";
-			if ((num + 1) == leng) {
-				theCode += "}\n";
-			} else if ( (thePicked[num + 1].split("-")[0] != theIns) ) {
-				theCode += "}\n";
-			}
-		}
-	});*/
+	/*
+	 * $.each(thePicked, function(index, item) { var theOne = item.split("-");
+	 * console.log(theOne); }); thePicked.sort();
+	 */
+	/*
+	 * $.each(thePicked, function(num, who) { console.log("Each Num==" + num);
+	 * var theOne = who.split("-"); var theIns = theOne[0]; if (theIns ==
+	 * "beat") { beatTemp = beatStack.split("-"); } else if (theIns == "melody") {
+	 * melodyTemp = melodyStack.split("-"); } else if (theIns == "bass") {
+	 * bassTemp = bassStack.split("-"); } else { var isChange = (num == 0 ||
+	 * temp != theIns); if (isChange) { theCode += "\nins " + theIns + "{\n";
+	 * theCode += " location 0;\n do 1;\n"; temp = theIns; } theCode += " note(" +
+	 * theOne[1] + "," + (theOne[2] - 1) + ");\n"; if ((num + 1) == leng) {
+	 * theCode += "}\n"; } else if ( (thePicked[num + 1].split("-")[0] !=
+	 * theIns) ) { theCode += "}\n"; } } });
+	 */
 
 	if (beatStack != "") {
 		beatTemp = beatStack.split("-");
@@ -542,11 +532,11 @@ function mkCode() {
 }
 
 
-/********************************************** 
-*
-*                tmpControl();
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * tmpControl();
+ * 
+ ******************************************************************************/
 function tmpControl() {
 	var bpmNow = Number($("#tempo").text());
 	$("#tempo").text(bpmNow);
@@ -575,11 +565,11 @@ function tmpControl() {
 	console.log("tmp Control loaded //==" + bpm);
 }
 
-/********************************************** 
-*
-*                 getTempo; Method;
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * getTempo; Method;
+ * 
+ ******************************************************************************/
 
 function goNewTempo(theod) {
 	var theTempoValue = 16;
@@ -591,11 +581,11 @@ function goNewTempo(theod) {
 
 
 
-/********************************************** 
-*
-*                 Led Controls
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * Led Controls
+ * 
+ ******************************************************************************/
 
 function goLed() {
 	onLeds();
@@ -635,11 +625,11 @@ function initLeds() {
 }
 
 
-/********************************************** 
-*
-*               loadAudio~
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * loadAudio~
+ * 
+ ******************************************************************************/
 function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
 	playGroup = new Pizzicato.Group();
 
@@ -657,11 +647,11 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 }
 
 
-/********************************************** 
-*
-*                 on save!!!!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * on save!!!!
+ * 
+ ******************************************************************************/
 function saveEvent() {
 	var theCodes = $("#resultCode").text();
 
@@ -681,11 +671,11 @@ function saveEvent() {
 }
 
 
-/********************************************** 
-*
-*                 on Ready!
-*
-***********************************************/
+/*******************************************************************************
+ * 
+ * on Ready!
+ * 
+ ******************************************************************************/
 $(function() {
 	initHiCu();
 	setMaxHeightRow();
