@@ -25,5 +25,6 @@ public interface FileDAO {
 	//MYPAGE - 파일 삭제
 	public int deleteFile(int filenum) throws Exception;
 	
-	
+	//COMU 파일 최근 5개 불러오기
+	public ArrayList<Files> comuList() throws Exception;
 }
