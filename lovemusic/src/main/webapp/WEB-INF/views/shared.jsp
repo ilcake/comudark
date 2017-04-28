@@ -41,7 +41,7 @@
 				<!-- 게시물 시작 (Collapse) -->
 				<c:forEach var="board" items="${boardList}">
 				<!-- 공유 설정된 게시물만 표시 -->
-				<c:if test="${board.shared == 'share'}">
+				<c:if test="${board.shared == 'true'}">
 					<div class="box">
 						<table class='board'>
 							<tr>

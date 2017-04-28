@@ -90,11 +90,13 @@ public class BoardController {
 			board.setCover_re(savedFile);
 		} else {
 		}
-
+		
 		//shared 설정
 		if (board.getShared() == null) {
-			board.setShared("unshare");
+			board.setShared("false");
 		}
+		
+		System.out.println("baaaa"+board);
 		
 		if(board.getBoardnum() == 0){		//boardnum이 없으면 새로 저장
 			boardRepository.write(board);

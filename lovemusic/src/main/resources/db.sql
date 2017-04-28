@@ -22,7 +22,7 @@ userid VARCHAR2(30) PRIMARY KEY,
 email VARCHAR2(30) NOT NULL,
 password VARCHAR2(30) NOT NULL,
 question VARCHAR2(30) NOT NULL,
-answer VARCHAR2(30) NOT NULL
+answer VARCHAR2(30) NOT NULL,
 profile VARCHAR2(200)
 );
 
@@ -50,7 +50,8 @@ title VARCHAR2(100) NOT NULL,
 content VARCHAR2(2000),
 inputdate DATE DEFAULT SYSDATE,
 filenum NUMBER,
-shared VARCHAR2(20) NOT NULL
+shared VARCHAR2(20) NOT NULL,
+profile VARCHAR2(200)
 );
 
 
@@ -79,7 +80,7 @@ like_userid VARCHAR2(30) NOT NULL
 -- 구독DB
 CREATE TABLE cm_subscribe
 (
-userid VARCHAR2(30) NOT NULL CONSTRAINT cm_subscribe_fk
+userid VARCHAR2(30) NOT NULL CONSTRAINT cm_subscribe_fk 
 REFERENCES cm_user(userid) ON DELETE CASCADE,
 sub_userid VARCHAR2(30) NOT NULL
 );
@@ -103,18 +104,18 @@ insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb3'
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb4', null, null);
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb5', null, null);
 
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa1', 'aaaaaaa', sysdate, 1, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa3', 'aaaaaaa', sysdate, 3, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa4', 'aaaaaaa', sysdate, 4, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa5', 'aaaaaaa', sysdate, 5, 'yes');
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa1', 'aaaaaaa', sysdate, 1, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa3', 'aaaaaaa', sysdate, 3, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa4', 'aaaaaaa', sysdate, 4, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa5', 'aaaaaaa', sysdate, 5, 'true');
 
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb1', 'bbbbbb', sysdate, 6, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb2', 'bbbbbb', sysdate, 7, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb3', 'bbbbbb', sysdate, 8, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb4', 'bbbbbb', sysdate, 9, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb5', 'bbbbbb', sysdate, 10, 'yes');
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb6', 'bbbbbb', sysdate, 11, 'yes');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb1', 'bbbbbb', sysdate, 6, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb2', 'bbbbbb', sysdate, 7, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb3', 'bbbbbb', sysdate, 8, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb4', 'bbbbbb', sysdate, 9, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb5', 'bbbbbb', sysdate, 10, 'true');
+insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb6', 'bbbbbb', sysdate, 11, 'true');
 
 insert into cm_like values(1, 'aa', 'bb');
 insert into cm_like values(1, 'aa', 'bb');
