@@ -70,6 +70,95 @@
 	.container{
 		margin: 20px;
 	}
+	
+	
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 56px;
+  height: 20px;
+  padding: 3px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: inset 0 -1px white,
+              inset 0 1px 1px rgba(black, .05);
+  cursor: pointer;
+  @include linear-gradient(top, #eee, white 25px);
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.switch-label {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #eceeef;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(black, .12),
+              inset 0 0 2px rgba(black, .15);
+  @include transition($switchTransition);
+  @include transition-property(opacity background);
+
+  .switch:before, .switch:after {
+    position: absolute;
+    top: 50%;
+    margin-top: -.5em;
+    line-height: 1;
+    @include transition(inherit);
+  }
+
+  .switch:before {
+    content: attr(data-off);
+    right: 11px;
+    color: #aaa;
+    text-shadow: 0 1px rgba(white, .5);
+  }
+
+  .switch:after {
+    content: attr(data-on);
+    left: 11px;
+    color: white;
+    text-shadow: 0 1px rgba(black, .2);
+    opacity: 0;
+  }
+}
+
+.switch-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(black, .2);
+  @include linear-gradient(top, white 40%, #f0f0f0);
+
+  .switch:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -6px 0 0 -6px;
+    width: 12px;
+    height: 12px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: inset 0 1px rgba(black, .02);
+    @include linear-gradient(top, #eee, white);
+  }
+
+}
+
+.switch-green > .switch-input:checked ~ .switch-label { background: #4fb845; }
 </style>
 
 
@@ -94,11 +183,19 @@
 			                <img id="imgView" class="image" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='images/album.jpg'"/> <input type="file" style="display: none;" id="imgInp" name="upload" />
 			            </label>
 						<hr>
-
-							<label>
-						    	<input type="checkbox" id="checkbox" value="share" name="shared">
-								<span id="shared">unshared</span>
-							</label>
+						
+				<label class="toggler toggler--is-active" id="filt-css">CSS</label>
+				<div class="toggle">
+				  <input type="checkbox" id="switcher" class="check">
+				  <b class="b switch"></b> </div>
+				<label class="toggler" id="filt-javascript">Javascript</label>
+						
+						
+			    <label class="switch">
+			      <input type="checkbox" id="checkbox" value="share" name="shared" class="switch-input" checked>
+			      <span id="shared" class="switch-label" data-on="On" data-off="Off"> shared </span>
+			      <span class="switch-handle"></span>
+			    </label>
 					</div>
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">

@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Shared</title>
 </head>
 
 <!--==============   APPENDING JS AND CSS   =================-->
@@ -19,76 +19,6 @@
 <script src="js/jquery.wallyti.js"></script>
 <link href='resources/myfiles/css/shared.css' rel='stylesheet' type='text/css'>
 <script src="resources/myfiles/js/shared.js"></script>
-<style>
-	input[type=text]{
-		font-size: medium;
-	}
-	input:focus{
-		outline: none;
-	}
-	
-	
-	/* ========= 이미지 뒤집기 ========= */
-	.card-container {
-	  cursor: pointer;
-	  height: 55px;
-	  perspective: 600;
-	  position: relative;
-	  width: 55px;
-	}
-
-	.card {
-	  height: 100%;
-	  position: absolute;
-	  transform-style: preserve-3d;
-	  transition: all 1s ease-in-out;
-	  width: 100%;
-	}
-	
-	.card:hover {
-	  transform: rotateY(180deg);
-	}
-	
-	.card .side {
-	  backface-visibility: hidden;
-	  border-radius: 100px;
-	  height: 100%;
-	  position: absolute;
-	  overflow: hidden;
-	  width: 100%;
-	}
-	
-	.card .back {
-		border-radius: 100px;
-		background-color: white;
-	  color: #0087cc;
-	  line-height: 150px;
-	  text-align: center;
-	  transform: rotateY(180deg);
-	}
-	/* ==========이미지 뒤집기  END =========*/
-	
-	.buttonEffect {
-	width:100%;
-	height: 80%;
-	  border: 0;
-	  background: #0087cc;
-	  border-radius: 4px;
-	  box-shadow: 0 5px 0 #006599;
-	  color: #fff;
-	  cursor: pointer;
-	  font: inherit;
-	  margin: 0;
-	  outline: 0;
-	  padding: 12px 20px;
-	  transition: all .1s linear;
-	}
-	.buttonEffect:active {
-	  box-shadow: 0 2px 0 #006599;
-	  transform: translateY(3px);
-	}
-	
-</style>
 
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
@@ -118,7 +48,7 @@
 								<td class="td_img">
 									<div class="card-container">
 										<div class="card">
-										<div class="side"><img src="images/galaxy-1.jpg" onERROR="this.src='resources/myfiles/images/comu/robot.png'" alt="image" class="image"></div>
+										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="image"></div>
 										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>

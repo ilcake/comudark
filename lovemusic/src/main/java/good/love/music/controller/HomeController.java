@@ -109,7 +109,6 @@ public class HomeController {
 		// 사용자가 구독한 유저 게시물 불러오기
 		ArrayList<Board> mySubList = boardRepository.mySubList(userid);
 		session.setAttribute("mySubList", mySubList);
-		System.out.println("쫌"+mySubList);
 		
 		return "mypage";
 	}
@@ -150,6 +149,7 @@ public class HomeController {
 
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.list();
+		System.out.println("안녕"+list);
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기
