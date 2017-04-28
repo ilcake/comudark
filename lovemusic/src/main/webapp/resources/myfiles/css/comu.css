@@ -1,84 +1,115 @@
 @CHARSET "UTF-8";
 
-/*                          GET STARTED BUTTON                             */
-.get-started {
+.tree {
+	float: left;
+	width: 230px;
+	height: 73vh;
+	position: relative;
+	padding-top: 6px;
+	top: 125px;
+}
+
+.tree div.treeOver {
+	overflow: auto;
+	height: 94%;
+	color: gainsboro;
+}
+
+.sampleEditorDiv {
+	top: 10px;
+	height: 150px;
+	position: relative;
+}
+
+.mainEditorDiv {
+	height: 330px;
+	position: relative;
+	top: 37px;
+}
+
+.sampleEditorDiv #sampleEditor {
 	position: absolute;
-	z-index: 3;
-	top: 45%;
-	left: 45%;
+	top: 37px;
+	left: 15%;
+	width: 85%;
+	height: 88%;
+	z-index: 99999;
 }
 
-/*                 COMU PAGE AFTER 'GET STARTED'                   */
-.comu-container {
+.mainEditorDiv #mainEditor {
+	top: 36px;
 	position: absolute;
-	z-index: 2;
-	top: 7%;
-	width: 100%;
-	padding-top: 5%;
-	background-color: rgba(255, 255, 255, 0);
-	overflow-y: auto;
-	overflow-x: hidden;
-}
-
-.text {
-	color: black;
-}
-
-.text-thin {
-	font-weight: 100
-}
-
-.centerPlace .inlineD h4 {
-	position: relative;
-	display: inline;
-	color: white;
-	margin-bottom: 10px;
-}
-
-textarea {
-	resize: none;
-}
-
-.inlineD {
-	position: relative;
-}
-
-.float-right {
-	float: right;
-	position: relative;
-	top: -4px;
-}
-
-.center {
-	position: relative;
-	top: -5px;
-	left: 27%;
+	height: 300px;
+	left: 15%;
+	width: 85%;
+	z-index: 99999;
 }
 
 .errorPlace {
-	background-color: wheat;
 	position: relative;
-	top: 60px;
-	width: 80%;
-	left: 6%;
+	height: 90px;
+	background-color: rgb(15, 15, 15);
+	color: cornflowerblue;
 }
 
-#treeViewDiv {
-	color: black;
-	background-color: white;
-	padding: 10px;
-	font-size: 10pt;
-	width: 70%;
-	height: 510px;
-	position: relative;
-	left: 9%;
-	top: -10px;
-	overflow: auto;
+.toolbar {
+	float: left;
+	height: 120px;
+	background-color: black;
+	width: 15%;
+	position: fixed;
+	z-index: 99999;
 }
 
-.leftplace h4.treeViewName {
-	position: relative;
-	top: -7px;
-	left: 11%;
+.nameTag {
+	border: 5px solid rgb(51, 51, 51);
+	border-bottom: 5px solid black;
 	color: white;
+	font-size: 30px;
+	padding-left: 7px;
+	padding-right: 7px;
+	z-index: 10;
 }
+
+.window {
+	border: 5px solid rgb(51, 51, 51);
+	top: -3px;
+	height: 92%;
+	margin-right: 2px;
+	z-index: 1;
+	position: relative;
+}
+
+div.editor {
+	position: relative;
+	left: 15%;
+	width: 85%;
+}
+
+.clicked {
+	border-top: 5px solid rgb(255, 200, 0);
+}
+
+.error {
+	position: relative;
+	top: 50px;
+}
+
+#errorClick {
+	text-decoration: underline;
+	left: 10px;
+	position: relative;
+}
+
+#errorContent {
+	overflow: auto;
+	height: 100%;
+	position: absolute;
+	left: 2%;
+	width: 98%;
+}
+
+#visual {
+	z-index: 99999;
+}
+/*   ===========   button css   ==========   */
