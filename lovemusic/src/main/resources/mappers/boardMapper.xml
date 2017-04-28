@@ -185,7 +185,7 @@
 		from
 		(SELECT count(*) rank, boardnum FROM cm_like
 		GROUP BY boardnum)
-		where rownum BETWEEN 1 and 10
+		where rownum BETWEEN 1 and 5
 		) rr, cm_board bb
 		where
 		rr.boardnum = bb.BOARDNUM
@@ -235,6 +235,6 @@
 		(SELECT count(*) rank, userid FROM CM_SUBSCRIBE
 		GROUP BY USERID
 		ORDER BY count(*) desc)
-		where rownum BETWEEN 1 and 10
+		where rownum BETWEEN 1 and 5
 	</select>
 </mapper>
