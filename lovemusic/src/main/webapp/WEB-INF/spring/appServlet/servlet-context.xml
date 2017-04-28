@@ -34,6 +34,23 @@
 
 	<context:component-scan base-package="good.love.music" />
 
+	<beans:bean class="good.love.music.interceptor.Interceptor"
+		id="Interceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage" />
+			<mapping path="/hicu" />
+			<beans:ref bean="Interceptor" />
+		</interceptor>
+	</interceptors>
 
+	<beans:bean class="good.love.music.interceptor.LoginInterceptor"
+		id="LoginInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/login" />
+			<beans:ref bean="LoginInterceptor" />
+		</interceptor>
+	</interceptors>
 
 </beans:beans>
