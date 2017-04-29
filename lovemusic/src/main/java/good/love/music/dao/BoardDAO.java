@@ -81,4 +81,6 @@ public interface BoardDAO {
 	// 구독 리스트
 	public ArrayList<Subscribe> subscribeList(String userid) throws Exception;
 
+	public ArrayList<Board> likeRanking();
+
 }
