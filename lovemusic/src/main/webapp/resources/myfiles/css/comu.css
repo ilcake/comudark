@@ -9,7 +9,7 @@
 
 .tree {
 	width: 70%;
-	height: 70vh;
+	height: 65vh;
 	padding: 1px;
 	margin: 0px auto;
 }
@@ -44,7 +44,7 @@
 .sampleEditorDiv #sampleEditor {
 	width: 100%;
 	height: 100%;
-	z-index: 500;
+	z-index: 95;
 }
 
 /* .mainEditorDiv #mainEditor {
@@ -59,7 +59,7 @@
 .mainEditorDiv #mainEditor {
 	width: 100%;
 	height: 100%;
-	z-index: 500;
+	z-index: 95%;
 }
 
 .errorPlace {
@@ -98,7 +98,7 @@
 div.editor {
 	/* position: relative;
 	left: 15%;*/
-	width: 90%;
+	width: 95%;
 }
 
 .clicked {
@@ -164,3 +164,8 @@ li.jstree-checked>a .jstree-checkbox {
 .row {
 	padding-top: 15px;
 }
+
+/* body {
+	height: 100vh;
+	overflow: hidden;
+} */
