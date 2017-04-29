@@ -307,4 +307,10 @@ public class BoardRepository {
 		return list;
 	}
 
+	public ArrayList<Board> likeRanking() {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		ArrayList<Board> list = dao.likeRanking();
+		return list;
+	}
+
 }
