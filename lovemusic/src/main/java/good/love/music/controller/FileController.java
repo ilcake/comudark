@@ -61,7 +61,7 @@ public class FileController {
 			fileRepository.updateFile(file); // 덮어쓰기 (Update) //****ajax 형식으로
 												// 변환할 것!!
 		}
-		return "comu";
+		return "comuTesting";
 	}
 
 	// 저장 - ajax //
@@ -96,8 +96,9 @@ public class FileController {
 	@RequestMapping(value = "/load", method = RequestMethod.GET)
 	public String loadFile(int filenum, HttpSession session) {
 		Files file = fileRepository.loadFile(filenum);
+		System.out.println(file);
 		session.setAttribute("file", file);
-		return "comu";
+		return "comuTesting";
 	}
 
 	// 음악 삭제

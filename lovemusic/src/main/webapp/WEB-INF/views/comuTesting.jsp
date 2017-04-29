@@ -51,21 +51,43 @@
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper">
-		<button type="button" data-toggle="modal" data-target="#visual"
-			id="modalBtn" hidden="hidden">Open Modal</button>
-		<div class="comuContent row-fluid">
-			<div class="span4">
-				<div class="toolbar">
+		<button type="button" data-toggle="modal" data-target="#visualModal"
+			id="runModal" hidden="hidden"></button>
+		<button type="button" data-toggle="modal" data-target="#saveModal"
+			id="saveModalBtn" hidden="hidden"></button>
+		<button type="button" data-toggle="modal" data-target="#loadModal"
+			id="loadModalBtn" hidden="hidden"></button>
+		<input id="mainText" type="hidden" value="${file.file_ori}">
+		<c:if test="${not empty loginId}">
+			<input id="logInflag" type="hidden" value="true">
+		</c:if>
+		<div class="comuContent">
+			<div class="toolbar">
+				<div>
 					<input type="button" id="runBtn" value="run"> <input
 						type="button" id="addBtn" value="add"> <input
-						type="button" id="saveBtn" value="save">
+						type="button" id="saveBtn" value="save"> <input
+						type="button" id="loadBtn" value="load">
 				</div>
-				<div class="tree">
-					<span class="nameTag clickable list-explorer"
-						data-clicked="list-explorer"> List Explorer</span>
-					<div class="window clickable treeOver" data-clicked="list-explorer">
-						<div id="treeViewDiv"></div>
-					</div>
+				<div>
+					Font Size : <select id="fontSize">
+						<option>12pt</option>
+						<option selected="selected">14pt</option>
+						<option>16pt</option>
+						<option>18pt</option>
+						<option>20pt</option>
+						<option>22pt</option>
+					</select>
+				</div>
+				<div>
+					Theme : <select id="theme">
+						<option>solarized_light</option>
+						<option>chrome</option>
+						<option selected="selected">vibrant_ink</option>
+						<option>cobalt</option>
+						<option>monokai</option>
+						<option>terminal</option>
+					</select>
 				</div>
 			</div>
 			<div class="span8">
@@ -76,28 +98,84 @@
 					<div id="sampleEditor" class="clickable" data-clicked="sample">this
 						is sample</div>
 				</div>
-				<div class="mainEditorDiv">
-					<span class="nameTag clickable main" data-clicked="main">
-						Main</span>
-					<div class="window editor "></div>
-					<div id="mainEditor" class="clickable" data-clicked="main">this
-						is main</div>
-				</div>
-				<div class="error">
-					<span class="nameTag clickable errorTag" data-clicked="error">
-						Console</span>
-					<div class="window editor clickable" data-clicked="error">
-						<div class="errorPlace">
-							<div id="errorContent">
-								<a href="#" id="errorClick"></a><br>
-							</div>
+			</div>
+			<div class="sampleEditorDiv">
+				<span class="nameTag clickable sample" data-clicked="sample">
+					Sample </span>
+				<div class="window editor "></div>
+				<div id="sampleEditor" class="clickable" data-clicked="sample"></div>
+			</div>
+			<div class="mainEditorDiv">
+				<span class="nameTag clickable main" data-clicked="main">
+					Main</span>
+				<div class="window editor "></div>
+				<div id="mainEditor" class="clickable" data-clicked="main"></div>
+			</div>
+			<div class="error">
+				<span class="nameTag clickable errorTag" data-clicked="error">
+					Console</span>
+				<div class="window editor clickable" data-clicked="error">
+					<div class="errorPlace">
+						<div id="errorContent">
+							<a href="#" id="errorClick"></a><br>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div id="visual" class="modal fade" role="dialog"></div>
+		<div id="visualModal" class="modal fade" role="dialog"></div>
+	</div>
+	<div id="saveModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Save File</h4>
+				</div>
+				<div class="modal-body">
+					<form action="save" method="post" id="saveForm"
+						enctype="multipart/form-data">
+						<input name="filenum" type="hidden" value="${file.filenum}">
+						<input name="userid" type="hidden" value="${loginId}"> <label>
+							<img id="imgView" src="resources/covers/${file.cover_re}"
+							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+							style="width: 100px; height: 100px; border-radius: 100px;">
+							<input type="file" style="display: none;" id="imgInp"
+							name="upload" />
+						</label> <input type="text" class="form-control" id="title"
+							name="file_title" value="${file.file_title}" />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="save">
+						Save<span class="glyphicon glyphicon-saved"></span>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="loadModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Load File</h4>
+				</div>
+				<div class="modal-body">
+					<div id="loader"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="load">
+						Load<span class="glyphicon glyphicon-loaded"></span>
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

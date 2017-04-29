@@ -1,171 +1,171 @@
-@CHARSET "UTF-8";
-
-.tools {
-	width: 70%;
-	padding: 1px;
-	height: 15vh;
-	margin: 0px auto;
-}
-
-.tree {
-	width: 70%;
-	height: 65vh;
-	padding: 1px;
-	margin: 0px auto;
-}
-
-.tree div.treeOver {
-	overflow: auto;
-	height: 94%;
-	color: gainsboro;
-}
-
-.sampleEditorDiv {
-	top: 10px;
-	height: 150px;
-	position: relative;
-}
-
-.mainEditorDiv {
-	height: 330px;
-	position: relative;
-	top: 37px;
-}
-
-/* .sampleEditorDiv #sampleEditor {
-	position: absolute;
-	top: 37px;
-	left: 15%;
-	width: 85%;
-	height: 88%;
-	z-index: 99999;
-}
- */
-.sampleEditorDiv #sampleEditor {
-	width: 100%;
-	height: 100%;
-	z-index: 95;
-}
-
-/* .mainEditorDiv #mainEditor {
-	top: 36px;
-	position: absolute;
-	height: 300px;
-	left: 15%;
-	width: 85%;
-	z-index: 99999;
-}
- */
-.mainEditorDiv #mainEditor {
-	width: 100%;
-	height: 100%;
-	z-index: 95%;
-}
-
-.errorPlace {
-	position: relative;
-	height: 90px;
-	background-color: rgb(15, 15, 15);
-	color: cornflowerblue;
-}
-
-.toolbar {
-	padding: 10px;
-	margin: 5px auto;
-	background-color: black;
-	width: 100%;
-}
-
-.nameTag {
-	border: 5px solid rgb(51, 51, 51);
-	border-bottom: 5px solid black;
-	color: white;
-	font-size: 30px;
-	padding-left: 7px;
-	padding-right: 7px;
-	z-index: 10;
-}
-
-.window {
-	border: 5px solid rgb(51, 51, 51);
-	/* top: -3px; */
-	height: 92%;
-	margin-right: 2px;
-	z-index: 1;
-	/* 	position: relative; */
-}
-
-div.editor {
-	/* position: relative;
-	left: 15%;*/
-	width: 95%;
-}
-
-.clicked {
-	border-top: 5px solid rgb(255, 200, 0);
-}
-
-.error {
-	position: relative;
-	top: 50px;
-}
-
-#errorClick {
-	text-decoration: underline;
-	left: 10px;
-	position: relative;
-}
-
-#errorContent {
-	overflow: auto;
-	height: 100%;
-	position: absolute;
-	left: 2%;
-	width: 98%;
-}
-
-#visual {
-	z-index: 99999;
-}
-
-/* replace folder icons with another image, remove leaf image */
-li.jstree-open>a .jstree-icon {
-	background: url("../images/comu/folder_open.png") 0px 0px no-repeat
-		!important;
-}
-
-li.jstree-closed>a .jstree-icon {
-	background: url("../images/comu/folder_closed.png") 0px 0px no-repeat
-		!important;
-}
-
-li.jstree-leaf>a .jstree-icon {
-	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
-		!important;
-}
-
-/* replace checkbox icons */
-li.jstree-unchecked>a .jstree-checkbox, li.jstree-undetermined>a .jstree-checkbox
-	{
-	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
-		!important;
-	width: 32px;
-	height: 29px;
-	padding-top: 5px;
-}
-
-li.jstree-checked>a .jstree-checkbox {
-	background: url("../images/comu/note.png") 0px 0px no-repeat !important;
-	width: 32px;
-	height: 29px;
-	padding-top: 5px;
-}
-
-.row {
-	padding-top: 15px;
-}
-
-/* body {
-	height: 100vh;
-	overflow: hidden;
+@CHARSET "UTF-8";
+
+.tools {
+	width: 70%;
+	padding: 1px;
+	height: 15vh;
+	margin: 0px auto;
+}
+
+.tree {
+	width: 70%;
+	height: 65vh;
+	padding: 1px;
+	margin: 0px auto;
+}
+
+.tree div.treeOver {
+	overflow: auto;
+	height: 94%;
+	color: gainsboro;
+}
+
+.sampleEditorDiv {
+	top: 10px;
+	height: 150px;
+	position: relative;
+}
+
+.mainEditorDiv {
+	height: 330px;
+	position: relative;
+	top: 37px;
+}
+
+/* .sampleEditorDiv #sampleEditor {
+	position: absolute;
+	top: 37px;
+	left: 15%;
+	width: 85%;
+	height: 88%;
+	z-index: 99999;
+}
+ */
+.sampleEditorDiv #sampleEditor {
+	width: 100%;
+	height: 100%;
+	z-index: 95;
+}
+
+/* .mainEditorDiv #mainEditor {
+	top: 36px;
+	position: absolute;
+	height: 300px;
+	left: 15%;
+	width: 85%;
+	z-index: 99999;
+}
+ */
+.mainEditorDiv #mainEditor {
+	width: 100%;
+	height: 100%;
+	z-index: 95%;
+}
+
+.errorPlace {
+	position: relative;
+	height: 90px;
+	background-color: rgb(15, 15, 15);
+	color: cornflowerblue;
+}
+
+.toolbar {
+	padding: 10px;
+	margin: 5px auto;
+	background-color: black;
+	width: 100%;
+}
+
+.nameTag {
+	border: 5px solid rgb(51, 51, 51);
+	border-bottom: 5px solid black;
+	color: white;
+	font-size: 30px;
+	padding-left: 7px;
+	padding-right: 7px;
+	z-index: 10;
+}
+
+.window {
+	border: 5px solid rgb(51, 51, 51);
+	/* top: -3px; */
+	height: 92%;
+	margin-right: 2px;
+	z-index: 1;
+	/* 	position: relative; */
+}
+
+div.editor {
+	/* position: relative;
+	left: 15%;*/
+	width: 95%;
+}
+
+.clicked {
+	border-top: 5px solid rgb(255, 200, 0);
+}
+
+.error {
+	position: relative;
+	top: 50px;
+}
+
+#errorClick {
+	text-decoration: underline;
+	left: 10px;
+	position: relative;
+}
+
+#errorContent {
+	overflow: auto;
+	height: 100%;
+	position: absolute;
+	left: 2%;
+	width: 98%;
+}
+
+#visual {
+	z-index: 99999;
+}
+
+/* replace folder icons with another image, remove leaf image */
+li.jstree-open>a .jstree-icon {
+	background: url("../images/comu/folder_open.png") 0px 0px no-repeat
+		!important;
+}
+
+li.jstree-closed>a .jstree-icon {
+	background: url("../images/comu/folder_closed.png") 0px 0px no-repeat
+		!important;
+}
+
+li.jstree-leaf>a .jstree-icon {
+	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
+		!important;
+}
+
+/* replace checkbox icons */
+li.jstree-unchecked>a .jstree-checkbox, li.jstree-undetermined>a .jstree-checkbox
+	{
+	background: url("../images/comu/noteIcon.png") 0px 0px no-repeat
+		!important;
+	width: 32px;
+	height: 29px;
+	padding-top: 5px;
+}
+
+li.jstree-checked>a .jstree-checkbox {
+	background: url("../images/comu/note.png") 0px 0px no-repeat !important;
+	width: 32px;
+	height: 29px;
+	padding-top: 5px;
+}
+
+.row {
+	padding-top: 15px;
+}
+
+/* body {
+	height: 100vh;
+	overflow: hidden;
 } */
