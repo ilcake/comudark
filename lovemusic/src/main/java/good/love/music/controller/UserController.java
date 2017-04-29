@@ -35,9 +35,9 @@ public class UserController {
 		return "home";
 	}
 
-	// login 처리
+	//  처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody String login(String userid, String password, HttpSession session, HttpServletRequest request) {
+	public @ResponseBody String login(String sample,String main, String userid, String password, HttpSession session, HttpServletRequest request) {
 		User user = userRepository.login(userid, password);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {

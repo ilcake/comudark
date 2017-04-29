@@ -49,6 +49,9 @@
 		<button type="button" data-toggle="modal" data-target="#loadModal"
 			id="loadModalBtn" hidden="hidden"></button>
 		<input id="mainText" type="hidden" value="${file.file_ori}">
+		<c:if test="${not empty loginId}">
+			<input id="logInflag" type="hidden" value="true">
+		</c:if>
 		<div class="comuContent">
 			<div class="toolbar">
 				<div>

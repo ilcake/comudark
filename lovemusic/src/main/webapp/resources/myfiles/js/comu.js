@@ -26,16 +26,27 @@ $(function() {
 
 	$("#addBtn").click(addBtn);
 
-	$("#saveBtn").click(function() {
-		$("#saveModalBtn").trigger("click");
-	});
-	$("#save").click(save);
+	if ($('#logInflag').val()) {
+		$("#saveBtn").click(function() {
+			$("#saveModalBtn").trigger("click");
+		});
+		$("#save").click(save);
 
-	$("#loadBtn").click(function() {
-		refreshLoadModal();
-		$("#loadModalBtn").trigger("click");
-	});
-	$("#load").click(load);
+		$("#loadBtn").click(function() {
+			refreshLoadModal();
+			$("#loadModalBtn").trigger("click");
+		});
+		$("#load").click(load);
+	} else {
+		$("#saveBtn").click(function() {
+			alert('로그인이 필요합니다.');
+			$("#logIn").trigger("click");
+		});
+		$("#loadBtn").click(function() {
+			alert('로그인이 필요합니다.');
+			$("#logIn").trigger("click");
+		});
+	}
 
 	$("#fontSize").change(function() {
 		document.getElementById('sampleEditor').style.fontSize = $(this).val();
@@ -52,6 +63,7 @@ $(function() {
 	});
 
 	mainEditor.setValue($("#mainText").val());
+
 });
 
 function save() {
