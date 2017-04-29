@@ -151,7 +151,26 @@ public class HomeController {
 
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.list();
-		System.out.println("안녕"+list);
+		session.setAttribute("boardList", list);
+
+		// 댓글 불러오기
+		List<Reply> replyAll = boardRepository.replyAll();
+		session.setAttribute("replyAll", replyAll);
+
+		// 사용자가 좋아요 누른 게시물 정보 불러오기
+		ArrayList<Like> likelist = boardRepository.likeList();
+
+		return "shared";
+	}
+	
+	//특정 조건 글 불러오기
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(String userid) {
+
+		System.out.println("★★★★★★★★"+userid);
+		
+		// 글 불러오기
+		ArrayList<Board> list = boardRepository.boardList(userid);
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기

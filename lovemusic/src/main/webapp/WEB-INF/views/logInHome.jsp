@@ -9,95 +9,73 @@
 
 <!--==============   INCLUDE JS AND CSS   =================-->
 <script src="resources/jquery-3.1.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
+<script>
+var carousels = $('.carousel');
+carousels.each(function() {
+  var $obj = $(this);
+  var $inner = $obj.find('.carousel-inner');
+  
+  var id = 'uuid' + new Date().getTime();
+  $obj.addClass(id);
+
+  if ($obj.data('shift') === 1) {
+    var items = $obj.find('.item > [class*="col-"]'),
+        visibleCnt = $obj.find('.item:first [class*="col-"]').length,
+        wrapper = "";
+    
+    // build styles
+    var rule_base = '.carousel.' + id + ' .carousel-inner > .item',
+        styles = $('<style></style>'),
+        rules = [];
+        rules[0] = rule_base + '.next {left: ' + (100 / visibleCnt) + '%; transform: none;}';
+        rules[1] = rule_base + '.active {left: 0;}';
+        rules[2] = rule_base + '.active.left {left: -' + (100 / visibleCnt) + '%; transform: none;}';
+        rules[3] = rule_base + '.next.left {left: 0;}';
+        rules[4] = rule_base + '.active.right {left: ' + (100 / visibleCnt) + '%; transform: none;}';
+        rules[5] = rule_base + '.prev.right {left: 0;}';
+        rules[6] = rule_base + '.prev {left: -' + (100 / visibleCnt) + '%; transform: none;}';
+    for (var i = 0; i < rules.length; i++) {
+      styles.append(rules[i]);
+    }
+    $obj.prepend(styles);
+
+    // rebuild items
+    for (var i = 0; i < $(items).length; i++) {
+      var $item = $(items[i]);
+      var parent = $item.parent();
+      if (parent.hasClass('item')) {
+        if (!wrapper.length) {
+          wrapper = parent.clone().removeClass('active').html('');
+        }
+        $item.unwrap();
+      }
+      
+      var itemGroup = [$item];
+      for (var x = 1; x < visibleCnt; x++) {
+        var a = i + x;
+        var next = $(items[a]);
+        if (!next.length) {
+          next = $(items[(a - $(items).length)]);
+        }
+        itemGroup[x] = next.clone();
+      }
+      var newSet = wrapper.clone().html(itemGroup);
+      if (i == 0) {
+        newSet.addClass('active');
+      }
+      newSet.appendTo($inner);
+    }
+  }
+});
+</script>
+
+
+
 <script type="text/javascript">
 	$(function() {
-
-			$('.qt-gridstackCarousel')
-					.each(
-							function(i, c) {
-								var that = $(c), w = that.width(), h = w / 16 * 7, QTtime_constant = that
-										.attr("data-time_constant"), QTdist = that
-										.attr("data-dist"), QTshift = that
-										.attr("data-shift"), QTvpadding = that
-										.attr("data-vpadding"), QTfull_width = (that
-										.attr("data-full_width") === "1" || that
-										.attr("data-full_width") === "true"), QTpadding = that
-										.attr("data-padding");
-								if (QTtime_constant == undefined
-										|| QTtime_constant === "") {
-									QTtime_constant = 200;
-								}
-								if (QTdist == undefined || QTdist === "") {
-									QTdist = -30;
-								}
-								if (QTshift == undefined || QTshift === "") {
-									QTshift = 0;
-								}
-								if (QTpadding == undefined || QTpadding === "") {
-									QTpadding = 0;
-								}
-								if (QTvpadding == undefined
-										|| QTvpadding === "") {
-									QTvpadding = 0;
-								}
-								if (QTvpadding !== 0) {
-									that.css({
-										"margin-top" : QTvpadding,
-										"margin-bottom" : QTvpadding
-									});
-								}
-								var atts = {
-									time_constant : parseInt(QTtime_constant,
-											10),
-									dist : parseInt(QTdist, 10),
-									padding : parseInt(QTpadding, 10),
-									shift : parseInt(QTshift, 10),
-									full_width : QTfull_width
-								};
-								that.carousel(atts);
-
-								that.parent().find(".prev").on("click",
-										function(e) {
-											e.preventDefault();
-											that.carousel("prev");
-										});
-								that.parent().find(".next").on("click",
-										function(e) {
-											e.preventDefault();
-											that.carousel("next");
-										});
-
-								that
-										.find(".carousel-item")
-										.on(
-												"mouseenter touchstart",
-												function(e) {
-													var itemElem = $(this);
-													itemElem.addClass("active");
-													if ($("body").hasClass(
-															"mobile")) {
-														setTimeout(
-																function() {
-																	itemElem
-																			.removeClass("active");
-																}, 3000);
-														that
-																.find("a")
-																.on(
-																		"touchstart",
-																		function(
-																				e) {
-																			window.location.href = $(
-																					this)
-																					.attr(
-																							"href");
-																		});
-													}
-												}).on("mouseleave", function() {
-											$(this).removeClass("active");
-										});
-							});
-		
 
 	});
 </script>
@@ -111,7 +89,7 @@
 	top: 40px;
 }
 
-#title {
+#title, .mini_title{
 	position: relative;
 	color: white;
 	text-align: center;
@@ -119,7 +97,7 @@
 
 #ranking {
 	position: relative;
-	margin: 100px;
+	margin: auto;
 	display: table;
 	/* border: solid 3px white;  */
 	margin-top: 30px;
@@ -132,10 +110,21 @@ table, td {
 	border: solid 1px white;
 	margin: 10px;
 	color: white;
+	text-shadow: 1px 1px black;
+	text-align: center;
+}
+
+tr:hover{
+background-color: rgba(255,255,255,0.5);
+}
+
+.td_no, .td_total{
+	width: 10%;
 }
 
 tr {
-	background-color: rgba(255, 255, 255, 0.5);
+/* 	background-color: rgba(255, 255, 255, 0.5); */
+	background-color: rgba(0, 0, 0, 0.5);
 	vertical-align: middle;
 }
 
@@ -165,27 +154,57 @@ tr {
 	height: 50px;
 }
 
+.carousel{
+	height:100px;
+}
+
+.carousel-control{
+	height: 50px;
+	vertical-align: middle;
+}
+
+h3{
+	text-shadow: 2px 2px 2px black;
+}
+
+.mini_title{
+	text-shadow: 1px 1px 2px black;
+	padding-left: 10px;
+}
+
+
 </style>
 <script type="text/javascript">
+
+	//like ranking 클릭
+	function like(boardnum){
+		location.href = "comuplayer?boardnum="+boardnum;
+	}
+	
+	//subscribe ranking 클릭
+	function subscribe(userid){
+		location.href = "search?userid="+userid;
+	}
+
 	$(function() {
 
-		$('#myCarousel').carousel({
+	/* 	$('#myCarousel').carousel({
 			interval : 10000
-		});
+		}); */
 
 		$.ajax({
 			url : "likeRanking",
 			type : "get",
 			success : function(resp) {
-				console.log(resp);
-				var res = "<table class='table table-reverse'><thead><tr>";
-				res += "<td>NO.</td>";
+				var res = "<span class='mini_title'><span class='glyphicon glyphicon-heart' aria-hidden='true'></span> LIKE RANKING</span>";
+				res += "<table class='table'><thead><tr class='tr_top'>";
+				res += "<td class='td_no'>NO.</td>";
 				res += "<td>ID</td>";
 				res += "<td>TITLE</td>";
-				res += "<td>TOTAL</td>";
+				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead>";
 				$.each(resp, function(index, item) {
-					res += "<tbody><tr>";
+					res += "<tbody><tr onclick='javascript:like("+item.BOARDNUM+")'>";
 					res += "<td>";
 					res += index + 1;
 					res += "</td>";
@@ -201,7 +220,7 @@ tr {
 					res += "</tr></tbody>";
 				});
 				res += "</table>";
-				$(".like").html(res);
+				$("#like").html(res);
 			}
 		});
 
@@ -209,23 +228,27 @@ tr {
 			url : "subscribeRanking",
 			type : "get",
 			success : function(resp) {
-				console.log(resp);
-				var res = "<table class='table table-hover'><thead><tr>";
-				res += "<td>TOTAL</td>";
+				var res = "<span class='mini_title'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> SUBSCRIBE RANKING</span>";
+				res += "<table class='table'><thead><tr class='tr_top'>";
+				res += "<td class='td_no'>NO.</td>";
 				res += "<td>ID</td>";
+				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead>";
 				$.each(resp, function(index, item) {
-					res += "<tbody><tr>";
+					res += "<tbody><tr onclick='javascript:subscribe("+item.USERID+")'>";
 					res += "<td>";
-					res += item.RANK;
+					res += index+1;
 					res += "</td>";
 					res += "<td>";
 					res += item.USERID;
 					res += "</td>";
+					res += "<td>";
+					res += item.RANK;
+					res += "</td>";
 					res += "</tr></tbody>";
 				});
 				res += "</table>";
-				$(".subscribe").html(res);
+				$("#subscribe").html(res);
 			}
 		});
 
@@ -242,23 +265,27 @@ tr {
 				<source src="myfiles/video/Cheer-Up.mp4" type="video/mp4" />
 			</video>
 		</div>
+		
 		<div id="ranking">
 			<div id="title">
 				<h3>RANKING</h3>
 			</div>
+			
+			<!-- ========================================= like page ========================================= -->
 			<div id="like">
-				<table class="table">
+<!-- 				<table class="table">
 					<tr class="tr_top">
 						<td>#</td>
 						<td><span class="glyphicon glyphicon-heart"
 							aria-hidden="true"></span> LIKE RANKING</td>
 						<td>COUNT</td>
 					</tr>
+					<span class="dddd"></span>
 					<tr>
 						<td>1</td>
 						<td><img class="image" src=""
 							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td>255</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>2</td>
@@ -284,11 +311,12 @@ tr {
 							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
 						<td>255</td>
 					</tr>
-				</table>
+				</table> -->
 			</div>
 
+			<!-- ========================================= suscribe page ========================================= -->
 			<div id="subscribe">
-				<table class="table">
+<!-- 				<table class="table">
 					<tr class="tr_top">
 						<td>#</td>
 						<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -325,18 +353,36 @@ tr {
 							onERROR="this.src='images/user.png'"> user 1</td>
 						<td>255</td>
 					</tr>
-				</table>
+				</table> -->
 			</div>
-
 			<hr>
-
 			<div id="title">
 				<h3>LATEST MUSIC</h3>
 			</div>
-
-
+			<!-- ========================================= latest page ========================================= -->
 			<div id="latest">
-				<table class="table">
+			  <div id="single" class="carousel slide" data-ride="carousel" data-shift="1">
+			    <div class="carousel-inner">
+			      <ul class="row item active">
+			        <li class="col-xs-2 one"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 two"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 three"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 four"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 five"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 six"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			      </ul>
+			      <ul class="row item">
+			        <li class="col-xs-2 seven"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 eight"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 nine"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 ten"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 eleven"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			        <li class="col-xs-2 twelve"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			      </ul>
+			    </div>
+			    <a class="carousel-control left" href="#single" data-slide="prev">Previous</a> <a class="carousel-control right" href="#single" data-slide="next">Next</a> </div>
+
+<!-- 				<table class="table">
 					<tr class="tr_top">
 						<td><span class="glyphicon glyphicon-music"
 							aria-hidden="true"></span> LATEST MUSIC</td>
@@ -347,9 +393,10 @@ tr {
 					<tr>
 						<td>3333</td>
 					</tr>
-				</table>
+				</table> -->
 			</div>
 		</div>
+			<!-- ranking end -->
 
 		<!-- 		<div class="row">
 			<div class="col-md-3"></div>
@@ -368,7 +415,7 @@ tr {
 			</div>
 			<div class="col-md-3"></div>
 		</div> -->
-	</div>
+	</div>	<!-- totalwrapper end -->
 
 </body>
 </html>

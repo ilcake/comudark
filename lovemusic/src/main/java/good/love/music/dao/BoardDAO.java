@@ -83,4 +83,6 @@ public interface BoardDAO {
 
 	public ArrayList<Board> likeRanking();
 
+	public ArrayList<Board> subscribeRanking();
+
 }
