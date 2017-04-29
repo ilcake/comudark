@@ -131,48 +131,55 @@ img {
 	width: 30px;
 	height: 30px;
 }
+
+input, input:hover {
+	background: none;
+	border: none;
+	border-bottom: white 1px solid;
+	outline: none;
 }
 </style>
 
 <script>
 	$(function() {
-		$("#loginbutton").on('click', function() {
-			$.ajax({
-				url : "login",
+		
+		$("#imgInp").on('change', function() {
+			readURL(this);
+		});
+		
+		$("#joinbutton").on('click', function() {
+			$(".form").submit();
+			
+/* 			$.ajax({
+				url : "join",
 				type : "post",
 				data : {
-					"userid" : $('#userid2').val(),
-					"password" : $('#password2').val()
+					"userid" : $('#userid').val(),
+					"password" : $('#password').val(),
+					"email" : $('#email').val(),
+					"profile" : $("#imgInp").val()
 				},
 				success : function(resp) {
 					if (resp == "errorMsg") {
 						alert("X");
+						$("input").val("");	//전체 초기화
 					} else {
 						location.href = ".";
 					}
 				}
-			}
-		});		
+			});	 */
+		});	
 	});
 	
-	//미완료
-	$("#joinbutton").on('click', function(){
-		$.ajax({
-			url : "join"
-			, type : "post"
-			, data : {"userid" : $('#userid').val(), "password" : $('#password').val()}
-			, success : function(resp) {
-				if(resp == "error") {
-					alert("가입 실패");
-					$("input").val("");	//전체 초기화
-					
-				} else {
-					alert("가입 완료");
-					location.href=".";
-				}
-			
-		});
-	});
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#imgView').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
 
 </head>
@@ -202,8 +209,13 @@ img {
 							<!-- 회원가입 -->
 							<div id="loginBox">
 								<h3>JOIN</h3>
-								<form class="form" method="post" action="join">
+								<form class="form" method="post" action="join" enctype="multipart/form-data">
 									<div class="content">
+									
+										<label> <img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/myfiles/images/comu/robot.png'" style="width: 100px; height: 100px; border-radius: 100px;">
+										<input type="file" style="display: none;" id="imgInp" name="upload" />
+										</label>
+									
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="ID"
 												name="userid" id="userid">

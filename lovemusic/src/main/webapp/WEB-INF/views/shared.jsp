@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Shared</title>
 </head>
 
 <!--==============   APPENDING JS AND CSS   =================-->
@@ -19,56 +19,12 @@
 <script src="js/jquery.wallyti.js"></script>
 <link href='resources/myfiles/css/shared.css' rel='stylesheet' type='text/css'>
 <script src="resources/myfiles/js/shared.js"></script>
-<style>
-	input[type=text]{
-		font-size: medium;
-	}
-	input:focus{
-		outline: none;
-	}
-	
-	
-	/* ========= 이미지 뒤집기 ========= */
-	.card-container {
-	  cursor: pointer;
-	  height: 55px;
-	  perspective: 600;
-	  position: relative;
-	  width: 55px;
-	}
 
-	.card {
-	  height: 100%;
-	  position: absolute;
-	  transform-style: preserve-3d;
-	  transition: all 1s ease-in-out;
-	  width: 100%;
-	}
-	
-	.card:hover {
-	  transform: rotateY(180deg);
-	}
-	
-	.card .side {
-	  backface-visibility: hidden;
-	  border-radius: 100px;
-	  height: 100%;
-	  position: absolute;
-	  overflow: hidden;
-	  width: 100%;
-	}
-	
-	.card .back {
-		border-radius: 100px;
-		background-color: white;
-	  color: #0087cc;
-	  line-height: 150px;
-	  text-align: center;
-	  transform: rotateY(180deg);
-	}
-	/* ==========이미지 뒤집기  END =========*/
-	
-</style>
+<!-- alert bootstrap START -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<!-- alert bootstrap END -->
+
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper" style="background:none;">
@@ -85,17 +41,19 @@
 			<input type="text" style="background:none; border:none; color:white; padding-top:-20px; margin-top:-10px;">&nbsp;
 			<a href="search"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></a> </div>
 		<div></div><div></div><hr><hr><hr>
-			<div id="container" style="margin: 30px; padding:30px; padding-top:50px;" >
+			<div id="container" style="margin: 30px; padding:30px; padding-top:50px; right:20px;" >
 			
 				<!-- 게시물 시작 (Collapse) -->
 				<c:forEach var="board" items="${boardList}">
+				<!-- 공유 설정된 게시물만 표시 -->
+				<c:if test="${board.shared == 'true'}">
 					<div class="box">
 						<table class='board'>
 							<tr>
 								<td class="td_img">
 									<div class="card-container">
 										<div class="card">
-										<div class="side"><img src="images/galaxy-1.jpg" alt="image" class="cover"></div>
+										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="image"></div>
 										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>
@@ -125,11 +83,15 @@
 							<tr>
 								<!-- 글 내용 (줄바꿈 처리) -->
 								<td colspan="3" style="word-break:break-all;" class="content"> 
-								<div class="fileField" style="background-color:#f0f5f5; margin-top: -30px; margin-bottom: 10px; padding: 10px; border: dotted 0.5px white;">
-									<img src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
-								</div>
-								 ${fn:replace(board.content, crcn, br)}	
-								 <br>
+								
+									<!-- FILE -->
+									<c:if test="${board.file_title != null }">
+										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
+											<img class="image" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
+										<!-- </div> --></button><br><br>
+									</c:if>
+									 ${fn:replace(board.content, crcn, br)}	<br>
+									 
 								 <!-- 글 수정,삭제 버튼 : 작성ID와 로그인ID가 다를 때만 표시 -->	
 									<c:if test="${board.userid == loginId}">					
 										<span class="writerButton" style="float:right; padding-right:8px;"> 
@@ -167,7 +129,8 @@
 								</c:if>
 							</c:forEach>
 							<tr>
-								<form action="replyWrite" method="get">
+								<form action="replyWrite" method="post">
+								<input type="hidden" name="boardnum" value="${board.boardnum}" />
 									<td class="td_img">댓글</td>
 									<td class="td_center" style="width: 70%;"><input
 										type="text" name="replytext" id="replytext" style="width:100%;"></td>
@@ -178,6 +141,7 @@
 							</tr>
 						</table>
 					</div>
+				</c:if>
 				</c:forEach>
 				<!-- 게시물 END -->
 			</div>

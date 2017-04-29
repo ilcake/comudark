@@ -51,10 +51,9 @@ public class FileController {
 		} else {
 		}
 
+		// 임시 셋팅
 		file.setFile_com("comfiled code");
 		file.setFile_type("COMU");
-
-		System.out.println("test" + file);
 
 		if (file.getFilenum() == 0) {
 			fileRepository.saveFile(file); // 저장 (Save)
@@ -63,6 +62,20 @@ public class FileController {
 												// 변환할 것!!
 		}
 		return "comuTesting";
+	}
+
+	// 저장 - ajax //
+	@ResponseBody
+	@RequestMapping(value = "/directsave", method = RequestMethod.POST)
+	public String save2(Files file, HttpSession session) {
+
+		if (file.getFilenum() == 0) {
+			fileRepository.saveFile(file); // 저장 (Save)
+		} else {
+			fileRepository.updateFile(file); // 덮어쓰기 (Update) //****ajax 형식으로
+												// 변환할 것!!
+		}
+		return "success";
 	}
 
 	// 모든 음악 목록 불러오기(ajax)
@@ -93,6 +106,6 @@ public class FileController {
 	public String delete(int filenum) {
 		System.out.println("지울 파일: " + filenum);
 		int result = fileRepository.deleteFile(filenum);
-		return "mypage";
+		return "redirect:mypage";
 	}
 }

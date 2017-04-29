@@ -9,8 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import good.love.music.repository.UserRepository;
+import good.love.music.util.FileService;
+import good.love.music.vo.Files;
 import good.love.music.vo.User;
 
 @Controller
@@ -19,17 +22,35 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 
+	// 이미지 파일 업로드 경로
+	final String uploadPath = "/profiles";
+
 	// join 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public @ResponseBody String join(User user) {
-		
-		//테스트
+	public String join(MultipartFile upload, User user, HttpServletRequest request) {
+
+		System.out.println(upload);
+
+		// 이미지 파일 업로드 경로
+		String uploadPath = request.getSession().getServletContext().getRealPath("/") + "/resources/profiles";
+
+		// 이미지 파일 처리
+		if (!upload.isEmpty()) {
+			String savedFile = FileService.saveFile(upload, uploadPath);
+			user.setProfile(savedFile);
+		} else {
+		}
+
+		// 테스트
 		user.setEmail("test@naver.com");
 		user.setQuestion("questsion");
 		user.setAnswer("answer");
-		
+
+		System.out.println("테스트!" + user);
+
 		int result = userRepository.join(user);
-		if(result==0){
+
+		if (result == 0) {
 			return "error";
 		}
 		return "home";
@@ -46,6 +67,13 @@ public class UserController {
 			}
 		}
 		return "errorMsg";
+	}
+
+	// loginId 가져오기
+	@RequestMapping(value = "/getLoginId", method = RequestMethod.POST)
+	public @ResponseBody String checkLogin(HttpSession session) {
+		String loginId = (String) session.getAttribute("loginId");
+		return loginId;
 	}
 
 	// logout 처리

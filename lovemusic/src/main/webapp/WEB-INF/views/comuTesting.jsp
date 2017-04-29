@@ -14,6 +14,11 @@
 <script src="resources/myfiles/js/comu.js"></script>
 <link href='resources/myfiles/css/comu.css' rel='stylesheet'
 	type='text/css'>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/main/logo_comu.png" />
 
@@ -39,6 +44,10 @@
 	crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper">
@@ -81,11 +90,13 @@
 					</select>
 				</div>
 			</div>
-			<div class="tree">
-				<span class="nameTag clickable list-explorer"
-					data-clicked="list-explorer"> List Explorer</span>
-				<div class="window clickable treeOver" data-clicked="list-explorer">
-					<div id="treeViewDiv"></div>
+			<div class="span8">
+				<div class="sampleEditorDiv">
+					<span class="nameTag clickable sample" data-clicked="sample">
+						Sample </span>
+					<div class="window editor "></div>
+					<div id="sampleEditor" class="clickable" data-clicked="sample">this
+						is sample</div>
 				</div>
 			</div>
 			<div class="sampleEditorDiv">

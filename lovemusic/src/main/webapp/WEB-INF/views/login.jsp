@@ -23,10 +23,13 @@
 
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
+<!-- <script src="js/jquery.js"></script> -->
 <script src="js/jquery-migrate.min.js"></script>
 <!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 <!-- comu Vidio back css -->
 <style type="text/css">
 .qt-particles {
@@ -132,16 +135,41 @@ img {
 	height: 30px;
 }
 
-input, input:hover {
+input, input:hover, input:focus {
 	background: none;
 	border: none;
 	border-bottom: white 1px solid;
+	outline: none;
 }
-}
+
+  label {
+    display: inline-block; width: 5em;
+  }
+  fieldset div {
+    margin-bottom: 2em;
+  }
+  fieldset .help {
+    display: inline-block;
+  }
+  .ui-tooltip {
+    width: 210px;
+  }
+
 </style>
 
 <script>
 	$(function() {
+		
+	    var tooltips = $( "[title]" ).tooltip({
+	        position: {
+	          my: "left top",
+	          at: "right+5 top-5",
+	          collision: "none"
+	        }
+	      });
+	    
+	    
+		
 		$("#loginbutton").on('click', function() {
 			$.ajax({
 				url : "login",
@@ -152,11 +180,17 @@ input, input:hover {
 				},
 				success : function(resp) {
 					if (resp == "errorMsg") {
-						alert("로그인 실패");
+						$.alert({
+							title : '로그인 실패!',
+							content : '아이디, 비밀번호를 확인해 주세요!',
+						});
 						$("#userid2").val("");
 						$("#password2").val("");
+
 					} else {
-						alert("로그인 성공");
+						/* $.alert({
+						    content: '아이디, 비밀번호를 확인해 주세요!'
+						}); */
 						location.href = resp;
 					}
 				}
@@ -190,16 +224,15 @@ input, input:hover {
 					<div class="title-container">
 						<div class="headline">
 							<!-- 로그인 -->
+							
 							<div id="loginBox">
 								<h3>LOGIN</h3>
 								<div class="content">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="ID"
-											name="userid" id="userid2">
+										<input type="text" class="form-control" placeholder="ID" name="userid" id="userid2" title="3자 이상 입력">
 									</div>
 									<div class="input-group">
-										<input type="password" placeholder="Password"
-											class="form-control" name="password" id="password2" />
+										<input type="password" placeholder="Password" class="form-control" name="password" id="password2" />
 									</div>
 								</div>
 								<br>

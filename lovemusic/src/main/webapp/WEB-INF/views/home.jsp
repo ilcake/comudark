@@ -58,8 +58,7 @@ keyframes zoomIn {from { opacity:0;
 	transform: scale3d(.3, .3, .3);
 }
 
-50%
-{
+50%{
 opacity
 
 
@@ -69,12 +68,25 @@ opacity
 
 
 
-:
+
+
+
 
 
 
 
  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -98,17 +110,51 @@ transform
 
 
 
-:
 
 
 
 
- 
 
 
 
 
-scale3d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:scale3d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,6 +171,28 @@ scale3d
 ,
 1
 .05
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -153,8 +221,8 @@ to {
 		<div class="qt-valign-wrapper">
 			<div class="qt-valign">
 				<div class="container center-align">
-					<span class="mymove" style="display: block;"> <img
-						src="myfiles/images/main/logo_1.png" class="logo" alt="COMU"
+					<span class="mymove" style="display: block;"> <!-- myfiles/images/main/logo_1.png -->
+						<img src="myfiles/images/main/logo_1.png" class="logo" alt="COMU"
 						style="width: 300px;">
 					</span>
 					<h4>
@@ -231,7 +299,12 @@ to {
 </body>
 <style>
 body {
-	background-image: url("images/galaxy-4.jpg");
+	background: url("images/bck6.jpeg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
 }
 </style>
 

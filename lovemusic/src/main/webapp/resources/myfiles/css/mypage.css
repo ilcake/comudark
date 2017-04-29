@@ -92,12 +92,6 @@ a, a:link, a:hover, a:visited, a:active {
 	width: 60%;
 }
 
-img {
-	border-radius: 100px;
-	width: 65px;
-	height: 65px;
-}
-
 .td_button{
 	width:20%;
 	text-align: right;
@@ -211,12 +205,6 @@ a, a:link, a:hover, a:visited, a:active {
 
 .td_center{
 	width: 60%;
-}
-
-img {
-	border-radius: 100px;
-	width: 65px;
-	height: 65px;
 }
 
 .td_button{

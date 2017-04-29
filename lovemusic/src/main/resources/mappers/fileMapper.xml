@@ -21,6 +21,17 @@
 		)
 	</insert>
 
+	<!-- COMU 파일 최근 5개 불러오기 -->
+	<select id="comuList" resultType="File">
+		SELECT * FROM
+		(SELECT * FROM
+		cm_file
+		WHERE file_type = 'comu'
+		ORDER BY filenum desc)
+		WHERE rownum
+		BETWEEN 1 and 5
+	</select>
+
 	<!-- 파일 목록 불러오기 -->
 	<select id="fileList" resultType="File">
 		SELECT * FROM cm_file

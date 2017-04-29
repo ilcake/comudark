@@ -4,20 +4,19 @@ public class User {
 	private String userid;
 	private String email;
 	private String password;
-	private String question;
-	private String answer;
+	private String question;	//가입 질문
+	private String answer;		//가입 답
+	private String profile;		//프로필 사진
 
-	public User() {
-
-	}
-
-	public User(String userid, String email, String password, String question, String answer) {
-		super();
+	public User() {}
+	
+	public User(String userid, String email, String password, String question, String answer, String profile) {
 		this.userid = userid;
 		this.email = email;
 		this.password = password;
 		this.question = question;
 		this.answer = answer;
+		this.profile = profile;
 	}
 
 	public String getUserid() {
@@ -60,10 +59,20 @@ public class User {
 		this.answer = answer;
 	}
 
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", email=" + email + ", password=" + password + ", question=" + question
-				+ ", answer=" + answer + "]";
+				+ ", answer=" + answer + ", profile=" + profile + "]";
 	}
-
+	
 }
+
+	

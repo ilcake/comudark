@@ -149,9 +149,6 @@ th {
 }
 
 .hiBtn {
-	/* 	padding: 0;
-	margin: 0;
-	border: 0; */
 	width: 38px;
 	height: 38px;
 }
@@ -315,4 +312,8 @@ select {
 .tdBtContainer {
 	text-align: center;
 	padding: 1px;
+}
+
+#theResultArea {
+	display: none;
 }

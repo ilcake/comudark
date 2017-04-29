@@ -2,7 +2,7 @@ $(function(){
 	
 	//반응형 그리드
 	//$('#container').wallyti();
-
+	
 	//사용자가 이전에 좋아요 누른 게시물 표시
 	$.ajax({
 		type: "get",
@@ -11,6 +11,8 @@ $(function(){
 			 $.each(resp,function(index, item) {
 				var likeboard = $("span[boardnum="+item.boardnum+"][like_userid="+item.like_userid+"]");
 				likeboard.css("color", "rgb(255, 0, 0)");
+/*				var divs = $(".divnum "+item.boardnum);
+				divs.empty();*/
 			 });
 		}
 	});
@@ -43,7 +45,11 @@ $(function(){
 				url: "deleteLike",
 				data: {"boardnum":boardnum, "userid":userid, "like_userid":like_userid},
 				success: function(resp){
-					alert("delete like");
+					/*alert("delete like");*/
+					$.alert({
+					    title: '좋아요',
+					    content: 'delete like',
+					});
 				}
 			});
 		//좋아요 취소
@@ -54,7 +60,11 @@ $(function(){
 				url: "like",
 				data: {"boardnum":boardnum, "userid":userid, "like_userid":like_userid},
 				success: function(resp){
-					alert("like");
+					/*alert("like");*/
+					$.alert({
+					    title: '좋아요',
+					    content: 'like',
+					});
 				}
 			});
 		}
@@ -74,7 +84,11 @@ $(function(){
 				url: "writeSubscribe",
 				data: {"userid":userid, "sub_userid":sub_userid},
 				success: function(resp){
-					alert("subscribe");
+					/*alert("subscribe");*/
+					$.alert({
+					    title: '구독',
+					    content: 'subscribe',
+					});
 				}
 			});
 		//구독 취소
@@ -85,7 +99,11 @@ $(function(){
 				url: "deleteSubscribe",
 				data: {"userid":userid, "sub_userid":sub_userid},
 				success: function(resp){
-					alert("delete subscribe");
+					/*alert("delete subscribe");*/
+					$.alert({
+					    title: '구독',
+					    content: 'delete subscribe',
+					});
 				}
 			});
 		}
@@ -100,7 +118,11 @@ $(function(){
 				url: "deleteBoard",
 				data: {"boardnum":boardnum},
 				success: function(resp){
-					alert("delete");
+					/*alert("delete");*/
+					$.alert({
+					    title: '글 삭제',
+					    content: 'delete',
+					});
 				}
 			});
 		}
