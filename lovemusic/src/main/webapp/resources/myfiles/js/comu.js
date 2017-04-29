@@ -2,16 +2,21 @@ var errorLine;
 var recentEditor;
 var sampleEditor;
 var mainEditor;
+var loginId;
 $(function() {
 	setView();
 	setStringFormat();
-	getMusicTree();
 	setEditor();
 	setClickable();
+
+	getMusicTree();
+	getLoginId();
+
 	/*
 	 * if (typeof jQuery != 'undefined') { // jQuery is loaded => print the
 	 * version alert(jQuery.fn.jquery); }
 	 */
+
 	$("#runBtn").click(function() {
 		if (recentEditor == null) {
 			alert("sample or main?")
@@ -25,28 +30,6 @@ $(function() {
 	});
 
 	$("#addBtn").click(addBtn);
-
-	if ($('#logInflag').val()) {
-		$("#saveBtn").click(function() {
-			$("#saveModalBtn").trigger("click");
-		});
-		$("#save").click(save);
-
-		$("#loadBtn").click(function() {
-			refreshLoadModal();
-			$("#loadModalBtn").trigger("click");
-		});
-		$("#load").click(load);
-	} else {
-		$("#saveBtn").click(function() {
-			alert('로그인이 필요합니다.');
-			$("#logIn").trigger("click");
-		});
-		$("#loadBtn").click(function() {
-			alert('로그인이 필요합니다.');
-			$("#logIn").trigger("click");
-		});
-	}
 
 	$("#fontSize").change(function() {
 		document.getElementById('sampleEditor').style.fontSize = $(this).val();
@@ -65,6 +48,40 @@ $(function() {
 	mainEditor.setValue($("#mainText").val());
 
 });
+
+function getLoginId() {
+	$.ajax({
+		type : 'post',
+		url : 'getLoginId',
+		success : function(resp) {
+			console.log(resp);
+			loginId = resp;
+
+			if (loginId) {
+				$("#saveBtn").click(function() {
+					$("#saveModalBtn").trigger("click");
+					console.log("aa");
+				});
+				$("#save").click(save);
+
+				$("#loadBtn").click(function() {
+					refreshLoadModal();
+					$("#loadModalBtn").trigger("click");
+				});
+				$("#load").click(load);
+			} else {
+				$("#saveBtn").click(function() {
+					alert('로그인이 필요합니다.');
+					$("#logIn").trigger("click");
+				});
+				$("#loadBtn").click(function() {
+					alert('로그인이 필요합니다.');
+					$("#logIn").trigger("click");
+				});
+			}
+		}
+	});
+}
 
 function save() {
 	if ($("#title").val().length <= 0) {
@@ -312,6 +329,7 @@ function comuRun(source) {
 				$("#errorContent").append(errorMsg);
 			} else {
 				$("#runModal").trigger("click");
+				setCurrentTimevalue();
 				eval(resp);
 			}
 		}

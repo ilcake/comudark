@@ -59,7 +59,7 @@
 .mainEditorDiv #mainEditor {
 	width: 100%;
 	height: 100%;
-	z-index: 95%;
+	z-index: 95;
 }
 
 .errorPlace {
@@ -125,7 +125,7 @@ div.editor {
 }
 
 #visual {
-	z-index: 99999;
+	z-index: 99;
 }
 
 /* replace folder icons with another image, remove leaf image */
