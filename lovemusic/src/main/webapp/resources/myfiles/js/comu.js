@@ -217,6 +217,8 @@ function getMusicTree() {
 			type : "post",
 			url : "getList",
 			success : function(resp) {
+				console.log(resp);
+				console.log("==========================");
 				var tree = '{ "data" : [';
 				var mapKey = Object.keys(resp);
 				var insId = 0;
