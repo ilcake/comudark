@@ -166,12 +166,18 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       {
         for (int j = 0; j < list.size(); j++)
         {
+          if (!reverb.equals("null"))
+          result += String.format("loadAudio('%s', %f,'%s',%s,%s,%s); \u005cn", generator.getFilePath(url + noteList.get(j)), getLoc(location + i, list.get(j)), generator.getFilePath("effect" + reverb), delay, low, high);
+          else
           result += String.format("loadAudio('%s', %f,%s,%s,%s,%s); \u005cn", generator.getFilePath(url + noteList.get(j)), getLoc(location + i, list.get(j)), reverb, delay, low, high);
         }
       }
       else
       {
-        result += String.format("loadAudio('%s', %f); \u005cn", generator.getFilePath(url), getLoc(location, 0));
+        if (!reverb.equals("null"))
+        result += String.format("loadAudio('%s', %f,'%s',%s,%s,%s); \u005cn", generator.getFilePath(url), getLoc(location, 0), generator.getFilePath("effect" + reverb), delay, low, high);
+        else
+        result += String.format("loadAudio('%s', %f,%s,%s,%s,%s); \u005cn", generator.getFilePath(url), getLoc(location, 0), reverb, delay, low, high);
         location++;
       }
     }

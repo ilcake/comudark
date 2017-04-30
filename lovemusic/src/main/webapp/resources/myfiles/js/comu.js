@@ -239,6 +239,7 @@ function getMusicTree() {
 					var mapKey = Object.keys(resp);
 					var insId = 0;
 					var arr = [];
+					console.log(resp);
 					$
 							.each(
 									mapKey,

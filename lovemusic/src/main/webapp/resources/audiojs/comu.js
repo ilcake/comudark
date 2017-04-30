@@ -1,10 +1,4 @@
-/**
- * 
- * Loop Waveform Visualizer by Felix Turner www.airtight.cc
- * 
- * Audio Reactive Waveform via Web Audio API.
- * 
- */
+/** *  *  *  * Loop Waveform Visualizer by Felix Turner www.airtight.cc *  *  *  * Audio Reactive Waveform via Web Audio API. *  *  *  */
 
 var mouseX = 0,
 	mouseY = 0,
@@ -31,12 +25,7 @@ var highfilter;
 var gainNode;
 var started = false;
 var theTime;
-
-$(document)
-	.ready(
-		function() {
-			// Chrome is only browser to currently support Web Audio API
-			var is_chrome = navigator.userAgent.toLowerCase().indexOf(
+$(document)	.ready(		function() {			// Chrome is only browser to currently support Web Audio API			var is_chrome = navigator.userAgent.toLowerCase().indexOf(
 					'chrome') > -1;
 			var is_webgl = (function() {
 				try {
@@ -58,32 +47,13 @@ $(document)
 						'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />'
 						+ 'Find out how to get it <a href="http://get.webgl.org/">here</a>, or try restarting your browser.');
 			} else {
-				init();
-
-			}
-
-		});
-
+				init();			}		});
 function init() {
 	// init 3D scene
-	container = $('<div />', {
-		id : "container"
-	});
-	container.css("position", "absolute");
-	container.css("top", "15%");
-	container.css("left", "30%");
-	
-	$("#visual").append(container);
-	camera = new THREE.PerspectiveCamera(60, 1, 1, 1000000);
-	camera.position.z = 2000;
-	scene = new THREE.Scene();
-	scene.add(camera);
-	renderer = new THREE.WebGLRenderer({
-		antialias : false,
-		sortObjects : false
-	});
+	container = $('<div />', {		id : "container"	});	container.css("position", "absolute");	container.css("top", "15%");	container.css("left", "30%");
+	$("#visual").append(container);	camera = new THREE.PerspectiveCamera(60, 1, 1, 1000000);	camera.position.z = 2000;	scene = new THREE.Scene();	scene.add(camera);	renderer = new THREE.WebGLRenderer({		antialias : false,		sortObjects : false	});
 	renderer.setSize(window.innerWidth/2, window.innerHeight*2/3);
-	// 625.600,  522.550
+	// 625.600, 522.550
 	container.append(renderer.domElement);
 
 	// stop the user getting a text cursor
@@ -92,18 +62,11 @@ function init() {
 	};
 
 	// add stats
-	/*
-	 * stats = new Stats(); stats.domElement.style.position = 'absolute';
-	 * stats.domElement.style.top = '0px';
-	 * container.appendChild(stats.domElement);
-	 */
+	/*	 * 	 * stats = new Stats(); stats.domElement.style.position = 'absolute';	 * 	 * stats.domElement.style.top = '0px';	 * 	 * container.appendChild(stats.domElement);	 * 	 */
 	// init listeners
-	audioContext = new window.AudioContext();
-	$(document).mousemove(onDocumentMouseMove);
-	$(window).resize(onWindowResize);
-	createAnalyser();
-	startViz();
-	//loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
+	audioContext = new window.AudioContext();	gainNode = audioContext.createGain();	
+	$(document).mousemove(onDocumentMouseMove);	$(window).resize(onWindowResize);	createAnalyser();	startViz();
+	// loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null,	// null);
 	// onWindowResize(null);
 
 }
@@ -143,13 +106,12 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 		req.send();
 	}
 	req.onload = function() { // sound source loading
-		audioContext.decodeAudioData(req.response, function(buffer) {
-			source = audioContext.createBufferSource(); // creates a sound
+		audioContext.decodeAudioData(req.response, function(buffer) {			source = audioContext.createBufferSource(); // creates a sound
 			// source
 			source.buffer = buffer;
 			if (hasReverb || hasDelay || hasLowFilter || hasHighFilter) {
 				if (hasReverb) {
-					array.push(reverb);
+					array.push(reverb);					gainNode.gain.value = 1;
 				}
 				if (hasDelay) {
 					delay.delayTime.value = parseFloat(hasDelay);
@@ -174,13 +136,13 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 					from.connect(to);
 					from = to;
 				}
-				from.connect(analyser);
-				analyser.connect(audioContext.destination);
-			} else {
-				source.connect(analyser);
-				analyser.connect(audioContext.destination);
+				from.connect(analyser);				analyser.connect(gainNode);
+				gainNode.connect(audioContext.destination);							} else {
+				source.connect(analyser);
+				analyser.connect(gainNode);
+				gainNode.connect(audioContext.destination);
 			}
-			//audioContext.currentTime +
+			// audioContext.currentTime +
 			var playTime = time + 1 + theTime;
 			source.start(playTime);
 		});
