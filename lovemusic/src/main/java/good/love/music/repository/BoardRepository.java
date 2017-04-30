@@ -313,4 +313,10 @@ public class BoardRepository {
 		return list;
 	}
 
+	public ArrayList<Board> subscribeRanking() {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		ArrayList<Board> list = dao.subscribeRanking();
+		return list;
+	}
+
 }

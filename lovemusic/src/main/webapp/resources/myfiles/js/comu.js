@@ -98,33 +98,32 @@ function save() {
 }
 
 function load() {
-
 }
 function refreshLoadModal() {
 	$
-			.ajax({
-				type : "get",
-				url : "fileList",
-				success : function(resp) {
-					var msg = "<table class='table' id='loadlist'><tr>";
-					$
-							.each(
-									resp,
-									function(index, item) {
-										msg += '<td><a href="load?filenum='
-												+ item.filenum
-												+ '"><img src="resources/covers/'
-												+ item.cover_re
-												+ '" style="width:80px; height:80px; border-radius:5px;"></a><br>';
-										msg += item.file_title + '</td>';
-										if ((index + 5) % 4 == 0) {
-											msg += "</tr><tr>";
-										}
-									});
-					msg += "</tr><table>";
-					$("#loader").html(msg);
-				}
-			});
+		.ajax({
+			type : "get",
+			url : "fileList",
+			success : function(resp) {
+				var msg = "<table class='table' id='loadlist'><tr>";
+				$
+					.each(
+						resp,
+						function(index, item) {
+							msg += '<td><a href="load?filenum='
+								+ item.filenum
+								+ '"><img src="resources/covers/'
+								+ item.cover_re
+								+ '" style="width:80px; height:80px; border-radius:5px;"></a><br>';
+							msg += item.file_title + '</td>';
+							if ((index + 5) % 4 == 0) {
+								msg += "</tr><tr>";
+							}
+						});
+				msg += "</tr><table>";
+				$("#loader").html(msg);
+			}
+		});
 }
 
 function setClickable() {
@@ -154,50 +153,50 @@ function setClickable() {
 
 function setView() {
 	$("#totalWrapper").css("height", $(window).height()).css("padding-top",
-			"90px");
+		"90px");
 }
 
 function setEditor() {
 	define(
-			"DynHighlightRules",
-			[],
-			function(require, exports, module) {
-				"use strict";
-				var oop = require("ace/lib/oop");
-				var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;
-				var DynHighlightRules = function() {
-					this.keywordRule = {
-						regex : "\\w+",
-						onMatch : function() {
-							return "text"
-						}
+		"DynHighlightRules",
+		[],
+		function(require, exports, module) {
+			"use strict";
+			var oop = require("ace/lib/oop");
+			var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;
+			var DynHighlightRules = function() {
+				this.keywordRule = {
+					regex : "\\w+",
+					onMatch : function() {
+						return "text"
 					}
-					this.$rules = {
-						"start" : [
-								{
-									token : "keyword",
-									regex : "tempo|bpm|loop|ins"
-								},
-								{
-									token : "variable",
-									regex : "location|do|note|reverb|delay|low|high"
-								},
-								{
-									token : "constant",
-									regex : "bass|beat|melody|acu|dub|guitarcode|guitarnote|piano|r8"
-								}, {
-									token : "markup.heading",
-									regex : "[_A-Za-z$][_A-Za-z0-9$]*"
-								}, {
-									token : "comment",
-									regex : "[0-9]+"
-								}, this.keywordRule ]
-					};
-					this.normalizeRules()
+				}
+				this.$rules = {
+					"start" : [
+						{
+							token : "keyword",
+							regex : "tempo|bpm|loop|ins"
+						},
+						{
+							token : "variable",
+							regex : "location|do|note|reverb|delay|low|high"
+						},
+						{
+							token : "constant",
+							regex : "bass|beat|melody|acu|dub|guitarcode|guitarnote|piano|r8"
+						}, {
+							token : "markup.heading",
+							regex : "[_A-Za-z$][_A-Za-z0-9$]*"
+						}, {
+							token : "comment",
+							regex : "[0-9]+"
+						}, this.keywordRule ]
 				};
-				oop.inherits(DynHighlightRules, TextHighlightRules);
-				exports.DynHighlightRules = DynHighlightRules;
-			});
+				this.normalizeRules()
+			};
+			oop.inherits(DynHighlightRules, TextHighlightRules);
+			exports.DynHighlightRules = DynHighlightRules;
+		});
 
 	var TextMode = require("ace/mode/text").Mode;
 	var dynamicMode = new TextMode();
@@ -223,7 +222,7 @@ function setStringFormat() {
 			var args = Array.prototype.slice.call(arguments, 1);
 			return format.replace(/{(\d+)}/g, function(match, number) {
 				return typeof args[number] != 'undefined' ? args[number]
-						: match;
+					: match;
 			});
 		};
 	}
@@ -231,73 +230,75 @@ function setStringFormat() {
 
 function getMusicTree() {
 	$
-			.ajax({
-				type : "post",
-				url : "getList",
-				success : function(resp) {
-					var tree = '{ "data" : [';
-					var mapKey = Object.keys(resp);
-					var insId = 0;
-					var arr = [];
-					console.log(resp);
-					$
-							.each(
-									mapKey,
-									function(index, item) {
-										// console.log(JSON.stringify(resp[item][0]));
-										// console.log(resp[item][0]["motherName"]);
-										// console.log(resp[item][0]["insName"]);
-										// console.log(resp[item][0]["fileName"]);
-										// tree += String.format("{'id' : '{0}'
-										// , 'parent' : '#', 'text'
-										// : '{1}' }", );
-										if ($.inArray(
-												resp[item][0]["motherName"],
-												arr) == -1) {
-											if (index != 0) {
-												tree += ", "
-											}
-											tree += String
-													.format(
-															'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
-															resp[item][0]["motherName"],
-															resp[item][0]["motherName"]);
-											arr
-													.push(resp[item][0]["motherName"]);
-										}
-										if (resp[item][0]["insName"] != 'effect') {
-											tree += String
-													.format(
-															', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-															resp[item][0]["insName"],
-															resp[item][0]["motherName"],
-															resp[item][0]["insName"]);
-										}
-										var arrayList = resp[item];
-										$
-												.each(
-														arrayList,
-														function(listIndex,
-																listItem) {
-															var id = insId++;
-															var parent = listItem["insName"];
-															var text = listItem["fileName"];
-															tree += String
-																	.format(
-																			', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-																			id,
-																			parent,
-																			text);
-														});
+		.ajax({
+			type : "post",
+			url : "getList",
+			success : function(resp) {
+				console.log(resp);
+				console.log("==========================");
+				var tree = '{ "data" : [';
+				var mapKey = Object.keys(resp);
+				var insId = 0;
+				var arr = [];
+				$
+					.each(
+						mapKey,
+						function(index, item) {
+							// console.log(JSON.stringify(resp[item][0]));
+							// console.log(resp[item][0]["motherName"]);
+							// console.log(resp[item][0]["insName"]);
+							// console.log(resp[item][0]["fileName"]);
+							// tree += String.format("{'id' : '{0}'
+							// , 'parent' : '#', 'text'
+							// : '{1}' }", );
+							if ($.inArray(
+									resp[item][0]["motherName"],
+									arr) == -1) {
+								if (index != 0) {
+									tree += ", "
+								}
+								tree += String
+									.format(
+										'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
+										resp[item][0]["motherName"],
+										resp[item][0]["motherName"]);
+								arr
+									.push(resp[item][0]["motherName"]);
+							}
+							if (resp[item][0]["insName"] != 'effect') {
+								tree += String
+									.format(
+										', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+										resp[item][0]["insName"],
+										resp[item][0]["motherName"],
+										resp[item][0]["insName"]);
+							}
+							var arrayList = resp[item];
+							$
+								.each(
+									arrayList,
+									function(listIndex,
+										listItem) {
+										var id = insId++;
+										var parent = listItem["insName"];
+										var text = listItem["fileName"];
+										tree += String
+											.format(
+												', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+												id,
+												parent,
+												text);
 									});
-					tree += "] }";
-					var jsonTree = JSON.parse(tree);
-					$('#treeViewDiv').jstree({
-						'plugins' : [ "wholerow" ],
-						'core' : jsonTree
-					});
-				}
-			});
+						});
+				tree += "] }";
+				var jsonTree = JSON.parse(tree);
+				console.log(tree);
+				$('#treeViewDiv').jstree({
+					'plugins' : [ "wholerow" ],
+					'core' : jsonTree
+				});
+			}
+		});
 }
 
 function addBtn() {
@@ -325,7 +326,7 @@ function comuRun(source) {
 				console.log("errorMsg = " + errorMsg);
 				errorLine = parseInt(errorMsg);
 				errorMsg = errorMsg.substring((errorLine + "").length + 4,
-						errorMsg.length);
+					errorMsg.length);
 				$("#errorClick").html("Error Line :  " + errorLine);
 				$("#errorContent").append(errorMsg);
 			} else {
@@ -352,5 +353,5 @@ function selectTextareaLine(lineNum) {
 	var Range = require("ace/range").Range;
 	console.log(new Range(lineNum, 0, lineNum, 9999));
 	recentEditor.selection
-			.setRange(new Range(lineNum - 1, 0, lineNum - 1, 9999));
+		.setRange(new Range(lineNum - 1, 0, lineNum - 1, 9999));
 }

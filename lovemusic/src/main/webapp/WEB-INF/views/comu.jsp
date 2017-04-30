@@ -1,1 +1,186 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%><!DOCTYPE html><html><head><meta charset="UTF-8"><title>Insert title here</title></head><!-- ==============   INCLUDE JS AND CSS   ================= --><script src="resources/jquery-3.1.1.min.js"></script><script src="resources/myfiles/js/comu.js"></script><link href='resources/myfiles/css/comu.css' rel='stylesheet'	type='text/css'><script src="resources/myfiles/js/bg-movie.js"></script><link href='resources/myfiles/css/bg-movie.css' rel='stylesheet'	type='text/css'><link rel="shortcut icon" type="image/png"	href="myfiles/images/main/logo_comu.png" /><!-- ================   INCLUDE AUDIO JS   =================== --><script src="resources/audiojs/three.min.js"></script><script src="resources/audiojs/ATUtil.js"></script><script src="resources/audiojs/Stats.js"></script><script src="resources/audiojs/RequestAnimationFrame.js"></script><script src="resources/audiojs/jquery.mousewheel.js"></script><script src="resources/audiojs/ImprovedNoise.js"></script><script src="resources/audiojs/Visualizer.js"></script><script src="resources/audiojs/comu.js"></script><script src="resources/audiojs/jquery.session.js"></script><!-- ===================   INCLUDE JSTREE   ===================  --><link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" /><script	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script><body>	<jsp:include page="navibar.jsp" flush="false" />	<div id="totalWrapper">		<div class="video-container">			<video autoplay loop class="fillWidth">				<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />			</video>		</div>		<div class="get-started">			<button type="button" class="btn btn-success btn-lg">GET				STARTED</button>		</div>		<div class="comu-container" hidden="">			<div class="row">				<!--   12칸의 세로 영역을 분할하기 위해 col-md-x를 작성   -->				<div class="col-md-3 leftplace">					<h4 class="treeViewName">LIST:</h4>					<div id="treeViewDiv"></div>				</div>				<div class="col-md-6 centerPlace">					<form id="form" action="save" method="post"						enctype="multipart/form-data">						<div class="inlineD">							<button type="button" data-toggle="modal" data-target="#visual"								id="modalBtn" hidden="hidden">Open Modal</button>							<h4>SAMPLE:</h4>							<button type="button" class="btn btn-default btn-md float-right"								id="sampleRun">								RUN <span class="glyphicon glyphicon-play"></span>							</button>						</div>						<textarea class="form-control" rows="5" name="sample" id="sample"></textarea>						<br>						<div class="inlineD">							<h4>MAIN:</h4>							<button type="button" class="btn btn-default btn-md center"								id="addBtn">								ADD <span class="glyphicon glyphicon-arrow-down"></span>							</button>							<button type="button" class="btn btn-default btn-md float-right"								id="mainRun">								RUN <span class="glyphicon glyphicon-play"></span>							</button>						</div>						<textarea class="form-control" rows="15" name="file_ori" id="main">${file.file_ori}</textarea>						<c:if test="${not empty loginId}">							<br>							<div class="row">								<div class="col-md-2">									<label> <img id="imgView"										src="resources/covers/${file.cover_re}"										onERROR="this.src='resources/myfiles/images/comu/robot.png'"										style="width: 100px; height: 100px; border-radius: 100px;">										<input type="file" style="display: none;" id="imgInp"										name="upload" />									</label>								</div>								<div class="col-md-10">									<div class="inlineD">										<h4>TITLE:</h4>										<button type="button"											class="btn btn-default btn-md saveBtn float-right">											SAVE <span class="glyphicon glyphicon-saved"></span>										</button>									</div>									<input type="text" class="form-control" id="title"										name="file_title" value="${file.file_title}" />								</div>							</div>							<br>							<br>						</c:if>					</form>				</div>				<div class="col-md-3 rightPlace">					<div class="errorPlace">						<div>							<a href="#" id="errorClick"></a>						</div>						<div id="errorContent"></div>					</div>				</div>			</div>		</div>		<!-- Modal -->		<div id="visual" class="modal fade" role="dialog"></div>	</div></body></html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<!-- ==============   INCLUDE JS AND CSS   ================= -->
+<script src="resources/jquery-3.1.1.min.js"></script>
+<script src="resources/myfiles/js/comu.js"></script>
+<link href='resources/myfiles/css/comu.css' rel='stylesheet'
+	type='text/css'>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="shortcut icon" type="image/png"
+	href="myfiles/images/main/logo_comu.png" />
+
+<!-- ================   INCLUDE AUDIO JS   =================== -->
+<script src="resources/audiojs/three.min.js"></script>
+<script src="resources/audiojs/ATUtil.js"></script>
+<script src="resources/audiojs/Stats.js"></script>
+<script src="resources/audiojs/RequestAnimationFrame.js"></script>
+<script src="resources/audiojs/jquery.mousewheel.js"></script>
+<script src="resources/audiojs/ImprovedNoise.js"></script>
+<script src="resources/audiojs/Visualizer.js"></script>
+<script src="resources/audiojs/audio.js"></script>
+
+<!-- ===================   INCLUDE JSTREE   ===================  -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+	crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script> -->
+<body>
+	<button type="button" data-toggle="modal" data-target="#visualModal"
+		id="runModal" hidden="hidden"></button>
+	<button type="button" data-toggle="modal" data-target="#saveModal"
+		id="saveModalBtn" hidden="hidden"></button>
+	<button type="button" data-toggle="modal" data-target="#loadModal"
+		id="loadModalBtn" hidden="hidden"></button>
+	<jsp:include page="navibar.jsp" flush="false" />
+	<div id="totalWrapper">
+		<input id="mainText" type="hidden" value="${file.file_ori}">
+		<div class="comuContent row-fluid row">
+			<div class="col-md-3">
+				<div class="toolbar">
+					<div class="tools">
+						<div>
+							<input type="button" id="runBtn" value="run"> <input
+								type="button" id="addBtn" value="add"> <input
+								type="button" id="saveBtn" value="save"> <input
+								type="button" id="loadBtn" value="load">
+						</div>
+						<div>
+							Font Size : <select id="fontSize">
+								<option>12pt</option>
+								<option selected="selected">14pt</option>
+								<option>16pt</option>
+								<option>18pt</option>
+								<option>20pt</option>
+								<option>22pt</option>
+							</select>
+						</div>
+						<div>
+							Theme : <select id="theme">
+								<option>solarized_light</option>
+								<option>chrome</option>
+								<option selected="selected">vibrant_ink</option>
+								<option>cobalt</option>
+								<option>monokai</option>
+								<option>terminal</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="tree">
+					<span class="nameTag clickable list-explorer"
+						data-clicked="list-explorer"> List Explorer</span>
+					<div class="window clickable treeOver" data-clicked="list-explorer">
+						<div id="treeViewDiv"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="sampleEditorDiv">
+					<span class="nameTag clickable sample" data-clicked="sample">
+						Sample </span>
+					<div class="window editor ">
+						<div id="sampleEditor" class="clickable" data-clicked="sample">this
+							is sample</div>
+					</div>
+
+				</div>
+				<div class="mainEditorDiv">
+					<span class="nameTag clickable main" data-clicked="main">
+						Main</span>
+					<div class="window editor ">
+						<div id="mainEditor" class="clickable" data-clicked="main">this
+							is main</div>
+					</div>
+
+				</div>
+				<div class="error">
+					<span class="nameTag clickable errorTag" data-clicked="error">
+						Console</span>
+					<div class="window editor clickable" data-clicked="error">
+						<div class="errorPlace">
+							<div id="errorContent">
+								<a href="#" id="errorClick"></a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="visual" class="modal fade" role="dialog"></div>
+	<div id="saveModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Save File</h4>
+				</div>
+				<div class="modal-body">
+					<form action="save" method="post" id="saveForm"
+						enctype="multipart/form-data">
+						<input name="filenum" type="hidden" value="${file.filenum}">
+						<input name="userid" type="hidden" value="${loginId}"> <label>
+							<img id="imgView" src="resources/covers/${file.cover_re}"
+							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+							style="width: 100px; height: 100px; border-radius: 100px;">
+							<input type="file" style="display: none;" id="imgInp"
+							name="upload" />
+						</label> <input type="text" class="form-control" id="title"
+							name="file_title" value="${file.file_title}" />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="save">
+						Save<span class="glyphicon glyphicon-saved"></span>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="loadModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Load File</h4>
+				</div>
+				<div class="modal-body">
+					<div id="loader"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="load">
+						Load<span class="glyphicon glyphicon-loaded"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

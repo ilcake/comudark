@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,10 +31,10 @@ public class HomeController {
 
 	@Autowired
 	BoardRepository boardRepository;
-	
+
 	@Autowired
 	FileRepository fileRepository;
-	
+
 	@Autowired
 	HttpSession session;
 
@@ -86,19 +86,19 @@ public class HomeController {
 
 	@RequestMapping(value = "/comu", method = RequestMethod.GET)
 	public String comu() {
-		session.removeAttribute("file");	//load된 파일정보 삭제
+		session.removeAttribute("file"); // load된 파일정보 삭제
 		return "comu";
 	}
 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
 
-		String userid = (String)session.getAttribute("loginId"); 
-		
+		String userid = (String) session.getAttribute("loginId");
+
 		// 파일 불러오기
 		ArrayList<Files> fileList = fileRepository.userlist(userid);
 		session.setAttribute("fileList", fileList);
-		
+
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.boardList(userid);
 		session.setAttribute("boardList", list);
@@ -109,13 +109,13 @@ public class HomeController {
 
 		// 사용자가 좋아요 누른 게시물 정보 불러오기
 		ArrayList<Board> myLikeList = boardRepository.myLikeList(userid);
-		System.out.println("좋아요"+myLikeList);
+		System.out.println("좋아요" + myLikeList);
 		session.setAttribute("myLikeList", myLikeList);
-		
+
 		// 사용자가 구독한 유저 게시물 불러오기
 		ArrayList<Board> mySubList = boardRepository.mySubList(userid);
 		session.setAttribute("mySubList", mySubList);
-		
+
 		return "mypage";
 	}
 
@@ -145,10 +145,11 @@ public class HomeController {
 		return "join";
 	}
 
-	@RequestMapping(value = "/comuplayer", method = RequestMethod.GET)
-	public String player(HttpSession session) {
-		
-		return "comuplayer";
+	@RequestMapping(value = "/player", method = RequestMethod.GET)
+	public String player(Model model, int boardnum) {
+		Board board = boardRepository.selectBoard(boardnum);
+		model.addAttribute("board", board);
+		return "player";
 	}
 
 	@RequestMapping(value = "/shared", method = RequestMethod.GET)
@@ -156,7 +157,26 @@ public class HomeController {
 
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.list();
-		System.out.println("안녕"+list);
+		session.setAttribute("boardList", list);
+
+		// 댓글 불러오기
+		List<Reply> replyAll = boardRepository.replyAll();
+		session.setAttribute("replyAll", replyAll);
+
+		// 사용자가 좋아요 누른 게시물 정보 불러오기
+		ArrayList<Like> likelist = boardRepository.likeList();
+
+		return "shared";
+	}
+
+	// 특정 조건 글 불러오기
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(String userid) {
+
+		System.out.println("★★★★★★★★" + userid);
+
+		// 글 불러오기
+		ArrayList<Board> list = boardRepository.boardList(userid);
 		session.setAttribute("boardList", list);
 
 		// 댓글 불러오기
