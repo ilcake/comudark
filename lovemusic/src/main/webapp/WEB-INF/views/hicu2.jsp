@@ -1,192 +1,186 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
+<!-- ==============   INCLUDE JS AND CSS   ================= -->
 <script src="resources/jquery-3.1.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate.min.js"></script>
-<!--  JQUERY VERSION MUST MATCH WORDPRESS ACTUAL VERSION (NOW 1.12) -->
-<!-- ======= MAIN JAVASCRIPT FILE ======================== -->
-<script src="js/qt-main.js"></script>
-
-<!-- =======  CUSTOM JS LIBRARIES: ======================== -->
-<script src="js/bootbox.min.js"></script>
-<script src="js/materializecss/bin/materialize.min.js"></script>
-<script src="components/slick/slick.min.js"></script>
-<script src="components/skrollr/skrollr.min.js"></script>
-<script src="components/swipebox/lib/ios-orientationchange-fix.js"></script>
-<script src="components/swipebox/src/js/jquery.swipebox.min.js"></script>
-
-
-<!-- ======= BACKGRUOUND VIDEO SCRIPT ================ -->
-<script src="myfiles/js/bg-movie.js"></script>
-<!-- ======= HICU BACKGRUOUND VIDEO SCRIPT END =========== -->
-
-<!--  HICU Action  -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
-<script src="myfiles/js/hicu.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='components/slick/slick.css' rel='stylesheet' type='text/css'>
-<link href='components/swipebox/src/css/swipebox.min.css'
-	rel='stylesheet' type='text/css'>
-<link href='fonts/iconfont/style.css' rel='stylesheet' type='text/css'>
-<link href='fonts/qticons/qticons.css' rel='stylesheet' type='text/css'>
-<!-- INCLUDES THE CSS FRAMEWORK VIA #IMPORT AND SASS -->
+<script src="resources/myfiles/js/comu.js"></script>
+<link href='resources/myfiles/css/comu.css' rel='stylesheet'
+	type='text/css'>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 <link rel="shortcut icon" type="image/png"
 	href="myfiles/images/main/logo_comu.png" />
-<!-- COMU BACKGROUND VIDEO CSS -->
-<link rel="stylesheet" type="text/css" href="myfiles/css/hicu.css">
-</head>
-<body>
 
+<!-- ================   INCLUDE AUDIO JS   =================== -->
+<script src="resources/audiojs/three.min.js"></script>
+<script src="resources/audiojs/ATUtil.js"></script>
+<script src="resources/audiojs/Stats.js"></script>
+<script src="resources/audiojs/RequestAnimationFrame.js"></script>
+<script src="resources/audiojs/jquery.mousewheel.js"></script>
+<script src="resources/audiojs/ImprovedNoise.js"></script>
+<script src="resources/audiojs/Visualizer.js"></script>
+<script src="resources/audiojs/comu.js"></script>
+
+<!-- ===================   INCLUDE JSTREE   ===================  -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+	crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<body>
+	<button type="button" data-toggle="modal" data-target="#visualModal"
+		id="runModal" hidden="hidden"></button>
+	<button type="button" data-toggle="modal" data-target="#saveModal"
+		id="saveModalBtn" hidden="hidden"></button>
+	<button type="button" data-toggle="modal" data-target="#loadModal"
+		id="loadModalBtn" hidden="hidden"></button>
 	<jsp:include page="navibar.jsp" flush="false" />
-	<link rel="stylesheet" href="css/qt-main.css">
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
+	<div id="totalWrapper">
+		<input id="mainText" type="hidden" value="${file.file_ori}">
+		<div class="comuContent row-fluid row">
+			<div class="col-md-3">
+				<div class="toolbar">
+					<div class="tools">
+						<div>
+							<input type="button" id="runBtn" value="run"> <input
+								type="button" id="addBtn" value="add"> <input
+								type="button" id="saveBtn" value="save"> <input
+								type="button" id="loadBtn" value="load">
+						</div>
+						<div>
+							Font Size : <select id="fontSize">
+								<option>12pt</option>
+								<option selected="selected">14pt</option>
+								<option>16pt</option>
+								<option>18pt</option>
+								<option>20pt</option>
+								<option>22pt</option>
+							</select>
+						</div>
+						<div>
+							Theme : <select id="theme">
+								<option>solarized_light</option>
+								<option>chrome</option>
+								<option selected="selected">vibrant_ink</option>
+								<option>cobalt</option>
+								<option>monokai</option>
+								<option>terminal</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="tree">
+					<span class="nameTag clickable list-explorer"
+						data-clicked="list-explorer"> List Explorer</span>
+					<div class="window clickable treeOver" data-clicked="list-explorer">
+						<div id="treeViewDiv"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="sampleEditorDiv">
+					<span class="nameTag clickable sample" data-clicked="sample">
+						Sample </span>
+					<div class="window editor ">
+						<div id="sampleEditor" class="clickable" data-clicked="sample">this
+							is sample</div>
+					</div>
+
+				</div>
+				<div class="mainEditorDiv">
+					<span class="nameTag clickable main" data-clicked="main">
+						Main</span>
+					<div class="window editor ">
+						<div id="mainEditor" class="clickable" data-clicked="main">this
+							is main</div>
+					</div>
+
+				</div>
+				<div class="error">
+					<span class="nameTag clickable errorTag" data-clicked="error">
+						Console</span>
+					<div class="window editor clickable" data-clicked="error">
+						<div class="errorPlace">
+							<div id="errorContent">
+								<a href="#" id="errorClick"></a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="visual" class="modal fade" role="dialog"></div>
+	<div id="saveModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content alert">
+			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h5 class="modal-title">Save as File</h5>
+					<h4 class="modal-title">Save File</h4>
 				</div>
 				<div class="modal-body">
-					<form role="form" id="hicuSaveForm">
-						<div class="form-group">
-							<label for="codeTitle"><span
-								class="glyphicon glyphicon-user"></span> Title</label> <input
-								type="text" class="form-control" id="codeTitle"
-								name="file_title" placeholder="Enter title">
-						</div>
-						<div class="form-group">
-							<label for="codeResult"><span
-								class="glyphicon glyphicon-eye-open"></span> CodeResult</label>
-							<textarea class="form-control" rows="5" id="codeResult"
-								name="file_ori"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="compiledResult"><span
-								class="glyphicon glyphicon-random"></span> compiledResult</label>
-							<textarea class="form-control" rows="5" id="compiledResult"
-								name="file_com"></textarea>
-						</div>
+					<form action="save" method="post" id="saveForm"
+						enctype="multipart/form-data">
+						<input name="filenum" type="hidden" value="${file.filenum}">
+						<input name="userid" type="hidden" value="${loginId}"> <label>
+							<img id="imgView" src="resources/covers/${file.cover_re}"
+							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
+							style="width: 100px; height: 100px; border-radius: 100px;">
+							<input type="file" style="display: none;" id="imgInp"
+							name="upload" />
+						</label> <input type="text" class="form-control" id="title"
+							name="file_title" value="${file.file_title}" />
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button id="saveHicuCode" type="button" class="btn-success"
-						data-dismiss="modal">
-						<span class="glyphicon glyphicon-floppy-disk">Save</span>
-					</button>
-					<button type="button" class="btn-danger" data-dismiss="modal">
-						<span class="glyphicon glyphicon-remove">close</span>
+					<button type="button" class="btn btn-default" id="save">
+						Save<span class="glyphicon glyphicon-saved"></span>
 					</button>
 				</div>
 			</div>
 
 		</div>
 	</div>
-	<!-- Modal End! -->
-
-	<div id="presskit"
-		class="section section-presskit parallax-container scrollspy">
-		<div class="parallax">
-			<div class="homepage-hero-module">
-				<div class="video-container">
-					<div class="title-container">
-
-						<!-- ============== HICU CONTENT  ================= -->
-						<div class="row">
-							<div class="main main-raised">
-								<div class="section section-basic">
-
-									<!-- outer container -->
-									<div class="containerB">
-
-										<!--  whole pad  -->
-										<div class="containerBIN" id="pad">
-											<div class="selectLine" id="beatLine">
-												<table class="theSelectionTable">
-													<tr>
-														<th><span class="label">Beats</span><select
-															id="beatSelection"><option value="beat">MadeSet</option>
-																<option value="acu">Acustic</option>
-																<option value="r8">R8</option></select> <img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="beats"></th>
-
-														<th><span class="label">Bass</span><img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="bass"> &nbsp;&nbsp;&nbsp; <span
-															class="label">Melody</span><img
-															src="myfiles/images/hicu/ins_add.png" class="ins_add"
-															dt-ins="melody"></th>
-													</tr>
-												</table>
-											</div>
-
-											<!-- Buttons Row -->
-											<div class="btnsArea" id="btnsBeat"></div>
-											<div class="btnsArea" id="btnsBass"></div>
-											<div class="btnsArea" id="btnsMelody"></div>
-
-											<!--------   LED Row   --------->
-											<div class="buttons_row" id="LED_row"></div>
-										</div>
-										<hr />
-										<div class="containerBIN" id="tools">
-											<div class="toolBtns" id="toolBtns">
-												<span id="playStop"> <img id="play"
-													src="myfiles/images/hicu/btn_play.png" width="80"
-													height="33"><img id="stop"
-													src="myfiles/images/hicu/btn_stop.png" width="80"
-													height="33"></span> <span id="toolBlank"></span><span
-													id="saveReset"><img id="save"
-													src="myfiles/images/hicu/btn_save.png" data-toggle="modal"
-													data-target="#myModal"><img id="reset"
-													src="myfiles/images/hicu/btn_reset.png"></span>
-											</div>
-											<div>
-												<textarea id="resultCode"></textarea>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-
-					<div class="filter"></div>
-					<video autoplay loop class="fillWidth">
-						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
-					</video>
+	<div id="loadModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Load File</h4>
+				</div>
+				<div class="modal-body">
+					<div id="loader"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="load">
+						Load<span class="glyphicon glyphicon-loaded"></span>
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 </body>
-
 </html>

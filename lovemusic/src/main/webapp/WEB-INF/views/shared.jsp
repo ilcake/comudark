@@ -20,6 +20,11 @@
 <link href='resources/myfiles/css/shared.css' rel='stylesheet' type='text/css'>
 <script src="resources/myfiles/js/shared.js"></script>
 
+<!-- alert bootstrap START -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<!-- alert bootstrap END -->
+
 <body>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper" style="background:none;">

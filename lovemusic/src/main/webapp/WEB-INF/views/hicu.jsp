@@ -34,6 +34,13 @@
 	href="myfiles/images/main/logo_1pa.png" />
 <!-- COMU BACKGROUND VIDEO CSS -->
 <link rel="stylesheet" type="text/css" href="myfiles/css/hicu.css">
+
+<!-- alert bootstrap START -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<!-- alert bootstrap END -->
 </head>
 <body>
 
@@ -90,11 +97,12 @@
 							<textarea class="form-control" rows="5" id="codeResult"
 								name="file_ori"></textarea>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="display: none;">
 							<label for="compiledResult"><span
 								class="glyphicon glyphicon-random"></span> compiledResult</label>
 							<textarea class="form-control" rows="5" id="compiledResult"
 								name="file_com"></textarea>
+
 						</div>
 					</form>
 				</div>
@@ -108,7 +116,6 @@
 					</button>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- Modal End! -->
@@ -171,25 +178,31 @@
 													data-target="#myModal"><img id="reset"
 													src="myfiles/images/hicu/btn_reset.png"></span>
 											</div>
-											<div>
+											<div id="theResultArea">
 												<textarea id="resultCode"></textarea>
 											</div>
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
-
 					</div>
 
 					<div class="filter"></div>
 					<video autoplay loop class="fillWidth">
-						<source src="myfiles/video/For_Wes.mp4" type="video/mp4" />
+						<source src="myfiles/video/Hello-World.mp4" type="video/mp4" />
 					</video>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="theSaveForm" hidden="">
+		<form action="save" id="saveForm">
+			<input type="text" name="userid" hidden="" value="${loginId}" /> <input
+				type="text" name="file_ori" hidden="" value="" /> <input
+				type="text" name="file_com" hidden="" value="" /> <input
+				type="text" name="file_type" value="hicu" hidden="" />
+		</form>
 	</div>
 
 
