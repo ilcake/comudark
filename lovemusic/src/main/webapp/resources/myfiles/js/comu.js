@@ -223,62 +223,61 @@ function getMusicTree() {
 				var mapKey = Object.keys(resp);
 				var insId = 0;
 				var arr = [];
-				$
-					.each(
-						mapKey,
-						function(index, item) {
-							// console.log(JSON.stringify(resp[item][0]));
-							// console.log(resp[item][0]["motherName"]);
-							// console.log(resp[item][0]["insName"]);
-							// console.log(resp[item][0]["fileName"]);
-							// tree += String.format("{'id' : '{0}'
-							// , 'parent' : '#', 'text'
-							// : '{1}' }", );
-							if ($.inArray(
-									resp[item][0]["motherName"],
-									arr) == -1) {
-								if (index != 0) {
-									tree += ", "
-								}
-								tree += String
-									.format(
-										'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
-										resp[item][0]["motherName"],
-										resp[item][0]["motherName"]);
-								arr
-									.push(resp[item][0]["motherName"]);
+				$.each(
+					mapKey,
+					function(index, item) {
+						// console.log(JSON.stringify(resp[item][0]));
+						// console.log(resp[item][0]["motherName"]);
+						// console.log(resp[item][0]["insName"]);
+						// console.log(resp[item][0]["fileName"]);
+						// tree += String.format("{'id' : '{0}'
+						// , 'parent' : '#', 'text'
+						// : '{1}' }", );
+						if ($.inArray(resp[item][0]["motherName"], arr) == -1) {
+							if (index != 0) {
+								tree += ", "
 							}
-							if (resp[item][0]["insName"] != 'effect') {
-								tree += String
-									.format(
-										', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-										resp[item][0]["insName"],
-										resp[item][0]["motherName"],
-										resp[item][0]["insName"]);
-							}
-							var arrayList = resp[item];
-							$
-								.each(
-									arrayList,
-									function(listIndex,
-										listItem) {
-										var id = insId++;
-										var parent = listItem["insName"];
-										var text = listItem["fileName"];
-										tree += String
-											.format(
-												', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-												id,
-												parent,
-												text);
-									});
-						});
+							tree += String.format(
+								'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
+								resp[item][0]["motherName"],
+								resp[item][0]["motherName"]
+							);
+							arr.push(resp[item][0]["motherName"]);
+						}
+						if (resp[item][0]["insName"] != 'effect') {
+							tree += String.format(
+								', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+								resp[item][0]["insName"],
+								resp[item][0]["motherName"],
+								resp[item][0]["insName"]);
+						}
+						var arrayList = resp[item];
+						$.each(
+							arrayList,
+							function(listIndex,
+								listItem) {
+								var id = insId++;
+								var parent = listItem["insName"];
+								var text = listItem["fileName"];
+								tree += String.format(
+									', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+									id,
+									parent,
+									text);
+							});
+					});
 				tree += "] }";
 				var jsonTree = JSON.parse(tree);
 				console.log(tree);
 				$('#treeViewDiv').jstree({
 					'plugins' : [ "wholerow" ],
 					'core' : jsonTree
+				});
+
+				$("#treeViewDiv").delegate("a", "dblclick", function(e, data) {
+					var node = $(e.target).closest("li");
+					var id = node[0].id; //id of the selected node
+					console.log(id);
 				});
 			}
 		});
