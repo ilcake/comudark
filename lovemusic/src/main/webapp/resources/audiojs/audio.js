@@ -1,10 +1,4 @@
-/**
- * 
- * Loop Waveform Visualizer by Felix Turner www.airtight.cc
- * 
- * Audio Reactive Waveform via Web Audio API.
- * 
- */
+/** *  *  *  * Loop Waveform Visualizer by Felix Turner www.airtight.cc *  *  *  * Audio Reactive Waveform via Web Audio API. *  *  *  */
 
 var mouseX = 0,
 	mouseY = 0,
@@ -69,10 +63,6 @@ function init() {
 	container = $('<div />', {
 		id : "container"
 	});
-	container.css("position", "absolute");
-	container.css("top", "15%");
-	container.css("left", "30%");
-	
 	$("#visual").append(container);
 	camera = new THREE.PerspectiveCamera(60, 1, 1, 1000000);
 	camera.position.z = 2000;
@@ -82,8 +72,8 @@ function init() {
 		antialias : false,
 		sortObjects : false
 	});
-	renderer.setSize(window.innerWidth/2, window.innerHeight*2/3);
-	// 625.600,  522.550
+	renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+	// 625.600, 522.550
 	container.append(renderer.domElement);
 
 	// stop the user getting a text cursor
@@ -92,18 +82,14 @@ function init() {
 	};
 
 	// add stats
-	/*
-	 * stats = new Stats(); stats.domElement.style.position = 'absolute';
-	 * stats.domElement.style.top = '0px';
-	 * container.appendChild(stats.domElement);
-	 */
+	/*	 * 	 * stats = new Stats(); stats.domElement.style.position = 'absolute';	 * 	 * stats.domElement.style.top = '0px';	 * 	 * container.appendChild(stats.domElement);	 * 	 */
 	// init listeners
 	audioContext = new window.AudioContext();
 	$(document).mousemove(onDocumentMouseMove);
 	$(window).resize(onWindowResize);
 	createAnalyser();
 	startViz();
-	//loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
+	// loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null,	// null);
 	// onWindowResize(null);
 
 }
@@ -180,7 +166,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 				source.connect(analyser);
 				analyser.connect(audioContext.destination);
 			}
-			//audioContext.currentTime +
+			// audioContext.currentTime +
 			var playTime = time + 1 + theTime;
 			source.start(playTime);
 		});
@@ -197,7 +183,7 @@ function onWindowResize(event) {
 	windowHalfY = window.innerHeight / 2;
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setSize(windowHalfX, windowHalfY);
 }
 
 function animate() {
