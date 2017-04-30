@@ -10249,7 +10249,7 @@ input[type=range]:focus::-ms-fill-upper {
 	background-color: #4CAF50;
 }
 
-.carousel {
+/* .carousel {
 	overflow: hidden;
 	position: relative;
 	width: 100%;
@@ -10282,7 +10282,7 @@ input[type=range]:focus::-ms-fill-upper {
 	position: absolute;
 	top: 0;
 	left: 0;
-}
+} */
 
 /* ============== QANTUMTHEMES POLYDECOR LIBRARY =============== */
 .qt-polydecor {

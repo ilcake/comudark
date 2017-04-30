@@ -236,4 +236,8 @@
 		ORDER BY count(*) desc)
 		where rownum BETWEEN 1 and 5
 	</select>
+	
+	<!-- 최근 음악 -->
+	<select id="latestMusic" resultType="map">
+	</select>
 </mapper>
