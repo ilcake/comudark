@@ -46,8 +46,13 @@ public class HomeController {
 		logger.info("pulling HOME");
 		if (session.getAttribute("loginId") == null)
 			return "home";
-		else
+		else{
+			ArrayList<Board> list = boardRepository.latestList();
+			session.setAttribute("list", list);
+			System.out.println("※"+list);
 			return "logInHome";
+		}
+		
 	}
 
 	@RequestMapping(value = "/basic", method = RequestMethod.GET)
@@ -172,8 +177,6 @@ public class HomeController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(String userid) {
 
-		System.out.println("★★★★★★★★"+userid);
-		
 		// 글 불러오기
 		ArrayList<Board> list = boardRepository.boardList(userid);
 		session.setAttribute("boardList", list);

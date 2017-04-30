@@ -276,7 +276,7 @@ input, input:hover, input:focus {
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
 

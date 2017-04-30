@@ -50,7 +50,7 @@
 			<ul class="qt-desktopmenu">
 				<li><img class="logo-img" src="myfiles/images/main/logo_5.png"></li>
 				<li><a href="home">Home</a></li>
-				<li><a href="comu">CoMu</a></li>
+				<li class="active"><a href="comu">CoMu</a></li>
 				<li><a href="hicu">HiCu</a></li>
 				<li><a href="mypage">MyPage</a></li>
 				<li><a href="shared">Shared</a></li>

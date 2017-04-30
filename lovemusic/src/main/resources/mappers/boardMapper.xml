@@ -49,7 +49,7 @@
 		SELECT
 		* FROM cm_board b, cm_subscribe s
 		WHERE
-		b.userid = s.userid
+		b.userid = s.userid(+)
 		AND
 		s.sub_userid = #{userid}
 		ORDER BY b.boardnum DESC
@@ -238,6 +238,11 @@
 	</select>
 	
 	<!-- 최근 음악 -->
-	<select id="latestMusic" resultType="map">
+	<select id="latestList" resultType="board">
+		SELECT distinct f.filenum, f.cover_re, b.boardnum
+		FROM (select distinct filenum, boardnum from cm_board) b, cm_file f
+		WHERE
+		b.filenum = f.filenum
+		ORDER BY boardnum DESC
 	</select>
 </mapper>

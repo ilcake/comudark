@@ -319,4 +319,10 @@ public class BoardRepository {
 		return list;
 	}
 
+	public ArrayList<Board> latestList() {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		ArrayList<Board> list = dao.latestList();
+		return list;
+	}
+
 }
