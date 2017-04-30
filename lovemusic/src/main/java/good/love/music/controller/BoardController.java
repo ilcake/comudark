@@ -244,7 +244,8 @@ public class BoardController {
 	@RequestMapping(value = "/subscribeRanking", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Board> subscribeRanking() {
 		String userid = (String)session.getAttribute("loginId");
-		ArrayList<Board> list = boardRepository.likeRanking();
+		ArrayList<Board> list = boardRepository.subscribeRanking();
+		System.out.println("subran"+list);
 		return list;
 	}
 

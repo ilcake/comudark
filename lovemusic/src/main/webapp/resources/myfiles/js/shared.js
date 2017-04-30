@@ -128,7 +128,7 @@ $(function(){
 	
 	//파일 영역 클릭 이벤트
 	$(".buttonEffect").on("click", function(){
-		window.open("comuplayer?boardnum="+$(this).attr("boardnum"), "PLAYER", "top=200, left=400, width=700, height=500, location=no, resizable=no");
+		window.open("player?boardnum="+$(this).attr("boardnum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 	});
 	
 	
