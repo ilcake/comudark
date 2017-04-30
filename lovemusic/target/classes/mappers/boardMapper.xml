@@ -29,8 +29,7 @@
 		WHERE
 		b.filenum = f.filenum
 		AND
-		b.userid =
-		#{userid}
+		b.userid = #{userid}
 		ORDER BY boardnum DESC
 	</select>
 	

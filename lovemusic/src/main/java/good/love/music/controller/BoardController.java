@@ -96,8 +96,6 @@ public class BoardController {
 			board.setShared("false");
 		}
 		
-		System.out.println("baaaa"+board);
-		
 		if(board.getBoardnum() == 0){		//boardnum이 없으면 새로 저장
 			boardRepository.write(board);
 		}else{								//boardnum이 있으면 덮어쓰기
@@ -231,6 +229,22 @@ public class BoardController {
 	public @ResponseBody ArrayList<Subscribe> subscribeList() {
 		String userid = (String)session.getAttribute("loginId");
 		ArrayList<Subscribe> list = boardRepository.subscribeList(userid);
+		return list;
+	}
+	
+	// likeRanking
+	@RequestMapping(value = "/likeRanking", method = RequestMethod.GET)
+	public @ResponseBody ArrayList<Board> likeRanking() {
+		String userid = (String)session.getAttribute("loginId");
+		ArrayList<Board> list = boardRepository.likeRanking();
+		return list;
+	}
+	
+	// subscribeRanking
+	@RequestMapping(value = "/subscribeRanking", method = RequestMethod.GET)
+	public @ResponseBody ArrayList<Board> subscribeRanking() {
+		String userid = (String)session.getAttribute("loginId");
+		ArrayList<Board> list = boardRepository.likeRanking();
 		return list;
 	}
 
