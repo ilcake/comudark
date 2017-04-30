@@ -85,4 +85,7 @@ public interface BoardDAO {
 
 	public ArrayList<Board> subscribeRanking();
 
+	//최근 목록(같은 file 첨부한 board 제외)
+	public ArrayList<Board> latestList();
+
 }

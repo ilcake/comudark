@@ -158,9 +158,15 @@ tr {
 	height:100px;
 }
 
-.carousel-control{
+.carousel-control !important{
+    position: relative;
+    top: -85px;
+    bottom: 0;
+    left: 0;
+    width: 15%;
 	height: 50px;
 	vertical-align: middle;
+	background: none;
 }
 
 h3{
@@ -170,6 +176,18 @@ h3{
 .mini_title{
 	text-shadow: 1px 1px 2px black;
 	padding-left: 10px;
+}
+
+.img-responsive{
+	box-shadow: 0px 1px 2px white;
+	border: solid 1px white;
+	/* background-color: white; */
+/* 	padding: 5px; */
+}
+
+img:hover{
+	box-shadow: 2px 2px 10px white;
+	border: 3px solid white;
 }
 
 
@@ -192,6 +210,9 @@ h3{
 			interval : 10000
 		}); */
 
+		$(".carousel-control.left").html("◀");
+		$(".carousel-control.right").html("▶");
+		
 		$.ajax({
 			url : "likeRanking",
 			type : "get",
@@ -364,24 +385,18 @@ h3{
 			  <div id="single" class="carousel slide" data-ride="carousel" data-shift="1">
 			    <div class="carousel-inner">
 			      <ul class="row item active">
-			        <li class="col-xs-2 one"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 two"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 three"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 four"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 five"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 six"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			      	<c:forEach var="board" items="${list}" end="5">
+			        <li class="col-xs-2 one"> <a href="comuplayer?filenum=${board.filenum}"><img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive"></a></li>
+			        </c:forEach>
 			      </ul>
 			      <ul class="row item">
-			        <li class="col-xs-2 seven"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 eight"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 nine"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 ten"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 eleven"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
-			        <li class="col-xs-2 twelve"> <img src="images/album.jpg" srcset="images/album.jpg, images/album.jpg" class="img-responsive"> </li>
+			      	<c:forEach var="board" items="${list}" begin="6" end="11">			      
+			        <li class="col-xs-2 one"> <a href="comuplayer?filenum=${board.filenum}"><img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive"></a></li>
+			        </c:forEach>
 			      </ul>
 			    </div>
 			    <a class="carousel-control left" href="#single" data-slide="prev">Previous</a> <a class="carousel-control right" href="#single" data-slide="next">Next</a> </div>
-
+				<br><br>
 <!-- 				<table class="table">
 					<tr class="tr_top">
 						<td><span class="glyphicon glyphicon-music"
