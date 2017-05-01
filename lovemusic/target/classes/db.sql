@@ -36,8 +36,8 @@ file_ori VARCHAR2(4000) NOT NULL,
 file_com VARCHAR2(4000) NOT NULL,
 file_type VARCHAR2(10) NOT NULL,
 file_title VARCHAR2(50) NOT NULL,
-cover_ori VARCHAR2(200),
-cover_re VARCHAR2(200)
+cover_ori VARCHAR2(200) DEFAULT 'default.jpg',
+cover_re VARCHAR2(200) DEFAULT 'default.jpg'
 );
 
 -- 게시판DB
@@ -51,7 +51,7 @@ content VARCHAR2(2000),
 inputdate DATE DEFAULT SYSDATE,
 filenum NUMBER,
 shared VARCHAR2(20) NOT NULL,
-profile VARCHAR2(200)
+profile VARCHAR2(200) DEFAULT 'default.jpg'
 );
 
 
@@ -86,26 +86,33 @@ sub_userid VARCHAR2(30) NOT NULL
 );
 
 
--- test data    
-insert into cm_user values('aa', 'aa', 'aa', 'aa', 'aa', null);
-insert into cm_user values('bb', 'bb', 'bb', 'bb', 'bb', null);
+-- ** TEST DATA   
 
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa1', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa2', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa3', null, null);
+-- * CM_USER (USERID, EMAIL, PASSWORD, QUESTION, ANSWER, PROFILE)
+insert into cm_user values('aa', 'aa@aa.com', 'aa', 'aa', 'aa', null);
+insert into cm_user values('bb', 'bb@bb.com', 'bb', 'bb', 'bb', null);
+insert into cm_user values('cc', 'cc@cc.com', 'cc', 'cc', 'cc', null);
+insert into cm_user values('dd', 'dd@dd.com', 'dd', 'dd', 'dd', null);
+insert into cm_user values('ee', 'ee@ee.com', 'ee', 'ee', 'ee', null);
+
+-- * CM_FILE (FILENUM, USERID, FILE_ORI, FILE_COM, FILE_TYPE, FILE_TITLE, COVER_ORI, COVER_RE)
+insert into cm_file values(filenum_seq.nextval, 'aa', 'original code', 'comfiled code', 'comu', 'title of file', null, null);
+insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'awesome song', null, null);
+insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa2', null, null);
+insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa3', null, null);
 insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa4', null, null);
 insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa5', null, null);
 
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb', null, null);
+insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb', null, null);
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb1', null, null);
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb2', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb3', null, null);
+insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb3', null, null);
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb4', null, null);
 insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb5', null, null);
 
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa1', 'aaaaaaa', sysdate, 1, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'true', null);
+-- * CM_BOARD (BOARDNUM, USERID, TITLE, CONTENT, INPUTDATE, FILENUM, SHARED, PROFILE)
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'title of board', 'content of board', sysdate, 1, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'false', null);
 insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa3', 'aaaaaaa', sysdate, 3, 'true', null);
 insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa4', 'aaaaaaa', sysdate, 4, 'true', null);
 insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa5', 'aaaaaaa', sysdate, 5, 'true', null);
@@ -117,28 +124,30 @@ insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb4', 'bbbbbb', sysda
 insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb5', 'bbbbbb', sysdate, 10, 'true', null);
 insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb6', 'bbbbbb', sysdate, 11, 'true', null);
 
-insert into cm_like values(1, 'aa', 'bb');
-insert into cm_like values(1, 'aa', 'bb');
-insert into cm_like values(1, 'aa', 'bb');
-insert into cm_like values(1, 'aa', 'bb');
-insert into cm_like values(1, 'aa', 'bb');
-insert into cm_like values(1, 'aa', 'bb');
+insert into CM_BOARD values(boardnum_seq.nextval, 'cc', 'bbbb1', 'bbbbbb', sysdate, 6, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'cc', 'bbbb2', 'bbbbbb', sysdate, 7, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'dd', 'bbbb3', 'bbbbbb', sysdate, 8, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'dd', 'bbbb4', 'bbbbbb', sysdate, 9, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'ee', 'bbbb5', 'bbbbbb', sysdate, 10, 'true', null);
+insert into CM_BOARD values(boardnum_seq.nextval, 'ee', 'bbbb6', 'bbbbbb', sysdate, 11, 'true', null);
 
+-- * CM_LIKE (BOARDNUM, USERID, LIKE_USERID)
+insert into cm_like values(1, 'aa', 'bb');
+insert into cm_like values(1, 'aa', 'cc');
+insert into cm_like values(1, 'aa', 'dd');
+insert into cm_like values(1, 'aa', 'ee');
 
-insert into cm_like values(2, 'aa', 'bb');
-insert into cm_like values(2, 'aa', 'bb');
-insert into cm_like values(2, 'aa', 'bb');
-insert into cm_like values(3, 'aa', 'bb');
-insert into cm_like values(4, 'aa', 'bb');
-insert into cm_like values(5, 'aa', 'bb');
-
-insert into cm_like values(11, 'bb', 'aa');
-insert into cm_like values(10, 'bb', 'aa');
-insert into cm_like values(10, 'bb', 'aa');
 insert into cm_like values(6, 'bb', 'aa');
-insert into cm_like values(6, 'bb', 'aa');
-insert into cm_like values(7, 'bb', 'aa');
-insert into cm_like values(8, 'bb', 'aa');
-insert into cm_like values(9, 'bb', 'aa');
+insert into cm_like values(6, 'bb', 'cc');
 
+insert into cm_like values(11, 'cc', 'aa');
+insert into cm_like values(13, 'dd', 'bb');
+insert into cm_like values(13, 'dd', 'ee');
+
+-- * CM_SUBSCRIBE (USERID, SUB_USERID)
 insert into cm_subscribe values('aa', 'bb');
+insert into cm_subscribe values('aa', 'cc');
+insert into cm_subscribe values('aa', 'dd');
+insert into cm_subscribe values('bb', 'aa');
+insert into cm_subscribe values('bb', 'ee');
+insert into cm_subscribe values('cc', 'ee');

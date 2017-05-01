@@ -37,13 +37,19 @@
 
 		<!-- =============================== CONTENT ============================= -->
 		<div class="wrapper">
-		<div class="search" style="height: 38px; color:white; top:100px; right: 20px; margin:auto; position: absolute; border-radius:10px; border: solid 2px red; padding: 2px; padding-bottom:10px; padding-right:10px;">
-			<input type="text" style="background:none; border:none; color:white; padding-top:-20px; margin-top:-10px;">&nbsp;
-			<a href="search"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></a> </div>
+		<div class="writeButton"><a href="write"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="color:white;"></span></a></div>
+		<div class="search" style="display:inline-box;">
+		<form action="searchBoard" method="GET">
+			<select name="searchTitle" class="searchTitle"><option value="userid">ID</option><option value="title">TITLE</option><option value="content">CONTENT</option></select>
+			<!-- <input type="hidden" name="searchTitle" value="title"> -->
+			<input type="text" name="searchText" class="searchText">&nbsp;
+			<label><input type="submit" style="display: none;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></label>
+		</form>
+		</div>
 		<div></div><div></div><hr><hr><hr>
-			<div id="container" style="margin: 30px; padding:30px; padding-top:50px; right:20px;" >
+			<div id="container">
 			
-				<!-- 게시물 시작 (Collapse) -->
+				<!-- ======================= 게시물 START ======================= -->
 				<c:forEach var="board" items="${boardList}">
 				<!-- 공유 설정된 게시물만 표시 -->
 				<c:if test="${board.shared == 'true'}">
@@ -53,7 +59,7 @@
 								<td class="td_img">
 									<div class="card-container">
 										<div class="card">
-										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="image"></div>
+										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="profileImage"></div>
 										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>
@@ -87,7 +93,7 @@
 									<!-- FILE -->
 									<c:if test="${board.file_title != null }">
 										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
-											<img class="image" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
+											<img class="fileImage" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
 										<!-- </div> --></button><br><br>
 									</c:if>
 									 ${fn:replace(board.content, crcn, br)}	<br>
@@ -143,7 +149,7 @@
 					</div>
 				</c:if>
 				</c:forEach>
-				<!-- 게시물 END -->
+				<!-- ======================= 게시물 END ======================= -->
 			</div>
 		</div>
 		<!-- =============================== CONTENT ============================= -->

@@ -46,8 +46,6 @@ public class UserController {
 		user.setQuestion("questsion");
 		user.setAnswer("answer");
 
-		System.out.println("테스트!" + user);
-
 		int result = userRepository.join(user);
 
 		if (result == 0) {

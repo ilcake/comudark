@@ -114,7 +114,7 @@ table, td {
 	text-align: center;
 }
 
-tr:hover{
+tbody>tr:hover{
 background-color: rgba(255,255,255,0.5);
 }
 
@@ -194,14 +194,93 @@ img:hover{
 </style>
 <script type="text/javascript">
 
+
 	//like ranking 클릭
 	function like(boardnum){
 		location.href = "comuplayer?boardnum="+boardnum;
 	}
 	
-	//subscribe ranking 클릭
-	function subscribe(userid){
-		location.href = "search?userid="+userid;
+	$('document').ready(function(){
+		
+		//파일 영역 클릭 이벤트
+		$("img").on("click", function(){
+			window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
+		});
+		
+		$.ajax({
+			url : "likeRanking",
+			type : "get",
+			success : function(resp) {
+				var res = "<span class='mini_title'><span class='glyphicon glyphicon-heart' aria-hidden='true'></span> LIKE RANKING</span>";
+				res += "<table class='table'><thead><tr class='tr_top'>";
+				res += "<td class='td_no'>NO.</td>";
+				res += "<td>ID</td>";
+				res += "<td>TITLE</td>";
+				res += "<td class='td_total'>TOTAL</td>";
+				res += "</tr></thead>";
+				$.each(resp, function(index, item) {
+					res += "<tbody><tr class='tr_like' dt-board='"+item.BOARDNUM+"'>";
+					res += "<td>";
+					res += index + 1;
+					res += "</td>";
+					res += "<td>";
+					res += item.USERID;
+					res += "</td>";
+					res += "<td>";
+					res += item.TITLE;
+					res += "</td>";
+					res += "<td>";
+					res += item.RANK;
+					res += "</td>";
+					res += "</tr></tbody>";
+				});
+				res += "</table>";
+				$("#like").html(res);
+				$(".tr_like").on("click", function(){
+					likeTableEvent($(this).attr('dt-board'));
+				});
+			}
+		});
+
+		$.ajax({
+			url : "subscribeRanking",
+			type : "get",
+			success : function(resp) {
+				var res = "<span class='mini_title'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> SUBSCRIBE RANKING</span>";
+				res += "<table class='table'><thead><tr class='tr_top'>";
+				res += "<td class='td_no'>NO.</td>";
+				res += "<td>ID</td>";
+				res += "<td class='td_total'>TOTAL</td>";
+				res += "</tr></thead><tbody>";
+				$.each(resp, function(index, item) {
+					var theUser=item.USERID;
+					res += "<tr class='tr_sub' dt-subid='"+item.USERID+"'>";
+					res += "<td>";
+					res += index+1;
+					res += "</td>";
+					res += "<td>";
+					res += item.USERID;
+					res += "</td>";
+					res += "<td>";
+					res += item.RANK;
+					res += "</td>";
+					res += "</tr>";
+				});
+				res += "</tbody></table>";
+				$("#subscribe").html(res);
+				$(".tr_sub").on("click", function(){
+					subTableEvent($(this).attr('dt-subid'));
+				});
+			}
+		});
+	});
+	
+	function likeTableEvent(res){
+		window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
+	}
+	
+	function subTableEvent(res){
+		location.href="searchBoard?searchTitle=userid&searchText="+res;
 	}
 
 	$(function() {
@@ -209,11 +288,11 @@ img:hover{
 	/* 	$('#myCarousel').carousel({
 			interval : 10000
 		}); */
-
+		
 		$(".carousel-control.left").html("◀");
 		$(".carousel-control.right").html("▶");
-		
-		$.ajax({
+	
+/* 		$.ajax({
 			url : "likeRanking",
 			type : "get",
 			success : function(resp) {
@@ -256,8 +335,8 @@ img:hover{
 				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead>";
 				$.each(resp, function(index, item) {
-					res += "<tbody><tr onclick='javascript:subscribe("+item.USERID+")'>";
-					res += "<td>";
+					res += "<tbody><tr class='tr_sub' subid='"+item.USERID+"'>";
+					res += "<td><button class='s'>oooo</button>";
 					res += index+1;
 					res += "</td>";
 					res += "<td>";
@@ -271,7 +350,7 @@ img:hover{
 				res += "</table>";
 				$("#subscribe").html(res);
 			}
-		});
+		}); */
 
 	});
 </script>
@@ -294,89 +373,13 @@ img:hover{
 			
 			<!-- ========================================= like page ========================================= -->
 			<div id="like">
-<!-- 				<table class="table">
-					<tr class="tr_top">
-						<td>#</td>
-						<td><span class="glyphicon glyphicon-heart"
-							aria-hidden="true"></span> LIKE RANKING</td>
-						<td>COUNT</td>
-					</tr>
-					<span class="dddd"></span>
-					<tr>
-						<td>1</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/disc.png'"> 곡 제목입니다</td>
-						<td>255</td>
-					</tr>
-				</table> -->
 			</div>
 
 			<!-- ========================================= suscribe page ========================================= -->
 			<div id="subscribe">
-<!-- 				<table class="table">
-					<tr class="tr_top">
-						<td>#</td>
-						<td><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-							SUBSCRIBE RANKING</td>
-						<td>COUNT</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/user.png'"> user 1</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/user.png'"> user 1</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/user.png'"> user 1</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/user.png'"> user 1</td>
-						<td>255</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><img class="image" src=""
-							onERROR="this.src='images/user.png'"> user 1</td>
-						<td>255</td>
-					</tr>
-				</table> -->
 			</div>
 			<hr>
+			
 			<div id="title">
 				<h3>LATEST MUSIC</h3>
 			</div>
@@ -386,50 +389,19 @@ img:hover{
 			    <div class="carousel-inner">
 			      <ul class="row item active">
 			      	<c:forEach var="board" items="${list}" end="5">
-			        <li class="col-xs-2 one"> <a href="comuplayer?filenum=${board.filenum}"><img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive"></a></li>
+			        <li class="col-xs-2 one"> <img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive" filenum="${board.filenum}"></li>
 			        </c:forEach>
 			      </ul>
 			      <ul class="row item">
 			      	<c:forEach var="board" items="${list}" begin="6" end="11">			      
-			        <li class="col-xs-2 one"> <a href="comuplayer?filenum=${board.filenum}"><img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive"></a></li>
+			        <li class="col-xs-2 one"> <img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive" filenum="${board.filenum}"></li>
 			        </c:forEach>
 			      </ul>
 			    </div>
 			    <a class="carousel-control left" href="#single" data-slide="prev">Previous</a> <a class="carousel-control right" href="#single" data-slide="next">Next</a> </div>
 				<br><br>
-<!-- 				<table class="table">
-					<tr class="tr_top">
-						<td><span class="glyphicon glyphicon-music"
-							aria-hidden="true"></span> LATEST MUSIC</td>
-					</tr>
-					<tr>
-						<td>2222</td>
-					</tr>
-					<tr>
-						<td>3333</td>
-					</tr>
-				</table> -->
 			</div>
-		</div>
-			<!-- ranking end -->
-
-		<!-- 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="row score">
-					<div class="col-md-5"> style="background-color: red;
-						<h3>Favorite Ranking</h3>
-						<div class="like"></div>
-					</div>
-					<div class="col-md-1"></div>
-					<div class="col-md-5"> style="background-color: red;
-						<h3>Subscribe Ranking</h3>
-						<div class="subscribe"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3"></div>
-		</div> -->
+		</div>	<!-- ranking end -->
 	</div>	<!-- totalwrapper end -->
 
 </body>
