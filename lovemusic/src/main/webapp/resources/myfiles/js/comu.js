@@ -50,10 +50,12 @@ $(function() {
 
 	mainEditor.setValue($("#mainText").val());
 	$('#load').click(function() {
-		if (!source)
+		if (!source) {
 			alert('Click the File!');
-		else
+		} else {
 			mainEditor.append(source);
+			$("#loadModal").modal("hide");
+		}
 		source = null;
 	});
 });
@@ -119,39 +121,39 @@ function load() {
 
 function refreshLoadModal() {
 	$
-			.ajax({
-				type : "get",
-				url : "fileList",
-				success : function(resp) {
-					var comu = "<table class='table'><tr>";
-					var hicu = "<table class='table'><tr>";
-					$
-							.each(
-									resp,
-									function(index, item) {
-										var msg = '<td><div class="loadable" data-filenum="'
-												+ item.filenum
-												+ '" data-file_ori="'
-												+ item.file_ori
-												+ '"><img src="resources/covers/'
-												+ item.cover_re
-												+ '" style="width:80px; height:80px; border-radius:5px;"></div>';
-										msg += item.file_title + '</td>';
-										if ((index + 5) % 4 == 0) {
-											msg += "</tr><tr>";
-										}
-										if (item.file_type == 'comu')
-											comu += msg;
-										else
-											hicu += msg;
-									});
-					comu += "</tr><table>";
-					hicu += "</tr><table>";
-					$("#comuLoader").html(comu);
-					$("#hicuLoader").html(hicu);
-					load();
-				}
-			});
+		.ajax({
+			type : "get",
+			url : "fileList",
+			success : function(resp) {
+				var comu = "<table class='table'><tr>";
+				var hicu = "<table class='table'><tr>";
+				$
+					.each(
+						resp,
+						function(index, item) {
+							var msg = '<td><div class="loadable" data-filenum="'
+								+ item.filenum
+								+ '" data-file_ori="'
+								+ item.file_ori
+								+ '"><img src="resources/covers/'
+								+ item.cover_re
+								+ '" style="width:80px; height:80px; border-radius:5px;"></div>';
+							msg += item.file_title + '</td>';
+							if ((index + 5) % 4 == 0) {
+								msg += "</tr><tr>";
+							}
+							if (item.file_type == 'comu')
+								comu += msg;
+							else
+								hicu += msg;
+						});
+				comu += "</tr><table>";
+				hicu += "</tr><table>";
+				$("#comuLoader").html(comu);
+				$("#hicuLoader").html(hicu);
+				load();
+			}
+		});
 }
 
 function setClickable() {
@@ -181,7 +183,7 @@ function setClickable() {
 
 function setView() {
 	$("#totalWrapper").css("height", $(window).height()).css("padding-top",
-			"90px");
+		"90px");
 }
 
 function setEditor() {
@@ -196,7 +198,7 @@ function setStringFormat() {
 			var args = Array.prototype.slice.call(arguments, 1);
 			return format.replace(/{(\d+)}/g, function(match, number) {
 				return typeof args[number] != 'undefined' ? args[number]
-						: match;
+					: match;
 			});
 		};
 	}
@@ -204,72 +206,72 @@ function setStringFormat() {
 
 function getMusicTree() {
 	$
-			.ajax({
-				type : "post",
-				url : "getList",
-				success : function(resp) {
-					var tree = '{ "data" : [';
-					var mapKey = Object.keys(resp);
-					var insId = 0;
-					var arr = [];
-					$
-							.each(
-									mapKey,
-									function(index, item) {
-										if ($.inArray(
-												resp[item][0]["motherName"],
-												arr) == -1) {
-											if (index != 0) {
-												tree += ", "
-											}
-											tree += String
-													.format(
-															'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
-															resp[item][0]["motherName"],
-															resp[item][0]["motherName"]);
-											arr
-													.push(resp[item][0]["motherName"]);
-										}
-										if (resp[item][0]["insName"] != 'effect') {
-											tree += String
-													.format(
-															', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-															resp[item][0]["insName"],
-															resp[item][0]["motherName"],
-															resp[item][0]["insName"]);
-										}
-										var arrayList = resp[item];
-										$
-												.each(
-														arrayList,
-														function(listIndex,
-																listItem) {
-															var id = insId++;
-															var parent = listItem["insName"];
-															var text = listItem["fileName"];
-															tree += String
-																	.format(
-																			', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
-																			id,
-																			parent,
-																			text);
-														});
+		.ajax({
+			type : "post",
+			url : "getList",
+			success : function(resp) {
+				var tree = '{ "data" : [';
+				var mapKey = Object.keys(resp);
+				var insId = 0;
+				var arr = [];
+				$
+					.each(
+						mapKey,
+						function(index, item) {
+							if ($.inArray(
+									resp[item][0]["motherName"],
+									arr) == -1) {
+								if (index != 0) {
+									tree += ", "
+								}
+								tree += String
+									.format(
+										'{"id" : "{0}" ,"parent" : "#", "text" : "{1}"}',
+										resp[item][0]["motherName"],
+										resp[item][0]["motherName"]);
+								arr
+									.push(resp[item][0]["motherName"]);
+							}
+							if (resp[item][0]["insName"] != 'effect') {
+								tree += String
+									.format(
+										', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+										resp[item][0]["insName"],
+										resp[item][0]["motherName"],
+										resp[item][0]["insName"]);
+							}
+							var arrayList = resp[item];
+							$
+								.each(
+									arrayList,
+									function(listIndex,
+										listItem) {
+										var id = insId++;
+										var parent = listItem["insName"];
+										var text = listItem["fileName"];
+										tree += String
+											.format(
+												', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+												id,
+												parent,
+												text);
 									});
-					tree += "] }";
-					var jsonTree = JSON.parse(tree);
-					$('#treeViewDiv').jstree({
-						'plugins' : [ "wholerow" ],
-						'core' : jsonTree
-					});
+						});
+				tree += "] }";
+				var jsonTree = JSON.parse(tree);
+				$('#treeViewDiv').jstree({
+					'plugins' : [ "wholerow" ],
+					'core' : jsonTree
+				});
 
-					$("#treeViewDiv").delegate("a", "dblclick",
-							function(e, data) {
-								var node = $(e.target).closest("li");
-								var id = node[0].id; // id of the selected
-								// node
-							});
-				}
-			});
+				$("#treeViewDiv").delegate("a", "dblclick",
+					function(e, data) {
+						var node = $(e.target).closest("li");
+						var id = node[0].id; // id of the selected
+					// node
+					});
+			}
+		});
 }
 
 function addBtn() {
@@ -295,7 +297,7 @@ function comuRun(source) {
 				var errorMsg = resp.substring(5, resp.length);
 				errorLine = parseInt(errorMsg);
 				errorMsg = errorMsg.substring((errorLine + "").length + 4,
-						errorMsg.length);
+					errorMsg.length);
 				$("#errorClick").html("Error Line :  " + errorLine);
 				$("#errorContent").append(errorMsg);
 			} else {
