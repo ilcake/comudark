@@ -44,7 +44,13 @@
 <script src="resources/audiojs/ImprovedNoise.js"></script>
 <script src="resources/audiojs/Visualizer.js"></script>
 <script src="resources/audiojs/audio.js"></script>
+<script type="text/javascript">
+	$(function() {});
 
+
+	function reWriteCode() {
+	}
+</script>
 </head>
 <body>
 	<div id="source" hidden="hidden">${file.file_ori}</div>
@@ -72,5 +78,7 @@
 			</td>
 		</tr>
 	</table>
+	<input type="text" id="compiledCode" hidden="" value="${file.file_com}" />
+	<input type="text" id="preCode" hidden="" value="${file.file_ori}" />
 </body>
 </html>

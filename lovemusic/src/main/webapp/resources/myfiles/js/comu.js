@@ -98,12 +98,12 @@ function save() {
 		return;
 	}
 	var txt = mainEditor.getValue();
-	var reTxt = txt.split("\n");
+	/*var reTxt = txt.split("\n");
 	var ggTxt = "";
 	$.each(reTxt, function(index, item) {
-		ggTxt += item += "*";
+		ggTxt += item += "%";
 	});
-	txt = ggTxt;
+	txt = ggTxt;*/
 
 	$('<input>').attr({
 		type : 'text',
@@ -116,12 +116,12 @@ function save() {
 function load() {
 	$('.loadable').click(function() {
 		source = $(this).attr('data-file_ori');
-		var reSource = source.split("*");
+		/*var reSource = source.split("%");
 		var comp = "";
 		$.each(reSource, function(index, item) {
 			comp += item + "\n";
 		});
-		source = comp;
+		source = comp;*/
 
 		$('.loadable').each(function(index, item) {
 			$(item).removeClass('selected')
