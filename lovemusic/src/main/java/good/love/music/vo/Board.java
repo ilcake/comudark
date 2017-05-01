@@ -1,6 +1,6 @@
 package good.love.music.vo;
 
-public class Board {
+public class Board{
 
 	private String userid;			//작성자
 	private String profile;			//프로필 사진

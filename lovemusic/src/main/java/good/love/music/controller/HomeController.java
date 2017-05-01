@@ -151,11 +151,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/player", method = RequestMethod.GET)
-	public String player(Model model, int boardnum) {
-		Board board = boardRepository.selectBoard(boardnum);
-		model.addAttribute("board", board);
-		return "player";
-	}
+	public String player(Model model, int boardnum) {		Board board = boardRepository.selectBoard(boardnum);		model.addAttribute("board", board);		return "player";	}
 
 	@RequestMapping(value = "/shared", method = RequestMethod.GET)
 	public String shared(HttpSession session) {

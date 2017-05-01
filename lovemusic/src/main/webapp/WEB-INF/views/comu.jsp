@@ -143,13 +143,16 @@
 				<div class="modal-body">
 					<form action="save" method="post" id="saveForm"
 						enctype="multipart/form-data">
-						<input name="filenum" type="hidden" value="${file.filenum}">
-						<input name="userid" type="hidden" value="${loginId}"> <label>
-							<img id="imgView" src="resources/covers/${file.cover_re}"
+						<c:if test="${not empty file.filenum}">
+							<input id="filenum" name="filenum" type="hidden"
+								value="${file.filenum}">
+						</c:if>
+						<input id="userid" name="userid" type="hidden" value="${loginId}">
+						<label> <img id="imgView"
+							src="resources/covers/${file.cover_re}"
 							onERROR="this.src='resources/myfiles/images/comu/robot.png'"
 							style="width: 100px; height: 100px; border-radius: 100px;">
-							<input type="file" style="display: none;" id="imgInp"
-							name="upload" />
+							<input type="file" id="imgInp" name="upload" />
 						</label> <input type="text" class="form-control" id="title"
 							name="file_title" value="${file.file_title}" />
 					</form>
@@ -167,17 +170,24 @@
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Load File</h4>
-				</div>
 				<div class="modal-body">
-					<div id="loader"></div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="load">
-						Load<span class="glyphicon glyphicon-loaded"></span>
-					</button>
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#comu"
+							id="loadComu">COMU</a></li>
+						<li><a data-toggle="tab" href="#hicu" id="loadHicu">HICU</a></li>
+					</ul>
+					<div class="tab-content" style="margin-top: 1px;">
+						<!-- =============  tab1 : COMU  ========= -->
+						<div id="comu" class="tab-pane in active">
+							<div id="comuLoader">
+								<!-- loaded file -->
+							</div>
+						</div>
+						<!-- =============  tab2 : HICU  =========== -->
+						<div id="hicu" class="tab-pane fade">
+							<div id="hicuLoader"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
