@@ -62,13 +62,13 @@ function getLoginId() {
 					$("#saveModalBtn").trigger("click");
 					console.log("aa");
 				});
-				$("#save").click(save);
+				$("#save").on("click", save);
 
 				$("#loadBtn").click(function() {
 					refreshLoadModal();
 					$("#loadModalBtn").trigger("click");
 				});
-				$("#load").click(load);
+				$("#load").on("click", load);
 			} else {
 				$("#saveBtn").click(function() {
 					alert('로그인이 필요합니다.');

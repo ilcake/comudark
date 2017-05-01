@@ -78,7 +78,7 @@
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content alert">
+			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h5 class="modal-title">Save as File</h5>
@@ -106,11 +106,13 @@
 						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer" id="modalFooter">
+					<!-- <a href="#" class="button save" id="saveHicuCode">Save</a> -->
 					<button id="saveHicuCode" type="button" class="btn-success"
 						data-dismiss="modal">
 						<span class="glyphicon glyphicon-floppy-disk">Save</span>
 					</button>
+					<!-- <a href="#" class="button delete" data-dismiss="modal">close</a> -->
 					<button type="button" class="btn-danger" data-dismiss="modal">
 						<span class="glyphicon glyphicon-remove">close</span>
 					</button>
