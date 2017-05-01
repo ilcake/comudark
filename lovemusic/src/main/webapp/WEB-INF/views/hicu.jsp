@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HiCu</title>
+<title>HiCu - Click and Play!</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"

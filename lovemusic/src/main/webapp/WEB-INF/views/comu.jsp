@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CoMu - Make Your OWN!</title>
 </head>
 
 <!-- ==============   INCLUDE JS AND CSS   ================= -->
