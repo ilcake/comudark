@@ -49,6 +49,9 @@ textarea {
 }
 
 canvas {
-	width: 80%;
-	height: 80%;
+}
+
+#visual {
+	position: relative;
+	height: 100%;
 }

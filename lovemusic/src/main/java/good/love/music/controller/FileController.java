@@ -1,5 +1,7 @@
 package good.love.music.controller;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import good.love.music.comu.MyNewGrammar;
 import good.love.music.repository.BoardRepository;
 import good.love.music.repository.FileRepository;
 import good.love.music.repository.UserRepository;
+import good.love.music.service.URLGenerator;
 import good.love.music.util.FileService;
 import good.love.music.vo.Files;
 
 @Controller
 public class FileController {
+	@Autowired
+	CodeController cc;
 
 	@Autowired
 	UserRepository userRepository;
@@ -39,7 +45,7 @@ public class FileController {
 	// COMU : 음악 저장 / 수정 후 저장
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(MultipartFile upload, Files file, HttpSession session) {
-
+		System.out.println("here?");
 		// 이미지 파일 업로드 경로
 		String uploadPath = request.getSession().getServletContext().getRealPath("/") + "/resources/covers";
 
@@ -52,8 +58,8 @@ public class FileController {
 		}
 
 		// 임시 셋팅
-		file.setFile_com("comfiled code");
-		file.setFile_type("COMU");
+		file.setFile_com(cc.getCompliedCode(file.getFile_ori()));
+		file.setFile_type("comu");
 
 		if (file.getFilenum() == 0) {
 			fileRepository.saveFile(file); // 저장 (Save)
@@ -61,7 +67,7 @@ public class FileController {
 			fileRepository.updateFile(file); // 덮어쓰기 (Update) //****ajax 형식으로
 												// 변환할 것!!
 		}
-		return "comuTesting";
+		return "comu";
 	}
 
 	// 저장 - ajax //
@@ -98,7 +104,7 @@ public class FileController {
 		Files file = fileRepository.loadFile(filenum);
 		System.out.println(file);
 		session.setAttribute("file", file);
-		return "comuTesting";
+		return "comu";
 	}
 
 	// 음악 삭제
