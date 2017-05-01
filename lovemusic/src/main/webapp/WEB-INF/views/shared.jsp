@@ -125,10 +125,8 @@
 										<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>
 										<td>
 										<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->
-										<a href="updateReply?replynum=${reply.replynum}"><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"
-												style="font-size: small;"></span></a> <a
-											href="deleteReply?replynum=${reply.replynum}">X</a>
+											<span class="glyphicon glyphicon-pencil updatereply" aria-hidden="true" style="font-size: small;" boardnum="${board.boardnum}" replynum="${reply.replynum}" replytext="${reply.replytext}"></span>
+											<a href="deleteReply?replynum=${reply.replynum}">X</a>
 										</c:if>
 										</td>
 									</tr>
@@ -136,13 +134,17 @@
 							</c:forEach>
 							<tr>
 								<form action="replyWrite" method="post">
+								<input type="hidden" class="here" boardnum="${board.boardnum}">
 								<input type="hidden" name="boardnum" value="${board.boardnum}" />
 									<td class="td_img">댓글</td>
-									<td class="td_center" style="width: 70%;"><input
-										type="text" name="replytext" id="replytext" style="width:100%;"></td>
-									<td><button style="border: none; background: none;" class="reply" boardnum="${board.boardnum }">
+									<td class="td_center" style="width: 70%;">
+										<input type="text" name="replytext" class="replytext" boardnum="${board.boardnum}" style="width:100%;">
+									</td>
+									<td>
+										<button style="border: none; background: none;" class="reply" boardnum="${board.boardnum }">
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-										</button></td>
+										</button>
+									</td>
 								</form>
 							</tr>
 						</table>

@@ -165,8 +165,20 @@ $(function(){
 		}
 	);
 
-	$(".cover").on("click", function(){
-		window.open("player", "player", "height=200, width=400, resizable=no, top=200, left=400");
+	
+	//댓글 수정
+	$(".updatereply").on("click", function(){
+		$(".replytext[boardnum="+$(this).attr("boardnum")+"]").val($(this).attr("replytext"));
+		$(".here[boardnum="+$(this).attr("boardnum")+"]").attr("name", 'replynum').attr("value", $(this).attr('replynum'));
 	});
+	
+	$(".updatereply").hover(
+			function(){
+				$(this).css("color", "red");		
+			},
+			function(){
+				$(this).css("color", "black");		
+			}
+		);
 	
 });

@@ -23,7 +23,7 @@ email VARCHAR2(30) NOT NULL,
 password VARCHAR2(30) NOT NULL,
 question VARCHAR2(30) NOT NULL,
 answer VARCHAR2(30) NOT NULL,
-profile VARCHAR2(200)
+profile VARCHAR2(200) DEFAULT 'user.jpg'
 );
 
 -- 파일DB
@@ -51,7 +51,7 @@ content VARCHAR2(2000),
 inputdate DATE DEFAULT SYSDATE,
 filenum NUMBER,
 shared VARCHAR2(20) NOT NULL,
-profile VARCHAR2(200) DEFAULT 'default.jpg'
+profile VARCHAR2(200) DEFAULT 'user.jpg'
 );
 
 
@@ -89,47 +89,47 @@ sub_userid VARCHAR2(30) NOT NULL
 -- ** TEST DATA   
 
 -- * CM_USER (USERID, EMAIL, PASSWORD, QUESTION, ANSWER, PROFILE)
-insert into cm_user values('aa', 'aa@aa.com', 'aa', 'aa', 'aa', null);
-insert into cm_user values('bb', 'bb@bb.com', 'bb', 'bb', 'bb', null);
-insert into cm_user values('cc', 'cc@cc.com', 'cc', 'cc', 'cc', null);
-insert into cm_user values('dd', 'dd@dd.com', 'dd', 'dd', 'dd', null);
-insert into cm_user values('ee', 'ee@ee.com', 'ee', 'ee', 'ee', null);
+insert into cm_user(userid, email, password, question, answer) values('aa', 'aa@aa.com', 'aa', 'aa', 'aa');
+insert into cm_user(userid, email, password, question, answer) values('bb', 'bb@bb.com', 'bb', 'bb', 'bb');
+insert into cm_user(userid, email, password, question, answer) values('cc', 'cc@cc.com', 'cc', 'cc', 'cc');
+insert into cm_user(userid, email, password, question, answer) values('dd', 'dd@dd.com', 'dd', 'dd', 'dd');
+insert into cm_user(userid, email, password, question, answer) values('ee', 'ee@ee.com', 'ee', 'ee', 'ee');
 
 -- * CM_FILE (FILENUM, USERID, FILE_ORI, FILE_COM, FILE_TYPE, FILE_TITLE, COVER_ORI, COVER_RE)
-insert into cm_file values(filenum_seq.nextval, 'aa', 'original code', 'comfiled code', 'comu', 'title of file', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'awesome song', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa2', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa3', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa4', null, null);
-insert into cm_file values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa5', null, null);
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'original code', 'comfiled code', 'comu', 'title of file');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'awesome song');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa2');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'hicu', 'aaa3');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa4');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'aa', 'aa', 'aa', 'comu', 'aaa5');
 
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb1', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb2', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb3', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb4', null, null);
-insert into cm_file values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb5', null, null);
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb1');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb2');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'hicu', 'bbb3');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb4');
+insert into cm_file(filenum, userid, file_ori, file_com, file_type, file_title) values(filenum_seq.nextval, 'bb', 'bb', 'bb', 'comu', 'bbb5');
 
 -- * CM_BOARD (BOARDNUM, USERID, TITLE, CONTENT, INPUTDATE, FILENUM, SHARED, PROFILE)
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'title of board', 'content of board', sysdate, 1, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'false', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa3', 'aaaaaaa', sysdate, 3, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa4', 'aaaaaaa', sysdate, 4, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'aa', 'aaaa5', 'aaaaaaa', sysdate, 5, 'true', null);
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'aa', 'title of board', 'content of board', sysdate, 1, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'aa', 'aaaa2', 'aaaaaaa', sysdate, 2, 'false');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'aa', 'aaaa3', 'aaaaaaa', sysdate, 3, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'aa', 'aaaa4', 'aaaaaaa', sysdate, 4, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'aa', 'aaaa5', 'aaaaaaa', sysdate, 5, 'true');
 
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb1', 'bbbbbb', sysdate, 6, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb2', 'bbbbbb', sysdate, 7, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb3', 'bbbbbb', sysdate, 8, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb4', 'bbbbbb', sysdate, 9, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb5', 'bbbbbb', sysdate, 10, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'bb', 'bbbb6', 'bbbbbb', sysdate, 11, 'true', null);
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb1', 'bbbbbb', sysdate, 6, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb2', 'bbbbbb', sysdate, 7, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb3', 'bbbbbb', sysdate, 8, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb4', 'bbbbbb', sysdate, 9, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb5', 'bbbbbb', sysdate, 10, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'bb', 'bbbb6', 'bbbbbb', sysdate, 11, 'true');
 
-insert into CM_BOARD values(boardnum_seq.nextval, 'cc', 'bbbb1', 'bbbbbb', sysdate, 6, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'cc', 'bbbb2', 'bbbbbb', sysdate, 7, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'dd', 'bbbb3', 'bbbbbb', sysdate, 8, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'dd', 'bbbb4', 'bbbbbb', sysdate, 9, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'ee', 'bbbb5', 'bbbbbb', sysdate, 10, 'true', null);
-insert into CM_BOARD values(boardnum_seq.nextval, 'ee', 'bbbb6', 'bbbbbb', sysdate, 11, 'true', null);
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'cc', 'bbbb1', 'bbbbbb', sysdate, 6, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'cc', 'bbbb2', 'bbbbbb', sysdate, 7, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'dd', 'bbbb3', 'bbbbbb', sysdate, 8, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'dd', 'bbbb4', 'bbbbbb', sysdate, 9, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'ee', 'bbbb5', 'bbbbbb', sysdate, 10, 'true');
+insert into CM_BOARD(boardnum, userid, title, content, inputdate, filenum, shared) values(boardnum_seq.nextval, 'ee', 'bbbb6', 'bbbbbb', sysdate, 11, 'true');
 
 -- * CM_LIKE (BOARDNUM, USERID, LIKE_USERID)
 insert into cm_like values(1, 'aa', 'bb');

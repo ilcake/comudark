@@ -135,7 +135,8 @@
 	<update id="updateReply" parameterType="Reply">
 		UPDATE cm_reply
 		SET
-		replytext = #{replytext}
+		replytext = #{replytext},
+		inputdate = SYSDATE
 		WHERE
 		replynum = #{replynum}
 	</update>

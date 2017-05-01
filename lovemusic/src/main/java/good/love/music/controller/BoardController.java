@@ -153,8 +153,13 @@ public class BoardController {
 		
 		String loginId = (String) session.getAttribute("loginId");
 		reply.setUserid(loginId);
-		boardRepository.replyWrite(reply);
 		
+		System.out.println(reply);
+		
+		if(reply.getReplynum() == 0)
+			boardRepository.replyWrite(reply);
+		else
+			boardRepository.updateReply(reply);	
 		String uri = request.getHeader("referer");
 		return "redirect:shared";
 	}
