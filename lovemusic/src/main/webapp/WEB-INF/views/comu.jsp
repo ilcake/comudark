@@ -55,6 +55,8 @@
 		id="saveModalBtn" hidden="hidden"></button>
 	<button type="button" data-toggle="modal" data-target="#loadModal"
 		id="loadModalBtn" hidden="hidden"></button>
+	<button type="button" data-toggle="modal"
+		data-target="#loadItemViewModal" id="loadItemBtn" hidden="hidden"></button>
 	<jsp:include page="navibar.jsp" flush="false" />
 	<div id="totalWrapper">
 		<input id="mainText" type="hidden" value="${file.file_ori}">
@@ -189,6 +191,21 @@
 							<div id="hicuLoader"></div>
 						</div>
 					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" id="load">
+						load</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="loadItemViewModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="loadEditor"></div>
 				</div>
 			</div>
 		</div>

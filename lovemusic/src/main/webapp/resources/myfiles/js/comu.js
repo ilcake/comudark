@@ -2,7 +2,10 @@ var errorLine;
 var recentEditor;
 var sampleEditor;
 var mainEditor;
+var loadEditor;
 var loginId;
+var selectedItem;
+var source;
 $(function() {
 	setView();
 	setStringFormat();
@@ -46,7 +49,13 @@ $(function() {
 	});
 
 	mainEditor.setValue($("#mainText").val());
-
+	$('#load').click(function() {
+		if (!source)
+			alert('Click the File!');
+		else
+			mainEditor.append(source);
+		source = null;
+	});
 });
 
 function getLoginId() {
@@ -66,7 +75,6 @@ function getLoginId() {
 					refreshLoadModal();
 					$("#loadModalBtn").trigger("click");
 				});
-				$("#load").click(load);
 			} else {
 				$("#saveBtn").click(function() {
 					alert('로그인이 필요합니다.');
@@ -97,7 +105,17 @@ function save() {
 }
 
 function load() {
+	$('.loadable').click(function() {
+		source = $(this).attr('data-file_ori');
+		$('.loadable').each(function(index, item) {
+			$(item).removeClass('selected')
+		})
+		$(this).addClass('selected');
+		loadEditor.setValue(source);
+		$('#loadItemBtn').trigger('click');
+	});
 }
+
 function refreshLoadModal() {
 	$
 			.ajax({
@@ -110,11 +128,13 @@ function refreshLoadModal() {
 							.each(
 									resp,
 									function(index, item) {
-										var msg = '<td><a href="load?filenum='
+										var msg = '<td><div class="loadable" data-filenum="'
 												+ item.filenum
+												+ '" data-file_ori="'
+												+ item.file_ori
 												+ '"><img src="resources/covers/'
 												+ item.cover_re
-												+ '" style="width:80px; height:80px; border-radius:5px;"></a><br>';
+												+ '" style="width:80px; height:80px; border-radius:5px;"></div>';
 										msg += item.file_title + '</td>';
 										if ((index + 5) % 4 == 0) {
 											msg += "</tr><tr>";
@@ -128,6 +148,7 @@ function refreshLoadModal() {
 					hicu += "</tr><table>";
 					$("#comuLoader").html(comu);
 					$("#hicuLoader").html(hicu);
+					load();
 				}
 			});
 }
@@ -165,6 +186,7 @@ function setView() {
 function setEditor() {
 	sampleEditor = new MyEditor('sampleEditor');
 	mainEditor = new MyEditor('mainEditor');
+	loadEditor = new MyEditor('loadEditor');
 }
 
 function setStringFormat() {

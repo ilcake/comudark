@@ -10,10 +10,18 @@ function MyEditor(id) {
 	this.setReadOnly(false);
 }
 
+MyEditor.prototype.append = function(source) {
+	var session = this.editor.session;
+	session.insert({
+		row : session.getLength(),
+		column : 0
+	}, "\n" + source);
+}
+
 MyEditor.prototype.selectLine = function(lineNum) {
 	var Range = require("ace/range").Range;
-	this.editor.selection.setRange(new Range(lineNum - 1, 0, lineNum - 1,
-			99999));
+	this.editor.selection
+			.setRange(new Range(lineNum - 1, 0, lineNum - 1, 99999));
 }
 
 MyEditor.prototype.setTheme = function(theme) {
@@ -70,8 +78,11 @@ MyEditor.prototype.setEditor = function(id) {
 									token : "markup.heading",
 									regex : "[_A-Za-z$][_A-Za-z0-9$]*"
 								}, {
-									token : "comment",
+									token : "constant.numeric",
 									regex : "[0-9]+"
+								}, {
+									token : "comment",
+									regex : "\/\/.*"
 								}, this.keywordRule ]
 					};
 					this.normalizeRules()
