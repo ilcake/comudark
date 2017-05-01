@@ -207,6 +207,7 @@ function getMusicTree() {
 				type : "post",
 				url : "getList",
 				success : function(resp) {
+					console.log(resp);
 					var tree = '{ "data" : [';
 					var mapKey = Object.keys(resp);
 					var insId = 0;
@@ -246,12 +247,14 @@ function getMusicTree() {
 															var id = insId++;
 															var parent = listItem["insName"];
 															var text = listItem["fileName"];
+															var url = listItem["filePath"];
 															tree += String
 																	.format(
-																			', {"id" : "{0}" , "parent" : "{1}", "text" : "{2}" }',
+																			', {"id" : "{0}",  "parent" : "{1}", "text" : "{2}", "li_attr":{"url":"{3}"} }',
 																			id,
 																			parent,
-																			text);
+																			text,
+																			url);
 														});
 									});
 					tree += "] }";
@@ -259,14 +262,17 @@ function getMusicTree() {
 					$('#treeViewDiv').jstree({
 						'plugins' : [ "wholerow" ],
 						'core' : jsonTree
-					});
-
-					$("#treeViewDiv").delegate("a", "dblclick",
-							function(e, data) {
-								var node = $(e.target).closest("li");
-								var id = node[0].id; // id of the selected
-								// node
+					}).on("select_node.jstree", function(evt, data) {
+						var node_id = (data.node.id); // element id
+						var url = $("#" + node_id).attr("url"); // get
+						if (url) {
+							$("#" + node_id).unbind();
+							$("#" + node_id).dblclick(function() {
+								setCurrentTimevalue();
+								loadAudio(url, 0);
 							});
+						}
+					});
 				}
 			});
 }

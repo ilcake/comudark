@@ -12,32 +12,34 @@ public interface MyNewGrammarConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int TEMPO = 4;
+  int TEMPO = 8;
   /** RegularExpression Id. */
-  int BPM = 5;
+  int BPM = 9;
   /** RegularExpression Id. */
-  int DO = 6;
+  int DO = 10;
   /** RegularExpression Id. */
-  int LOCATION = 7;
+  int LOCATION = 11;
   /** RegularExpression Id. */
-  int INS = 8;
+  int INS = 12;
   /** RegularExpression Id. */
-  int LOOP = 9;
+  int LOOP = 13;
   /** RegularExpression Id. */
-  int EFFECT = 10;
+  int EFFECT = 14;
   /** RegularExpression Id. */
-  int SETNOTE = 11;
+  int SETNOTE = 15;
   /** RegularExpression Id. */
-  int NUMBER = 12;
+  int NUMBER = 16;
   /** RegularExpression Id. */
-  int DIGIT = 13;
+  int DIGIT = 17;
   /** RegularExpression Id. */
-  int NOTE = 14;
+  int NOTE = 18;
   /** RegularExpression Id. */
-  int EOL = 15;
+  int EOL = 19;
 
   /** Lexical state. */
   int DEFAULT = 0;
+  /** Lexical state. */
+  int ML_COMMENT_STATE = 1;
 
   /** Literal token values. */
   String[] tokenImage = {
@@ -45,6 +47,10 @@ public interface MyNewGrammarConstants {
     "\" \"",
     "\"\\t\"",
     "\"\\r\"",
+    "<token of kind 4>",
+    "\"/*\"",
+    "\"*/\"",
+    "<token of kind 7>",
     "\"tempo\"",
     "\"bpm\"",
     "\"do\"",
