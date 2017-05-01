@@ -2,22 +2,43 @@
  * 
  */
 
-function Editor(id) {
+function MyEditor(id) {
 	this.id = id;
 	this.editor = this.setEditor(id);
 	this.setFontSize("14pt");
 	this.setTheme("vibrant_ink");
+	this.setReadOnly(false);
 }
 
-Editor.prototype.setTheme = function(theme) {
+MyEditor.prototype.selectLine = function(lineNum) {
+	var Range = require("ace/range").Range;
+	this.editor.selection.setRange(new Range(lineNum - 1, 0, lineNum - 1,
+			99999));
+}
+
+MyEditor.prototype.setTheme = function(theme) {
 	this.editor.setTheme("ace/theme/" + theme);
 }
+MyEditor.prototype.insert = function(value) {
+	this.editor.insert(value);
+}
 
-Editor.prototype.setFontSize = function(size) {
+MyEditor.prototype.setValue = function(value) {
+	this.editor.setValue(value);
+}
+MyEditor.prototype.getValue = function() {
+	return this.editor.getValue();
+}
+
+MyEditor.prototype.setFontSize = function(size) {
 	document.getElementById(this.id).style.fontSize = size;
 }
 
-Editor.prototype.setEditor = function(id) {
+MyEditor.prototype.setReadOnly = function(readOnly) {
+	this.editor.setReadOnly(readOnly);
+}
+
+MyEditor.prototype.setEditor = function(id) {
 	define(
 			"DynHighlightRules",
 			[],

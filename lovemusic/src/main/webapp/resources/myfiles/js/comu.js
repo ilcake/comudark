@@ -24,7 +24,7 @@ $(function() {
 		}
 		$("#errorContent").html("<a href='#' id='errorClick'></a><br>");
 		$("#errorClick").click(function() {
-			selectTextareaLine(errorLine);
+			recentEditor.selectLine(errorLine);
 		});
 		comuRun(recentEditor.getValue());
 	});
@@ -32,13 +32,13 @@ $(function() {
 	$("#addBtn").click(addBtn);
 
 	$("#fontSize").change(function() {
-		document.getElementById('sampleEditor').style.fontSize = $(this).val();
-		document.getElementById('mainEditor').style.fontSize = $(this).val();
+		sampleEditor.setFontSize($(this).val());
+		mainEditor.setFontSize($(this).val());
 	});
 
 	$("#theme").change(function() {
-		sampleEditor.setTheme("ace/theme/" + $(this).val());
-		mainEditor.setTheme("ace/theme/" + $(this).val());
+		sampleEditor.setTheme($(this).val());
+		mainEditor.setTheme($(this).val());
 	})
 
 	$("#imgInp").on('change', function() {
@@ -54,13 +54,11 @@ function getLoginId() {
 		type : 'post',
 		url : 'getLoginId',
 		success : function(resp) {
-			console.log(resp);
 			loginId = resp;
 
 			if (loginId) {
 				$("#saveBtn").click(function() {
 					$("#saveModalBtn").trigger("click");
-					console.log("aa");
 				});
 				$("#save").click(save);
 
@@ -95,10 +93,7 @@ function save() {
 		name : 'file_ori',
 		value : txt
 	}).appendTo('#saveForm');
-
-	console.log(document.getElementById('saveForm'));
 	$('#saveForm').submit();
-
 }
 
 function load() {
@@ -168,63 +163,8 @@ function setView() {
 }
 
 function setEditor() {
-	define(
-			"DynHighlightRules",
-			[],
-			function(require, exports, module) {
-				"use strict";
-				var oop = require("ace/lib/oop");
-				var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;
-				var DynHighlightRules = function() {
-					this.keywordRule = {
-						regex : "\\w+",
-						onMatch : function() {
-							return "text"
-						}
-					}
-					this.$rules = {
-						"start" : [
-								{
-									token : "keyword",
-									regex : "tempo|bpm|loop|ins"
-								},
-								{
-									token : "variable",
-									regex : "location|do|note|reverb|delay|low|high"
-								},
-								{
-									token : "constant",
-									regex : "bass|beat|melody|acu|dub|guitarcode|guitarnote|piano|r8"
-								}, {
-									token : "markup.heading",
-									regex : "[_A-Za-z$][_A-Za-z0-9$]*"
-								}, {
-									token : "comment",
-									regex : "[0-9]+"
-								}, this.keywordRule ]
-					};
-					this.normalizeRules()
-				};
-				oop.inherits(DynHighlightRules, TextHighlightRules);
-				exports.DynHighlightRules = DynHighlightRules;
-			});
-
-	var TextMode = require("ace/mode/text").Mode;
-	var dynamicMode = new TextMode();
-	dynamicMode.HighlightRules = require("DynHighlightRules").DynHighlightRules;
-
-	sampleEditor = ace.edit("sampleEditor");
-	sampleEditor.resize();
-	sampleEditor.setTheme("ace/theme/vibrant_ink");
-	sampleEditor.session.setMode(dynamicMode);
-	document.getElementById('sampleEditor').style.fontSize = '14pt';
-
-	mainEditor = ace.edit("mainEditor");
-	mainEditor.resize();
-	mainEditor.setTheme("ace/theme/vibrant_ink");
-	mainEditor.session.setMode(dynamicMode);
-	document.getElementById('mainEditor').style.fontSize = '14pt';
-
+	sampleEditor = new MyEditor('sampleEditor');
+	mainEditor = new MyEditor('mainEditor');
 }
 
 function setStringFormat() {
@@ -245,8 +185,6 @@ function getMusicTree() {
 				type : "post",
 				url : "getList",
 				success : function(resp) {
-					console.log(resp);
-					console.log("==========================");
 					var tree = '{ "data" : [';
 					var mapKey = Object.keys(resp);
 					var insId = 0;
@@ -255,13 +193,6 @@ function getMusicTree() {
 							.each(
 									mapKey,
 									function(index, item) {
-										// console.log(JSON.stringify(resp[item][0]));
-										// console.log(resp[item][0]["motherName"]);
-										// console.log(resp[item][0]["insName"]);
-										// console.log(resp[item][0]["fileName"]);
-										// tree += String.format("{'id' : '{0}'
-										// , 'parent' : '#', 'text'
-										// : '{1}' }", );
 										if ($.inArray(
 												resp[item][0]["motherName"],
 												arr) == -1) {
@@ -303,7 +234,6 @@ function getMusicTree() {
 									});
 					tree += "] }";
 					var jsonTree = JSON.parse(tree);
-					console.log(tree);
 					$('#treeViewDiv').jstree({
 						'plugins' : [ "wholerow" ],
 						'core' : jsonTree
@@ -314,7 +244,6 @@ function getMusicTree() {
 								var node = $(e.target).closest("li");
 								var id = node[0].id; // id of the selected
 								// node
-								console.log(id);
 							});
 				}
 			});
@@ -338,11 +267,9 @@ function comuRun(source) {
 			"source" : source
 		},
 		success : function(resp) {
-			console.log("resp = " + resp);
 			var check = resp.substring(0, 5);
 			if (check == "error") {
 				var errorMsg = resp.substring(5, resp.length);
-				console.log("errorMsg = " + errorMsg);
 				errorLine = parseInt(errorMsg);
 				errorMsg = errorMsg.substring((errorLine + "").length + 4,
 						errorMsg.length);
@@ -365,12 +292,4 @@ function readURL(input) {
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
-}
-
-// 에러 메세지 클릭시 해당 하는 라인 셀렉트
-function selectTextareaLine(lineNum) {
-	var Range = require("ace/range").Range;
-	console.log(new Range(lineNum, 0, lineNum, 9999));
-	recentEditor.selection
-			.setRange(new Range(lineNum - 1, 0, lineNum - 1, 9999));
 }

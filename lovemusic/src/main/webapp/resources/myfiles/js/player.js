@@ -29,6 +29,7 @@ $(function() {
 				});
 			});
 
-	var playerEditor = new Editor('editor');
-	playerEditor.editor.setValue(source);
+	var editor = new MyEditor('editor');
+	editor.setValue(source);
+	editor.setReadOnly(true);
 });
