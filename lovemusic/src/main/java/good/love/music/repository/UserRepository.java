@@ -33,15 +33,15 @@ public class UserRepository {
 	}
 
 	// 아이디로 회원 정보 가져오기 Repository
-	public void selectOne(String userid, Model model) {
+	public User selectOne(String userid) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		User u = null;
 		try {
 			u = dao.selectOne(userid);
-			model.addAttribute("User", u);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return u;
 	}
 
 	// 로그인 Repository

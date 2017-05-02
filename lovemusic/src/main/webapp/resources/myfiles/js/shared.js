@@ -126,7 +126,7 @@ $(function(){
 		}
 	});
 	
-	//파일 영역 클릭 이벤트
+	//파일 영역 클릭 이벤트	(새창)
 	$(".buttonEffect").on("click", function(){
 		window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 	});
@@ -173,12 +173,35 @@ $(function(){
 	});
 	
 	$(".updatereply").hover(
+		function(){
+			$(this).css("color", "red");		
+		},
+		function(){
+			$(this).css("color", "black");		
+		}
+	);
+	
+	$(".hover").hover(
 			function(){
-				$(this).css("color", "red");		
+				$(this).css("color", "red").css("font-weight", "bold");		
 			},
 			function(){
-				$(this).css("color", "black");		
+				$(this).css("color", "black").css("font-weight", "normal");		
 			}
 		);
+		
 	
+	$(".pro").on("click", function(){
+		window.open("profile="+$(this).attr("userid"), "PROFILE", "top=200, left=400, width=400, height=500, location=no, resizable=no");
+
+	});
+	
+	$(".tool").hover(
+		function(){
+			$(".toolt").css("visibility", "visible");
+		},
+		function(){
+			$(".toolt").css("visibility", "hidden");
+		}
+	);
 });

@@ -94,5 +94,13 @@ public class UserController {
 		userRepository.idCheck(userid, model);
 		return "idCheck";
 	}
+	
+	// id 중복확인 처리 요청
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile(String userid, HttpSession session) {
+		User user = userRepository.selectOne(userid);
+		session.setAttribute("profile", user);
+		return "profile";
+	}
 
 }
