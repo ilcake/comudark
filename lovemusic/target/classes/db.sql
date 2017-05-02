@@ -1,4 +1,4 @@
--- =================== DROP TABLE & SEQUENCE =================
+﻿-- =================== DROP TABLE & SEQUENCE =================
 DROP TABLE cm_subscribe;
 DROP TABLE cm_like;
 DROP TABLE cm_reply;
@@ -32,8 +32,8 @@ CREATE TABLE cm_file
 filenum NUMBER PRIMARY KEY,
 userid VARCHAR2(30) NOT NULL CONSTRAINT cm_file_fk
 REFERENCES cm_user(userid) ON DELETE CASCADE,
-file_ori VARCHAR2(4000) NOT NULL,
-file_com VARCHAR2(4000) NOT NULL,
+file_ori CLOB NOT NULL,
+file_com CLOB NOT NULL,
 file_type VARCHAR2(10) NOT NULL,
 file_title VARCHAR2(50) NOT NULL,
 cover_ori VARCHAR2(200) DEFAULT 'default.jpg',

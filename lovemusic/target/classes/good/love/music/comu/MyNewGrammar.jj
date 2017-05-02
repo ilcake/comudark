@@ -90,6 +90,19 @@ SKIP :
 | "\r"
 }
 
+SKIP :
+{
+  < "//" (~[ "\r", "\n" ])* >
+| < "/*" > : ML_COMMENT_STATE
+}
+
+< ML_COMMENT_STATE >
+SKIP :
+{
+  < "*/" > : DEFAULT
+| < ~[ ] >
+}
+
 TOKEN :
 {
   < TEMPO : "tempo" >
@@ -236,7 +249,12 @@ boolean makeSound() throws Exception :
     return true;
   }
 | 
-  effect = < EFFECT > value = < NOTE > ";"
+  effect = < EFFECT >
+  (
+    value = < NOTE >
+  | value = < NUMBER >
+  )
+  ";"
   {
     switch (effect.image)
     {

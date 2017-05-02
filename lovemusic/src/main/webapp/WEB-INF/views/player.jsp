@@ -44,14 +44,20 @@
 <script src="resources/audiojs/ImprovedNoise.js"></script>
 <script src="resources/audiojs/Visualizer.js"></script>
 <script src="resources/audiojs/audio.js"></script>
+<script type="text/javascript">
+	$(function() {});
 
+
+	function reWriteCode() {
+	}
+</script>
 </head>
 <body>
-	<div id="source" hidden="hidden">${board.file_ori}</div>
+	<div id="source" hidden="hidden">${file.file_ori}</div>
 	<table>
 		<tr style="height: 5%;">
-			<td colspan="2" style="padding-top: 0px; text-align: left;">ID |
-				<span class="title">TITLE</span> | FILE TITLE
+			<td colspan="2" style="padding-top: 0px; text-align: left;">ID :
+				${ file.userid } | <span class="title">TITLE : ${file.title}</span>
 			</td>
 		</tr>
 		<tr style="height: 15%;">
@@ -72,5 +78,7 @@
 			</td>
 		</tr>
 	</table>
+	<input type="text" id="compiledCode" hidden="" value="${file.file_com}" />
+	<input type="text" id="preCode" hidden="" value="${file.file_ori}" />
 </body>
 </html>
