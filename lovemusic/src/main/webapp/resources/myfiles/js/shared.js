@@ -189,16 +189,20 @@ $(function(){
 				$(this).css("color", "black").css("font-weight", "normal");		
 			}
 		);
-		
 	
+	//프로필
 	$(".pro").on("click", function(){
-		window.open("profile="+$(this).attr("userid"), "PROFILE", "top=200, left=400, width=400, height=500, location=no, resizable=no");
-
+		window.open("profile?userid="+$(this).attr("userid"), "PROFILE", "top=200, left=400, width=400, height=256, location=no, resizable=no");
+	});
+	
+	$(".mes").on("click", function(){
+		window.open("message?userid="+$(this).attr("userid")+"&loginid="+$(this).attr("loginid"), "MESSAGE", "top=200, left=400, width=400, height=150, location=no, resizable=no");
 	});
 	
 	$(".tool").hover(
 		function(){
-			$(".toolt").css("visibility", "visible");
+			var boardnum = $(this).attr("boardnum");
+			$(".tool[boardnum='"+boardnum+"']>.toolt").css("visibility", "visible");
 		},
 		function(){
 			$(".toolt").css("visibility", "hidden");

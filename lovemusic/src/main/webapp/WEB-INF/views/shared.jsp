@@ -57,7 +57,7 @@
 						<table class='board'>
 							<tr>
 								<td class="td_img">
-									<div class="card-container tool">
+									<div class="card-container tool" boardnum="${board.boardnum}">
 										<div class="card">
 											<div class="side">
 												<img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="profileImage">
@@ -66,7 +66,7 @@
 												<img src="images/galaxy-2.jpg" style="position:absolute; left:0;">
 											</div>
 										</div>
-										<span class="toolt"><span class='pro hover' userid="${board.userid}">프로필</span><br><span class="mes hover" userid="${board.userid}">메시지</span></span>
+										<span class="toolt"><span class='pro hover' userid="${board.userid}">프로필</span><br><span class="mes hover" userid="${board.userid}" loginid="${loginId}">메시지</span></span>
 									</div>
 								</td>
 								<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>

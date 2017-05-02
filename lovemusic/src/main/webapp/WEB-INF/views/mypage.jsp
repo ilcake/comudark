@@ -20,8 +20,7 @@
 
 .td_center {	width: 60%;}
 .image {/* 	padding-top: 25px; */	border-radius: 0px;	outline: 1px solid black;
-	width: 70px;
-	min-Height: 70px;	border: white solid 2px;	box-shadow: 2px 2px 10px white;}
+	width: 70px;	max-Width: 70px;	height: 70px;	min-Height: 70px;		border: white solid 2px;	box-shadow: 2px 2px 10px white;}
 
 .td_button {	width: 20%;	text-align: right;}
 

@@ -157,6 +157,8 @@ tr {
 .image {
 	width: 50px;
 	height: 50px;
+	max-Width: 50px;
+	max-Height: 50px;
 }
 
 .carousel {

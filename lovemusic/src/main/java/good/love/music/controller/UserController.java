@@ -21,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	HttpSession session;
 
 	// 이미지 파일 업로드 경로
 	final String uploadPath = "/profiles";
@@ -56,7 +59,7 @@ public class UserController {
 
 	//  처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody String login(String sample,String main, String userid, String password, HttpSession session, HttpServletRequest request) {
+	public @ResponseBody String login(String sample,String main, String userid, String password, HttpServletRequest request) {
 		User user = userRepository.login(userid, password);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
@@ -69,14 +72,14 @@ public class UserController {
 
 	// loginId 가져오기
 	@RequestMapping(value = "/getLoginId", method = RequestMethod.POST)
-	public @ResponseBody String checkLogin(HttpSession session) {
+	public @ResponseBody String checkLogin() {
 		String loginId = (String) session.getAttribute("loginId");
 		return loginId;
 	}
 
 	// logout 처리
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session, HttpServletRequest request) {
+	public String logout(HttpServletRequest request) {
 		session.invalidate();
 		String uri = request.getHeader("referer");
 		return "redirect:" + uri;
@@ -95,12 +98,29 @@ public class UserController {
 		return "idCheck";
 	}
 	
-	// id 중복확인 처리 요청
+	// 프로필
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String profile(String userid, HttpSession session) {
+	public String profile(String userid) {
 		User user = userRepository.selectOne(userid);
 		session.setAttribute("profile", user);
 		return "profile";
+	}
+	
+	// 회원 정보 수정
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String updateUser(User user) {
+		int result = userRepository.updateOne(user);
+		String userid = user.getUserid();
+		User r = userRepository.selectOne(userid);
+		session.setAttribute("profile", r);
+		return "profile";
+	}
+	
+	// 메시지
+	@RequestMapping(value = "/message", method = RequestMethod.GET)
+	public String message(String userid, String loginid) {
+		session.setAttribute("message", userid);
+		return "message";
 	}
 
 }
