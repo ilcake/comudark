@@ -16,73 +16,75 @@
 <script>
 	var carousels = $('.carousel');
 	carousels
-			.each(function() {
-				var $obj = $(this);
-				var $inner = $obj.find('.carousel-inner');
+		.each(function() {
+			var $obj = $(this);
+			var $inner = $obj.find('.carousel-inner');
 
-				var id = 'uuid' + new Date().getTime();
-				$obj.addClass(id);
+			var id = 'uuid' + new Date().getTime();
+			$obj.addClass(id);
 
-				if ($obj.data('shift') === 1) {
-					var items = $obj.find('.item > [class*="col-"]'), visibleCnt = $obj
-							.find('.item:first [class*="col-"]').length, wrapper = "";
+			if ($obj.data('shift') === 1) {
+				var items = $obj.find('.item > [class*="col-"]'),
+					visibleCnt = $obj
+						.find('.item:first [class*="col-"]').length,
+					wrapper = "";
 
-					// build styles
-					var rule_base = '.carousel.' + id
-							+ ' .carousel-inner > .item', styles = $('<style></style>'), rules = [];
-					rules[0] = rule_base + '.next {left: ' + (100 / visibleCnt)
-							+ '%; transform: none;}';
-					rules[1] = rule_base + '.active {left: 0;}';
-					rules[2] = rule_base + '.active.left {left: -'
-							+ (100 / visibleCnt) + '%; transform: none;}';
-					rules[3] = rule_base + '.next.left {left: 0;}';
-					rules[4] = rule_base + '.active.right {left: '
-							+ (100 / visibleCnt) + '%; transform: none;}';
-					rules[5] = rule_base + '.prev.right {left: 0;}';
-					rules[6] = rule_base + '.prev {left: -'
-							+ (100 / visibleCnt) + '%; transform: none;}';
-					for (var i = 0; i < rules.length; i++) {
-						styles.append(rules[i]);
-					}
-					$obj.prepend(styles);
-
-					// rebuild items
-					for (var i = 0; i < $(items).length; i++) {
-						var $item = $(items[i]);
-						var parent = $item.parent();
-						if (parent.hasClass('item')) {
-							if (!wrapper.length) {
-								wrapper = parent.clone().removeClass('active')
-										.html('');
-							}
-							$item.unwrap();
-						}
-
-						var itemGroup = [ $item ];
-						for (var x = 1; x < visibleCnt; x++) {
-							var a = i + x;
-							var next = $(items[a]);
-							if (!next.length) {
-								next = $(items[(a - $(items).length)]);
-							}
-							itemGroup[x] = next.clone();
-						}
-						var newSet = wrapper.clone().html(itemGroup);
-						if (i == 0) {
-							newSet.addClass('active');
-						}
-						newSet.appendTo($inner);
-					}
+				// build styles
+				var rule_base = '.carousel.' + id
+						+ ' .carousel-inner > .item',
+					styles = $('<style></style>'),
+					rules = [];
+				rules[0] = rule_base + '.next {left: ' + (100 / visibleCnt)
+					+ '%; transform: none;}';
+				rules[1] = rule_base + '.active {left: 0;}';
+				rules[2] = rule_base + '.active.left {left: -'
+					+ (100 / visibleCnt) + '%; transform: none;}';
+				rules[3] = rule_base + '.next.left {left: 0;}';
+				rules[4] = rule_base + '.active.right {left: '
+					+ (100 / visibleCnt) + '%; transform: none;}';
+				rules[5] = rule_base + '.prev.right {left: 0;}';
+				rules[6] = rule_base + '.prev {left: -'
+					+ (100 / visibleCnt) + '%; transform: none;}';
+				for (var i = 0; i < rules.length; i++) {
+					styles.append(rules[i]);
 				}
-			});
+				$obj.prepend(styles);
+
+				// rebuild items
+				for (var i = 0; i < $(items).length; i++) {
+					var $item = $(items[i]);
+					var parent = $item.parent();
+					if (parent.hasClass('item')) {
+						if (!wrapper.length) {
+							wrapper = parent.clone().removeClass('active')
+								.html('');
+						}
+						$item.unwrap();
+					}
+
+					var itemGroup = [ $item ];
+					for (var x = 1; x < visibleCnt; x++) {
+						var a = i + x;
+						var next = $(items[a]);
+						if (!next.length) {
+							next = $(items[(a - $(items).length)]);
+						}
+						itemGroup[x] = next.clone();
+					}
+					var newSet = wrapper.clone().html(itemGroup);
+					if (i == 0) {
+						newSet.addClass('active');
+					}
+					newSet.appendTo($inner);
+				}
+			}
+		});
 </script>
 
 
 
 <script type="text/javascript">
-	$(function() {
-
-	});
+	$(function() {});
 </script>
 
 <link rel="shortcut icon" type="image/png"
@@ -119,8 +121,8 @@ table, td {
 	text-align: center;
 }
 
-tbody>tr:hover{
-background-color: rgba(255,255,255,0.5);
+tbody>tr:hover {
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .td_no, .td_total {
@@ -202,14 +204,14 @@ img:hover {
 	function like(boardnum) {
 		location.href = "player?boardnum=" + boardnum;
 	}
-	
-	$('document').ready(function(){
-		
+
+	$('document').ready(function() {
+
 		//파일 영역 클릭 이벤트
-		$("img").on("click", function(){
-			window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
+		$("img").on("click", function() {
+			window.open("player?filenum=" + $(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 		});
-		
+
 		$.ajax({
 			url : "likeRanking",
 			type : "get",
@@ -222,7 +224,7 @@ img:hover {
 				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead>";
 				$.each(resp, function(index, item) {
-					res += "<tbody><tr class='tr_like' dt-board='"+item.BOARDNUM+"'>";
+					res += "<tbody><tr class='tr_like' dt-board='" + item.BOARDNUM + "'>";
 					res += "<td>";
 					res += index + 1;
 					res += "</td>";
@@ -239,7 +241,7 @@ img:hover {
 				});
 				res += "</table>";
 				$("#like").html(res);
-				$(".tr_like").on("click", function(){
+				$(".tr_like").on("click", function() {
 					likeTableEvent($(this).attr('dt-board'));
 				});
 			}
@@ -256,10 +258,10 @@ img:hover {
 				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead><tbody>";
 				$.each(resp, function(index, item) {
-					var theUser=item.USERID;
-					res += "<tr class='tr_sub' dt-subid='"+item.USERID+"'>";
+					var theUser = item.USERID;
+					res += "<tr class='tr_sub' dt-subid='" + item.USERID + "'>";
 					res += "<td>";
-					res += index+1;
+					res += index + 1;
 					res += "</td>";
 					res += "<td>";
 					res += item.USERID;
@@ -271,85 +273,26 @@ img:hover {
 				});
 				res += "</tbody></table>";
 				$("#subscribe").html(res);
-				$(".tr_sub").on("click", function(){
+				$(".tr_sub").on("click", function() {
 					subTableEvent($(this).attr('dt-subid'));
 				});
 			}
 		});
 	});
-	
-	function likeTableEvent(res){
-		window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
+
+	function likeTableEvent(res) {
+		window.open("player?filenum=" + $(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 	}
-	
-	function subTableEvent(res){
-		location.href="searchBoard?searchTitle=userid&searchText="+res;
+
+	function subTableEvent(res) {
+		location.href = "searchBoard?searchTitle=userid&searchText=" + res;
 	}
 
 	$(function() {
 
-	/* 	$('#myCarousel').carousel({
-			interval : 10000
-		}); */
-		
 		$(".carousel-control.left").html("◀");
 		$(".carousel-control.right").html("▶");
-	
-/* 		$.ajax({
-			url : "likeRanking",
-			type : "get",
-			success : function(resp) {
-				var res = "<span class='mini_title'><span class='glyphicon glyphicon-heart' aria-hidden='true'></span> LIKE RANKING</span>";
-				res += "<table class='table'><thead><tr class='tr_top'>";
-				res += "<td class='td_no'>NO.</td>";
-				res += "<td>ID</td>";
-				res += "<td>TITLE</td>";
-				res += "<td class='td_total'>TOTAL</td>";
-				res += "</tr></thead>";
-				$.each(resp, function(index, item) {
-					res += "<tbody><tr onclick='javascript:like("+item.BOARDNUM+")'>";
-					res += "<td>";
-					res += index + 1;
-					res += "</td>";
-					res += "<td>";
-					res += item.USERID;
-					res += "</td>";
-					res += "<td>";
-					res += item.TITLE;
-					res += "</td>";
-					res += "<td>";
-					res += item.RANK;
-					res += "</td>";
-					res += "</tr></tbody>";
-				});
 
-		$.ajax({
-			url : "subscribeRanking",
-			type : "get",
-			success : function(resp) {
-				var res = "<span class='mini_title'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> SUBSCRIBE RANKING</span>";
-				res += "<table class='table'><thead><tr class='tr_top'>";
-				res += "<td class='td_no'>NO.</td>";
-				res += "<td>ID</td>";
-				res += "<td class='td_total'>TOTAL</td>";
-				res += "</tr></thead>";
-				$.each(resp, function(index, item) {
-					res += "<tbody><tr class='tr_sub' subid='"+item.USERID+"'>";
-					res += "<td><button class='s'>oooo</button>";
-					res += index+1;
-					res += "</td>";
-					res += "<td>";
-					res += item.USERID;
-					res += "</td>";
-					res += "<td>";
-					res += item.RANK;
-					res += "</td>";
-					res += "</tr></tbody>";
-				});
-				res += "</table>";
-				$("#subscribe").html(res);
-			}
-		}); */
 
 	});
 </script>
@@ -371,37 +314,46 @@ img:hover {
 			</div>
 
 			<!-- ========================================= like page ========================================= -->
-			<div id="like">
-			</div>
+			<div id="like"></div>
 
 			<!-- ========================================= suscribe page ========================================= -->
-			<div id="subscribe">
-			</div>
+			<div id="subscribe"></div>
 			<hr>
-			
+
 			<div id="title">
 				<h3>LATEST MUSIC</h3>
 			</div>
 			<!-- ========================================= latest page ========================================= -->
 			<div id="latest">
-			  <div id="single" class="carousel slide" data-ride="carousel" data-shift="1">
-			    <div class="carousel-inner">
-			      <ul class="row item active">
-			      	<c:forEach var="board" items="${list}" end="5">
-			        <li class="col-xs-2 one"> <img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive" filenum="${board.filenum}"></li>
-			        </c:forEach>
-			      </ul>
-			      <ul class="row item">
-			      	<c:forEach var="board" items="${list}" begin="6" end="11">			      
-			        <li class="col-xs-2 one"> <img src="resources/covers/${board.cover_re}" onERROR="this.src='images/album.jpg'" class="img-responsive" filenum="${board.filenum}"></li>
-			        </c:forEach>
-			      </ul>
-			    </div>
-			    <a class="carousel-control left" href="#single" data-slide="prev">Previous</a> <a class="carousel-control right" href="#single" data-slide="next">Next</a> </div>
-				<br><br>
+				<div id="single" class="carousel slide" data-ride="carousel"
+					data-shift="1">
+					<div class="carousel-inner">
+						<ul class="row item active">
+							<c:forEach var="board" items="${list}" end="5">
+								<li class="col-xs-2 one"><img
+									src="resources/covers/${board.cover_re}"
+									onERROR="this.src='images/album.jpg'" class="img-responsive"
+									filenum="${board.filenum}"></li>
+							</c:forEach>
+						</ul>
+						<ul class="row item">
+							<c:forEach var="board" items="${list}" begin="6" end="11">
+								<li class="col-xs-2 one"><img
+									src="resources/covers/${board.cover_re}"
+									onERROR="this.src='images/album.jpg'" class="img-responsive"
+									filenum="${board.filenum}"></li>
+							</c:forEach>
+						</ul>
+					</div>
+					<a class="carousel-control left" href="#single" data-slide="prev">Previous</a>
+					<a class="carousel-control right" href="#single" data-slide="next">Next</a>
+				</div>
+				<br> <br>
 			</div>
-		</div>	<!-- ranking end -->
-	</div>	<!-- totalwrapper end -->
+		</div>
+		<!-- ranking end -->
+	</div>
+	<!-- totalwrapper end -->
 
 </body>
 </html>

@@ -57,7 +57,8 @@
 	<table>
 		<tr style="height: 5%;">
 			<td colspan="2" style="padding-top: 0px; text-align: left;">ID :
-				${ file.userid } | <span class="title">TITLE : ${file.title}</span>
+				${file.userid} | <span class="title">TITLE :
+					${file.file_title}</span>
 			</td>
 		</tr>
 		<tr style="height: 15%;">
