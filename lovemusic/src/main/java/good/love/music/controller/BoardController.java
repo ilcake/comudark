@@ -90,7 +90,7 @@ public class BoardController {
 	public String writing(MultipartFile upload, Board board) {
 
 		// 이미지 파일 업로드 경로
-		String uploadPath = request.getSession().getServletContext().getResourcePaths("/") + "/resources/covers";
+		String uploadPath = request.getSession().getServletContext().getResourcePaths("/resources/covers/") + "";
 
 		// 이미지 처리
 		if (!upload.isEmpty()) {
