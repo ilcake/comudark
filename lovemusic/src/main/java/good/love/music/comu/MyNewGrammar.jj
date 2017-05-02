@@ -90,6 +90,19 @@ SKIP :
 | "\r"
 }
 
+SKIP :
+{
+  < "//" (~[ "\r", "\n" ])* >
+| < "/*" > : ML_COMMENT_STATE
+}
+
+< ML_COMMENT_STATE >
+SKIP :
+{
+  < "*/" > : DEFAULT
+| < ~[ ] >
+}
+
 TOKEN :
 {
   < TEMPO : "tempo" >

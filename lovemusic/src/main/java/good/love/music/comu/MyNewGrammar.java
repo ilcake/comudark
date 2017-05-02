@@ -79,7 +79,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     case TEMPO:
       jj_consume_token(TEMPO);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(16);
+      jj_consume_token(20);
     tempo = Integer.parseInt(number.image);
     if (tempo <= 0)
     {
@@ -90,7 +90,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     case BPM:
       jj_consume_token(BPM);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(16);
+      jj_consume_token(20);
     if (isSetBPM)
     {
       {if (true) throw new AlreadySetBPMException();}
@@ -145,7 +145,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   }
 
   final public boolean inTheMethod() throws ParseException, Exception {
-    jj_consume_token(17);
+    jj_consume_token(21);
     location = 0;
     doit = 1;
     effect = new Token();
@@ -159,7 +159,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     high = "null";
     while (makeSound())
     {}
-    jj_consume_token(18);
+    jj_consume_token(22);
     for (int i = 0; i < doit; i++)
     {
       if (list.size() > 0)
@@ -190,21 +190,21 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     case DO:
       jj_consume_token(DO);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(16);
+      jj_consume_token(20);
     doit = Integer.parseInt(number.image);
     {if (true) return true;}
       break;
     case LOCATION:
       jj_consume_token(LOCATION);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(16);
+      jj_consume_token(20);
     location = Integer.parseInt(number.image);
     {if (true) return true;}
       break;
     case EFFECT:
       effect = jj_consume_token(EFFECT);
       value = jj_consume_token(NOTE);
-      jj_consume_token(16);
+      jj_consume_token(20);
     switch (effect.image)
     {
       case "reverb" :
@@ -224,11 +224,11 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       break;
     case SETNOTE:
       jj_consume_token(SETNOTE);
-      jj_consume_token(19);
+      jj_consume_token(23);
       note = jj_consume_token(NOTE);
-      jj_consume_token(20);
+      jj_consume_token(24);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(21);
+      jj_consume_token(25);
     if (!isSetBPM)
     {
       {if (true) throw new BpmNotDefinedException();}
@@ -268,7 +268,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x8331,0x8cc0,};
+      jj_la1_0 = new int[] {0x83301,0x8cc00,};
    }
 
   /** Constructor with InputStream. */
@@ -385,7 +385,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[22];
+    boolean[] la1tokens = new boolean[26];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -399,7 +399,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
         }
       }
     }
-    for (int i = 0; i < 22; i++) {
+    for (int i = 0; i < 26; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

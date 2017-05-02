@@ -68,6 +68,11 @@ MyEditor.prototype.setEditor = function(id) {
 									regex : "tempo|bpm|loop|ins"
 								},
 								{
+									token : "comment", // multi line comment
+									regex : "\\/\\*",
+									next : "comment"
+								},
+								{
 									token : "variable",
 									regex : "location|do|note|reverb|delay|low|high"
 								},
@@ -83,7 +88,15 @@ MyEditor.prototype.setEditor = function(id) {
 								}, {
 									token : "comment",
 									regex : "\/\/.*"
-								}, this.keywordRule ]
+								}, this.keywordRule ],
+						"comment" : [ {
+							token : "comment", // closing comment
+							regex : ".*?\\*\\/",
+							next : "start"
+						}, {
+							token : "comment", // comment spanning whole line
+							regex : ".+"
+						} ]
 					};
 					this.normalizeRules()
 				};
