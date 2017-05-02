@@ -203,7 +203,18 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       break;
     case EFFECT:
       effect = jj_consume_token(EFFECT);
-      value = jj_consume_token(NOTE);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case NOTE:
+        value = jj_consume_token(NOTE);
+        break;
+      case NUMBER:
+        value = jj_consume_token(NUMBER);
+        break;
+      default:
+        jj_la1[1] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
       jj_consume_token(20);
     switch (effect.image)
     {
@@ -247,7 +258,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     {if (true) return true;}
       break;
     default:
-      jj_la1[1] = jj_gen;
+      jj_la1[2] = jj_gen;
     {if (true) return false;}
     }
     throw new Error("Missing return statement in function");
@@ -262,13 +273,13 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[2];
+  final private int[] jj_la1 = new int[3];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x83301,0x8cc00,};
+      jj_la1_0 = new int[] {0x83301,0x50000,0x8cc00,};
    }
 
   /** Constructor with InputStream. */
@@ -282,7 +293,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -296,7 +307,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -306,7 +317,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -316,7 +327,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -325,7 +336,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -334,7 +345,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -390,7 +401,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 3; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

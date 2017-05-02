@@ -249,7 +249,12 @@ boolean makeSound() throws Exception :
     return true;
   }
 | 
-  effect = < EFFECT > value = < NOTE > ";"
+  effect = < EFFECT >
+  (
+    value = < NOTE >
+  | value = < NUMBER >
+  )
+  ";"
   {
     switch (effect.image)
     {
