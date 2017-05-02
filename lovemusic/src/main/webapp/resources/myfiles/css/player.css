@@ -40,8 +40,16 @@ textarea {
 }
 
 #editor {
-	width: 550px;
-	height: 150px;
+	width: 600px;
+	height: 140px;
+	padding-bottom: 3px;
+	margin: 0px auto;
+}
+
+.thePlayBtn {
+	width: 64px;
+	height: 64px;
+	background-image: url("../images/play_w.png");
 }
 
 #container {
@@ -49,9 +57,27 @@ textarea {
 }
 
 canvas {
+	
 }
 
 #visual {
 	position: relative;
 	height: 100%;
+	width: 100%;
+}
+
+tr {
+	padding: 1px;
+}
+
+/* #thePlayerTable {
+	background-color: dimgray;
+} */
+
+#theBtnArea {
+	padding-bottom: 3px;
+}
+
+body {
+	background-image: url("../images/galaxy-2.jpg");
 }

@@ -36,7 +36,7 @@ file_ori CLOB NOT NULL,
 file_com CLOB NOT NULL,
 file_type VARCHAR2(10) NOT NULL,
 file_title VARCHAR2(50) NOT NULL,
-cover_ori VARCHAR2(200) DEFAULT 'default.jpg',
+cover_ori VARCHAR2(200) DEFAULT 'default.png',
 cover_re VARCHAR2(200) DEFAULT 'default.jpg'
 );
 

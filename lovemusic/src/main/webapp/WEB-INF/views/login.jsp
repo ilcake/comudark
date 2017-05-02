@@ -142,34 +142,37 @@ input, input:hover, input:focus {
 	outline: none;
 }
 
-  label {
-    display: inline-block; width: 5em;
-  }
-  fieldset div {
-    margin-bottom: 2em;
-  }
-  fieldset .help {
-    display: inline-block;
-  }
-  .ui-tooltip {
-    width: 210px;
-  }
+label {
+	display: inline-block;
+	width: 5em;
+}
 
+fieldset div {
+	margin-bottom: 2em;
+}
+
+fieldset .help {
+	display: inline-block;
+}
+
+.ui-tooltip {
+	width: 210px;
+}
 </style>
 
 <script>
 	$(function() {
-		
-	    var tooltips = $( "[title]" ).tooltip({
-	        position: {
-	          my: "left top",
-	          at: "right+5 top-5",
-	          collision: "none"
-	        }
-	      });
-	    
-	    
-		
+
+		var tooltips = $("[title]").tooltip({
+			position : {
+				my : "left top",
+				at : "right+5 top-5",
+				collision : "none"
+			}
+		});
+
+
+
 		$("#loginbutton").on('click', function() {
 			$.ajax({
 				url : "login",
@@ -224,15 +227,17 @@ input, input:hover, input:focus {
 					<div class="title-container">
 						<div class="headline">
 							<!-- 로그인 -->
-							
+
 							<div id="loginBox">
 								<h3>LOGIN</h3>
 								<div class="content">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="ID" name="userid" id="userid2" title="3자 이상 입력">
+										<input type="text" class="form-control" placeholder="ID"
+											name="userid" id="userid2" title="3자 이상 입력">
 									</div>
 									<div class="input-group">
-										<input type="password" placeholder="Password" class="form-control" name="password" id="password2" />
+										<input type="password" placeholder="Password"
+											class="form-control" name="password" id="password2" />
 									</div>
 								</div>
 								<br>
@@ -240,7 +245,7 @@ input, input:hover, input:focus {
 									<button class="btn btn-primary" id="loginbutton"
 										style="display: inline;">LOGIN</button>
 									<div id="find">
-										<a href="find">FIND ID & password</a>
+										<a href="join">Join Us!</a>
 									</div>
 								</div>
 							</div>
@@ -276,7 +281,7 @@ input, input:hover, input:focus {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- QT FOOTER ================================ -->
 	<script src="js/modernizr-custom.js"></script>
 
@@ -312,31 +317,6 @@ input, input:hover, input:focus {
 	
 		});
 	
-		/* function setBackGroundMusic() {
-			var bgm = new Audio('');
-			if (!bgm.canPlayType('audio/ogg'))
-				alert('브라우저가 ogg 재생을 지원하지 않습니다.');else {
-				var bgm_url = 'http://upload.wikimedia.org/wikipedia/commons/d/d7/Wikinews_Remix_Jingle.ogg';
-				bgm = new Audio(bgm_url);
-				bgm.addEventListener('ended', function() {
-					this.currentTime = 0;
-					this.play();
-				}, false);
-				bgm.play();
-			} */
-	
-		/* var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1", {
-		   m4a : "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-		   oga : "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-		}, {
-		   cssSelectorAncestor : "#cp_container_1",
-		   swfPath : "../dist/jplayer",
-		   wmode : "window",
-		   keyEnabled : true
-		});
-		 */
-	
-		//}
 		function scaleVideoContainer() {
 			var height = $(window).height() + 5;
 			var unitHeight = parseInt(height) + 'px';

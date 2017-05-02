@@ -57,14 +57,14 @@ public class UserController {
 		return "home";
 	}
 
-	//  처리
+	// 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody String login(String sample,String main, String userid, String password, HttpServletRequest request) {
 		User user = userRepository.login(userid, password);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("loginId", user.getUserid());
-				return (String) session.getAttribute("fromPage");
+				return "home";
 			}
 		}
 		return "errorMsg";
