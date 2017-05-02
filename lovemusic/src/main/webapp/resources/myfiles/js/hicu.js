@@ -650,7 +650,7 @@ function saveEvent() {	$.ajax({		url : "getLoginId",		type : "POST",		succes
 		},
 		error : function() {}
 	});
-}function saveCode() {	var fileori = $("#codeResult").val();	var filecom = $("#compiledResult").val();	var filetitle = $("#codeTitle").val();	$.ajax({		type : "POST",		url : "directsave",		data : {			"userid" : userid,			"file_ori" : fileori,			"file_com" : filecom,			"file_type" : "hicu",			"file_title" : filetitle		},		success : function(resp) {			console.log(resp);		},		error : function(resp) {			console.log(resp);		}	});	console.log("fileSaved");}
+}function saveCode() {	var fileori = $("#codeResult").val();	var filecom = $("#compiledResult").val();	var filetitle = $("#codeTitle").val();	var refileori=fileori.split("\n");	fileori="";	$.each(refileori, function(index, item){		fileori+=item+"%";			});	$.ajax({		type : "POST",		url : "directsave",		data : {			"userid" : userid,			"file_ori" : fileori,			"file_com" : filecom,			"file_type" : "hicu",			"file_title" : filetitle		},		success : function(resp) {			console.log(resp);		},		error : function(resp) {			console.log(resp);		}	});	console.log("fileSaved");}
 
 
 

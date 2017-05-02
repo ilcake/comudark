@@ -98,12 +98,12 @@ function save() {
 		return;
 	}
 	var txt = mainEditor.getValue();
-	/*var reTxt = txt.split("\n");
+	var reTxt = txt.split("\n");
 	var ggTxt = "";
 	$.each(reTxt, function(index, item) {
-		ggTxt += item += "%";
+		ggTxt += item + "%";
 	});
-	txt = ggTxt;*/
+	txt = ggTxt;
 
 	$('<input>').attr({
 		type : 'text',

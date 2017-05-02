@@ -49,9 +49,6 @@ public class FileController {
 		// 이미지 파일 업로드 경로
 		String uploadPath = request.getSession().getServletContext().getRealPath("/") + "/resources/covers";
 
-		String source = file.getFile_ori();
-		source = source.replaceAll("\n", "%");
-		file.setFile_ori(source);
 		// 이미지 파일 처리
 		if (!upload.isEmpty()) {
 			String savedFile = FileService.saveFile(upload, uploadPath);
@@ -78,9 +75,6 @@ public class FileController {
 	@RequestMapping(value = "/directsave", method = RequestMethod.POST)
 	public String save2(Files file, HttpSession session) {
 
-		String source = file.getFile_ori();
-		source = source.replaceAll("\n", "%");
-		file.setFile_ori(source);
 		if (file.getFilenum() == 0) {
 			fileRepository.saveFile(file); // 저장 (Save)
 		} else {
@@ -108,9 +102,13 @@ public class FileController {
 	@RequestMapping(value = "/load", method = RequestMethod.GET)
 	public String loadFile(int filenum, HttpSession session) {
 		Files file = fileRepository.loadFile(filenum);
+
 		String source = file.getFile_ori();
-		source = source.replaceAll("%", "\n");
+		String reSource;
+		reSource = source.replaceAll("%", "\n");
+		source = reSource;
 		file.setFile_ori(source);
+
 		System.out.println(file);
 		session.setAttribute("file", file);
 		return "comu";
