@@ -53,33 +53,17 @@
 </script>
 </head>
 <body>
-	<div id="source" hidden="hidden">${file.file_ori}</div>
-	<table id="thePlayerTable">
-		<tr style="height: 5%; color: white">
-			<td colspan="2" style="padding-top: 0px; text-align: left;">ID :
-				${file.userid} | <span class="title">TITLE :
-					${file.file_title}</span>
-			</td>
-		</tr>
-		<tr style="height: 15%;">
-			<td class="middle">&nbsp;<img
-				src="resources/covers/${file.cover_re}" class="image">&nbsp; <!-- <span id="runBtn" class="thePlayBtn"
-				aria-hidden="true"></span> --> <img
-				src="resources/myfiles/images/play_w.png" id="runBtn"> <!-- <button>
-					<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-				</button> -->
-			</td>
-			<td id="theBtnArea">
-				<div id="editor"></div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div id="visual" hidden=""></div>
-			</td>
-		</tr>
-	</table>
-	<input type="text" id="compiledCode" hidden="" value="${file.file_com}" />
-	<input type="text" id="preCode" hidden="" value="${file.file_ori}" />
+	<div id="totalPlayer">
+		<table>
+			<tr>
+				<td><table>
+						<tr></tr>
+					</table></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+
+
 </body>
 </html>

@@ -54,14 +54,15 @@ public class UserController {
 		return "home";
 	}
 
-	//  처리
+	// 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody String login(String sample,String main, String userid, String password, HttpSession session, HttpServletRequest request) {
+	public @ResponseBody String login(String sample, String main, String userid, String password, HttpSession session,
+			HttpServletRequest request) {
 		User user = userRepository.login(userid, password);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("loginId", user.getUserid());
-				return (String) session.getAttribute("fromPage");
+				return "home";
 			}
 		}
 		return "errorMsg";
@@ -94,7 +95,7 @@ public class UserController {
 		userRepository.idCheck(userid, model);
 		return "idCheck";
 	}
-	
+
 	// id 중복확인 처리 요청
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile(String userid, HttpSession session) {
