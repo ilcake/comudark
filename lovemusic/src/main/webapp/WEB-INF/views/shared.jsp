@@ -57,11 +57,16 @@
 						<table class='board'>
 							<tr>
 								<td class="td_img">
-									<div class="card-container">
+									<div class="card-container tool">
 										<div class="card">
-										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="profileImage"></div>
-										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
+											<div class="side">
+												<img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="profileImage">
+											</div>
+											<div class="side back">
+												<img src="images/galaxy-2.jpg" style="position:absolute; left:0;">
+											</div>
 										</div>
+										<span class="toolt"><span class='pro hover' userid="${board.userid}">프로필</span><br><span class="mes hover" userid="${board.userid}">메시지</span></span>
 									</div>
 								</td>
 								<td class="td_center" style="line-height: 1.3em;"><span>${board.userid}</span>
@@ -71,7 +76,7 @@
 									style="font-size: small; text-align: right; margin-top: -20px; margin-bottom: -20px;">${board.inputdate}</span>
 								</td>
 								<!-- 좋아요/구독 버튼 --> <!-- 작성 ID가 로그인 ID와 같으면 표시하지 않음 -->
-								<td class="td_button">
+ 								<td class="td_button">
 								<c:if test="${loginId != board.userid}">
 								<a href="#" data-toggle="tooltip" title="좋아요"><span
 										class="glyphicon glyphicon-thumbs-up" aria-hidden="true"
