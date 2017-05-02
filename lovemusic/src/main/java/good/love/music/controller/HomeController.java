@@ -49,7 +49,6 @@ public class HomeController {
 		else{
 			ArrayList<Board> list = boardRepository.latestList();
 			session.setAttribute("list", list);
-			System.out.println("※"+list);
 			return "logInHome";
 		}
 		
@@ -141,7 +140,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpSession session, HttpServletRequest request) {
-		session.setAttribute("fromPage", request.getHeader("referer"));
+		//session.setAttribute("fromPage", request.getHeader("referer"));
 		return "login";
 	}
 

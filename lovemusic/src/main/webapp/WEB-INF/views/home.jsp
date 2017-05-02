@@ -223,7 +223,7 @@ to {
 				<div class="container center-align">
 					<span class="mymove" style="display: block;"> <!-- myfiles/images/main/logo_1.png -->
 						<img src="myfiles/images/main/logo_1.png" class="logo" alt="COMU"
-						style="width: 300px;">
+						style="width: 350px;">
 					</span>
 					<h4>
 						<a href='login'>Login</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href='join'>Join</a>

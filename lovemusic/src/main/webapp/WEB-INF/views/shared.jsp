@@ -37,13 +37,19 @@
 
 		<!-- =============================== CONTENT ============================= -->
 		<div class="wrapper">
-		<div class="search" style="height: 38px; color:white; top:100px; right: 20px; margin:auto; position: absolute; border-radius:10px; border: solid 2px red; padding: 2px; padding-bottom:10px; padding-right:10px;">
-			<input type="text" style="background:none; border:none; color:white; padding-top:-20px; margin-top:-10px;">&nbsp;
-			<a href="search"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></a> </div>
+		<div class="writeButton"><a href="write"><span class="glyphicon glyphicon-pencil" aria-hidden="true" boardnum="${board.boardnum}" style="color:white;"></span></a></div>
+		<div class="search" style="display:inline-box;">
+		<form action="searchBoard" method="GET">
+			<select name="searchTitle" class="searchTitle"><option value="userid">ID</option><option value="title">TITLE</option><option value="content">CONTENT</option></select>
+			<!-- <input type="hidden" name="searchTitle" value="title"> -->
+			<input type="text" name="searchText" class="searchText">&nbsp;
+			<label><input type="submit" style="display: none;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="color:white; padding-top:-10px;"></span></label>
+		</form>
+		</div>
 		<div></div><div></div><hr><hr><hr>
-			<div id="container" style="margin: 30px; padding:30px; padding-top:50px; right:20px;" >
+			<div id="container">
 			
-				<!-- 게시물 시작 (Collapse) -->
+				<!-- ======================= 게시물 START ======================= -->
 				<c:forEach var="board" items="${boardList}">
 				<!-- 공유 설정된 게시물만 표시 -->
 				<c:if test="${board.shared == 'true'}">
@@ -53,7 +59,7 @@
 								<td class="td_img">
 									<div class="card-container">
 										<div class="card">
-										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="image"></div>
+										<div class="side"><img src="resources/profiles/${board.profile}" onERROR="this.src='images/user.png'" alt="image" class="profileImage"></div>
 										<div class="side back"><img src="images/galaxy-2.jpg" style="position:absolute; left:0;"></div>
 										</div>
 									</div>
@@ -87,7 +93,7 @@
 									<!-- FILE -->
 									<c:if test="${board.file_title != null }">
 										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
-											<img class="image" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
+											<img class="fileImage" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
 										<!-- </div> --></button><br><br>
 									</c:if>
 									 ${fn:replace(board.content, crcn, br)}	<br>
@@ -119,10 +125,8 @@
 										<td style="width: 70%;">${reply.replytext}<span style="color: gray;"> ${reply.inputdate}</span></td>
 										<td>
 										<c:if test="${reply.userid == loginId}">	<!-- 리플ID와 loginID가 같을 때만 표시 -->
-										<a href="updateReply?replynum=${reply.replynum}"><span
-												class="glyphicon glyphicon-pencil" aria-hidden="true"
-												style="font-size: small;"></span></a> <a
-											href="deleteReply?replynum=${reply.replynum}">X</a>
+											<span class="glyphicon glyphicon-pencil updatereply" aria-hidden="true" style="font-size: small;" boardnum="${board.boardnum}" replynum="${reply.replynum}" replytext="${reply.replytext}"></span>
+											<a href="deleteReply?replynum=${reply.replynum}">X</a>
 										</c:if>
 										</td>
 									</tr>
@@ -130,20 +134,24 @@
 							</c:forEach>
 							<tr>
 								<form action="replyWrite" method="post">
+								<input type="hidden" class="here" boardnum="${board.boardnum}">
 								<input type="hidden" name="boardnum" value="${board.boardnum}" />
 									<td class="td_img">댓글</td>
-									<td class="td_center" style="width: 70%;"><input
-										type="text" name="replytext" id="replytext" style="width:100%;"></td>
-									<td><button style="border: none; background: none;" class="reply" boardnum="${board.boardnum }">
+									<td class="td_center" style="width: 70%;">
+										<input type="text" name="replytext" class="replytext" boardnum="${board.boardnum}" style="width:100%;">
+									</td>
+									<td>
+										<button style="border: none; background: none;" class="reply" boardnum="${board.boardnum }">
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-										</button></td>
+										</button>
+									</td>
 								</form>
 							</tr>
 						</table>
 					</div>
 				</c:if>
 				</c:forEach>
-				<!-- 게시물 END -->
+				<!-- ======================= 게시물 END ======================= -->
 			</div>
 		</div>
 		<!-- =============================== CONTENT ============================= -->

@@ -36,9 +36,11 @@
 	<!-- 글 목록(LIKE) -->
 	<select id="myLikeList" parameterType="string" resultType="Board">
 		SELECT
-		* FROM cm_board b, cm_like l
+		* FROM cm_board b, cm_like l, cm_file f
 		WHERE
 		b.boardnum = l.boardnum
+		AND
+		b.filenum = f.filenum
 		AND
 		l.like_userid = #{param1}
 		ORDER BY b.boardnum DESC
@@ -133,7 +135,8 @@
 	<update id="updateReply" parameterType="Reply">
 		UPDATE cm_reply
 		SET
-		replytext = #{replytext}
+		replytext = #{replytext},
+		inputdate = SYSDATE
 		WHERE
 		replynum = #{replynum}
 	</update>
@@ -236,6 +239,7 @@
 		ORDER BY count(*) desc)
 		where rownum BETWEEN 1 and 5
 	</select>
+	
 	
 	<!-- 최근 음악 -->
 	<select id="latestList" resultType="board">

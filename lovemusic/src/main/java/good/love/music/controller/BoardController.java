@@ -50,6 +50,7 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		session.removeAttribute("boardFile");
+		System.out.println("hhh");
 		return "write";
 	}
 
@@ -143,11 +144,12 @@ public class BoardController {
 	@RequestMapping(value = "/searchBoard", method = RequestMethod.GET)
 	public String searchBoard(@RequestParam(value = "searchTitle", defaultValue = "") String searchTitle,
 			@RequestParam(value = "searchText", defaultValue = "") String searchText, Model model) {
-		List<Board> searchBoard = boardRepository.searchBoard(searchTitle, searchText);
-
-		model.addAttribute("searchBoard", searchBoard);
+		System.out.println(searchTitle);
+		List<Board> boardList = boardRepository.searchBoard(searchTitle, searchText);
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("searchText", searchText);
+		
 
 		return "shared";
 	}
@@ -158,8 +160,18 @@ public class BoardController {
 
 		String loginId = (String) session.getAttribute("loginId");
 		reply.setUserid(loginId);
+<<<<<<< HEAD
 		boardRepository.replyWrite(reply);
 
+=======
+		
+		System.out.println(reply);
+		
+		if(reply.getReplynum() == 0)
+			boardRepository.replyWrite(reply);
+		else
+			boardRepository.updateReply(reply);	
+>>>>>>> sab3
 		String uri = request.getHeader("referer");
 		return "redirect:shared";
 	}
