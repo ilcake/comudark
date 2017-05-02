@@ -426,25 +426,24 @@ function newBtnEvent() {
 			switch (dtins) {
 			case "beat":
 				beatStack = theCodeDt;
-				$.each(theMap.beat, function(index, item) {
-					if (item.fileName == dtnt) {
-						bpm = item.bpm;
-						console.log("theDuration now = " + bpm);
+				$.each(theMap.beat, function(index, item) {
+					if (item.fileName == dtnt) {
+						bpm = item.bpm;
+						console.log("theDuration now = " + bpm);						samplePlay(item.filePath, 0);
 					}
 				});
 				break;
-			case "bass":
-				bassStack = theCodeDt;
+			case "bass":
+				bassStack = theCodeDt;				var path = "resources/musicSources/loops/bass/" + dtnt + ".wav";				samplePlay(path, 0);
 				break;
 			case "melody":
-				melodyStack = theCodeDt;
+				melodyStack = theCodeDt;				var path2 = "resources/musicSources/loops/melody/" + dtnt + ".wav";				samplePlay(path2, 0);
 				break;
 			}
 			break;
 
 		case "note":
-			noteStack.push(theCodeDt);
-			break;
+			noteStack.push(theCodeDt);			var notePath = "resources/musicSources/notes/" + dtins + "/" + dtnt + ".wav";			samplePlay(notePath, 0);			break;
 		}
 		$this.attr("src", "myfiles/images/hicu/button_play.png");
 		$this.attr("dt-sta", "on");
@@ -650,7 +649,7 @@ function saveEvent() {	$.ajax({		url : "getLoginId",		type : "POST",		succes
 		},
 		error : function() {}
 	});
-}function saveCode() {	var fileori = $("#codeResult").val();	var filecom = $("#compiledResult").val();	var filetitle = $("#codeTitle").val();	var refileori=fileori.split("\n");	fileori="";	$.each(refileori, function(index, item){		fileori+=item+"%";			});	$.ajax({		type : "POST",		url : "directsave",		data : {			"userid" : userid,			"file_ori" : fileori,			"file_com" : filecom,			"file_type" : "hicu",			"file_title" : filetitle		},		success : function(resp) {			console.log(resp);		},		error : function(resp) {			console.log(resp);		}	});	console.log("fileSaved");}
+}function saveCode() {	var fileori = $("#codeResult").val();	var filecom = $("#compiledResult").val();	var filetitle = $("#codeTitle").val();	var refileori = fileori.split("\n");	fileori = "";	$.each(refileori, function(index, item) {		fileori += item + "%";	});	$.ajax({		type : "POST",		url : "directsave",		data : {			"userid" : userid,			"file_ori" : fileori,			"file_com" : filecom,			"file_type" : "hicu",			"file_title" : filetitle		},		success : function(resp) {			console.log(resp);		},		error : function(resp) {			console.log(resp);		}	});	console.log("fileSaved");}
 
 
 
@@ -676,11 +675,11 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 		}
 	}, function() {
 		console.log(url + ' file loaded!' + time + "      theTime=" + actCurrentTime);
-		sound1.play((time + bpm), 0);
+		sound1.play((time), 0);
 		playGroup.addSound(sound1);
 	});
 }
-
+function samplePlay(url, time) {	var sound1 = new Pz.Sound({		source : 'file',		options : {			path : url,			loop : false		}	}, function() {		sound1.play((time), 0);		console.log(url + "    played ");	});}
 
 
 /********************************************** 

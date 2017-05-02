@@ -88,6 +88,13 @@ public class FileController {
 	@RequestMapping(value = "/fileList", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Files> fileList() {
 		ArrayList<Files> list = fileRepository.fileList();
+		for (Files files : list) {
+			String source = files.getFile_ori();
+			String reSource;
+			reSource = source.replaceAll("%", "\n");
+			source = reSource;
+			files.setFile_ori(source);
+		}
 		return list;
 	}
 
@@ -95,6 +102,14 @@ public class FileController {
 	@RequestMapping(value = "/userlist", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Files> userlist(HttpSession session) {
 		ArrayList<Files> userlist = fileRepository.userlist((String) session.getAttribute("loginId"));
+		for (Files files : userlist) {
+			String source = files.getFile_ori();
+			String reSource;
+			reSource = source.replaceAll("%", "\n");
+			source = reSource;
+			files.setFile_ori(source);
+		}
+
 		return userlist;
 	}
 
