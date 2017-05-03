@@ -15,7 +15,7 @@ var interPlay;
 var interLed;
 var codeResult;
 var thePicked = [];
-var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];
+var drumSet = [ "hihat", "kick", "snare", "tom1", "tom2", "tom3" ];var seeCodesStatus = false;
 
 /*******************************************************************************
  * 
@@ -746,7 +746,7 @@ $(function() {
 	$("#stop").on("click", stopEvent);
 	$(".ins_add").on("click", insAddEvent);
 	$("#save").on("click", saveEvent);	$("#saveHicuCode").on("click", saveCode);
-	$("#reset").on("click", function() {
-		location.reload();
-	});
+	$("#reset").on("click", function() {
+		location.reload();
+	});	$("#seeCodesArea").on("click", function() {		if (seeCodesStatus) {			seeCodesStatus = false;			$("#theResultArea").show();			$("#seeCodesArea").removeClass("glyphicon-eye-open");			$("#seeCodesArea").addClass("glyphicon-eye-close");		} else {			seeCodesStatus = true;			$("#theResultArea").hide();			$("#seeCodesArea").removeClass("glyphicon-eye-close");			$("#seeCodesArea").addClass("glyphicon-eye-open");		}	});
 });

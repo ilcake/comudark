@@ -406,6 +406,7 @@ public class BoardController {
 		String userid = (String) session.getAttribute("loginId");
 
 		ArrayList<Board> list = boardRepository.likeRanking();
+		System.out.println("the List==" + list.toString());
 
 		return list;
 

@@ -109,6 +109,17 @@ function save() {
 		value : txt
 	}).appendTo('#saveForm');
 	$('#saveForm').submit();
+
+	/*var params = $("#saveForm").serialize();
+	$.ajax({
+		url : "ajaxsave",
+		type : "POST",
+		data : params,
+		dataType : "html",
+		success : function(resp) {
+			console.log(resp);
+		}
+	});*/
 }
 
 function load() {
@@ -127,7 +138,7 @@ function refreshLoadModal() {
 	$
 		.ajax({
 			type : "get",
-			url : "fileList",
+			url : "userlist",
 			success : function(resp) {
 				var comu = "<table class='table'><tr>";
 				var hicu = "<table class='table'><tr>";

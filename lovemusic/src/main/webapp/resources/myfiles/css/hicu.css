@@ -314,7 +314,7 @@ select {
 }
 
 #theResultArea {
-	display: none;
+	
 }
 
 .modal-header {
@@ -340,6 +340,10 @@ select {
 
 .skrollr.skrollr-desktop {
 	overflow: hidden;
+}
+
+#seeCodesArea {
+	padding-left: 40px;
 }
 /*
 *       buttons

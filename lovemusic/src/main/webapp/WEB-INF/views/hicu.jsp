@@ -178,10 +178,11 @@
 													id="saveReset"><img id="save"
 													src="myfiles/images/hicu/btn_save.png" data-toggle="modal"
 													data-target="#myModal"><img id="reset"
-													src="myfiles/images/hicu/btn_reset.png"></span>
+													src="myfiles/images/hicu/btn_reset.png"></span><span
+													id="seeCodesArea" class="glyphicon glyphicon-eye-open"></span>
 											</div>
 											<div id="theResultArea">
-												<textarea id="resultCode"></textarea>
+												<textarea readonly="readonly" id="resultCode"></textarea>
 											</div>
 										</div>
 									</div>

@@ -31,6 +31,8 @@
 <link href='resources/myfiles/css/player.css' rel='stylesheet'
 	type='text/css'>
 
+<link rel="shortcut icon" type="image/png"
+	href="myfiles/images/main/logo_comu.png" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
 <script src="resources/myfiles/js/editor.js"></script>
 <script src="resources/myfiles/js/player.js"></script>

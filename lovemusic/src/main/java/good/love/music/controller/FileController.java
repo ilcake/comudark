@@ -70,7 +70,7 @@ public class FileController {
 		return "comu";
 	}
 
-	// 저장 - ajax //
+	// 저장 - ajax hicu//
 	@ResponseBody
 	@RequestMapping(value = "/directsave", method = RequestMethod.POST)
 	public String save2(Files file, HttpSession session) {
@@ -82,6 +82,35 @@ public class FileController {
 												// 변환할 것!!
 		}
 		return "success";
+	}
+
+	// COMU : 음악 저장 ajax
+	@ResponseBody
+	@RequestMapping(value = "/ajaxsave", method = RequestMethod.POST)
+	public String ajaxSave(MultipartFile upload, Files file, HttpSession session) {
+		System.out.println("here?");
+		// 이미지 파일 업로드 경로
+		String uploadPath = request.getSession().getServletContext().getRealPath("/") + "/resources/covers";
+
+		// 이미지 파일 처리
+		if (!upload.isEmpty()) {
+			String savedFile = FileService.saveFile(upload, uploadPath);
+			file.setCover_ori(upload.getOriginalFilename());
+			file.setCover_re(savedFile);
+		} else {
+		}
+
+		// 임시 셋팅
+		file.setFile_com(cc.getCompliedCode(file.getFile_ori()));
+		file.setFile_type("comu");
+
+		if (file.getFilenum() == 0) {
+			fileRepository.saveFile(file); // 저장 (Save)
+		} else {
+			fileRepository.updateFile(file); // 덮어쓰기 (Update) //****ajax 형식으로
+												// 변환할 것!!
+		}
+		return "Success";
 	}
 
 	// 모든 음악 목록 불러오기(ajax)
