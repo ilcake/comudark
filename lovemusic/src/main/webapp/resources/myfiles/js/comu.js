@@ -127,7 +127,7 @@ function refreshLoadModal() {
 	$
 		.ajax({
 			type : "get",
-			url : "fileList",
+			url : "userlist",
 			success : function(resp) {
 				var comu = "<table class='table'><tr>";
 				var hicu = "<table class='table'><tr>";

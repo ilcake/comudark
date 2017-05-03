@@ -174,7 +174,7 @@ tr {
 	height: 50px;
 	vertical-align: middle;
 	background: none;
-}
+}.carousel-control.left, .carousel-control.right{	position: relative;	/* background-color: red; */	background: none;	width: 50px;	top: -162px;	}.carousel-control.right{   /*  right: 38px; */}
 
 h3 {
 	text-shadow: 2px 2px 2px black;
@@ -195,7 +195,7 @@ h3 {
 img:hover {
 	box-shadow: 2px 2px 10px white;
 	border: 3px solid white;
-}
+}
 </style>
 <script type="text/javascript">
 
@@ -223,8 +223,7 @@ img:hover {
 				res += "<td>TITLE</td>";
 				res += "<td class='td_total'>TOTAL</td>";
 				res += "</tr></thead>";
-				$.each(resp, function(index, item) {
-					res += "<tbody><tr class='tr_like' dt-board='"+item.BOARDNUM+"'>";
+				$.each(resp, function(index, item) {							res += "<tbody><tr class='tr_like' filenum="+item.FILENUM+">";
 					res += "<td>";
 					res += index + 1;
 					res += "</td>";
@@ -241,8 +240,7 @@ img:hover {
 				});
 				res += "</table>";
 				$("#like").html(res);
-				$(".tr_like").on("click", function(){
-					likeTableEvent($(this).attr('dt-board'));
+				$(".tr_like").on("click", function(){					window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 				});
 			}
 		});
@@ -280,8 +278,7 @@ img:hover {
 		});
 	});
 	
-	function likeTableEvent(res){
-		window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
+	function likeTableEvent(res){		window.open("player?filenum="+$(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=500, location=no, resizable=no");
 	}
 	
 	function subTableEvent(res){

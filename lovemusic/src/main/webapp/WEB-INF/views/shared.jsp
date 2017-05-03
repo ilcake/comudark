@@ -112,9 +112,9 @@
 								<!-- 글 내용 (줄바꿈 처리) -->
 								<td colspan="3" style="word-break:break-all;" class="content"> 
 								
-									<!-- FILE -->
+									<!-- FILE 파일 클릭 시 새 창으로 PLAYER 재생-->
 									<c:if test="${board.file_title != null }">
-										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
+										<button class="buttonEffect" filenum="${board.filenum }"><!-- <div class="fileField" style=""> -->
 											<img class="fileImage" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
 										<!-- </div> --></button><br><br>
 									</c:if>

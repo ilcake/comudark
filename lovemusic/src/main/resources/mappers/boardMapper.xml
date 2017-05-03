@@ -181,13 +181,13 @@
 	<!-- 좋아요 랭킹 -->
 	<select id="likeRanking" resultType="map">
 		select rr.rank as rank,
-		bb.boardnum as boardnum, bb.title as title, bb.userid as userid
+		bb.boardnum as boardnum, bb.filenum as filenum, bb.title as title, bb.userid as userid
 		from
 		(select rank, boardnum
-		from
-		(SELECT count(*) rank, boardnum FROM cm_like
-		GROUP BY boardnum)
-		where rownum BETWEEN 1 and 5
+			from
+			(SELECT count(*) rank, boardnum FROM cm_like
+			GROUP BY boardnum)
+			where rownum BETWEEN 1 and 5
 		) rr, cm_board bb
 		where
 		rr.boardnum = bb.BOARDNUM
