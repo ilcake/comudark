@@ -13,8 +13,13 @@
 
 	<!-- 아이디로 회원 정보 가져오기 -->
 	<select id="selectOne" parameterType="String" resultType="User">
-		SELECT
-		userid, email, password FROM cm_user
+		SELECT * FROM cm_user
 		WHERE userid = #{userid}
 	</select>
+	
+	<update id="updateOne" parameterType="User">
+		UPDATE cm_user
+		SET email = #{email}, password = #{password} 
+		WHERE userid = #{userid}
+	</update>
 </mapper>

@@ -29,10 +29,126 @@
 	crossorigin="anonymous"></script>
 
 </head>
+<style>
+table, td{
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	border: 1px lightgray solid;
+}
+
+.a{
+	width: 20%;
+	background-color: black;
+	color: white;
+	border: white solid 1px;
+}
+
+img.one{
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px black;
+}
+
+img.one:hover img.two{
+	visibility: visible;
+	
+}
+
+img.two{
+	visibility: hidden;
+	position: absolute;
+	left: 0%;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px black;
+}
+
+input{
+	border: none;
+	border-bottom: solid 1px lightgray;
+	outline: none;
+	text-align: center;
+}
+</style>
+
+<script>
+$(function(){
+	$(".one").hover(
+		function(){
+			$(".two").css("visibility", "visible");
+		},
+		function(){
+			$(".two").css("visibility", "hidden");			
+		}
+	);
+	
+	$(".board").on("click", function(){
+		window.opener.location.href="searchBoard?searchTitle=userid&searchText="+$(".userid").text();
+	});
+	
+	$(".like").on("click", function(){
+		window.opener.location.href="searchBoard?searchTitle=userid&searchText="+$(".userid").text();
+	});
+	
+	$(".update").on("click", function(){
+		var email = $(".email").text();
+		var pw = $(".pw").text();
+		$(".email").html("<input type='text' id='email' name='email' value='"+email+"'>");
+		$(".pw").html("<input type='password' id='pw1' name='password' value='"+pw+"'>");
+		
+		$(".up").html("<button class='btn btn-primary btn-xs update2'>수정 완료</button>");	
+		
+		$(".update2").on("click", function(){
+			$("form").submit();
+/* 			$.ajax({
+				url: "updateUser",
+				type: "post",
+				data: {"email" : $("#email").val(), "pw1" : $("#pw1").val()},				
+				success: function(){
+					alert("upda");			
+				}
+			}); */		
+		});
+
+	});	
+
+});
+
+</script>
 <body>
-<c:forEach var="user" items="${profile}">
-${user.userid}
-test
-</c:forEach>
+
+<form method="post" action="updateUser">
+<input type="hidden" name="userid" value="${profile.userid}">
+<table>
+<tr><td colspan="2"><img class="one" src="resources/profiles/${profile.profile}"/><img class="two" src="resources/profiles/${profile.profile}"/><br><br></td></tr>
+<tr><td class="a">ID</td><td><span class="userid">${profile.userid}</span></td></tr>
+<tr><td class="a">E-MAIL</td><td><span class="email">${profile.email}</span></td></tr>
+<c:if test="${loginId == profile.userid}">
+<tr><td class='a'>PW</td><td><span class='pw'><input type="password" value="${profile.password}" readonly style="border:none;"/></span></td></tr>
+</c:if>
+</table>
+
+</form>
+
+<table>
+<tr>
+	<td>
+		<br>
+		<span class="up">
+		<button class="btn btn-primary btn-xs board">게시물 보기</button> 
+		<!-- <button class="btn btn-primary btn-xs like">좋아하는 곡</button>  -->
+		<c:if test="${loginId == profile.userid }">
+			<button class="btn btn-primary btn-xs update">회원정보 수정</button>
+		</c:if>
+		</span>
+		<br><br>
+	</td>
+</tr>
+</table>
+
 </body>
 </html>

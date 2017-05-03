@@ -77,4 +77,13 @@ public class UserRepository {
 
 		return "join";
 	}
+
+	//회원정보 수정
+	public int updateOne(User user) {
+		
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		int result = dao.updateOne(user);
+		
+		return result;
+	}
 }
