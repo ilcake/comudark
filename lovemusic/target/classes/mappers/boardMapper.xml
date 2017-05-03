@@ -181,7 +181,7 @@
 	<!-- 좋아요 랭킹 -->
 	<select id="likeRanking" resultType="map">
 		select rr.rank as rank,
-		bb.boardnum as boardnum, bb.title as title, bb.userid as userid
+		bb.boardnum as boardnum, bb.filenum as filenum, bb.title as title, bb.userid as userid
 		from
 		(select rank, boardnum
 		from

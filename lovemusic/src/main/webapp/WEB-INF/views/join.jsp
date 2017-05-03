@@ -212,7 +212,7 @@ input, input:hover {
 								<form class="form" method="post" action="join" enctype="multipart/form-data">
 									<div class="content">
 									
-										<label> <img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/myfiles/images/comu/robot.png'" style="width: 100px; height: 100px; border-radius: 100px;">
+										<label> <img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/profiles/user.jpg'" style="width: 100px; height: 100px; border-radius: 100px;">
 										<input type="file" style="display: none;" id="imgInp" name="upload" />
 										</label>
 									

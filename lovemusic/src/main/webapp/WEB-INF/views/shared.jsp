@@ -114,7 +114,7 @@
 								
 									<!-- FILE -->
 									<c:if test="${board.file_title != null }">
-										<button class="buttonEffect" boardnum="${board.filenum }"><!-- <div class="fileField" style=""> -->
+										<button class="buttonEffect" boardnum="${board.boardnum }" filenum="${board.filenum }"><!-- <div class="fileField" style=""> -->
 											<img class="fileImage" src="resources/covers/${board.cover_re}"> &nbsp;&nbsp; ${board.file_title} ♪
 										<!-- </div> --></button><br><br>
 									</c:if>
