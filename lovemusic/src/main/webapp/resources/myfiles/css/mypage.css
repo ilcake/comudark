@@ -25,7 +25,7 @@
 	height: 100%;
 	width: 100%;
 	overflow: scroll;
-	background: #000;  
+	background: #000;
 }
 
 .video-container .poster img {
@@ -79,25 +79,25 @@ a, a:link, a:hover, a:visited, a:active {
 	color: black;
 }
 
-.tr_header{
+.tr_header {
 	margin-top: -5%;
 	margin-bottom: -5%;
 }
 
-.td_img{
-	width:20%;
+.td_img {
+	width: 20%;
 }
 
-.td_center{
+.td_center {
 	width: 60%;
 }
 
-.td_button{
-	width:20%;
+.td_button {
+	width: 20%;
 	text-align: right;
 }
 
-.glyphicon{
+.glyphicon {
 	font-size: 20px;
 }
 
@@ -108,111 +108,111 @@ a, a:link, a:hover, a:visited, a:active {
 	text-align: left;
 }
 
-.panel-heading{
+.panel-heading {
 	background-color: blue;
 }
 
 /*================게시판 블록===============*/
-.box{
+.box {
 	width: 30%;
 	margin: 20px;
 	padding: 10px;
 	border-radius: 20px;
-	float:left;
-	display:inline;
-	color:black;
-	background-color:white;
+	float: left;
+	display: inline;
+	color: black;
+	background-color: white;
 }
 
-table{
+table {
 	font-size: medium;
 }
 
-.reply > td{
+.reply>td {
 	/*border: solid white 2px;*/
-	background-color:#f0f5f5;
+	background-color: #f0f5f5;
 	font-size: small;
 	padding: 5px;
 }
 
-.writerButton{
+.writerButton {
 	position: relative;
 	float: right;
-	font-size:small;
+	font-size: small;
 	margin-bottom: -20%;
 }
 
-.replybutton{
+.replybutton {
 	position: relative;
 	float: right;
-	font-size:small;
+	font-size: small;
 	margin-bottom: -20%;
 }
 
-input[type=text]{
+input[type=text] {
 	border: none;
 	border-bottom: black solid 1px;
 	width: auto;
 }
 
 /* mypage css */
-  .center, td, tr{
-   text-align : center; 
-  }
-  
-  td{
-   width: 80px;
-   max-width: 80px;
-  }
-  
-  #div3{
-   border: solid 1px black;
-  }
-  
-  #div4{
-   background-image: url("images/album.jpg");
-   background-size: 10%;
-   background-repeat: no-repeat;
-   background-position: center;
-  }
-  
-  .font{
-   font-size: 14px;
-  }
-  
-  .border{
-   border: solid 1px gray;
-  }
-  
-  #imgtable{
-   width: 20px;
-  }
-  
-  /* board css */
+.center, td, tr {
+	text-align: center;
+}
+
+td {
+	width: 80px;
+	max-width: 80px;
+}
+
+#div3 {
+	border: solid 1px black;
+}
+
+#div4 {
+	background-image: url("images/album.jpg");
+	background-size: 10%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.font {
+	font-size: 14px;
+}
+
+.border {
+	border: solid 1px gray;
+}
+
+#imgtable {
+	width: 20px;
+}
+
+/* board css */
 a, a:link, a:hover, a:visited, a:active {
 	text-decoration: none;
 	color: black;
 }
 
-.tr_header{
+.tr_header {
 	margin-top: -5%;
 	margin-bottom: -5%;
 }
 
-.td_img{
-	width:20%;
+.td_img {
+	width: 20%;
 }
 
-.td_center{
+.td_center {
 	width: 60%;
 }
 
-.td_button{
-	width:20%;
+.td_button {
+	width: 20%;
 	text-align: right;
 }
 
-.glyphicon{
+.glyphicon {
 	font-size: 20px;
 }
 
@@ -223,50 +223,53 @@ a, a:link, a:hover, a:visited, a:active {
 	text-align: left;
 }
 
-.panel-heading{
+.panel-heading {
 	background-color: blue;
 }
 
 /*게시판 블록*/
-.box{
+.box {
 	min-width: 70px;
 	width: 30%;
 	margin: 20px;
 	padding: 10px;
 	border-radius: 20px;
-	float:left;
-	display:inline;
-	color:black;
-	background-color:white;
+	float: left;
+	display: inline;
+	color: black;
+	background-color: white;
 }
 
-table{
+table {
 	font-size: medium;
 }
 
-.reply > td{
+.reply>td {
 	/*border: solid white 2px;*/
-	background-color:#f0f5f5;
+	background-color: #f0f5f5;
 	font-size: small;
 	padding: 5px;
 }
 
-.writerButton{
+.writerButton {
 	position: relative;
 	float: left;
-	font-size:small;
+	font-size: small;
 	margin-bottom: -20%;
 }
 
-.replybutton{
+.replybutton {
 	position: relative;
 	float: right;
-	font-size:small;
+	font-size: small;
 	margin-bottom: -20%;
 }
 
-a{
-	color:green;
+a {
+	color: green;
 }
 
-
+.image {
+	height: 70px;
+	width: 70px;
+}
