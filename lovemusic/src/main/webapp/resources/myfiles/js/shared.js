@@ -144,7 +144,7 @@ $(function() {
 
 	//파일 영역 클릭 이벤트	(새창)
 	$(".buttonEffect").on("click", function() {
-		window.open("player?filenum=" + $(this).attr("filenum"), "PLAYER", "top=200, left=400, width=800, height=145, location=no, directories=no, status=no, toolbar=no, menubar=no, resizable=no");
+		window.open("player?filenum=" + $(this).attr("filenum"), "PLAYER", "top=200, left=400, width=860, height=175, location=no, directories=no, status=no, toolbar=no, menubar=no, resizable=no");
 	});
 
 

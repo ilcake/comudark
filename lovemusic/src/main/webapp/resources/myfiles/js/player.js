@@ -7,8 +7,8 @@ $(function() {
 	console.log(source);
 	$('#runBtn').click(
 		function() {
-			var width = 800;
-			var height = 570;
+			var width = 860;
+			var height = 550;
 			window.resizeTo(width, height);
 			$("#visual").show();
 			$.ajax({

@@ -162,7 +162,7 @@ $(function(){
 	);
 
 	$(".cover").on("click", function(){
-		window.open("player", "player", "height=200, width=400, resizable=no, top=200, left=400");
+		window.open("player?filenum=" + $(this).attr("filenum"), "PLAYER", "top=200, left=400, width=860, height=175, location=no, directories=no, status=no, toolbar=no, menubar=no, resizable=no");
 	});
 	
 });
