@@ -665,8 +665,7 @@ function setCurrentTimevalue() {
 }
 
 function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
-	playGroup = new Pizzicato.Group();
-
+	playGroup = new Pizzicato.Group();
 	var sound1 = new Pz.Sound({
 		source : 'file',
 		options : {
@@ -678,8 +677,7 @@ function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) 
 		sound1.play((time), 0);
 		playGroup.addSound(sound1);
 	});
-}
-function samplePlay(url, time) {	var sound1 = new Pz.Sound({		source : 'file',		options : {			path : url,			loop : false		}	}, function() {		sound1.play((time), 0);		console.log(url + "    played ");	});}
+}function samplePlay(url, time) {	group1.stop();	group1=new Pizzicato.Group();	var sound1 = new Pz.Sound({		source : 'file',		options : {			path : url,			loop : false		}	}, function() {		group1.addSound(sound1);		group1.play((time), 0);		console.log(url + "    played ");	});}
 
 
 /********************************************** 
@@ -738,8 +736,8 @@ function createAnalyser() {
 *
 *                 on Ready!
 *
-***********************************************/
-$(function() {
+***********************************************/var group1;
+$(function() {	group1=new Pizzicato.Group();
 	initHiCu();
 	setMaxHeightRow();
 	$("#play").on("click", playEvent);
