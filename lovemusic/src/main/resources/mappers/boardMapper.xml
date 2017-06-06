@@ -94,7 +94,28 @@
 
 	<!-- 글 검색 -->
 	<select id="searchBoard" parameterType="map" resultType="Board">
-		SELECT * FROM cm_board
+	    SELECT * 
+		FROM cm_board b
+		, cm_file f
+		WHERE
+		b.filenum = f.filenum(+)
+		<if test="searchTitle != '' and searchText != '' ">
+			<choose>
+				<when test="searchTitle == 'userid' ">
+					AND b.userid LIKE '%' || #{searchText} || '%'
+				</when>
+				<when test="searchTitle == 'title' ">
+					AND b.title LIKE '%' || #{searchText} || '%'
+				</when>
+				<when test="searchTitle == 'content' ">
+					AND b.content LIKE '%' || #{searchText} || '%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY b.boardnum DESC
+	
+	
+		<!-- SELECT * FROM cm_board
 		<if test="searchTitle != '' and searchText != '' ">
 			<choose>
 				<when test="searchTitle == 'userid' ">
@@ -108,7 +129,7 @@
 				</when>
 			</choose>
 		</if>
-		ORDER BY boardnum DESC
+		ORDER BY boardnum DESC -->
 	</select>
 
 	<!-- 댓글 등록 -->
@@ -187,7 +208,6 @@
 		from
 		(SELECT count(*) rank, boardnum FROM cm_like
 		GROUP BY boardnum)
-		where rownum BETWEEN 1 and 5
 		) rr, cm_board bb
 		where
 		rr.boardnum = bb.BOARDNUM
